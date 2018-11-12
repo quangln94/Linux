@@ -61,3 +61,44 @@ logging {
         };
 };
 ```
+**vi /etc/named.rfc1912.zones**
+```
+zone "domain.com" IN {
+        type master;
+        file "f.zone";
+        allow-update { none; };
+        };
+zone "0.16.172.in-addr.arpa" IN {
+        type master;
+        file "r.zone";
+        allow-update { none; };
+        };
+```
+**vi /var/named/f.zone**
+```
+$TTL 86400
+@   IN  SOA     server2.domain.com. root.server2.domain.com. (
+        2014071001  ;Serial
+        3600        ;Refresh
+        1800        ;Retry
+        604800      ;Expire
+        86400       ;Minimum TTL )
+
+                IN  NS      server2.domain.com.
+                IN  A       172.16.0.2
+                IN  MX 10   server3.enter.com.
+server3         IN  A       172.16.0.3
+```
+**vi /var/named/r.zone**
+```
+$TTL 86400
+@   IN  SOA     server2.domain.com. root.server2.domain.com. (
+        2014071001  ;Serial
+        3600        ;Refresh
+        1800        ;Retry
+        604800      ;Expire
+        86400       ;Minimum TTL )
+        IN      NS      server2.domain.com.
+2       IN      PTR     server2.domain.com.     
+3       IN      PTR     server3.domain.com.
+```
