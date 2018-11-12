@@ -110,4 +110,4 @@ $TTL 86400
 ```
 **systemctl restart named**
 
-**systemctl enable nd**
+**systemctl enable named**
