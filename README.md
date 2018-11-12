@@ -46,7 +46,6 @@ subnet 172.16.0.0 netmask 255.255.255.0 {
         dnssec-validation yes;
         dnssec-lookaside auto;
 
-        /* Path to ISC DLV key */
         bindkeys-file "/etc/named.iscdlv.key";
 
         managed-keys-directory "/var/named/dynamic";
