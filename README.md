@@ -108,3 +108,6 @@ $TTL 86400
 2       IN      PTR     server2.domain.com.     
 3       IN      PTR     server3.domain.com.
 ```
+**systemctl restart named**
+
+**systemctl enable nd**
