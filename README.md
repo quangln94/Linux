@@ -46,7 +46,6 @@ subnet 172.16.0.0 netmask 255.255.255.0 {
         statistics-file     "/var/named/data/named_stats.txt";
         memstatistics-file  "/var/named/data/named_mem_stats.txt";
         allow-query         { localhost; 10.0.0.0/24; 172.16.0.0/24 };
-        allow-transfer      { localhost; 10.0.0.0/24; };
 
         recursion yes;
 
