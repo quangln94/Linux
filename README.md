@@ -10,7 +10,7 @@ DNS1=172.16.0.2
 DNS2=8.8.8.8
 ```
 
-**systemctl restart network
+**systemctl restart network**
 
 ## II. Config DHCP
 **yum instal dhcpd -y**
