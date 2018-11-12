@@ -9,8 +9,9 @@ GATEWAY=172.16.0.1
 DNS1=172.16.0.2
 DNS2=8.8.8.8
 ```
+
 **systemctl restart network
-```
+
 ## II. Config DHCP
 **yum instal dhcpd -y**
 **vi /etc/dhcp/dhcpd.conf**
@@ -21,9 +22,10 @@ subnet 172.16.0.0 netmask 255.255.255.0 {
         range dynamic-bootp 172.16.0.100 172.16.0.200;
         option routers 172.16.0.1;
 }
+```
 **systemctl restart dhcpd**
 **systemctl enable dhcpd**
-```     
+ 
 ## III. Config DNS
 **yum -y install bind bind-utils**
 **vi /etc/named.conf**
