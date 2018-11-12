@@ -27,7 +27,7 @@ subnet 172.16.0.0 netmask 255.255.255.0 {
 **systemctl enable dhcpd**
  
 ## III. Config DNS
-**yum -y install bind bind-utils**
+**yum -y install bind***
 **vi /etc/named.conf**
 
 ```options {
