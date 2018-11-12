@@ -1,6 +1,9 @@
 # Linux note
+
 ## I. Config Network
+
 **vi /etc/sysconfig/network-scrips/ifcfg**-***ens33*** `ens33 - tên card mạng cần config`
+
 ```BOOTPROTO=static
 ONBOOT=yes
 IPADDR=172.16.0.2
@@ -13,7 +16,9 @@ DNS2=8.8.8.8
 **systemctl restart network**
 
 ## II. Config DHCP
+
 **yum instal dhcpd -y**
+
 **vi /etc/dhcp/dhcpd.conf**
 ```
 option domain-name "domain.com";
@@ -28,7 +33,9 @@ subnet 172.16.0.0 netmask 255.255.255.0 {
 **systemctl enable dhcpd**
 
 ## III. Config DNS
+
 **yum -y install bind**
+
 **vi /etc/named.conf**
 
 ```options {
