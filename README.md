@@ -1,6 +1,8 @@
 #Linux note
 
 [I. Config Network](#confignetwork)
+[II. Config DHCP](#configdhcp)
+[III. Config DNS](#configdns)
 
 <a name="confignetwork"></a>
 ## I. Config Network
@@ -18,6 +20,7 @@ DNS2=8.8.8.8
 
 **systemctl restart network**
 
+<a name="configdhcp"></a>
 ## II. Config DHCP
 
 **yum instal dhcpd -y**
@@ -35,6 +38,7 @@ subnet 172.16.0.0 netmask 255.255.255.0 {
 
 **systemctl enable dhcpd**
 
+<a name="configdns"></a>
 ## III. Config DNS
 
 **yum -y install bind**
