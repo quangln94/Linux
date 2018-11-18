@@ -1,7 +1,9 @@
 #Linux note
 
 [I. Config Network](#confignetwork)
+
 [II. Config DHCP](#configdhcp)
+
 [III. Config DNS](#configdns)
 
 <a name="confignetwork"></a>
