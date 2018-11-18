@@ -1,4 +1,4 @@
-#Linux note
+# Linux note
 
 [I. Config Network](#confignetwork)
 
