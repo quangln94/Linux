@@ -1,6 +1,6 @@
 # Linux note
 
-[I. Config Network](#confignetwork)
+I. Config Network (#confignetwork)
 
 [II. Config DHCP](#configdhcp)
 
