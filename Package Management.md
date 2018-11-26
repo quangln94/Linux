@@ -45,13 +45,13 @@ Nếu muốn gỡ bỏ thì cần vào lại thư mục mã nguồn để thực
 |Remove a package	| rpm –e foo.rpm | dpkg --remove foo.deb|
 |Remove a package và các gói phụ thuộc sử dụng repository	| yum remove foo | apt-get remove foo|
 
-Update Package
+Update Package</br>
 |System |	Command |
 |Debian/Ubuntu |	sudo apt-get update</br> sudo apt update |
 |CentOS | yum check-update |
 |Fedora | dnf check-update |
 
-Find package
+Find package</br>
 | System | Command Notes |
 |--------|---------------|
 | Debian/Ubuntu	| apt-cache search search_string	
