@@ -81,3 +81,4 @@ Nếu muốn gỡ bỏ thì cần vào lại thư mục mã nguồn để thực
 
 <a name="tailieuthamkhao"></a>
 ## II. Tài liệu tham khảo
+- https://github.com/trangnth/Report_Intern/edit/master/Linux-note/5.%20Package_management.md
