@@ -17,7 +17,7 @@
 
 - Cài đặt gói từ Local Filesystem
 Cài đặt các gói manual
-Các gói này sẽ được cài đặt từ mã nguồn, khi tải từ trên mạng về nó sẽ được nén dưới dạng `.gz` hoặc `.bz2` sử dụng `tar` để giải nén
+Các gói này sẽ được cài đặt từ mã nguồn, khi tải từ trên mạng về nó sẽ được nén dưới dạng `.gz` hoặc `.bz2` sử dụng `tar` để giải nén:</br>
 `tar -zxvf foo.gz`</br>
 `tar -jxvf foo.bz2`</br>
 Sau khi giải nén xong, tìm tệp tin INSTALL để đọc phần hướng dẫn cài đặt. Thông thường đều theo các bước sau:</br>
