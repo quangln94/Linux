@@ -1,6 +1,6 @@
 # PACKAGE MANAGEMENT  
 ## Mục lục
-[I. Package management]</br>(#packagemanagement)
+[I. Package management](#packagemanagement)</br>
 [II. Tài liệu tham khảo](#tailieuthamkhao)
 
 <a name="packagemanagement"></a>
