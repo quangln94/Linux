@@ -1,6 +1,6 @@
 # PACKAGE MANAGEMENT  
 ## Mục lục
-[I. Package management](#packagemanagement)
+[I. Package management]</br>(#packagemanagement)
 [II. Tài liệu tham khảo](#tailieuthamkhao)
 
 <a name="packagemanagement"></a>
@@ -80,4 +80,4 @@ Nếu muốn gỡ bỏ thì cần vào lại thư mục mã nguồn để thực
 | |dnf repoquery --requires package | Lists dependencies for a package.|
 
 <a name="tailieuthamkhao"></a>
-II. Tài liệu tham khảo
+## II. Tài liệu tham khảo
