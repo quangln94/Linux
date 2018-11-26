@@ -23,7 +23,8 @@ Các gói này sẽ được cài đặt từ mã nguồn, khi tải từ trên 
 Sau khi giải nén xong, tìm tệp tin INSTALL để đọc phần hướng dẫn cài đặt. Thông thường đều theo các bước sau:</br>
 `./configure`</br>
 `make`</br>
-`make install`</br>
+`make install`
+
 Trong đó, thực chất `./configure` là một `shell script` để kiểm tra hệ thống của bạn xem có đáp ứng đủ các yêu cầu để cài đặt gói hay không. Nếu thiếu các gói phụ thuộc thì cần phải tìm và cài đặt nó rồi mới tiếp tục cài đặt được. Nếu đã sẵn sàng thì `Makefile` sẽ được tạo ra. `Makefile` là một file đặc biệt của tiện ích `make` nhằm hướng dẫn biên dịch mã nguồn của gói ra dạng thực thi
 
 Sau khi thực hiện xong lệnh `make` thì toàn bộ mã nguồn của gói đã được biên dịch, nhưng các file thực thi này vẫn đang nằm trên thư mục hiện hành, do đó lệnh `make install` để chép nó sang đúng vị trí trên hệ thống.
