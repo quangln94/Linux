@@ -53,7 +53,8 @@ Update Package
 |CentOS | yum check-update |
 |Fedora | dnf check-update |
 
-Find package</br>
+Find package
+
 | System | Command | Notes |
 |--------|---------|-------|
 | Debian/Ubuntu	| apt-cache search search_string</br>apt search search_string |	|
