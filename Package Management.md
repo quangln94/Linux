@@ -65,6 +65,7 @@ Find package
 | | dnf search all search_string | Searches all fields, including description. |
 
 View info about a specific Package
+
 | System | Command | Notes |
 |--------|---------|-------|
 | Debian/Ubuntu	| apt-cache show package | Hiển thị thông tin của package được lưu trữ cục bộ.|
