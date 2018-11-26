@@ -1,8 +1,11 @@
 # PACKAGE MANAGEMENT  
 ## Mục lục
+[I. Package management](#packagemanagement)
+[II. Tài liệu tham khảo](#tailieuthamkhao)
 
+<a name="packagemanagement"></a>
 ## I. Package management
-### 1. Khái nhiệm
+### 1. Khái niệm
 Phần core của các bản phân phối linux và hâu hết các add-on software đều được cài đặt qua hệ thống quản lý package. Mỗi package gồm files và các thành phần cần thiết để tạo lên một thành phần làm việc trên hệ thống.
 
 Có hai loại gói cài đặt một là source code, chưa được biên dịch nên khi sử dụng cần phải biên dịch để cho máy hiểu, cái này thường dùng cho dev nếu họ muốn đọc source code. Cái thứ hai là file binary (.deb, .rpm,...) file này đã được nhà phân phối biên dịch và và đóng gói cho user nên máy có thể hiểu được.
@@ -75,3 +78,6 @@ Nếu muốn gỡ bỏ thì cần vào lại thư mục mã nguồn để thực
 | |yum deplist package | Lists dependencies for a package.|
 | Fedora | dnf info package | |	
 | |dnf repoquery --requires package | Lists dependencies for a package.|
+
+<a name="tailieuthamkhao"></a>
+II. Tài liệu tham khảo
