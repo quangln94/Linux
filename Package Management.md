@@ -45,7 +45,7 @@ Nếu muốn gỡ bỏ thì cần vào lại thư mục mã nguồn để thực
 |Remove a package	| rpm –e foo.rpm | dpkg --remove foo.deb|
 |Remove a package và các gói phụ thuộc sử dụng repository	| yum remove foo | apt-get remove foo|
 
-Update Package
+#### Update Package
 
 | System |	Command |
 |--------|---------|
@@ -53,7 +53,7 @@ Update Package
 |CentOS | yum check-update |
 |Fedora | dnf check-update |
 
-Find package
+#### Find package
 
 | System | Command | Notes |
 |--------|---------|-------|
@@ -64,7 +64,7 @@ Find package
 | Fedora | dnf search search_string | |
 | | dnf search all search_string | Searches all fields, including description. |
 
-View info about a specific Package
+#### View info about a specific Package
 
 | System | Command | Notes |
 |--------|---------|-------|
