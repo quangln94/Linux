@@ -54,14 +54,11 @@ Update Package
 |Fedora | dnf check-update |
 
 Find package</br>
-| System | Command Notes |
-|--------|---------------|
-| Debian/Ubuntu	| apt-cache search search_string	
-| apt search search_string	
-| CentOS	yum search search_string	
-| yum search all search_string	Searches tất cả các gói có tên chứa search_string
-| Fedora	dnf search search_string	
-dnf search all search_string	Searches all fields, including description.
+| System | Command | Notes |
+|--------|---------|-------|
+| Debian/Ubuntu	| apt-cache search search_string</br>apt search search_string |	|
+| CentOS | yum search search_string</br>yum search all search_string | Searches tất cả các gói có tên chứa search_string |
+| Fedora | dnf search search_string</br>dnf search all search_string | Searches all fields, including description. |
 View info about a specific Package
 System	Command	Notes
 Debian/Ubuntu	apt-cache show package	Hiển thị thông tin của package được lưu trữ cục bộ.
