@@ -47,17 +47,18 @@ Nếu muốn gỡ bỏ thì cần vào lại thư mục mã nguồn để thực
 
 Update Package
 |System |	Command |
-|Debian/Ubuntu |	sudo apt-get update |
-|sudo apt update
-|CentOS	yum check-update
-|Fedora	dnf check-update
-|Find package
-System	Command	Notes
-Debian/Ubuntu	apt-cache search search_string	
-apt search search_string	
-CentOS	yum search search_string	
-yum search all search_string	Searches tất cả các gói có tên chứa search_string
-Fedora	dnf search search_string	
+|Debian/Ubuntu |	sudo apt-get update</br> sudo apt update |
+|CentOS | yum check-update |
+|Fedora | dnf check-update |
+
+Find package
+| System | Command Notes |
+|--------|---------------|
+| Debian/Ubuntu	| apt-cache search search_string	
+| apt search search_string	
+| CentOS	yum search search_string	
+| yum search all search_string	Searches tất cả các gói có tên chứa search_string
+| Fedora	dnf search search_string	
 dnf search all search_string	Searches all fields, including description.
 View info about a specific Package
 System	Command	Notes
