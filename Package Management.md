@@ -13,7 +13,7 @@ Có hai loại gói cài đặt một là source code, chưa được biên dị
 ### 2. Các cách cài đặt
 #### Cài đặt Package từ Repositoties
 
-- Khi bạn biết tên của một gói, bạn có thể cài đặt nó và các gói phụ thuộc của nó với một câu lệnh duy nhất. Ngoài ra bạn có thể cài đặt nhiều gói cùng lúc thật đơn giản bằng cách liệt kê chúng. Sử dụng các lệnh yum, apt-get,.. để cài đặt
+- Khi bạn biết tên của một gói, bạn có thể cài đặt nó và các gói phụ thuộc của nó với một câu lệnh duy nhất. Ngoài ra bạn có thể cài đặt nhiều gói cùng lúc thật đơn giản bằng cách liệt kê chúng. Sử dụng các lệnh `yum`, `apt-get`,.. để cài đặt
 
 - Cài đặt gói từ Local Filesystem
 Cài đặt các gói manual
