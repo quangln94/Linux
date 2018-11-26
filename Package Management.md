@@ -70,8 +70,8 @@ View info about a specific Package
 |--------|---------|-------|
 | Debian/Ubuntu	| apt-cache show package | Hiển thị thông tin của package được lưu trữ cục bộ.|
 | | apt show package | |
-| | dpkg -s package | | Shows the current installed status of a package. |
+| | dpkg -s package | Shows the current installed status of a package. |
 | CentOS | yum info package | |	
-| |yum deplist package | | Lists dependencies for a package.|
+| |yum deplist package | Lists dependencies for a package.|
 | Fedora | dnf info package | |	
-| |dnf repoquery --requires package | | Lists dependencies for a package.|
+| |dnf repoquery --requires package | Lists dependencies for a package.|
