@@ -1,4 +1,4 @@
-# PACKAGE MANAGER 
+# PACKAGE MANAGEMENT  
 ## Mục lục
 
 ## I. Package management
@@ -46,8 +46,8 @@ Nếu muốn gỡ bỏ thì cần vào lại thư mục mã nguồn để thực
 |Remove a package và các gói phụ thuộc sử dụng repository	yum remove foo	apt-get remove foo
 
 Update Package
-|System	Command
-|Debian/Ubuntu	sudo apt-get update
+|System |	Command |
+|Debian/Ubuntu |	sudo apt-get update |
 |sudo apt update
 |CentOS	yum check-update
 |Fedora	dnf check-update
