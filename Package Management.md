@@ -19,7 +19,7 @@ Các gói này sẽ được cài đặt từ mã nguồn, khi tải từ trên 
 `tar -jxvf foo.bz2`</br>
 Sau khi giải nén xong, tìm tệp tin INSTALL để đọc phần hướng dẫn cài đặt. Thông thường đều theo các bước sau:</br>
 `./configure`</br>
-`make</br>`
+`make`</br>
 `make install`</br>
 Trong đó, thực chất `./configure` là một `shell script` để kiểm tra hệ thống của bạn xem có đáp ứng đủ các yêu cầu để cài đặt gói hay không. Nếu thiếu các gói phụ thuộc thì cần phải tìm và cài đặt nó rồi mới tiếp tục cài đặt được. Nếu đã sẵn sàng thì `Makefile` sẽ được tạo ra. `Makefile` là một file đặc biệt của tiện ích `make` nhằm hướng dẫn biên dịch mã nguồn của gói ra dạng thực thi
 
@@ -27,9 +27,9 @@ Sau khi thực hiện xong lệnh `make` thì toàn bộ mã nguồn của gói 
 
 Nếu muốn gỡ bỏ thì cần vào lại thư mục mã nguồn để thực hiện lệnh:
 
-`make uninstall`
-`make clean`
-`make distclean`
+`make uninstall`</br>
+`make clean`</br>
+`make distclean`</br>
 `make distclean` để xóa tất cả các tệp tin biên dịch ở thư mục nguồn và đồng thời xóa `Makefile`
 
 | High Level Tool | Low Level Tool | Family |
@@ -40,10 +40,10 @@ Nếu muốn gỡ bỏ thì cần vào lại thư mục mã nguồn để thực
 
 |Operation | RPM | Debian |
 |----------|-----|--------|
-|Install a Package	rpm –i foo.rpm	dpkg --install foo.deb
-|Install a Package và các gói phụ thuộc từ repository	yum install foo	apt-get install foo
-|Remove a package	rpm –e foo.rpm	dpkg --remove foo.deb
-|Remove a package và các gói phụ thuộc sử dụng repository	yum remove foo	apt-get remove foo
+|Install a Package | rpm –i foo.rpm |	dpkg --install foo.deb |
+|Install a Package và các gói phụ thuộc từ repository | yum install foo	| apt-get install foo |
+|Remove a package	| rpm –e foo.rpm | dpkg --remove foo.deb|
+|Remove a package và các gói phụ thuộc sử dụng repository	| yum remove foo | apt-get remove foo|
 
 Update Package
 |System |	Command |
