@@ -1,0 +1,6 @@
+I. Working with disk
+1. Khái niệm
+fdisk được sử dụng để xem và quản lý các phân vùng ổ cứng trên linux
+2. Command fdisk
+fdisk -l Liệt kê danh sách phân vùng có sẵn của hệ thống
+fdisk /dev/sda: Vào chế độ lằm việc với ổ đĩa (command mode)
