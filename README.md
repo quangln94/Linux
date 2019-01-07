@@ -1,122 +1,26 @@
-# Linux note
-
-[I. Config Network](#confignetwork)
-
-[II. Config DHCP](#configdhcp)
-
-[III. Config DNS](#configdns)
-
-<a name="confignetwork"></a>
-## I. Config Network
-
-**vi /etc/sysconfig/network-scrips/ifcfg**-***ens33*** `ens33 - tên card mạng cần config`
-
-```BOOTPROTO=static
-ONBOOT=yes
-IPADDR=172.16.0.2
-PREFIX=24
-GATEWAY=172.16.0.1
-DNS1=172.16.0.2
-DNS2=8.8.8.8
-```
-
-**systemctl restart network**
-
-<a name="configdhcp"></a>
-## II. Config DHCP
-
-**yum instal dhcpd -y**
-
-**vi /etc/dhcp/dhcpd.conf**
-```
-option domain-name "domain.com";
-option domain-name-servers server3.domain.com;
-subnet 172.16.0.0 netmask 255.255.255.0 {
-        range dynamic-bootp 172.16.0.100 172.16.0.200;
-        option routers 172.16.0.1;
-}
-```
-**systemctl restart dhcpd**
-
-**systemctl enable dhcpd**
-
-<a name="configdns"></a>
-## III. Config DNS
-
-**yum -y install bind**
-
-**vi /etc/named.conf**
-
-```options {
-        listen-on port 53 { 172.16.0.2; };
-        listen-on-v6 { none; };
-        directory           "/var/named";
-        dump-file           "/var/named/data/cache_dump.db";
-        statistics-file     "/var/named/data/named_stats.txt";
-        memstatistics-file  "/var/named/data/named_mem_stats.txt";
-        allow-query         { localhost; 10.0.0.0/24; 172.16.0.0/24 };
-
-        recursion yes;
-
-        dnssec-enable yes;
-        dnssec-validation yes;
-        dnssec-lookaside auto;
-
-        bindkeys-file "/etc/named.iscdlv.key";
-
-        managed-keys-directory "/var/named/dynamic";
-
-        pid-file "/run/named/named.pid";
-        session-keyfile "/run/named/session.key";
-};
-logging {
-        channel default_debug {
-                file "data/named.run";
-                severity dynamic;
-        };
-};
-```
-**vi /etc/named.rfc1912.zones**
-```
-zone "domain.com" IN {
-        type master;
-        file "f.zone";
-        allow-update { none; };
-        };
-zone "0.16.172.in-addr.arpa" IN {
-        type master;
-        file "r.zone";
-        allow-update { none; };
-        };
-```
-**vi /var/named/f.zone**
-```
-$TTL 86400
-@   IN  SOA     server2.domain.com. root.server2.domain.com. (
-        2014071001  ;Serial
-        3600        ;Refresh
-        1800        ;Retry
-        604800      ;Expire
-        86400       ;Minimum TTL )
-
-                IN  NS      server2.domain.com.
-                IN  A       172.16.0.2
-                IN  MX 10   server3.enter.com.
-server3         IN  A       172.16.0.3
-```
-**vi /var/named/r.zone**
-```
-$TTL 86400
-@   IN  SOA     server2.domain.com. root.server2.domain.com. (
-        2014071001  ;Serial
-        3600        ;Refresh
-        1800        ;Retry
-        604800      ;Expire
-        86400       ;Minimum TTL )
-        IN      NS      server2.domain.com.
-2       IN      PTR     server2.domain.com.     
-3       IN      PTR     server3.domain.com.
-```
-**systemctl restart named**
-
-**systemctl enable named**
+# Summary
+1. [Basic Commands](./content/basic_commands.md)
+2. [Working with files](./content/working_with_files.md)
+3. [File System](./content/filesytem.md)
+4. [File Permissions](./content/file_permissions.md)
+5. [Package Management](./content/package_management.md)
+6. [Data Backup](./content/data_backup.md)
+7. [System Info](./content/system_info.md)
+8. [Swap Memory](./content/swap_memory.md)
+9. [User Envinronment](./content/user_env.md)
+10. [Processes](./content/processes.md)
+11. [Volume Manager Basics](./content/volume_manager.md)
+12. [Advanced Volume Manager](./content/volume_manager_cont.md)
+12. [Networking](./content/basic_networking.md)
+13. [Network File System](./content/nfs.md)
+14. [iSCSI](./content/shared_storage_iscsi.md)
+15. [Security](./content/basic_security.md)
+16. [Command Line](./content/command_line_prompt.md)
+17. [Text Commands](./content/text_commands.md)
+18. [Bash Programming](./content/bash_programming.md)
+19. [Systemd](./content/systemd.md)
+20. [Samba Server](./content/samba_server.md)
+21. [Virtual Networking](./content/virtual-networking.md)
+22. [Network Namespaces](./content/network-namespaces.md)
+23. [Clustering Basics](./content/cluster-basics.md)
+24. [Advanced Clustering](./content/cluster-adv.md)
