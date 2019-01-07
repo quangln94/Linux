@@ -1,6 +1,6 @@
 # Summary
-1. [Basic Commands](./content/Basic_Commands.md)
-2. [Working with files](./content/Working_with_file.md)
+1. [Basic Commands](./Content/Basic_Commands.md)
+2. [Working with files](./Content/Working_with_file.md)
 3. [File System](./content/filesytem.md)
 4. [File Permissions](./content/file_permissions.md)
 5. [Package Management](./content/package_management.md)
@@ -24,9 +24,7 @@
 22. [Network Namespaces](./content/network-namespaces.md)
 23. [Clustering Basics](./content/cluster-basics.md)
 24. [Advanced Clustering](./content/cluster-adv.md)
-01. Basic_Commands.md
-01. Cấu trúc thư mục.md	update	a month ago
-02. Working_with_file.md	Update 02. Working_with_file.md	a month ago
+
 03. Filesystem_Structure.md	Update 03. Filesystem_Structure.md	a month ago
 04. File_Permissions.md	Update 04. File_Permissions.md	a month ago
 05. Package_Management.md	update	a month ago
