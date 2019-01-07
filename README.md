@@ -1,7 +1,7 @@
 # Summary
 1. [Basic Commands](Content/01_Basic_Commands.md)
-2. [Working with files](./Linux/Content/Working_with_file.md)
-3. [File System](./content/filesytem.md)
+2. [Working with files](Content/Working_with_file.md)
+3. [File System](Content/filesytem.md)
 4. [File Permissions](./content/file_permissions.md)
 5. [Package Management](./content/package_management.md)
 6. [Data Backup](./content/data_backup.md)
