@@ -1,5 +1,5 @@
 # Summary
-1. [Basic Commands](./Linux/Content/Basic_Commands.md)
+1. [Basic Commands](Basic_Commands.md)
 2. [Working with files](./Linux/Content/Working_with_file.md)
 3. [File System](./content/filesytem.md)
 4. [File Permissions](./content/file_permissions.md)
