@@ -14,7 +14,7 @@
 11.3. [Advanced Volume Manager](Content/11_3_LVM_Advance.md)</br>
 12. [Networking](Content/12_Basic_Networking.md)
 13. [Network File System](Content/13_Network_Files_System.md)
-14. [iSCSI](Content/14_SCSI.md)
+14. [iSCSI](Content/14_iSCSI.md)
 15. [Security](Content/15_Sercurity.md)
 16. [Command Line](Content/16_Commands_line.md)
 17. [Text Commands](Content/17_Text_Commands.md)
