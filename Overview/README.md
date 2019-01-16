@@ -1,7 +1,7 @@
 # Summary
 01. [Basic Commands](Content/01_Basic_Commands.md)
 02. [Working with files](Content/02_Working_with_file.md)
-03. [File System](Content/03_filesytem.md)
+03. [File System](Content/03_Filesystem_Structure.md)
 04. [File Permissions](Content/04_File_Permissions.md)
 05. [Package Management](Content/05_Package_Management.mdd)
 06. [Data Backup](Content/06_Data_backup.md)
