@@ -9,7 +9,7 @@
 08. [Swap Memory](Content/08_Linux_Swap_Memory.md)
 09. [User Envinronment](Content/09_User_Environment.md)
 10. [Processes](Content/10_Processes.md)
-11. [Volume Manager Basics](/Content/11_Logical_Volume_Manager.md)
+11. [Volume Manager Basics](Content/11_Logical_Volume_Manager.md)
 12. [LVM Linear](Content/12_LVM_linear_striped.md)
 13. [Advanced Volume Manager](Content/13_LVM_Advance.md)
 14. [Networking](Content/14_Basic_Networking.md)
