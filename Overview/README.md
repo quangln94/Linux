@@ -3,7 +3,7 @@
 02. [Working with files](Content/02_Working_with_file.md)
 03. [File System](Content/03_Filesystem_Structure.md)
 04. [File Permissions](Content/04_File_Permissions.md)
-05. [Package Management](Content/05_Package_Management.mdd)
+05. [Package Management](Content/05_Package_Management.md)
 06. [Data Backup](Content/06_Data_backup.md)
 07. [System Info](Content/07_System_Information.md)
 08. [Swap Memory](Content/08_Linux_Swap_Memory.md)
