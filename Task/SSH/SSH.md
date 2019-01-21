@@ -2,7 +2,7 @@
 ## SSH là gì
 SSH, hoặc được gọi là Secure Shell, là một giao thức điều khiển từ xa cho phép người dùng kiểm soát và chỉnh sửa server từ xa qua Internet. Dịch vụ được tạo ra nhằm thay thế cho trình Telnet vốn không có mã hóa và sử dụng kỹ thuật cryptographic để đảm bảo tất cả giao tiếp gửi tới và gửi từ server từ xa diễn ra trong tình trạng mã hóa. Nó cung cấp thuật toán để chứng thực người dùng từ xa, chuyển input từ client tới host, và relay kết quả trả về tới khách hàng.</br>
 Hình bên dưới thể hiện một giao diện Windows SSH điển hình. Bất kể user Linux hoặc macOS nào cugn4 đều có thể SSH tới server từ xa trực tiếp từ cửa sổ terminal. Windows users có thể sử dụng những SSH clients như là Putty.  Bạn có thể thực thi lệnh shell cũng như việc bạn đang thực sự vận hành máy tính vật lý.
-</img src=https://i.imgur.com/4zhAOqS.jpg>
+<img src=https://i.imgur.com/4zhAOqS.jpg>
 
 shell snapshot
 Bạn đã biết SSH là gì vậy hãy tiếp tục tìm hiểu về cách thức hoạt động của SSH,bên cạnh việc tìm hiểu về công nghệ được sử dụng để đảm bảo tính an toàn cho các kết nối từ xa. Nó sẽ gồm nhiều lớp và loại mã hóa được sử dụng, tùy thuộc vào mục đích của từng layer.
