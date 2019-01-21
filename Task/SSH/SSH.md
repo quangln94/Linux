@@ -1,22 +1,17 @@
 # SSH
 ## SSH là gì
-SSH, hoặc được gọi là Secure Shell, là một giao thức điều khiển từ xa cho phép người dùng kiểm soát và chỉnh sửa server từ xa qua Internet. Dịch vụ được tạo ra nhằm thay thế cho trình Telnet vốn không có mã hóa và sử dụng kỹ thuật cryptographic để đảm bảo tất cả giao tiếp gửi tới và gửi từ server từ xa diễn ra trong tình trạng mã hóa. Nó cung cấp thuật toán để chứng thực người dùng từ xa, chuyển input từ client tới host, và relay kết quả trả về tới khách hàng.</br>
-Hình bên dưới thể hiện một giao diện Windows SSH điển hình. Bất kể user Linux hoặc macOS nào cugn4 đều có thể SSH tới server từ xa trực tiếp từ cửa sổ terminal. Windows users có thể sử dụng những SSH clients như là Putty.  Bạn có thể thực thi lệnh shell cũng như việc bạn đang thực sự vận hành máy tính vật lý.
+SSH, hoặc được gọi là **Secure Shell**, là một giao thức điều khiển từ xa cho phép người dùng kiểm soát và chỉnh sửa server từ xa qua Internet. Dịch vụ được tạo ra nhằm thay thế cho trình **Telnet** vốn không có mã hóa và sử dụng kỹ thuật *cryptographic* để đảm bảo tất cả giao tiếp gửi tới và gửi từ server từ xa diễn ra trong tình trạng mã hóa. Nó cung cấp thuật toán để chứng thực người dùng từ xa, chuyển input từ client tới host, và relay kết quả trả về tới khách hàng.</br>
+Hình bên dưới thể hiện một giao diện Windows SSH điển hình. Bất kể user Linux hoặc macOS nào cũng đều có thể SSH tới server từ xa trực tiếp từ cửa sổ terminal. Windows users có thể sử dụng những SSH clients như là Putty. Bạn có thể thực thi lệnh shell cũng như việc bạn đang thực sự vận hành máy tính vật lý.
 <img src=https://i.imgur.com/4zhAOqS.jpg>
-
-shell snapshot
-Bạn đã biết SSH là gì vậy hãy tiếp tục tìm hiểu về cách thức hoạt động của SSH,bên cạnh việc tìm hiểu về công nghệ được sử dụng để đảm bảo tính an toàn cho các kết nối từ xa. Nó sẽ gồm nhiều lớp và loại mã hóa được sử dụng, tùy thuộc vào mục đích của từng layer.
-
-SSH hoạt động như thế nào
-Để hiểu SSH là gì thì trước tiên bạn cần phải biết nó hoạt động như thế nào. Nếu bạn đang sử dụng Linux hoặc Mac, sử dụng SSH rất đơn giản. Nếu bạn sử dụng Windows, bạn chỉ cần sử dụng những SSH client để mở kết nối SSH. Những trình SSH client phổ biến là Putty, bạn có thể xem thêm tại đây.
-
-Đối với người dùng xài MAC và Linux, hãy mở terminal và làm theo hướng dẫn sau:
-
+Bạn đã biết SSH là gì vậy hãy tiếp tục tìm hiểu về cách thức hoạt động của SSH, bên cạnh việc tìm hiểu về công nghệ được sử dụng để đảm bảo tính an toàn cho các kết nối từ xa. Nó sẽ gồm nhiều lớp và loại mã hóa được sử dụng, tùy thuộc vào mục đích của từng layer.</br>
+## SSH hoạt động như thế nào</br>
+Để hiểu SSH là gì thì trước tiên bạn cần phải biết nó hoạt động như thế nào. Nếu bạn đang sử dụng Linux hoặc Mac, sử dụng SSH rất đơn giản. Nếu bạn sử dụng Windows, bạn chỉ cần sử dụng những SSH client để mở kết nối SSH. Những trình SSH client phổ biến là Putty.</br>
+Đối với người dùng xài MAC và Linux, hãy mở terminal và làm theo hướng dẫn sau:</br>
 Lệnh SSH có 3 phần:
-
+```sh
 ssh {user}@{host}
-SSH key command cho hệ thống biết là bạn muốn mở một kết nối được mã hóa Secure Shell Connection. {user} đại diện cho tài khoản người dùng bạn muốn dùng để truy cập. Ví dụ, bạn muốn truy cập user root, thì thay root tại đây. User root là user quản trị hệ thống với toàn quyền để chỉnh sửa bất kỳ điều gì trên hệ thống. {host} đại diện cho máy tính bạn muốn dùng để truy cập. Nó có thể là một địa chỉ IP (ví dụ 244.235.23.19) hoặc một tên miền (ví dụ, www.xyzdomain.com).
-
+```
+SSH key command cho hệ thống biết là bạn muốn mở một kết nối được mã hóa Secure Shell Connection. {user} đại diện cho tài khoản người dùng bạn muốn dùng để truy cập. Ví dụ, bạn muốn truy cập user root, thì thay root tại đây. User root là user quản trị hệ thống với toàn quyền để chỉnh sửa bất kỳ điều gì trên hệ thống. {host} đại diện cho máy tính bạn muốn dùng để truy cập. Nó có thể là một địa chỉ IP (ví dụ 192.168.100.1) hoặc một tên miền (ví dụ, www.xyzdomain.com).</br>
 Khi bạn nhấn enter, nó sẽ hỏi bạn nhập mật khẩu tương ứng cho tài khoản. Khi bạn gõ, bạn sẽ không thấy bất kỳ dấu hiệu nào trên màn hình, nhưng nếu bạn gõ đúng mật khẩu và nhấn enter, bạn sẽ vào được hệ thống và nhận thông báo đăng nhập thành công.
 
 Nếu bạn muốn tìm hiểu thêm về lệnh SSH, hãy tham khảo tại đây
