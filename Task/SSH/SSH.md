@@ -19,8 +19,8 @@ Có 2 cách để xác thực kết nối SSH.
 
 ## Xác thực bằng password
 Cách xác thực này khá đơn giản khi ta thiết lập kết nối nó sẽ hỏi ta password của user ta muốn truy nhập vào. Nếu ta nhập đúng thì ta có thể kết nối vào được. Nó có ưu điểm rất lớn là dễ và không cần phải cấu hình trước bất kỳ điều gì. Nhưng với cách xác thực này cũng có nhược điểm của nó. Mỗi lần kết nối nó lại hỏi lại mật khẩu gây phiền phức và còn một nhược điểm khác liên quan tới vấn đề bảo mật đó là ta phải nhập mật khẩu mỗi lần kết nối nếu không may bị người khác biết được mật khẩu đó thì rủi ra là rất lớn.
-### Xác thực bằng key
-Với cách xác thực này chúng ta có 1 cặp key (private key và public key). Chúng ta có thể coi private key như một chiếc chìa khóa còn public key như chiếc ổ khóa. Public key ta sẽ đặt trên những nơi mà ta muốn kết nối vào (trên user root,client của máy ở xa hoặc là trên github). Còn private key là chìa khóa nên ta phải cất giữ trên máy của mình. 
+## Xác thực bằng key
+Với cách xác thực này chúng ta có 1 cặp key (private key và public key). Chúng ta có thể coi private key như một chiếc chìa khóa còn public key như chiếc ổ khóa. Public key ta sẽ đặt trên những nơi mà ta muốn kết nối vào (trên user root, client của máy ở xa hoặc là trên github). Còn private key là chìa khóa nên ta phải cất giữ trên máy của mình. 
 Quá trình chứng thực diễn ra như sau:
  * Client gửi thông tin user đực sử dụng để đăng nhập vào server. Server sẽ kiểm tra xem có user này trong hệ thống không. Nếu có thì tiếp tục quá trình kiểm tra cặp key.
  * Client gửi thông tin ID của cặp key được sử dụng để chứng thực đến server.
@@ -34,10 +34,30 @@ Quá trình chứng thực diễn ra như sau:
 
 #### Các bước cấu hình:
 Trước tiên ta tạo key trên máy client. Sử dụng lệnh
-`ssh-keygen`
-
-![](https://github.com/niemdinhtrong/NIEMDT/blob/master/linux/images/ssh1.png)
-
+```sh
+[user1@server1 ~]$ ssh-keygen
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/user1/.ssh/id_rsa):
+Created directory '/home/user1/.ssh'.
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in /home/user1/.ssh/id_rsa.
+Your public key has been saved in /home/user1/.ssh/id_rsa.pub.
+The key fingerprint is:
+SHA256:6Gr2lgWq0NUbdTnvtKC13i4gZwNo54cnAYgfGkieN64 user1@server1
+The key's randomart image is:
++---[RSA 2048]----+
+|oo .       .     |
+|= + .   . +      |
+| * + + . . o     |
+|. + = B.  o o    |
+| . + +.BSo = .   |
+|. o ..* X . o    |
+| E .  .X + .     |
+|  . o.o   o .    |
+|   o.o.    o.    |
++----[SHA256]-----+
+```
 Ta thấy khi tạo key nó hỏi ta chỗ lưu file. Bạn có thể chọn chỗ lưu nhưng thường sẽ để mặc định bằng cách nhấn `enter`
 Và sẽ được hỏi `passphrase` bạn có thể nhập hoặc không để bảo vệ private key của bạn. Nếu bạn nhập thì hãy nhớ mật khẩu này.
 ###### Một số option của câu lệnh `ssh-keygen`
@@ -48,9 +68,12 @@ Và sẽ được hỏi `passphrase` bạn có thể nhập hoặc không để 
  * `-y` để tạo một public key từ 1 private key.
 Đây là một số option thông dụng để biết thêm các option khác ta sử dụng lệnh `ssh-keygen --help`
 Ta kiểm tra bằng cách cd vào thư mục `.ssh` và kiểm tra trong xem đã có file chưa.
-
-![](https://github.com/niemdinhtrong/NIEMDT/blob/master/linux/images/ssh4.png)
-
+```sh
+[user1@server1 ~]$ ll .ssh/
+total 8
+-rw-------. 1 user1 user1 1679 Jan 21 16:30 id_rsa
+-rw-r--r--. 1 user1 user1  395 Jan 21 16:30 id_rsa.pub
+```
 Trong thư mục này chúng ta quan tâm đến 2 file đó là `id_rsa` là file chưa private key và file `id_rsa.pub` là file chứa public key.
 Tiếp theo ta cần đưa public key lên server ta muốn kết nối ssh. Có 2 cách để ta đưa public key lên trên server. 
 Cách thủ công: Ta đăng nhập vòa server mà cụ thể là đăng nhập vào user ta muốn truy nhập ssh vào. 
