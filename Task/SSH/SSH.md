@@ -135,18 +135,16 @@ Permission denied (publickey,gssapi-keyex,gssapi-with-mic).
 Permission denied (publickey,gssapi-keyex,gssapi-with-mic).
 ```
 Ta cũng có thể giới hạn những user có thể login SSH vào hệ thống bằng cách vào file `/etc/ssh/sshd_config` tìm dòng `AllowUsers` và thêm những user bạn cho phép dùng SSH để login vào.
-Ví dụ ở đâu tôi chỉ cho user `client1` và `client2` dùng ssh để login vào hệ thống thì tôi thêm như sau: `AllowUsers client1 client2`
-
+Ví dụ ở đâu tôi chỉ cho user `user1` và `user2` dùng ssh để login vào hệ thống thì tôi thêm như sau: 
+```sh
+AllowUsers user1 user2
+```
 *Chú ý*: Ta cũng có thể tạo ra public key từ một private key có sẵn bằng cách sử dụng lệnh `ssh-keygen -y -f file_private_key > file_public_key`
 Trong đó:
  * `file_private_key` là file chứa key private mà ta muốn tạo một public key từ key đó.
  * `file_public_key ` là file mà ta sẽ lưu public key mới tạo ra.
 
-![](https://github.com/niemdinhtrong/NIEMDT/blob/master/linux/images/ssh01.png)
-
 Như ví dụ trên tôi đã tạo ra một public key nữa và tôi đặt nó trong file `id_rsa1.pub`
-
-![](https://github.com/niemdinhtrong/NIEMDT/blob/master/linux/images/ssh02.png)
 
 Chúng ta có thể thấy rằng 1 private key có thể sinh ra rất nhiều các public key. Và các public key này là khác nhau nhưng vẫn sẽ được giải mã bằng private key mà chúng được sinh ra.
 
@@ -179,6 +177,11 @@ Nếu kết nối SSH không sử dụng số port mặc định là port 22 th�
 `scp -P số_port file_nguồn username@địa_chỉ:/folder_đích`
 
 ## Thiết lập phiên SSH giữa Client-Server
-Muốn thực hiện SSH sử dụng
+Muốn thực hiện SSH sử dụng key-pair ta làm như sau:
 ### Trên máy Linux
-Muốn thực hiện được 
+Muốn thực hiện được SSH thì `user` phải có `private key`
+### Trên máy Window
+Ta sử dụng các Tool dùng để SSH. Ở đây tôi dùng MobaXterm. Các Tool khác cũng sẽ tương tự.
+- Trước tiên ta phải có `key private`. Có thể lấy key này ở thư mục `cat /user1/home/.ssh/id_rsa/
+- Copy file này ra Text sau đó chọn đường dẫn đến file này như hình dưới:
+<img src=https://i.imgur.com/UYEs8BN.png>
