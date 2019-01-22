@@ -35,7 +35,7 @@ Quá trình chứng thực diễn ra như sau:
 #### Các bước cấu hình:
 Trước tiên ta tạo key trên máy client. Sử dụng lệnh
 ```sh
-[user1@server1 ~]$ ssh-keygen
+[user1@server2 ~]$ ssh-keygen
 Generating public/private rsa key pair.
 Enter file in which to save the key (/home/user1/.ssh/id_rsa):
 Created directory '/home/user1/.ssh'.
@@ -44,18 +44,18 @@ Enter same passphrase again:
 Your identification has been saved in /home/user1/.ssh/id_rsa.
 Your public key has been saved in /home/user1/.ssh/id_rsa.pub.
 The key fingerprint is:
-SHA256:6Gr2lgWq0NUbdTnvtKC13i4gZwNo54cnAYgfGkieN64 user1@server1
+SHA256:2O3xBl61Jn2tw+qjVKBD8T7nlK+0giViNh0uVLaqiI4 user1@server2
 The key's randomart image is:
 +---[RSA 2048]----+
-|oo .       .     |
-|= + .   . +      |
-| * + + . . o     |
-|. + = B.  o o    |
-| . + +.BSo = .   |
-|. o ..* X . o    |
-| E .  .X + .     |
-|  . o.o   o .    |
-|   o.o.    o.    |
+|        .        |
+|        oo       |
+|       o..o   .  |
+|      .+o+ . + ..|
+|     ..+S.* B + o|
+|      B ++.@ = o |
+| . . + + ++ = =  |
+|o . .   ...o.+ . |
+|E.        .+=.   |
 +----[SHA256]-----+
 ```
 Ta thấy khi tạo key nó hỏi ta chỗ lưu file. Bạn có thể chọn chỗ lưu nhưng thường sẽ để mặc định bằng cách nhấn `enter`
@@ -69,10 +69,10 @@ Và sẽ được hỏi `passphrase` bạn có thể nhập hoặc không để 
 Đây là một số option thông dụng để biết thêm các option khác ta sử dụng lệnh `ssh-keygen --help`
 Ta kiểm tra bằng cách cd vào thư mục `.ssh` và kiểm tra trong xem đã có file chưa.
 ```sh
-[user1@server1 ~]$ ll .ssh/
+[user1@server2 ~]$ ll .ssh/
 total 8
--rw-------. 1 user1 user1 1679 Jan 21 16:30 id_rsa
--rw-r--r--. 1 user1 user1  395 Jan 21 16:30 id_rsa.pub
+-rw-------. 1 user1 user1 1675 Jan 22 11:15 id_rsa
+-rw-r--r--. 1 user1 user1  395 Jan 22 11:15 id_rsa.pub
 ```
 Trong thư mục này chúng ta quan tâm đến 2 file đó là `id_rsa` là file chưa private key và file `id_rsa.pub` là file chứa public key.
 Tiếp theo ta cần đưa public key lên server ta muốn kết nối ssh. Có 2 cách để ta đưa public key lên trên server. 
@@ -83,9 +83,28 @@ Cách thủ công: Ta đăng nhập vòa server mà cụ thể là đăng nhập
  * Ta copy nội dung file `id_rsa.pub` trên client vào file `authorized_keys` vừa tạo.
 Cách khác là ta sử dụng lệnh `ssh-copy-id -i .ssh/id_rsa.pub user@địa_chỉ` 
  * Cách này ta phải đảm bảo rằng ta có thể ssh vào user trên máy mà ta muốn ssh vào bằng cách sử dụng password.
+```sh
+[user1@server1 ~]$ ssh-copy-id -i .ssh/id_rsa.pub user1@172.16.80.199
+/usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: ".ssh/id_rsa.pub"
+/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
+/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
+user1@172.16.80.199's password:
 
-![](https://github.com/niemdinhtrong/NIEMDT/blob/master/linux/images/ssh5.png)
+Number of key(s) added: 1
 
+Now try logging into the machine, with:   "ssh 'user1@172.16.80.199'"
+and check to make sure that only the key(s) you wanted were added.
+```
+```sh
+[user1@server1 ~]$ scp user1@172.16.80.199:/home/user1/.ssh/id_rsa.pub ~/.ssh/
+The authenticity of host '172.16.80.199 (172.16.80.199)' can't be established.
+ECDSA key fingerprint is SHA256:SL7vZolGq493UzMOT0oGJMSIih1xjfyWh3p5B0xO8yE.
+ECDSA key fingerprint is MD5:15:ad:62:ac:e7:55:b7:6f:6b:dd:45:c1:27:4f:0c:f5.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added '172.16.80.199' (ECDSA) to the list of known hosts.
+user1@172.16.80.199's password:
+id_rsa.pub                                            100%  395   221.2KB/s   00:00
+```
  * Với cách này thì hệ thống sẽ tự tao thư mục `.ssh` và file `authorized_keys` trên máy server. Nó sẽ đặt thư mục này trong thư mục của user đó. 
 
 *Lưu ý* SSH key sẽ không thể hoạt động nếu ta đang bật `selinux` ta cần phải tắt nó đi bằng cách vào file `/etc/selinux/config` tìm dòng `SELINUX=enforcing` để sửa lại thành `SELINUX=disabled` sau đó reboot lại server.
