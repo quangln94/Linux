@@ -109,21 +109,15 @@ id_rsa.pub                                            100%  395   221.2KB/s   00
 
 *Lưu ý* SSH key sẽ không thể hoạt động nếu ta đang bật `selinux` ta cần phải tắt nó đi bằng cách vào file `/etc/selinux/config` tìm dòng `SELINUX=enforcing` để sửa lại thành `SELINUX=disabled` sau đó reboot lại server.
 
-![](https://github.com/niemdinhtrong/NIEMDT/blob/master/linux/images/scp1.png)
-
 Để bật xác thực kết nối SSH bằng key ta cần cấu hình một vàì thông số trong file `/etc/ssh/sshd_config`
 *Lưu ý*: mỗi lần làm việc với file `/etc/ssh/sshd_config` xong ta cần thực hiện lệnh `service sshd restart` thì thay đổi của ta mới được update.
 Ta cần sửa một số thông số sau:
  * `PubkeyAuthentication yes`
  * `AuthorizedKeysFile .ssh/authorized_keys`
 
-![](https://github.com/niemdinhtrong/NIEMDT/blob/master/linux/images/ssh6.png)
-
 Sau đó restart lại SSH
 Để đảm bảo tính bảo mật hơn bằng việc kết nối SSH ta có thể thiết lập để chỉ cho phép SSH bằng key chứ ko cho SSH bằng pass. Để làm điều này ta cũng vào file `/etc/ssh/sshd_config` để tìm và sửa thông số sau:
  * `PasswordAuthentication no`
-
-![](https://github.com/niemdinhtrong/NIEMDT/blob/master/linux/images/ssh7.png)
 
 Sau đó restart lại SSH
 Như đã biết thì tài khoản `root` trong linux có đặc quyền cao nhất. Nếu để mất tài khoản này vào tay người khác thì gần như chấm hết. Vì vậy cách tốt nhất là không cho SSH truy cập vào tài khoản `root` và nếu cần thì switch sang `root` bằng lệnh `su` khi cần thiết.
@@ -132,13 +126,14 @@ Như đã biết thì tài khoản `root` trong linux có đặc quyền cao nh�
 Sau đó sửa lại thành:
  * `PermitRootLogin no`
 
-![](https://github.com/niemdinhtrong/NIEMDT/blob/master/linux/images/ssh8.png)
-
 Sau đó restart lại SSH
 Bây giờ ta không thể SSH vào máy bằng tài khoản `root` được nữa.
-
-![](https://github.com/niemdinhtrong/NIEMDT/blob/master/linux/images/ssh9.png)
-
+```sh
+[user2@server2 ~]$ ssh root@172.16.80.198
+Permission denied (publickey,gssapi-keyex,gssapi-with-mic).
+[user2@server2 ~]$ ssh user1@172.16.80.198
+Permission denied (publickey,gssapi-keyex,gssapi-with-mic).
+```
 Ta cũng có thể giới hạn những user có thể login SSH vào hệ thống bằng cách vào file `/etc/ssh/sshd_config` tìm dòng `AllowUsers` và thêm những user bạn cho phép dùng SSH để login vào.
 Ví dụ ở đâu tôi chỉ cho user `client1` và `client2` dùng ssh để login vào hệ thống thì tôi thêm như sau: `AllowUsers client1 client2`
 
@@ -184,3 +179,6 @@ Nếu kết nối SSH không sử dụng số port mặc định là port 22 th�
 `scp -P số_port file_nguồn username@địa_chỉ:/folder_đích`
 
 ## Thiết lập phiên SSH giữa Client-Server
+Muốn thực hiện SSH sử dụng
+### Trên máy Linux
+Muốn thực hiện được 
