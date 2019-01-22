@@ -10,7 +10,7 @@ Cú pháp thiết lập kết nối SSH:
 ssh user@địa_chỉ
 ```
 Trong đó: 
- * `user` là tên của user ta muốn kết nối vào(có thể là root, client1, client2...)
+ * `user` là tên của user ta muốn kết nối vào(có thể là root, user1, user2...)
  * `Địa_chỉ` là địa chỉ của máy ta muốn kết nối vào có thể là địa chỉ IP hoặc domain name.
 
 Có 2 cách để xác thực kết nối SSH. 
