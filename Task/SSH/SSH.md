@@ -148,34 +148,6 @@ Như ví dụ trên tôi đã tạo ra một public key nữa và tôi đặt n�
 
 Chúng ta có thể thấy rằng 1 private key có thể sinh ra rất nhiều các public key. Và các public key này là khác nhau nhưng vẫn sẽ được giải mã bằng private key mà chúng được sinh ra.
 
-### Sử dụng SCP để copy dữ liệu giữa 2 máy linux
-`SCP` là một ứng dụng sử dụng giao thức `SSH` để copy dữ liệu giữa 2 máy linux. 
-Nó hoạt động gần giống với lệnh `rsync` đã tìm hiểu trước đây.
-Cú pháp lệnh `scp file_nguồn username@địa_chỉ:/folder_đích`
-Trong đó : 
- * `file_nguồn` ở đây là file mà ta muốn copy sang maý khác (chỉ ra đường dẫn tới file).
- * `username` là user mà ta muốn đặt file đó lên trên máy đích
- * `địa_chỉ` là địa chỉ của máy server có thể là IP hoặc domain name.
- * `folder_đích` là folder mà ta muốn đặt file vào đó.
-Ví dụ mình muốn copy file `test` trên máy của mình lên thư mục `/root/test` trên máy server có địa chỉ IP `192.168.169.135` ta dùng lệnh
-`scp test root@192.168.169.135:/root/test`
-
-![](https://github.com/niemdinhtrong/NIEMDT/blob/master/linux/images/scp1.png)
-
-Ở đây tôi sử dụng key để xác thực kết nối SSH nên không bị hỏi mật khẩu. Nếu bạn sử dụng password thể xác thực thì nó sẽ yêu cầu bạn nhập password để xác thực.
-
-Muốn copy một lúc nhiều file thì ta làm như sau:
-`scp file1 file2 file3 username@địa_chỉ:/folder_đích`
-
-Muốn copy cả một thư mục thì ta sử dụng thêm option `-r`
-`scp -r folder_nguồn username@địa_chỉ:/folder_đích`
-
-Muốn copy một file từ một máy ở xa về máy của mình
-`scp username@địa_chỉ:/file_nguồn folder_đích`
-
-Nếu kết nối SSH không sử dụng số port mặc định là port 22 thì ki copy ta phải thêm tham số `-T số_port` vào 
-`scp -P số_port file_nguồn username@địa_chỉ:/folder_đích`
-
 ## Thiết lập phiên SSH giữa Client-Server
 Muốn thực hiện SSH sử dụng key-pair ta làm như sau:
 ### Trên máy Linux
