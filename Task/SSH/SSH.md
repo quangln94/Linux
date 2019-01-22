@@ -10,29 +10,30 @@ Cú pháp thiết lập kết nối SSH:
 ssh user@địa_chỉ
 ```
 Trong đó: 
- * `user` là tên của user ta muốn kết nối vào(có thể là root, user1, user2...)
- * `Địa_chỉ` là địa chỉ của máy ta muốn kết nối vào có thể là địa chỉ IP hoặc domain name.
+ - `user` là tên của user ta muốn kết nối vào(có thể là root, user1, user2...)
+ - `Địa_chỉ` là địa chỉ của máy ta muốn kết nối vào có thể là địa chỉ IP hoặc domain name.
 
 Có 2 cách để xác thực kết nối SSH. 
- * Sử dụng password của user mà ta muốn kết nối vào để xác thực.
- * Sử dụng một cặp key(private key và public key) để xác thực.
+- Sử dụng password của user mà ta muốn kết nối vào để xác thực.
+- Sử dụng một cặp key(private key và public key) để xác thực.
 
 ## Xác thực bằng password
 Cách xác thực này khá đơn giản khi ta thiết lập kết nối nó sẽ hỏi ta password của user ta muốn truy nhập vào. Nếu ta nhập đúng thì ta có thể kết nối vào được. Nó có ưu điểm rất lớn là dễ và không cần phải cấu hình trước bất kỳ điều gì. Nhưng với cách xác thực này cũng có nhược điểm của nó. Mỗi lần kết nối nó lại hỏi lại mật khẩu gây phiền phức và còn một nhược điểm khác liên quan tới vấn đề bảo mật đó là ta phải nhập mật khẩu mỗi lần kết nối nếu không may bị người khác biết được mật khẩu đó thì rủi ra là rất lớn.
 ## Xác thực bằng key
-Với cách xác thực này chúng ta có 1 cặp key (private key và public key). Chúng ta có thể coi private key như một chiếc chìa khóa còn public key như chiếc ổ khóa. Public key ta sẽ đặt trên những nơi mà ta muốn kết nối vào (trên user root, client của máy ở xa hoặc là trên github). Còn private key là chìa khóa nên ta phải cất giữ trên máy của mình. 
+Với cách xác thực này chúng ta có 1 cặp key (private key và public key). Chúng ta có thể coi private key như một chiếc chìa khóa còn public key như chiếc ổ khóa. Public key ta sẽ đặt trên những nơi mà ta muốn kết nối vào (trên user root, user thường của máy ở xa). Còn private key là chìa khóa nên ta phải cất giữ trên máy của mình. 
 Quá trình chứng thực diễn ra như sau:
- * Client gửi thông tin user đực sử dụng để đăng nhập vào server. Server sẽ kiểm tra xem có user này trong hệ thống không. Nếu có thì tiếp tục quá trình kiểm tra cặp key.
- * Client gửi thông tin ID của cặp key được sử dụng để chứng thực đến server.
- * Server kiểm tra file `authorized_keys` để kiểm tra tài khoản mà user login dựa vào key ID.
- * Nếu có 1 public key trùng khớp với ID được tìm thấy trong file, thì server sẽ khởi tạo một chuỗi string+number (challenge) và sử dụng public key để mã hóa chuỗi đó thành một thông điệp (message).
- * Server gửi thông điệp đó đến cho client
- * Nếu Client có private key tương ứng với public key đó thì Client sẽ có khả năng giải mã mesage nhận được từ server để khôi phục chuỗi ký tự ban đầu.
- * Sau khi giải mã thành công thì chuỗi ký tự đó sẽ được kết hợp với shared session key (được sử dụng để mã hóa kênh truyền) và được tính toán giá trị MD5 hash ra một chuỗi mới.
- * Client sẽ gửi chuỗi MD5 ngược về phía server như trả lời thông điệp mã hóa từ phía server.
- * Server sẽ sử dụng shared session key và chuỗi ký tự ban đầu chưa mã hóa, tính toán giá trị MD5 hash sau cùng sẽ so với MD5 hash mà Client gửi tơi server. Nếu trùng khớp thì client sẽ được phép truy cập server.
+ - Client gửi thông tin user đực sử dụng để đăng nhập vào server. Server sẽ kiểm tra xem có user này trong hệ thống không. Nếu có thì tiếp tục quá trình kiểm tra cặp key.
+ - Client gửi thông tin ID của cặp key được sử dụng để chứng thực đến server.
+ - Server kiểm tra file `authorized_keys` để kiểm tra tài khoản mà user login dựa vào key ID.
+ - Nếu có 1 public key trùng khớp với ID được tìm thấy trong file, thì server sẽ khởi tạo một chuỗi string+number (challenge) và sử dụng public key để mã hóa chuỗi đó thành một thông điệp (message).
+ - Server gửi thông điệp đó đến cho client
+ - Nếu Client có private key tương ứng với public key đó thì Client sẽ có khả năng giải mã mesage nhận được từ server để khôi phục chuỗi ký tự ban đầu.
+ - Sau khi giải mã thành công thì chuỗi ký tự đó sẽ được kết hợp với shared session key (được sử dụng để mã hóa kênh truyền) và được tính toán giá trị MD5 hash ra một chuỗi mới.
+ - Client sẽ gửi chuỗi MD5 ngược về phía server như trả lời thông điệp mã hóa từ phía server.
+ - Server sẽ sử dụng shared session key và chuỗi ký tự ban đầu chưa mã hóa, tính toán giá trị MD5 hash sau cùng sẽ so với MD5 hash mà Client gửi tơi server. Nếu trùng khớp thì client sẽ được phép truy cập server.
 
 #### Các bước cấu hình:
+- Ta có thể tạo key-pair trên máy
 Trước tiên ta tạo key trên máy client. Sử dụng lệnh
 ```sh
 [user1@server2 ~]$ ssh-keygen
@@ -60,7 +61,7 @@ The key's randomart image is:
 ```
 Ta thấy khi tạo key nó hỏi ta chỗ lưu file. Bạn có thể chọn chỗ lưu nhưng thường sẽ để mặc định bằng cách nhấn `enter`
 Và sẽ được hỏi `passphrase` bạn có thể nhập hoặc không để bảo vệ private key của bạn. Nếu bạn nhập thì hãy nhớ mật khẩu này.
-###### Một số option của câu lệnh `ssh-keygen`
+##### Một số option của câu lệnh `ssh-keygen`
  * `-b` sau đó là số bit để định số bit cho key.
  * `-t` để định thuật toán tạo key. Có các loại sau: rsa, dsa, ecdsa, ed25519. Nếu không có option này thì mặc định sẽ là `rsa`
  * `-f` để chọn chọn vị trí lưu file key.
