@@ -31,7 +31,20 @@ Quá trình chứng thực diễn ra như sau:
  - Sau khi giải mã thành công thì chuỗi ký tự đó sẽ được kết hợp với shared session key (được sử dụng để mã hóa kênh truyền) và được tính toán giá trị MD5 hash ra một chuỗi mới.
  - Client sẽ gửi chuỗi MD5 ngược về phía server như trả lời thông điệp mã hóa từ phía server.
  - Server sẽ sử dụng shared session key và chuỗi ký tự ban đầu chưa mã hóa, tính toán giá trị MD5 hash sau cùng sẽ so với MD5 hash mà Client gửi tơi server. Nếu trùng khớp thì client sẽ được phép truy cập server.
+ 
+## Một số dòng hay sử dụng trong File cấu hình SSH
+```sh
+vi /etc/ssh/sshd_config
 
+17 #Port 22
+38 #PermitRootLogin yes
+47 #AuthorizedKeysFile      .ssh/id_rsa.pub
+64 #PermitEmptyPasswords no
+65 #PasswordAuthentication no
+69 #ChallengeResponseAuthentication no
+```
+- Lưu ý bỏ dấu `#` để command có hiệu lực
+- Restart lại service khi có những thay đổi `systemctl restart ssd`
 #### Các bước cấu hình:
 - Ta có thể tạo key-pair trên máy
 Trước tiên ta tạo key trên máy client. Sử dụng lệnh
