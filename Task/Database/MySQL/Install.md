@@ -6,7 +6,7 @@
 ```
 # 2.	Run initial Setup.
 ```sh
-[root@dlp ~]# /opt/mssql/bin/mssql-conf setup 
+[root@server1]# /opt/mssql/bin/mssql-conf setup 
 Choose an edition of SQL Server:
   1) Evaluation (free, no production use rights, 180-day limit)
   2) Developer (free, no production use rights)
@@ -46,7 +46,7 @@ Created symlink from /etc/systemd/system/multi-user.target.wants/mssql-server.se
   /usr/lib/systemd/system/mssql-server.service.
 Setup has completed successfully. SQL Server is now starting.
 
-[root@dlp ~]# systemctl status mssql-server 
+[root@server1]# systemctl status mssql-server 
 *  mssql-server.service - Microsoft SQL Server Database Engine
    Loaded: loaded (/usr/lib/systemd/system/mssql-server.service; enabled; vendor preset: disabled)
    Active: active (running) since Thu 2017-10-05 19:24:33 JST; 50min ago
@@ -59,19 +59,19 @@ Setup has completed successfully. SQL Server is now starting.
 Oct 05 19:24:38 dlp.srv.world sqlservr[1472]: 2017-10-05 19:24:38.50 spid11s....
 Hint: Some lines were ellipsized, use -l to show in full.
 
-[root@dlp ~]# echo 'export PATH=$PATH:/opt/mssql-tools/bin' > /etc/profile.d/mssql.sh 
-[root@dlp ~]# source /etc/profile.d/mssql.sh 
+[root@server1]# echo 'export PATH=$PATH:/opt/mssql-tools/bin' > /etc/profile.d/mssql.sh 
+[root@server1]# source /etc/profile.d/mssql.sh 
 ```
 # 3.	If Firewalld is running and also SQL Server is used from remote Hosts, allow service port like follows.
 ```sh
-[root@dlp ~]# firewall-cmd --add-port=1433/tcp --permanent 
+[root@server1]# firewall-cmd --add-port=1433/tcp --permanent 
 success
-[root@dlp ~]# firewall-cmd --reload 
+[root@server1]# firewall-cmd --reload 
 success
 ```
 # 4.	Connect to the SQL Server and verify working.
 ```sh
-[root@dlp ~]# sqlcmd -S localhost -U SA 
+[root@server1]# sqlcmd -S localhost -U SA 
 Password:   # admin password you set
 
 # show system databases
