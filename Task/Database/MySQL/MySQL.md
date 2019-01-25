@@ -4,16 +4,16 @@ Hệ quản trị cơ sở dữ liệu (Database Management System – DBMS), l�
 Tuy nhiên, đa số hệ quản trị CSDL trên thị trường đều có một đặc điểm chung là sử dụng ngôn ngữ truy vấn theo cấu trúc mà tiếng Anh gọi là Structured Query Language(SQL). Các hệ quản trị CSDL phổ biến được nhiều người biết đến là MySQL, Oracle, PostgreSQL, SQL Server, DB2, Infomix, v.v. Phần lớn các hệ quản trị CSDL kể trên hoạt động tốt trên nhiều hệ điều hành khác nhau như Linux, Unix và MacOS ngoại trừ SQL Server của Microsoft chỉ chạy trên hệ điều hành Windows.
 
 ***Ưu điểm của DBMS:***
-* Quản lý được dữ liệu dư thừa.</br>
-* Đảm báo tính nhất quán cho dữ liệu.</br>
-* Tạo khả năng chia sẻ dữ liệu nhiều hơn.</br>
-* Cải tiến tính toàn vẹn cho dữ liệu.</br>
+* Quản lý được dữ liệu dư thừa.
+* Đảm báo tính nhất quán cho dữ liệu.
+* Tạo khả năng chia sẻ dữ liệu nhiều hơn.
+* Cải tiến tính toàn vẹn cho dữ liệu.
 
 ***Nhược điểm Hệ quản trị cơ sở dữ liệu***:
-HQTCSDL tốt thì khá phức tạp.</br>
-HQTCSDL tốt thường rất lớn chiếm nhiều dung lượng bộ nhớ.</br>
-Giá cả khác nhau tùy theo môi trường và chức năng.</br>
-HQTCSDL được viết tổng quát cho nhiều người dùng thì thường chậm.</br>
+* HQTCSDL tốt thì khá phức tạp.</br>
+* HQTCSDL tốt thường rất lớn chiếm nhiều dung lượng bộ nhớ.</br>
+* Giá cả khác nhau tùy theo môi trường và chức năng.</br>
+* HQTCSDL được viết tổng quát cho nhiều người dùng thì thường chậm.</br>
 
 
 # MySQL
