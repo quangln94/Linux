@@ -8,6 +8,7 @@ Quản lý được dữ liệu dư thừa.
 Đảm báo tính nhất quán cho dữ liệu.
 Tạo khả năng chia sẻ dữ liệu nhiều hơn.
 Cải tiến tính toàn vẹn cho dữ liệu.
+
 – Nhược điểm Hệ quản trị cơ sở dữ liệu:
 HQTCSDL tốt thì khá phức tạp.
 HQTCSDL tốt thường rất lớn chiếm nhiều dung lượng bộ nhớ.
