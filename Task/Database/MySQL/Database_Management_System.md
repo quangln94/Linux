@@ -27,24 +27,24 @@ MariaDB phát hành phiên bản đầu tiên vào 11/2008 bởi Monty Widenius,
 Chúng ta có thể tìm hiểu rõ hơn tại https://mariadb.org/ , MariaDB có các phiên bản cho các hệ điều hành khác nhau: Windows, Linux,.. với các gói cài đặt tar, zip, MSI, rpm cho cả 32bit và 64bit.
 ## MariaDB và MySQL
 Do sự tương thích giữa MariaDB và MySQL nên trong hầu hết trường hợp chúng ta có thể xóa bỏ MySQL và cài đặt MariaDB để thay thế mà hệ thống vẫn hoạt động bình thường. Trên MariaDB và MySQL có:</br>
-     - Data and table definition files (.frm) files hoàn toàn tương thích
-     - Tất cả client APIs, protocols and structs hoàn toàn giống nhau
-     - Tất cả filenames, binaries, paths, ports, sockets,... hoàn toàn giống nhau
-     - Tất cả MySQL connectors (PHP, Perl, Python, Java, .NET, MyODBC, Ruby, MySQL C connector etc) đều hoạt động bình thường khi đổi qua MariaDB
-     + Gói mysql-client cũng hoạt động khi dùng với MariaDB
+     - Data and table definition files (.frm) files hoàn toàn tương thích</br>
+     - Tất cả client APIs, protocols and structs hoàn toàn giống nhau</br>
+     - Tất cả filenames, binaries, paths, ports, sockets,... hoàn toàn giống nhau</br>
+     - Tất cả MySQL connectors (PHP, Perl, Python, Java, .NET, MyODBC, Ruby, MySQL C connector etc) đều hoạt động bình thường khi đổi qua MariaDB</br>
+     + Gói mysql-client cũng hoạt động khi dùng với MariaDB</br>
  
 Ngoài việc hỗ trợ các storage engines cơ bản như MyISAM, BLACKHOLE, CSV, MEMORY, ARCHIVE, and MERGE thì trên MariaDB còn bổ sung thêm các storage engines sau:
-     - Aria (được xem như một phiên bản cập nhập của MyISAM)
-     - XtraDB (thay thế cho InnoDB)
-     - FederatedX
-     - OQGRAPH
-     - SphinxSE
-     - IBMDB2I
-     - TokuDB
-     - Cassandra
-     - CONNECT
-     - SEQUENCE
-     - Spider
-     - PBXT
+     - Aria (được xem như một phiên bản cập nhập của MyISAM)</br>
+     - XtraDB (thay thế cho InnoDB)</br>
+     - FederatedX</br>
+     - OQGRAPH</br>
+     - SphinxSE</br>
+     - IBMDB2I</br>
+     - TokuDB</br>
+     - Cassandra</br>
+     - CONNECT</br>
+     - SEQUENCE</br>
+     - Spider</br>
+     - PBXT</br>
  
 Ngoài ra trên MariaDB còn cải thiện hiệu năng và cung cấp thêm một số chức năng mới. Chúng ta có thể tham khảo chi tiết tại: https://mariadb.com/kb/en/mariadb/mariadb-vs-mysql-features/
