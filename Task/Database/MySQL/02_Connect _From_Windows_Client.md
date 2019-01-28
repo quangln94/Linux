@@ -3,7 +3,7 @@
 Download SQL Server Management Studio (SSMS) and install it.</br>
 ⇒ https://docs.microsoft.com/ja-jp/sql/ssms/download-sql-server-management-studio-ssms
 ## 2.	After finishing installation, Run SSMS.
-
+<img src=https://i.imgur.com/UFhLrI0.png>
 ## 3.	The Windows [Connect to Server] is opened like follows.
 Input your Server name or IP address and username/password to connect. For Authentication, Select [SQL Server Authentication]. This example shows to connect with admin user [SA].
 
