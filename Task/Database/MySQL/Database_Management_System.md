@@ -16,22 +16,15 @@ Tuy nhiên, đa số hệ quản trị CSDL trên thị trường đều có m�
 * HQTCSDL được viết tổng quát cho nhiều người dùng thì thường chậm.
 
 ## MySQL
-MySQL  là  một  hệ  quản  trị  cơ  sở  dữ  liệu  đa  luồng  mã  nguồn  mở  theo  mô  hình 
-client/server, và ở mức độ chuyên dụng  cho doanh nghiệp. MySQL được phát triển bởi một 
-công ty tư vấn và phát triển ứng dụng của Thuỵ Điển có tên là TcX.</br> 
-MySQL là một hệ quản trị cơ sở dữ liệu có tốc độ truy xuất rất nhanh và uyển chuyển. 
-MySQL được phát triển phổ biến cho hệ điều hành Linux, tuy nhiên, với các phiên bản mới 
-hiện nay, nó đã có thể sử dụng tốt trên của hệ điều hành Windows.</br>
-Chúng ta cần phân biệt giữa MySQL và SQL, SQL là ngôn ngữ dùng để truy xuất cơ sở 
-dữ liệu được hãng phần mềm IBM phát triển và được sử dụng ở đa số các hệ quản trị CSDL 
-hiện  nay  như  MySQL,  Microsoft  SQL  Server,  DB2,  Sysbase  Adapter  Server,  SQL 
+MySQL  là  một  hệ  quản  trị  cơ  sở  dữ  liệu  đa  luồng  mã  nguồn  mở  theo  mô  hình client/server, và ở mức độ chuyên dụng  cho doanh nghiệp. MySQL được phát triển bởi một công ty tư vấn và phát triển ứng dụng của Thuỵ Điển có tên là TcX.</br> 
+MySQL là một hệ quản trị cơ sở dữ liệu có tốc độ truy xuất rất nhanh và uyển chuyển. MySQL được phát triển phổ biến cho hệ điều hành Linux, tuy nhiên, với các phiên bản mới. Hiện nay, nó đã có thể sử dụng tốt trên của hệ điều hành Windows.</br>
+Chúng ta cần phân biệt giữa MySQL và SQL, SQL là ngôn ngữ dùng để truy xuất cơ sở dữ liệu được hãng phần mềm IBM phát triển và được sử dụng ở đa số các hệ quản trị CSDL hiện  nay  như  MySQL,  Microsoft  SQL  Server,  DB2,  Sysbase  Adapter  Server,  SQL 
 Lite,Oraccle… 
 
 ## MariaDB
-MariaDB là một nhánh của MySQL( một trong những CSDL phổ biến trên thế giới ), là máy chủ cơ sở dữ liệu cung cấp các chức năng thay thế cho MySQL. MariaDB được xây dựng bởi một số tác giả sáng lập ra MySQL được sự hỗ trợ của đông đảo cộng đồng các nhà phát triển phần mềm mã nguồn mở. Ngoài việc kế thừa các chức năng cốt lõi của MySQL, MariaDB cung cấp thêm nhiều tính năng cải tiến về cơ chế lưu trữ, tối ưu máy chủ.
-MariaDB phát hành phiên bản đầu tiên vào 11/2008 bởi Monty Widenius, người đồng sáng lập MySQL. Widenius sau khi nghỉ công tác cho MySQL ( sau khi Sun mua lại MySQL ) đã thành lập công ty Monty Program AB và phát triển MariaDB.
-Chúng ta có thể tìm hiểu rõ hơn tại https://mariadb.org/ , MariaDB có các phiên bản cho các hệ điều hành khác nhau: Windows, Linux,.. với các gói cài đặt tar, zip, MSI, rpm cho cả 32bit và 64bit. Hiện tại phiên bản mới nhất của MariaDB là 10.1.
- 
+MariaDB là một nhánh của MySQL( một trong những CSDL phổ biến trên thế giới ), là máy chủ cơ sở dữ liệu cung cấp các chức năng thay thế cho MySQL. MariaDB được xây dựng bởi một số tác giả sáng lập ra MySQL được sự hỗ trợ của đông đảo cộng đồng các nhà phát triển phần mềm mã nguồn mở. Ngoài việc kế thừa các chức năng cốt lõi của MySQL, MariaDB cung cấp thêm nhiều tính năng cải tiến về cơ chế lưu trữ, tối ưu máy chủ.</br>
+MariaDB phát hành phiên bản đầu tiên vào 11/2008 bởi Monty Widenius, người đồng sáng lập MySQL. Widenius sau khi nghỉ công tác cho MySQL ( sau khi Sun mua lại MySQL ) đã thành lập công ty Monty Program AB và phát triển MariaDB.</br>
+Chúng ta có thể tìm hiểu rõ hơn tại https://mariadb.org/ , MariaDB có các phiên bản cho các hệ điều hành khác nhau: Windows, Linux,.. với các gói cài đặt tar, zip, MSI, rpm cho cả 32bit và 64bit.
 ## MariaDB và MySQL
 Do sự tương thích giữa MariaDB và MySQL nên trong hầu hết trường hợp chúng ta có thể xóa bỏ MySQL và cài đặt MariaDB để thay thế mà hệ thống vẫn hoạt động bình thường. Trên MariaDB và MySQL có:
      + Data and table definition files (.frm) files hoàn toàn tương thích
