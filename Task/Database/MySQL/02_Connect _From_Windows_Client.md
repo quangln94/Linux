@@ -1,6 +1,6 @@
 # It's possible to connect to SQL Server on Linux from Windows Clients, of cource.
 ## 1.	This example is on Windows 10.
-Download SQL Server Management Studio (SSMS) and install it.
+Download SQL Server Management Studio (SSMS) and install it.</br>
 ⇒ https://docs.microsoft.com/ja-jp/sql/ssms/download-sql-server-management-studio-ssms
 ## 2.	After finishing installation, Run SSMS.
 
