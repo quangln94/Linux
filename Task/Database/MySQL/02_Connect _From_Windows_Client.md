@@ -8,6 +8,6 @@ Download SQL Server Management Studio (SSMS) and install it.</br>
 Input your Server name or IP address and username/password to connect. For Authentication, Select [SQL Server Authentication]. This example shows to connect with admin user [SA].
 <img src=https://i.imgur.com/ERCeRbu.png></br>
 ## 4.	Just connected. It's possible to operate SQL Server on GUI with SSMS.
-
-
+<img src=https://i.imgur.com/49BAJpT.png></br>
 ## 5.	It's also possible to connect with [sqlcmd] command, of cource.
+<img src=https://i.imgur.com/LdmLlSv.png>
