@@ -76,3 +76,97 @@ Sample_Table
 2> go
 ```
 ## 3.	Insert/Update/Delete Datas.
+```sh
+[root@server1]# sqlcmd -S localhost -U SA -d SampleDB 
+Password:
+
+# insert data
+1> insert into dbo.Sample_Table ( 
+2> Number, First_Name, Last_Name, Last_Update 
+3> ) 
+4> values ( 
+5> '00001', 'CentOS', 'Linux', '2017-10-05' 
+6> ) 
+7> go 
+
+(1 rows affected)
+
+1> select * from dbo.Sample_Table; 
+2> go 
+Number     First_Name    Last_Name     Last_Update
+---------- ------------- ------------- ----------------
+00001      CentOS        Linux               2017-10-05
+00002      RedHat        Linux               2017-10-05
+00003      Fedora        Linux               2017-10-05
+00004      Ubuntu        Linux               2017-10-05
+00005      Debian        Linux               2017-10-05
+
+(1 rows affected)
+
+# show tables with specifying columns
+1> select Number, First_Name from dbo.Sample_Table 
+2> go 
+Number     First_Name
+---------- --------------------------------------------------
+00001      CentOS
+00002      RedHat
+00003      Fedora
+00004      Ubuntu
+00005      Debian
+
+(5 rows affected)
+
+# show top 3 datas
+1> select top 3 * from dbo.Sample_Table 
+2> go 
+Number     First_Name    Last_Name     Last_Update
+---------- ------------- ------------- ----------------
+00001      CentOS        Linux               2017-10-05
+00002      RedHat        Linux               2017-10-05
+00003      Fedora        Linux               2017-10-05
+
+(3 rows affected)
+
+# update data
+1> update dbo.Sample_Table 
+2> set Last_Update = '2017-10-06' 
+3> where First_Name = 'Debian' 
+4> go 
+
+(1 rows affected)
+
+1> select * from dbo.Sample_Table where First_Name ='Debian' 
+2> go 
+Number     First_Name    Last_Name     Last_Update
+---------- ------------- ------------- ----------------
+00005      Debian        Linux               2017-10-06
+
+(1 rows affected)
+
+# delete data
+1> delete dbo.Sample_Table where First_Name ='Debian' 
+2> go 
+
+(1 rows affected)
+1> select * from dbo.Sample_Table where First_Name ='Debian' 
+2> go 
+Number     First_Name    Last_Name     Last_Update
+---------- ------------- ------------- ----------------
+
+(0 rows affected)
+```
+## 4.	It's also possible to run T-SQL directly like follows.
+```sh
+[root@dlp ~]# sqlcmd -S localhost -U SA -Q 'select name,create_date from sys.databases' 
+Password:
+
+name                                         create_date
+-------------------------------------------- -----------------------
+master                                       2003-04-08 09:13:36.390
+tempdb                                       2019-01-29 11:07:56.303
+model                                        2003-04-08 09:13:36.390
+msdb                                         2018-11-30 15:04:03.013
+SampleDB2                                    2019-01-29 11:32:40.490
+
+(5 rows affected)
+```
