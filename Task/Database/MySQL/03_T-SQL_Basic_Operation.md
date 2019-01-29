@@ -157,7 +157,7 @@ Number     First_Name    Last_Name     Last_Update
 ```
 ## 4.	It's also possible to run T-SQL directly like follows.
 ```sh
-[root@dlp ~]# sqlcmd -S localhost -U SA -Q 'select name,create_date from sys.databases' 
+[root@server1 ~]# sqlcmd -S localhost -U SA -Q 'select name,create_date from sys.databases' 
 Password:
 
 name                                         create_date
