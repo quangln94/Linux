@@ -1,23 +1,15 @@
-Khác biệt giữa khóa chính và khóa ngoại trong SQL
-SQL
+# Khác biệt giữa khóa chính và khóa ngoại trong SQL
 Các khoá chính và khóa ngoại là hai loại ràng buộc có thể được sử dụng để thực thi toàn vẹn dữ liệu trong các bảng SQL Server và đây là những đối tượng cơ sở dữ liệu quan trọng.
 
 Trong SQL Server, có hai khóa - khóa chính và khoá ngoại dường như giống nhau, nhưng thực tế cả hai đều khác nhau về các tính năng và hành vi. Các khoá chính và khóa ngoại là hai loại ràng buộc có thể được sử dụng để thực thi toàn vẹn dữ liệu trong các bảng SQL Server và đây là những đối tượng cơ sở dữ liệu quan trọng.
 
-Trong bài này, tôi muốn chia sẻ sự khác biệt chính giữa khóa chính và khoá ngoại.
-
-1. Khóa chính là gì
-Khóa chính (hay ràng buộc khóa chính) được sử dụng để định danh duy nhất mỗi record trong table của cơ sở dữ liệu.
-
-Ngoài ra, nó còn dùng để thiết lập quan hệ 1-n (hay ràng buộc tham chiếu) giữa hai table trong cơ sở dữ liệu.
-
-Dữ liệu (value) của field khóa chính phải có tính duy nhất. Và không chứa các giá trị Null.
-
+## Khóa chính là gì
+Khóa chính (hay ràng buộc khóa chính) được sử dụng để định danh duy nhất mỗi record trong table của cơ sở dữ liệu.</br>
+Ngoài ra, nó còn dùng để thiết lập quan hệ 1-n (hay ràng buộc tham chiếu) giữa hai table trong cơ sở dữ liệu.</br>
+Dữ liệu (value) của field khóa chính phải có tính duy nhất. Và không chứa các giá trị Null.</br>
 Mỗi table nên chỉ có một khóa chính, khóa chính có thể tạo ra từ nhiều field của table.
-
-2. Khóa ngoại là gì
-Khóa ngoại của một table được xem như con trỏ trỏ tới khóa chính của table khác.
-
+## Khóa ngoại là gì
+Khóa ngoại của một table được xem như con trỏ trỏ tới khóa chính của table khác.</br>
 Nếu trường MaSV của table DiemSV được sử dụng để tạo ràng buộc tham chiếu đến table HSSV, thông qua khóa chính là MaSV thì MaSV của table DiemSV được gọi là khóa ngoại của bảng này. Đây cũng chính là lý do mà ta nói, khóa ngoại được xem như con trỏ trởi tới khóa chính.
 
 Để hiểu rõ hơn về ý nghĩa sử dụng của khóa chính, khóa ngoại chúng ta hãy xét ví dụ sau: Giả sử cơ sở dữ liệu QLDiemSV có hai table: HSSV và DiemSV như sau:
