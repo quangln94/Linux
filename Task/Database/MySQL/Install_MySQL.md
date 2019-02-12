@@ -22,3 +22,21 @@ You will need wget to complete this guide. It can be installed as follows:
 ```sh
 yum install wget
 ```
+## Install MySQLPermalink
+MySQL must be installed from the community repository.
+
+Download and add the repository, then update.
+```sh
+wget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm
+sudo rpm -ivh mysql-community-release-el7-5.noarch.rpm
+yum update
+```
+Install MySQL as usual and start the service. During installation, you will be asked if you want to accept the results from the .rpm file’s GPG verification. If no error or mismatch occurs, enter y.
+```sh
+yum install mysql-server
+systemctl start mysqld
+```
+MySQL will bind to localhost (127.0.0.1) by default. Please reference our MySQL remote access guide for information on connecting to your databases using SSH.
+
+Note
+Allowing unrestricted access to MySQL on a public IP not advised but you may change the address it listens on by modifying the bind-address parameter in /etc/my.cnf. If you decide to bind MySQL to your public IP, you should implement firewall rules that only allow connections from specific IP addresses.
