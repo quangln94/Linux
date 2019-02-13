@@ -89,34 +89,30 @@ CONSTRAINT Ma FOREIGN KEY (MaSV) REFERENCES HSSV(MaSV)
 )
 ```
 Khi cần đặt tên cho ràng buộc khóa ngoại và khóa ngoại được hình thành từ nhiều field thì ta phải sử dụng câu lệnh Create Table theo dạng này.
-
-4.1 Tạo khóa ngoại cho table đã tạo
+### Tạo khóa ngoại cho table đã tạo
 Ví dụ:
-
-
+```sh
 REFERENCES HSSV(MaSV)
-
+```
 Hoặc:
-
-
+```sh
 FOREIGN KEY (MaSV) REFERENCES HSSV(MaSV)
-
+```
 Câu lệnh này được sử dụng trong trường hợp cần đặt tên cho ràng buộc khóa ngoại và khóa ngoại được hình thành từ nhiều field.
-
-4.2 Xóa khóa ngoại
+### Xóa khóa ngoại
 Ví dụ:
-
+```sh
 ALTER TABLE DiemSV DROP FOREIGN KEY Ma
-
+```
 Câu lệnh MySQL ALTER được sử dụng rất phổ biến trong các trường hợp thay đổi tên của table, tên của field hoặc thêm/xóa các field trong một table nào đó. Vì vậy, chúng ta sẽ trở lại câu lệnh này ở các bài sau.
+## Bảng so sánh
+|Khóa chính|Khóa ngoại|
+|----------|----------|
+|Khóa chính xác định duy nhất một bản ghi trong bảng.|Khóa ngoại là một trường trong bảng và là khóa chính trong một bảng khác.|
+|Khóa chính không chấp nhận các giá trị rỗng.|Khóa ngoại có thể chấp nhận nhiều giá trị rỗng.|
+|Theo mặc định, khoá chính là chỉ mục được nhóm và dữ liệu trong bảng cơ sở dữ liệu được tổ chức theo thứ tự của dãy chỉ mục nhóm.|Khóa ngoại không tự động tạo ra một chỉ mục, nhóm hoặc không nhóm. Bạn có thể tự tạo một chỉ mục trên khoá ngoại.|
+|Chúng ta chỉ có thể có một khóa chính trong một bảng.|Chúng ta có thể có nhiều khoá ngoại trong một bảng.|
 
-5. Bảng so sánh
-Khóa chính	Khóa ngoại
-Khóa chính xác định duy nhất một bản ghi trong bảng.	Khóa ngoại là một trường trong bảng và là khóa chính trong một bảng khác.
-Khóa chính không chấp nhận các giá trị rỗng.	Khóa ngoại có thể chấp nhận nhiều giá trị rỗng.
-Theo mặc định, khoá chính là chỉ mục được nhóm và dữ liệu trong bảng cơ sở dữ liệu được tổ chức theo thứ tự của dãy chỉ mục nhóm.	Khóa ngoại không tự động tạo ra một chỉ mục, nhóm hoặc không nhóm. Bạn có thể tự tạo một chỉ mục trên khoá ngoại.
-Chúng ta chỉ có thể có một khóa chính trong một bảng.	Chúng ta có thể có nhiều khoá ngoại trong một bảng.
-6. Tổng kết
-Chúng ta chỉ sử dụng các cách trên để tạo khóa chính trong MySQL và không chỉ có ở MySQL mà ở SQL Server cũng có cú pháp tương tự vì chúng đều sử dụng ngôn ngữ T-SQL.
-
+## Tổng kết
+Chúng ta chỉ sử dụng các cách trên để tạo khóa chính trong MySQL và không chỉ có ở MySQL mà ở SQL Server cũng có cú pháp tương tự vì chúng đều sử dụng ngôn ngữ T-SQL.</br>
 Thông thường khi làm việc với các ứng dụng web thì ta ít khi sử dụng khóa ngoại bởi vì sẽ rất chậm, vì vậy người ta sẽ cố gắng thiết kế CSDL làm sao tối ưu để không tồn tại khóa ngoại.
