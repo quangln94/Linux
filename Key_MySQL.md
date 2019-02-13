@@ -14,16 +14,16 @@ Nếu trường MaSV của table DiemSV được sử dụng để tạo ràng b
 Để hiểu rõ hơn về ý nghĩa sử dụng của khóa chính, khóa ngoại chúng ta hãy xét ví dụ sau: Giả sử cơ sở dữ liệu QLDiemSV có hai table: HSSV và DiemSV như sau:</br>
 Table HSSV gồm 6 field, trong đó MaSV được chọn làm khóa chính của table này.</br>
 <img src=https://i.imgur.com/pi5JA4G.png>
+
 Table DiemSV gồm 6 field, trong đó STT là khóa chính và MaSV được chọn làm khóa ngoại của table này.
+<img src=https://i.imgur.com/Dhto49w.png>
 
+Như vậy, hai table HSSV và DiemSV quan hệ dữ liệu với nhau thông qua field MaSV của mỗi table (đây là quan hệ 1 – n). Hay nói cách khác, ràng buộc tham chiếu đã được tạo giữa hai table (từ table DiemSV đến table HSSV).</br>
+Với ràng buộc này thì, việc người sử dụng vô tình hay cố ý phá hủy các liên kết sẽ bị ngăn chặn. Và, người sử dụng cũng không thể nhập vào cột khóa ngoại một giá trị mà giá trị đó không xuất hiện ở cột khóa chính mà khóa này trỏ tới (không thể nhập điểm cho một sinh viên, vào table DiemSV, mà mã của họ không xuất hiện ở cột MaSV ở table HSSV).</br>
 
-Như vậy, hai table HSSV và DiemSV quan hệ dữ liệu với nhau thông qua field MaSV của mỗi table (đây là quan hệ 1 – n). Hay nói cách khác, ràng buộc tham chiếu đã được tạo giữa hai table (từ table DiemSV đến table HSSV).
-
-Với ràng buộc này thì, việc người sử dụng vô tình hay cố ý phá hủy các liên kết sẽ bị ngăn chặn. Và, người sử dụng cũng không thể nhập vào cột khóa ngoại một giá trị mà giá trị đó không xuất hiện ở cột khóa chính mà khóa này trỏ tới (không thể nhập điểm cho một sinh viên, vào table DiemSV, mà mã của họ không xuất hiện ở cột MaSV ở table HSSV).
-
-3. Thiết lập khóa chính
+## Thiết lập khóa chính
 Để tạo khóa chính ngay trong khi tạo table ta có thể sử dụng câu lệnh SQL Create Table như sau:
-
+```sh
 (
 MaSV varchar (8) NOT NULL,
 Holot varchar(20), Ten varchar(8),
@@ -31,11 +31,10 @@ NgaySinh Date, MaLop varchar(8) NOT NULL,
 Lienhe varchar(11) NOT NULL,
 PRIMARY KEY (MaSV)
 );
-
-Câu lệnh này dùng để tạo table HSSV, đồng thời chỉ định field MaSV làm khóa chính cho nó.
-
+```
+Câu lệnh này dùng để tạo table HSSV, đồng thời chỉ định field MaSV làm khóa chính cho nó.</br>
 Trong trường hợp khóa chính được thành lập từ nhiều field và ta cần đặt tên cho ràng buộc khóa này thì có thể sử dụng câu lệnh Create Table như sau:
-
+```sh
 (
 MaSV varchar (8) NOT NULL,
 Holot varchar(20), Ten varchar(8),
@@ -43,32 +42,31 @@ NgaySinh DATE, MaLop varchar(8) NOT NULL,
 Lienhe varchar(11) NOT NULL,
 CONSTRAINT Ma PRIMARY KEY (MaSV, MaLop)
 );
-
+```
 Vậy khóa chính table này được thành lập từ hai field: MaSV và MaLop và tên của ràng buộc này là Ma.
-
-3.1 Tạo khóa chính cho table đã tạo
+### Tạo khóa chính cho table đã tạo
 Sử dụng câu lệnh sau:
-
+```sh
 ALTER TABLE HSSV ADD PRIMARY KEY (MaSV)
-
+```
 Hoặc:
-
+```sh
 ALTER TABLE HSSV ADD CONSTRAINT Ma PRIMARY KEY (MaSV, MaLop)
-
+```
 Rõ ràng, trong trường hợp này các field MaSV, MaLop phải đã được khai báo ràng buộc NOT NULL (trng khi tạo table).
 
-3.2 Xóa khóa chính
+### Xóa khóa chính
 Sử dụng câu lệnh sau:
-
+```sh
 ALTER TABLE HSSV DROP PRIMARY KEY;
-
+```
 Hoặc:
-
+```sh
 ALTER TABLE HSSV DROP CONSTRAINT Ma
-
-4. Thiết lập khóa ngoại
+```
+## Thiết lập khóa ngoại
 Để tạo khóa ngoại ngay trong khi tạo table ta có thể sử dụng câu lệnh SQL Create Table như sau:
-
+```sh
 (
 STT INT NOT NULL AUTO_INCREMENT,
 MaSV varchar(8) NOT NULL,
@@ -77,11 +75,10 @@ HKI, HKII, ĐTB_Nam INT,
 PRIMARY KEY (STT),
 FOREIGN KEY (MaSV) REFERENCES HSSV(MaSV)
 )
-
-Câu lệnh này: Tạo table DiemSV gồm 6 field, trong đó khóa chính là field STT và field khóa ngoại là MaSV. Table này tạo ràng buộc tham chiếu đến table HSSV thông qua field MaSV.
-
+```
+Câu lệnh này: Tạo table DiemSV gồm 6 field, trong đó khóa chính là field STT và field khóa ngoại là MaSV. Table này tạo ràng buộc tham chiếu đến table HSSV thông qua field MaSV.</br>
 Dạng khác:
-
+```sh
 (
 STT INT NOT NULL AUTO_INCREMENT,
 MaSV varchar(8) NOT NULL,
@@ -90,7 +87,7 @@ HKI, HKII, ĐTB_Nam INT,
 PRIMARY KEY (STT),
 CONSTRAINT Ma FOREIGN KEY (MaSV) REFERENCES HSSV(MaSV)
 )
-
+```
 Khi cần đặt tên cho ràng buộc khóa ngoại và khóa ngoại được hình thành từ nhiều field thì ta phải sử dụng câu lệnh Create Table theo dạng này.
 
 4.1 Tạo khóa ngoại cho table đã tạo
