@@ -10,14 +10,10 @@ Dữ liệu (value) của field khóa chính phải có tính duy nhất. Và kh
 Mỗi table nên chỉ có một khóa chính, khóa chính có thể tạo ra từ nhiều field của table.
 ## Khóa ngoại là gì
 Khóa ngoại của một table được xem như con trỏ trỏ tới khóa chính của table khác.</br>
-Nếu trường MaSV của table DiemSV được sử dụng để tạo ràng buộc tham chiếu đến table HSSV, thông qua khóa chính là MaSV thì MaSV của table DiemSV được gọi là khóa ngoại của bảng này. Đây cũng chính là lý do mà ta nói, khóa ngoại được xem như con trỏ trởi tới khóa chính.
-
-Để hiểu rõ hơn về ý nghĩa sử dụng của khóa chính, khóa ngoại chúng ta hãy xét ví dụ sau: Giả sử cơ sở dữ liệu QLDiemSV có hai table: HSSV và DiemSV như sau:
-
-Table HSSV gồm 6 field, trong đó MaSV được chọn làm khóa chính của table này.
-
-
-
+Nếu trường MaSV của table DiemSV được sử dụng để tạo ràng buộc tham chiếu đến table HSSV, thông qua khóa chính là MaSV thì MaSV của table DiemSV được gọi là khóa ngoại của bảng này. Đây cũng chính là lý do mà ta nói, khóa ngoại được xem như con trỏ trởi tới khóa chính.</br>
+Để hiểu rõ hơn về ý nghĩa sử dụng của khóa chính, khóa ngoại chúng ta hãy xét ví dụ sau: Giả sử cơ sở dữ liệu QLDiemSV có hai table: HSSV và DiemSV như sau:</br>
+Table HSSV gồm 6 field, trong đó MaSV được chọn làm khóa chính của table này.</br>
+<img src=https://i.imgur.com/pi5JA4G.png>
 Table DiemSV gồm 6 field, trong đó STT là khóa chính và MaSV được chọn làm khóa ngoại của table này.
 
 
