@@ -6,6 +6,7 @@ Giảm lượng dữ liệu dư thừa (ví dụ như lưu trữ cùng một d�
 ## Mục đích của chuẩn hóa cơ sở dữ liệu
 - Giảm thiểu dư thừa dữ liệu
 - Loại bỏ các bất thường khi cập nhật cơ sở dữ liệu
+
 *Nhưng chuẩn hoá làm tăng thời gian truy vấn.*
 ## Các Chuẩn thông thường
 Chuẩn hoá là quá trình tách bảng (phân rã) thành các bảng nhỏ hơn dựa vào các phụ thuộc hàm. Các dạng chuẩn là các chỉ dẫn để thiết kế các bảng trong CSDL.</br>
@@ -31,47 +32,37 @@ Quy tắc chuẩn hóa từ chuẩn 1NF thành 2NF:</br>
 - Bước 1: Loại bỏ các thuộc tính không khóa phụ thuộc vào một bộ phận khóa chính và tách ra thành một bảng riêng, khóa chính của bảng là bộ phận của khóa mà chúng phụ thuộc vào.
 - Bước 2: Các thuộc tính còn lại lập thành một quan hệ, khóa chính của nó là khóa chính ban đầu.
 
-Bảng dữ liệu mới mà ta thiết kế vẫn chưa đạt chuẩn 2NF là vì: một số thuộc tính như description , unit_price phụ thuộc vào 1 phần của khóa là product_id chứ không cần phụ thuộc cả vào tập khóa (customer_id, order_id, product_id), hay thuộc tính customer_name và phone cũng chỉ phụ thuộc vào customer_id, thuộc tính order_date phụ thuộc vào customer_id và order_id, thuộc tính quantity phụ thuộc vào order_id và product_id.
-
+Bảng dữ liệu mới mà ta thiết kế vẫn chưa đạt chuẩn 2NF là vì: một số thuộc tính như `description`, `unit_price` phụ thuộc vào 1 phần của khóa là `product_id` chứ không cần phụ thuộc cả vào tập khóa (`customer_id`, `order_id`, `product_id`), hay thuộc tính `customer_name` và `phone` cũng chỉ phụ thuộc vào `customer_id`, thuộc tính `order_date` phụ thuộc vào `customer_id` và `order_id`, thuộc tính `quantity` phụ thuộc vào `order_id` và `product_id`.</br>
 Vậy nên để đạt chuẩn 2NF thì ta sẽ thiết kế tiếp bảng dữ liệu chuẩn 1NF như sau:
+- Tách các thuộc tính (`product_id`, `description`, `unit_price`) thành một bảng riêng là `products`.
+- Các thuộc tính (`customer_id`, `order_id`, `order_date`) làm thành một bảng, mình đặt tên là `orders`.
+- Còn lại các thuộc tính (`order_id`, `product_id`, `quantity`) làm thành một bảng trung gian giữa `products` và `orders`, mình đặt là `order_products`.
 
-Tách các thuộc tính (product_id, description, unit_price) thành một bảng riêng là products.
-Các thuộc tính (customer_id, order_id, order_date) làm thành một bảng, mình đặt tên là orders.
-Còn lại các thuộc tính (order_id, product_id, quantity) làm thành một bảng trung gian giữa products và orders, mình đặt là order_products.
 Chỉ cần tuân thủ 2 chuẩn mà ta đã được cơ sở dữ liệu chuẩn hóa như sau: 
-
 <img src=https://i.imgur.com/fiTAxr8.png>
 
-Dạng chuẩn 3NF
+### Dạng chuẩn 3NF
 Điều kiện:
-
-Phải đạt chuẩn 2NF
-
-Mọi thuộc tính không khóa phụ thuộc bắc cầu vào thuộc tính khóa (nghĩa là tất cả các thuộc tính không khóa phải được suy ra trực tiếp từ thuộc tính khóa)
+- Phải đạt chuẩn 2NF
+- Mọi thuộc tính không khóa phụ thuộc bắc cầu vào thuộc tính khóa (nghĩa là tất cả các thuộc tính không khóa phải được suy ra trực tiếp từ thuộc tính khóa)
 
 Quy tắc chuẩn hóa từ 2NF thành 3NF:
+- Bước 1: Loại bỏ các thuộc tính phụ thuộc bắc cầu ra khỏi quan hệ và tách chúng thành quan hệ riêng có khóa chính là thuộc tính bắc cầu.
+- Bước 2: Các thuộc tính còn lại lập thành một quan hệ có khóa chính là khóa ban đầu.
 
-Bước 1: Loại bỏ các thuộc tính phụ thuộc bắc cầu ra khỏi quan hệ và tách chúng thành quan hệ riêng có khóa chính là thuộc tính bắc cầu.
-
-Bước 2: Các thuộc tính còn lại lập thành một quan hệ có khóa chính là khóa ban đầu.
-
-Để ý thấy cơ sở dữ liệu mà ta thiết kế ở chuẩn 2NF cũng đã đạt chuẩn 3NF. Thế nên mình sẽ lấy một ví dụ khác để các bạn tham khảo như sau:
-
+Để ý thấy cơ sở dữ liệu mà ta thiết kế ở chuẩn 2NF cũng đã đạt chuẩn 3NF. Thế nên mình sẽ lấy một ví dụ khác để các bạn tham khảo như sau:</br>
 Ví dụ bảng sau vi phạm chuẩn 3NF: 
+<ìg src=https://i.imgur.com/A2zwUdb.png>
 
-Ta thấy thuộc tính country_name phụ thuộc vào country_id, mà country_id lại phụ thuộc vào khóa chính là id. Vì vậy ta nên tách bảng trên thành 2 bảng sau:
+Ta thấy thuộc tính `country_name` phụ thuộc vào `country_id`, mà `country_id` lại phụ thuộc vào khóa chính là `id`. Vì vậy ta nên tách bảng trên thành 2 bảng sau:
+<img src=https://i.imgur.com/5EckM6r.png>
 
-
-
-Dạng chuẩn Boyce-Codd
+### Dạng chuẩn Boyce-Codd
 Điều kiện:
-
-Phải đạt chuẩn 3NF
-
-Không có thuộc tính khóa nào phụ thuộc vào thuộc tính không khóa
+- Phải đạt chuẩn 3NF
+- Không có thuộc tính khóa nào phụ thuộc vào thuộc tính không khóa
 
 Quy tắc chuẩn hóa 3NF thành Boyce-Codd:
 
-Bước 1: Loại bỏ các thuộc tính khóa phụ thuộc hàm vào thuộc tính không khóa ra khỏi quan hệ
-
-Bước 2: Tách thuộc tính vừa loại bỏ thành một quan hệ riêng có khoá chính là thuộc tính không khóa gây ra phụ thuộc.
+- Bước 1: Loại bỏ các thuộc tính khóa phụ thuộc hàm vào thuộc tính không khóa ra khỏi quan hệ
+- Bước 2: Tách thuộc tính vừa loại bỏ thành một quan hệ riêng có khoá chính là thuộc tính không khóa gây ra phụ thuộc.
