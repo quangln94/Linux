@@ -77,107 +77,81 @@ Hiển thị toàn bộ table:
 ```sh
 mysql> SHOW TABLES;
 ```
-
 Hiển thị dữ liệu của table:
-
+```sh
 mysql> SELECT * FROM tablename;
-
- 
-
+```
 Đổi tên table :
-
+```sh
 mysql> RENAME TABLE first TO second;
-
+```
 hoặc
-
+```sh
 mysql> ALTER TABLE mytable rename as mynewtable;
-
- 
-
+```
 Xóa table:
-
+```sh
 mysql> DROP TABLE mytable;
-
-5. Các thao tác cột và hàng
-
-Tất cả các thao tác bên dưới bạn phải lựa chọn trước database bằng cách dùng lệnh: mysql> USE mydatabase;
-
+```
+## 5. Các thao tác cột và hàng
+Tất cả các thao tác bên dưới bạn phải lựa chọn trước database bằng cách dùng lệnh:
+```sh
+mysql> USE mydatabase;
+```
 Hiển thị các column trong table:
-
+```sh
 mysql> DESC mytable;
-
+```
 hoặc
-
+```sh
 mysql> SHOW COLUMNS FROM mytable;
-
- 
-
+```
 Đổi tên column:
-
+```sh
 mysql> UPDATE mytable SET mycolumn="newinfo" WHERE mycolumn="oldinfo";
-
- 
-
+```
 Select dữ liệu:
-
+```sh
 mysql> SELECT * FROM mytable WHERE mycolumn='mydata' ORDER BY mycolumn2;
-
- 
-
+```
 Insert dữ liệu vào table:
-
+```sh
 mysql> INSERT INTO mytable VALUES('column1data','column2data','column3data','column4data','column5data','column6data','column7data','column8data','column9data');
-
- 
-
+```
 Xóa dữ liệu trong table:
-
+```sh
 mysql> DELETE FROM mytable WHERE mycolumn="mydata";
-
- 
-
+```
 Cập nhật dữ liệu trong table:
-
+```sh
 mysql> UPDATE mytable SET column1="mydata" WHERE column2="mydata";
-
-6. Các thao tác sao lưu và phục hồi
-
+```
+## 6. Các thao tác sao lưu và phục hồi
 Sao lưu toàn bộ database bằng lệnh (chú ý không có khoảng trắng giữa -p và mật khẩu):
-
+```sh
 mysqldump -u root -pmypass --all-databases > alldatabases.sql
-
- 
-
+```
 Sao lưu một database bất kỳ:
-
+```sh
 mysqldump -u username -pmypass databasename > database.sql
-
- 
-
+```
 Khôi phục toàn bộ database bằng lệnh:
-
+```sh
 mysql -u username -pmypass < alldatabases.sql (no space in between -p and mypass)
-
- 
-
+```
 Khôi phục một database bất kỳ:
-
+```sh
 mysql -u username -pmypass databasename < database.sql
-
- 
-
+```
 Chỉ sao lưu cấu trúc database:
-
+```sh
 mysqldump --no-data --databases databasename > structurebackup.sql
-
- 
-
+```
 Chỉ sao lưu cấu trúc nhiều database:
-
+```sh
 mysqldump --no-data --databases databasename1 databasename2 databasename3 > structurebackup.sql
-
- 
-
+```
 Sao lưu một số table nhất định:
-
+```sh
 mysqldump --add-drop-table -u username -pmypass databasename table_1 table_2 > databasebackup.sql
+```
