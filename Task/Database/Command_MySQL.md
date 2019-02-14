@@ -61,22 +61,16 @@ Tất cả các thao tác bên dưới bạn phải lựa chọn trước databa
 ```sh
 mysql> USE mydatabase;
 ```
-Tạo bảng: `CREATE TABLE table-name(các trường trong bảng);`
+Tạo bảng: `CREATE TABLE table-name(các trường trong bảng);`</br>
 VD:
 ```sh
 create table bang1( mssv INT NOT NULL AUTO_INCREMENT, ho VARCHAR(50) NOT NULL, ten VARCHAR(30) NOT NULL, diemthi FLOAT(2,2), PRIMARY KEY (mssv) );
 ```
-Trong đó:
-
-NOT NULL không được để trông giá trị
-
-AUTO_INCREMENT tự động tăng (giống STT)
-
-PRIMARY KEY khai báo khóa chính. Nếu khai báo nhiều khóa chính cùng lúc thì thay lại bằng câu CONSTRAINT ma PRIMARY KEY (các trường)
-
-Thiết lập khóa ngoại FOREIGN KEY (Masv) REFERENCES HSSV(Masv)
-
-Xóa bảng DROP TABLE tên-bảng
+Trong đó:</br>
+- NOT NULL không được để trông giá trị
+- AUTO_INCREMENT tự động tăng (giống STT)
+- PRIMARY KEY khai báo khóa chính. Nếu khai báo nhiều khóa chính cùng lúc thì thay lại bằng câu CONSTRAINT ma PRIMARY KEY (các trường)
+- Thiết lập khóa ngoại FOREIGN KEY (Masv) REFERENCES HSSV(Masv)
 
 Ghi dữ liệu
 
