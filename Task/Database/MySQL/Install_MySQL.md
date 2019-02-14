@@ -28,7 +28,7 @@ MySQL must be installed from the community repository.
 Download and add the repository, then update.
 ```sh
 wget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm
-sudo rpm -ivh mysql-community-release-el7-5.noarch.rpm
+rpm -ivh mysql-community-release-el7-5.noarch.rpm
 yum update
 ```
 Install MySQL as usual and start the service. During installation, you will be asked if you want to accept the results from the .rpm file’s GPG verification. If no error or mismatch occurs, enter y.
@@ -58,18 +58,18 @@ iptables -I INPUT -p tcp -m tcp --dport 3306 -j ACCEPT
 ## Using MySQLPermalink
 The standard tool for interacting with MySQL is the mysql client which installs with the mysql-server package. The MySQL client is used through a terminal.
 
-## Root LoginPermalink
+### Root LoginPermalink
 To log in to MySQL as the root user:
-```
+```sh
 mysql -u root -p
 ```
-When prompted, enter the root password you assigned when the mysql_secure_installation script was run.
-
+When prompted, enter the root password you assigned when the `mysql_secure_installation` script was run.</br>
 You’ll then be presented with a welcome header and the MySQL prompt as shown below:
-
+```sh
 mysql>
-To generate a list of commands for the MySQL prompt, enter \h. You’ll then see:
-
+```
+To generate a list of commands for the MySQL prompt, enter `\h`. You’ll then see:
+```sh
 List of all MySQL commands:
 Note that all text commands must be first on line and end with ';'
 ?         (\?) Synonym for `help'.
@@ -100,14 +100,33 @@ nowarning (\w) Don't show warnings after every statement.
 For server side help, type 'help contents'
 
 mysql>
-## Create a New MySQL User and DatabasePermalink
-In the example below, testdb is the name of the database, testuser is the user, and password is the user’s password.
-
+```
+### Create a New MySQL User and DatabasePermalink
+To create a New MySQL User
+```sh
+create user 'user-name'@'IP' identified by 'password';
+```
+- `IP` can be a IP address from remotely allow access to login or localhost if only login local. `%` if allow all client login .
+In the example below, `testdb` is the name of the database, `testuser` is the user, and `password` is the user’s password.
+```sh
 create database testdb;
-create user 'testuser'@'localhost' identified by 'password';
-grant all on testdb.* to 'testuser' identified by 'password';
-You can shorten this process by creating the user while assigning database permissions:
+create user 'testuser'@'172.16.80.199' identified by 'password';
+```
+Grant user permission `grant permissions on data-name.table-name to 'user-name'@'IP';`
 
+ALL PRIVILEGES tất cả các quyền
+CREATE allow create new table or hoặc databases
+DROP delete table or databases
+DELETE delete data in table
+INSERT add data in table
+SELECT user select to reade data
+UPDATE update data in table
+GRANT OPTION add/remove user, permission of user
+```
+grant all on testdb.* to 'testuser' identified by 'password';
+```
+You can shorten this process by creating the user while assigning database permissions:
+```
 create database testdb;
 grant all on testdb.* to 'testuser' identified by 'password';
 Then exit MySQL.
