@@ -74,7 +74,7 @@ Trong đó:</br>
 
 Ghi dữ liệu: 
 ```sh
-insert into tên-bangr ( truong1, truong2, ...)</br>
+insert into tên-bangr ( truong1, truong2, ...)
 Values (giá trị lần lượt theo các trường đã khai báo ở trên)
 ```
 Chúng ta có một số kiểu dữ liệu sau:</br>
