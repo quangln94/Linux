@@ -94,17 +94,12 @@ Kiểu chuỗi:
 - VARCHAR(m) độ dài có thể thay đổi.
 - BLOB hoặc TEXT độ dài tối đa 65535 ký tự. BLOB sử dụng lưu trữ dữ liệu nhị phân như các bức ảnh hoặc tập nhị phân khác. BLOB phân biệt chữ hoa chữ thường còn TEXT thì không.
 
-SELECT:
-
-Kết hợp với các mệnh đề khác để truy xuất dữ liệu
-
-SELECT các trường FROM tên-bảng
+SELECT:</br>
+- Kết hợp với các mệnh đề khác để truy xuất dữ liệu `SELECT các trường FROM tên-bảng`
 
 Các trường có thể để là * nếu muốn truy xuất tất cả các trường trong bảng.
 
-WHERE
-
-SELECT * FROM tên-bảng WHERE điều kiện
+WHERE: `SELECT * FROM tên-bảng WHERE điều kiện`
 
 VD: SELECT * FROM bang1 WHERE ten="niem";
 
@@ -178,9 +173,6 @@ Ta có thể sử dụng
 
 select * from tên-bảng
 where diemthi BETWEEN 8 and 10;
-
-
-
 
 Hiển thị toàn bộ table: `mysql> SHOW TABLES;`</br>
 Hiển thị dữ liệu của table: `mysql> SELECT * FROM tablename;`</br>
