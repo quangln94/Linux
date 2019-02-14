@@ -72,7 +72,7 @@ Trong đó:</br>
 
 **Ghi dữ liệu:**
 ```sh
-insert into tên-bảng ( truong1, truong2, ...)
+insert into tên-bảng ( field1, field2, ...)
 Values (giá trị lần lượt theo các trường đã khai báo ở trên)
 ```
 Chúng ta có một số kiểu dữ liệu sau:</br>
@@ -92,6 +92,11 @@ Kiểu chuỗi:
 - VARCHAR(m) độ dài có thể thay đổi.
 - BLOB hoặc TEXT độ dài tối đa 65535 ký tự. BLOB sử dụng lưu trữ dữ liệu nhị phân như các bức ảnh hoặc tập nhị phân khác. BLOB phân biệt chữ hoa chữ thường còn TEXT thì không.
 
+Hiển thị toàn bộ table: `mysql> SHOW TABLES;`</br>
+Hiển thị dữ liệu của table: `mysql> SELECT * FROM tablename;`</br>
+Đổi tên table : `mysql> RENAME TABLE first TO second;` hoặc `mysql> ALTER TABLE mytable rename as mynewtable;`</br>
+Xóa table: `mysql> DROP TABLE mytable;`</br>
+
 **Một số lệnh để show thông tin trên Mysql server**
 - select version() phiên bản server
 - select database() tên database hiện tại
@@ -99,10 +104,6 @@ Kiểu chuỗi:
 - show status trạng thái server
 - show variables các biến cấu hình server
 
-Hiển thị toàn bộ table: `mysql> SHOW TABLES;`</br>
-Hiển thị dữ liệu của table: `mysql> SELECT * FROM tablename;`</br>
-Đổi tên table : `mysql> RENAME TABLE first TO second;` hoặc `mysql> ALTER TABLE mytable rename as mynewtable;`</br>
-Xóa table: `mysql> DROP TABLE mytable;`</br>
 ## 5. Các thao tác cột và hàng
 Tất cả các thao tác bên dưới bạn phải lựa chọn trước database bằng cách dùng lệnh:
 ```sh
