@@ -1,5 +1,5 @@
 # Quản lý MYSQL trên VPS-Server Linux bằng câu lệnh.
-- Login MySQL from local: `mysql -u root -p``
+- Login MySQL from local: `mysql -u root -p`
 - Login MySQL from remotely: `mysql -u user -p -h IP`
 ## 1. Thư mục chứa database
 Trên CentOS, toàn bộ file raw database được lưu trong thư mục `/var/lib/mysql`
