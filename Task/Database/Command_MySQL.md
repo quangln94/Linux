@@ -61,7 +61,7 @@ Tất cả các thao tác bên dưới bạn phải lựa chọn trước databa
 ```sh
 mysql> USE mydatabase;
 ```
-Tạo bảng: `CREATE TABLE table-name(các trường trong bảng);`</br>
+**Tạo bảng:** `CREATE TABLE table-name(các trường trong bảng);`</br>
 VD:
 ```sh
 create table bang1( mssv INT NOT NULL AUTO_INCREMENT, ho VARCHAR(50) NOT NULL, ten VARCHAR(30) NOT NULL, diemthi FLOAT(2,2), PRIMARY KEY (mssv) );
@@ -72,9 +72,9 @@ Trong đó:</br>
 - `PRIMARY KEY` khai báo khóa chính. Nếu khai báo nhiều khóa chính cùng lúc thì thay lại bằng câu `CONSTRAINT ma PRIMARY KEY (các trường)`
 - Thiết lập khóa ngoại `FOREIGN KEY (Masv) REFERENCES HSSV(Masv)`
 
-Ghi dữ liệu: 
+**Ghi dữ liệu:**
 ```sh
-insert into tên-bangr ( truong1, truong2, ...)
+insert into tên-bảng ( truong1, truong2, ...)
 Values (giá trị lần lượt theo các trường đã khai báo ở trên)
 ```
 Chúng ta có một số kiểu dữ liệu sau:</br>
@@ -103,9 +103,6 @@ WHERE: `SELECT * FROM tên-bảng WHERE điều kiện`
 
 VD: SELECT * FROM bang1 WHERE ten="niem";
 
-LIKE
-
-Like thường được sử dụng kết hợp với các mệnh đề khác. Hay được dùng chung với WHERE và được thay thế cho dấu bằng. Có thể dùng ký tự % để tìm kiếm giống như * trong linux.
 
 UPDATE
 
@@ -156,13 +153,13 @@ ADD thêm một trường sau trường nào đó ALTER TABLE tên-bảng ADD te
 
 ALTER TABLE tên-bảng CHANGE ten hoten CHAR(40); Thay trường tên bằng họ tên.
 
-Một số lệnh để show thông tin trên Mysql server
+**Một số lệnh để show thông tin trên Mysql server**
+- select version() phiên bản server
+- select database() tên database hiện tại
+- select user() username hiện tại
+- show status trạng thái server
+- show variables các biến cấu hình server
 
-select version() phiên bản server
-select database() tên database hiện tại
-select user() username hiện tại
-show status trạng thái server
-show variables các biến cấu hình server
 BETWEEN
 
 Thay vì dùng mệnh đề where như sau
