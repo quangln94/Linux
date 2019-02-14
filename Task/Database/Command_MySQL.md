@@ -1,4 +1,4 @@
-# Hướng dẫn quản ly MYSQL trên VPS-Server Linux bằng câu lệnh.
+# Quản lý MYSQL trên VPS-Server Linux bằng câu lệnh.
 ## Đăng nhập MySQL bạn dùng lệnh:
 ```sh
 mysql -u root -p
