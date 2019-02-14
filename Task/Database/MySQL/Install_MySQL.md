@@ -110,21 +110,19 @@ create user 'user-name'@'IP' identified by 'password';
 In the example below, `testdb` is the name of the database, `testuser` is the user, and `password` is the user’s password.
 ```sh
 create database testdb;
-create user 'testuser'@'172.16.80.199' identified by 'password';
+create user 'testuser'@'192.168.1.2' identified by 'password';
 ```
 Grant user permission `grant permissions on data-name.table-name to 'user-name'@'IP';`
+- `ALL PRIVILEGE`S all permissions
+- `CREATE` allow create new table or hoặc databases
+- `DROP` delete table or databases
+- `DELETE` delete data in table
+- `INSERT` add data in table
+- `SELECT` user select to reade data
+- `UPDATE` update data in table
+- `GRANT OPTION` add/remove user, permission of user
 
-ALL PRIVILEGES tất cả các quyền
-CREATE allow create new table or hoặc databases
-DROP delete table or databases
-DELETE delete data in table
-INSERT add data in table
-SELECT user select to reade data
-UPDATE update data in table
-GRANT OPTION add/remove user, permission of user
-```
-grant all on testdb.* to 'testuser' identified by 'password';
-```
+`grant all on testdb.* to 'testuser' identified by 'password';`
 You can shorten this process by creating the user while assigning database permissions:
 ```
 create database testdb;
@@ -132,7 +130,6 @@ grant all on testdb.* to 'testuser' identified by 'password';
 Then exit MySQL.
 
 exit
-```
 ```
 ## References
 https://www.linode.com/docs/databases/mysql/how-to-install-mysql-on-centos-7/
