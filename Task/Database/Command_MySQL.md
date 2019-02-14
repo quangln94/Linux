@@ -1,8 +1,6 @@
 # Quản lý MYSQL trên VPS-Server Linux bằng câu lệnh.
-## Đăng nhập MySQL bạn dùng lệnh:
-```sh
-mysql -u root -p
-```
+- Login MySQL from local: `mysql -u root -p``
+- Login MySQL from remotely: `mysql -u user -p -h IP`
 ## 1. Thư mục chứa database
 Trên CentOS, toàn bộ file raw database được lưu trong thư mục `/var/lib/mysql`
 ## 2. Quản lý tài khoản và phân quyền
@@ -94,82 +92,12 @@ Kiểu chuỗi:
 - VARCHAR(m) độ dài có thể thay đổi.
 - BLOB hoặc TEXT độ dài tối đa 65535 ký tự. BLOB sử dụng lưu trữ dữ liệu nhị phân như các bức ảnh hoặc tập nhị phân khác. BLOB phân biệt chữ hoa chữ thường còn TEXT thì không.
 
-SELECT:</br>
-- Kết hợp với các mệnh đề khác để truy xuất dữ liệu `SELECT các trường FROM tên-bảng`
-
-Các trường có thể để là * nếu muốn truy xuất tất cả các trường trong bảng.
-
-WHERE: `SELECT * FROM tên-bảng WHERE điều kiện`
-
-VD: SELECT * FROM bang1 WHERE ten="niem";
-
-
-UPDATE
-
-Dùng để cập nhật dữ liệu của một hoặc nhiều trường
-
-UPDATE tên-bảng SET truong1=gia-tri-moi, truong2=gia-tri-moi
-WHERE
-DELETE
-
-DELETE FROM tên-bảng WHERE
-
-Chú ý đến mệnh đề WHERE nếu ko có sẽ dẫn đến xóa cả bảng.
-
-ORDER BY
-
-Được sử dụng để sắp xếp kết quả hiển thị trả về
-
-SELECT * FROM tên-bảng
-ORDER BY truongn [ASC][DESC]
-Có thể chọn kết quả trả về của bất kỳ trường nào Sử dụng một trong hai khóa ASC để hiển thị kết quả theo thứ tự tăng dần hoặc DESC để hiển thị theo giá trị giảm dần.
-
-JOIN
-
-Được dùng để lấy dữ liệu cùng lúc từ nhiều bảng và ghép chúng lại với nhau.
-
-VD
-
-SELECT a.mssv, a.ten, b.hocphi
-FROM bang1 a, bang2 b
-WHERE a.ten=b.ten;
-Kết quả sẽ trả về mã số sv và tên trong bảng 1 và học phí trong bảng 2 nếu tên trong bảng 1 và bảng 2 là trùng nhau.
-
-NULL
-
-Để so sánh một trường nào đó với giá trị NULL ta dùng lệnh
-
-truong1 IS NULL hoặc truong1 IS NOT NULL
-
-ALTER
-
-Lệnh này được dùng để thay đổi tên cho bảng hay bất kỳ trường nào cho bảng như thêm bớt sửa xóa.
-
-VD: Xóa một trường ALTER TABLE tên-bảng DROP tên-trường
-
-ADD thêm một trường sau trường nào đó ALTER TABLE tên-bảng ADD ten CHAR(40) AFTER hocphi; Thêm cột tên sau cột học phí.
-
-Định nghĩa một trường theo tên mới
-
-ALTER TABLE tên-bảng CHANGE ten hoten CHAR(40); Thay trường tên bằng họ tên.
-
 **Một số lệnh để show thông tin trên Mysql server**
 - select version() phiên bản server
 - select database() tên database hiện tại
 - select user() username hiện tại
 - show status trạng thái server
 - show variables các biến cấu hình server
-
-BETWEEN
-
-Thay vì dùng mệnh đề where như sau
-
-select * from tên-bang
-where diemthi >= 8 and diemthi <= 10;
-Ta có thể sử dụng
-
-select * from tên-bảng
-where diemthi BETWEEN 8 and 10;
 
 Hiển thị toàn bộ table: `mysql> SHOW TABLES;`</br>
 Hiển thị dữ liệu của table: `mysql> SELECT * FROM tablename;`</br>
