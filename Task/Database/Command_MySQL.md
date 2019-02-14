@@ -67,42 +67,32 @@ VD:
 create table bang1( mssv INT NOT NULL AUTO_INCREMENT, ho VARCHAR(50) NOT NULL, ten VARCHAR(30) NOT NULL, diemthi FLOAT(2,2), PRIMARY KEY (mssv) );
 ```
 Trong đó:</br>
-- NOT NULL không được để trông giá trị
-- AUTO_INCREMENT tự động tăng (giống STT)
-- PRIMARY KEY khai báo khóa chính. Nếu khai báo nhiều khóa chính cùng lúc thì thay lại bằng câu CONSTRAINT ma PRIMARY KEY (các trường)
-- Thiết lập khóa ngoại FOREIGN KEY (Masv) REFERENCES HSSV(Masv)
+- `NOT NULL` không được để trông giá trị
+- `AUTO_INCREMENT` tự động tăng (giống STT)
+- `PRIMARY KEY` khai báo khóa chính. Nếu khai báo nhiều khóa chính cùng lúc thì thay lại bằng câu `CONSTRAINT ma PRIMARY KEY (các trường)`
+- Thiết lập khóa ngoại `FOREIGN KEY (Masv) REFERENCES HSSV(Masv)`
 
-Ghi dữ liệu
-
-insert into tên-bangr ( truong1, truong2, ...)
+Ghi dữ liệu: 
+```sh
+insert into tên-bangr ( truong1, truong2, ...)</br>
 Values (giá trị lần lượt theo các trường đã khai báo ở trên)
-Chúng ta có một số kiểu dữ liệu sau:
+```
+Chúng ta có một số kiểu dữ liệu sau:</br>
+Kiểu số:
+- INT
+- FLOAT(n,m)- số thực dấu chấm động
+- DOUBLE(n,m)
 
-Kiểu số
+Kiểu date time:
+- DATE YYYY-MM-DD. Ví dụ 2019-01-28.
+- DATETIME YYYY-MM-DD HH:MM:SS. Ví dụ 23h00 ngày 28-01-2019 được biểu diễn 2019-01-28 23:00:00
+- TIME HH:MM:SS
+- YEAR(m) m có thể là 2 hoặc 4. Mặc định là 4
 
-INT
-
-FLOAT(n,m)- số thực dấu chấm động
-
-DOUBLE(n,m)
-
-Kiểu date time
-
-DATE YYYY-MM-DD. Ví dụ 2019-01-28.
-
-DATETIME YYYY-MM-DD HH:MM:SS. Ví dụ 23h00 ngày 28-01-2019 được biểu diễn 2019-01-28 23:00:00
-
-TIME HH:MM:SS
-
-YEAR(m) m có thể là 2 hoặc 4. Mặc định là 4
-
-Kiểu chuỗi
-
-CHAR(m) độ dài cố định từ 1 đến 255 ký tự. Nếu 1 trường kiểu char có độ dài không bằng độ dài khai báo thì phần còn thiếu được thêm bằng ký tự trắng.
-
-VARCHAR(m) độ dài có thể thay đổi.
-
-BLOB hoặc TEXT độ dài tối đa 65535 ký tự. BLOB sử dụng lưu trữ dữ liệu nhị phân như các bức ảnh hoặc tập nhị phân khác. BLOB phân biệt chữ hoa chữ thường còn TEXT thì không.
+Kiểu chuỗi:
+- CHAR(m) độ dài cố định từ 1 đến 255 ký tự. Nếu 1 trường kiểu char có độ dài không bằng độ dài khai báo thì phần còn thiếu được thêm bằng ký tự trắng.
+- VARCHAR(m) độ dài có thể thay đổi.
+- BLOB hoặc TEXT độ dài tối đa 65535 ký tự. BLOB sử dụng lưu trữ dữ liệu nhị phân như các bức ảnh hoặc tập nhị phân khác. BLOB phân biệt chữ hoa chữ thường còn TEXT thì không.
 
 SELECT
 
