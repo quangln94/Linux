@@ -43,22 +43,10 @@ Xóa user:
 mysql> DELETE FROM mysql.user WHERE user="username";
 ```
 ## 3. Các thao tác database
-Hiển thị toàn bộ databases:
-```sh
-mysql> SHOW DATABASES;
-```
-Tạo database:
-```sh
-mysql> CREATE DATABASE mydatabase;
-```
-Sử dụng một database:
-```sh
-mysql> USE mydatabase;
-``` 
-Xóa một database:
-```sh
-mysql> DROP DATABASE mydatabase;
-```
+Hiển thị toàn bộ databases: `mysql> SHOW DATABASES;`</br>
+Tạo database: `mysql> CREATE DATABASE mydatabase;`</br>
+Sử dụng một database: `mysql> USE mydatabase;` </br>
+Xóa một database: `mysql> DROP DATABASE mydatabase;`</br>
 Tối ưu database:
 - All Databases:
 ```sh
@@ -73,59 +61,24 @@ Tất cả các thao tác bên dưới bạn phải lựa chọn trước databa
 ```sh
 mysql> USE mydatabase;
 ```
-Hiển thị toàn bộ table:
-```sh
-mysql> SHOW TABLES;
-```
-Hiển thị dữ liệu của table:
-```sh
-mysql> SELECT * FROM tablename;
-```
-Đổi tên table :
-```sh
-mysql> RENAME TABLE first TO second;
-```
-hoặc
-```sh
-mysql> ALTER TABLE mytable rename as mynewtable;
-```
-Xóa table:
-```sh
-mysql> DROP TABLE mytable;
-```
+Hiển thị toàn bộ table: `mysql> SHOW TABLES;`</br>
+Hiển thị dữ liệu của table: `mysql> SELECT * FROM tablename;`</br>
+Đổi tên table : `mysql> RENAME TABLE first TO second;` hoặc `mysql> ALTER TABLE mytable rename as mynewtable;`</br>
+Xóa table: `mysql> DROP TABLE mytable;`</br>
 ## 5. Các thao tác cột và hàng
 Tất cả các thao tác bên dưới bạn phải lựa chọn trước database bằng cách dùng lệnh:
 ```sh
 mysql> USE mydatabase;
 ```
-Hiển thị các column trong table:
-```sh
-mysql> DESC mytable;
-```
-hoặc
-```sh
-mysql> SHOW COLUMNS FROM mytable;
-```
-Đổi tên column:
-```sh
-mysql> UPDATE mytable SET mycolumn="newinfo" WHERE mycolumn="oldinfo";
-```
-Select dữ liệu:
-```sh
-mysql> SELECT * FROM mytable WHERE mycolumn='mydata' ORDER BY mycolumn2;
-```
-Insert dữ liệu vào table:
+Hiển thị các column trong table: `mysql> DESC mytable;` hoặc `mysql> SHOW COLUMNS FROM mytable;`
+Đổi tên column: `mysql> UPDATE mytable SET mycolumn="newinfo" WHERE mycolumn="oldinfo"; `
+Select dữ liệu: `mysql> SELECT * FROM mytable WHERE mycolumn='mydata' ORDER BY mycolumn2;`
+Insert dữ liệu vào table: 
 ```sh
 mysql> INSERT INTO mytable VALUES('column1data','column2data','column3data','column4data','column5data','column6data','column7data','column8data','column9data');
 ```
-Xóa dữ liệu trong table:
-```sh
-mysql> DELETE FROM mytable WHERE mycolumn="mydata";
-```
-Cập nhật dữ liệu trong table:
-```sh
-mysql> UPDATE mytable SET column1="mydata" WHERE column2="mydata";
-```
+Xóa dữ liệu trong table: `mysql> DELETE FROM mytable WHERE mycolumn="mydata";`
+Cập nhật dữ liệu trong table: `mysql> UPDATE mytable SET column1="mydata" WHERE column2="mydata";`
 ## 6. Các thao tác sao lưu và phục hồi
 Sao lưu toàn bộ database bằng lệnh (chú ý không có khoảng trắng giữa -p và mật khẩu):
 ```sh
