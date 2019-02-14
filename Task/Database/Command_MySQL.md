@@ -94,7 +94,7 @@ Kiểu chuỗi:
 - VARCHAR(m) độ dài có thể thay đổi.
 - BLOB hoặc TEXT độ dài tối đa 65535 ký tự. BLOB sử dụng lưu trữ dữ liệu nhị phân như các bức ảnh hoặc tập nhị phân khác. BLOB phân biệt chữ hoa chữ thường còn TEXT thì không.
 
-SELECT
+SELECT:
 
 Kết hợp với các mệnh đề khác để truy xuất dữ liệu
 
@@ -191,15 +191,16 @@ Tất cả các thao tác bên dưới bạn phải lựa chọn trước databa
 ```sh
 mysql> USE mydatabase;
 ```
-Hiển thị các column trong table: `mysql> DESC mytable;` hoặc `mysql> SHOW COLUMNS FROM mytable;`
-Đổi tên column: `mysql> UPDATE mytable SET mycolumn="newinfo" WHERE mycolumn="oldinfo"; `
-Select dữ liệu: `mysql> SELECT * FROM mytable WHERE mycolumn='mydata' ORDER BY mycolumn2;`
-Insert dữ liệu vào table: 
+- Hiển thị các column trong table: `mysql> DESC mytable;` hoặc `mysql> SHOW COLUMNS FROM mytable;`
+- Đổi tên column: `mysql> UPDATE mytable SET mycolumn="newinfo" WHERE mycolumn="oldinfo"; `
+- Select dữ liệu: `mysql> SELECT * FROM mytable WHERE mycolumn='mydata' ORDER BY mycolumn2;`
+- Insert dữ liệu vào table: 
 ```sh
 mysql> INSERT INTO mytable VALUES('column1data','column2data','column3data','column4data','column5data','column6data','column7data','column8data','column9data');
 ```
-Xóa dữ liệu trong table: `mysql> DELETE FROM mytable WHERE mycolumn="mydata";`
-Cập nhật dữ liệu trong table: `mysql> UPDATE mytable SET column1="mydata" WHERE column2="mydata";`
+- Xóa dữ liệu trong table: `mysql> DELETE FROM mytable WHERE mycolumn="mydata";`
+- Cập nhật dữ liệu trong table: `mysql> UPDATE mytable SET column1="mydata" WHERE column2="mydata";`
+
 ## 6. Các thao tác sao lưu và phục hồi
 Sao lưu toàn bộ database bằng lệnh (chú ý không có khoảng trắng giữa -p và mật khẩu):
 ```sh
