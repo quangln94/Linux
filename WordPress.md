@@ -66,3 +66,6 @@ WordPress chỉ dành cho người không biết code
 Hoàn toàn sai lầm, nếu bạn đã nghe ai đó nói với bạn rằng WordPress chỉ dành cho những người không chuyên lập trình sử dụng thì điều này hoàn toàn không chính xác.
 
 Dĩ nhiên những người không biết lập trình sẽ dùng WordPress bằng cách sử dụng các tính năng có sẵn, thư viện giao diện phong phú và các plugin hỗ trợ cũng đã đủ để làm được website. Nhưng nếu bạn biết code thì càng tốt vì WordPress có phần lõi mã nguồn rất mạnh để bạn áp dụng kỹ năng không giới hạn, nếu bạn cho rằng WordPress chỉ dành cho người không biết lập trình thì hãy xem qua WordPress Nâng Cao.
+
+# Reference
+https://thachpham.com/wordpress/wordpress-tutorials/wordpress-la-gi-va-gioi-thieu.html
