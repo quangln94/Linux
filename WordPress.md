@@ -1,9 +1,9 @@
-TỔNG QUAN VỀ MỘT WEBSITE
-Với một website thông thường, nó sẽ bao gồm các thành phần sau:
+# TỔNG QUAN VỀ MỘT WEBSITE
+Với một website thông thường, nó sẽ bao gồm các thành phần sau:</br>
+- Giao diện (Front-end): Là những gì chúng ta thấy nó hiển thị ra bên ngoài như bố cục, màu sắc của website. Phần này chúng ta gọi là giao diện và nó được xếp vào loại Front-end của một website.
+- Mã nguồn xử lý (Backend): Giống như một cỗ máy, để nó hoạt động được như những gì chúng ta thấy thì phải có một hệ thống bên trong để xử lý. Ví dụ khi vào website bạn ấn nút đăng ký, làm sao hệ thống có thể lưu trữ các thông tin của bạn lại thì sẽ do các mã nguồn xử lý.
+- Cơ sở dữ liệu (Database): Với các website hiện nay thì sẽ có một phần không thể thiếu gọi là cơ sở dữ liệu. Cơ sở dữ liệu sẽ lưu lại dữ liệu mềm của website đó như dữ liệu bài viết, nội dung trên website, hay các thiết lập,…Còn mã nguồn chỉ lưu trữ các tập tin của mã nguồn, tập tin hình ảnh.
 
-Giao diện (Front-end): Là những gì chúng ta thấy nó hiển thị ra bên ngoài như bố cục, màu sắc của website. Phần này chúng ta gọi là giao diện và nó được xếp vào loại Front-end của một website.
-Mã nguồn xử lý (Backend): Giống như một cỗ máy, để nó hoạt động được như những gì chúng ta thấy thì phải có một hệ thống bên trong để xử lý. Ví dụ khi vào website bạn ấn nút đăng ký, làm sao hệ thống có thể lưu trữ các thông tin của bạn lại thì sẽ do các mã nguồn xử lý.
-Cơ sở dữ liệu (Database): Với các website hiện nay thì sẽ có một phần không thể thiếu gọi là cơ sở dữ liệu. Cơ sở dữ liệu sẽ lưu lại dữ liệu mềm của website đó như dữ liệu bài viết, nội dung trên website, hay các thiết lập,…Còn mã nguồn chỉ lưu trữ các tập tin của mã nguồn, tập tin hình ảnh.
 Như vậy để xây dựng được một website, chúng ta phải làm 3 phần này với độ phức tạp cao và yêu cầu bảo mật khắt khe. Thế nhưng với sự hỗ trợ của WordPress, công việc này đã được làm sẵn và chúng ta chỉ việc sử dụng cho nó chạy.
 
 WORDPRESS LÀ GÌ?
