@@ -8,6 +8,10 @@ Hiển thị toàn bộ users:
 ```sh
 mysql> SELECT * FROM mysql.user;
 ```
+However, note that this query shows all of the columns from the mysql.user table, which makes for a lot of output, so as a practical matter you may want to trim down some of the fields to display, something like this:
+```sh
+mysql> select host, user, password from mysql.user;
+```
 Xóa null user:
 ```sh
 mysql> DELETE FROM mysql.user WHERE user = ' ';
