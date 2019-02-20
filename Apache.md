@@ -1,23 +1,13 @@
-Apache là phần mềm web server miễn phí mã nguồn mở. Nó đang chiếm đến khoảng 46% thị phần websites trên toàn thế giới. Tên chính thức của Apache là Apache HTTP Server, được điều hành và phát triển bởi Apache Software Foundation.
-
-Nó giúp chủ website đưa nội dung lên web – vì vậy có tên gọi là “web server”. Apache là một trong số những web server lâu đời và đáng tin cậy nhất, phiên bản đầu tiên đã được ra mắt từ hơn 20 năm trước, tận những năm 1995.
-
+# Apache là gì
+Apache là phần mềm web server miễn phí mã nguồn mở. Nó đang chiếm đến khoảng 46% thị phần websites trên toàn thế giới. Tên chính thức của Apache là Apache HTTP Server, được điều hành và phát triển bởi Apache Software Foundation.</br>
+Nó giúp chủ website đưa nội dung lên web – vì vậy có tên gọi là **web server**. Apache là một trong số những web server lâu đời và đáng tin cậy nhất, phiên bản đầu tiên đã được ra mắt từ hơn 20 năm trước, tận những năm 1995.</br>
 Khi một người truy cập vào website của bạn, họ sẽ điền tên miền vào thanh địa chỉ. Sau đó, web server sẽ chuyển những files được yêu cầu xuống như là một nhân viên chuyển hàng ảo.
-
-Tại Hostinger, nền tảng web hosting giá rẻ của chúng tôi sử dụng Apache song song với NGINX, cũng là một phần mềm web server phổ biến. Phương pháp cài đặt đặc biệt này giúp chúng tôi có lợi thế từ cả 2 nền tảng. Nó đảm bảo hiệu năng mà không phải hy sinh chấp nhận những điểm yếu của một trong 2 phần mềm.
-
-Web Server là gì?
-File servers, database servers, mail servers, và web servers sử dụng nhiều phần mềm server khác nhau. Từng ứng dụng sẽ truy cập files riêng lưu trên server vật lý và dùng chung cho các mục đích khác nhau.
-
-Nhiệm vụ của web server là đưa website lên internet. Để làm được điều đó, nó hoạt động giống như là một người đứng giữa server và máy khách (client). Nó sẽ kéo nội dung từ server về cho mỗi một truy vấn xuất phát từ máy khách để hiển thị kết quả tương ứng dưới hình thức là một website.
-
-Điểm khó khăn lớn nhất của một web server là kéo dữ liệu cho nhiều người dùng cùng một lúc – vì mỗi một người lại cũng đang truy vấn tới các trang web khác nhau. Web server xử lý các file này dưới ngôn ngữ lập trình như là PHP, Python, Java, vâng vâng.
-
+# Web Server là gì?
+File servers, database servers, mail servers, và web servers sử dụng nhiều phần mềm server khác nhau. Từng ứng dụng sẽ truy cập files riêng lưu trên server vật lý và dùng chung cho các mục đích khác nhau.</br>
+Nhiệm vụ của web server là đưa website lên internet. Để làm được điều đó, nó hoạt động giống như là một người đứng giữa server và máy khách (client). Nó sẽ kéo nội dung từ server về cho mỗi một truy vấn xuất phát từ máy khách để hiển thị kết quả tương ứng dưới hình thức là một website.</br>
+Điểm khó khăn lớn nhất của một web server là kéo dữ liệu cho nhiều người dùng cùng một lúc – vì mỗi một người lại cũng đang truy vấn tới các trang web khác nhau. Web server xử lý các file này dưới ngôn ngữ lập trình như là PHP, Python, Java,....</br>
 Những ngôn ngữ này biến chúng thành file HTML và file trên trình duyệt cho người dùng web thấy được. Khi bạn nghe tới cụm từ “web server”, hãy hiểu rằng nó là công cụ chịu trách nhiệm giao tiếp giữa server-client.
-
-Apache Web Server hoạt động như thế nào?
-Mặc dù chúng ta gọi Apache là web server, nhưng nó lại không phải là server vật lý, nó là một phần mềm chạy trên server đó. Công việc của nó là thiết lập kết nối giữa server và trình duyệt người dùng (Firefox, Google Chrome, Safari, vâng vâng.) rồi chuyển file tới và lui giữa gchúng (cấu trúc 2 chiều dạng client-server). Apache là một phần mềm đa nền tảng, nó hoạt động tốt với cả server Unix và Windows.
-
-Khi một khách truy cập tải một trang web trên website của bạn, ví dụ, trang chủ “About Us”,trình duyệt người dùng sẽ gửi yêu cầu tải trang web đó lên server và Apache sẽ trả kết quả với tất cả đầy đủ các file cấu thành nên trang About Us (hình ảnh, chữ, vâng vâng). Server và client giao tiếp với nhau qua giao thức HTTP và Apache chịu trách nhiệm cho việc đảm bảo tiến trình này diễn ra mượt mà và bảo mật giữa 2 máy.
-
-Apache là một nền tảng module có độ tùy biến rất cao. Moduels cho phép quản trị server tắt hoặc thêm chức năng. Apache có modules cho bảo mật caching, URL rewriting, chứng thực mật khẩu, vâng vâng. bạn cũng có thể thiết lập cấu hình server riêng qua file gọi là .htaccess, vốn là file cấu hình Apache  được hỗ trợ hoàn toàn bởi mọi gói hosting của Hostinger.
+# Apache Web Server hoạt động như thế nào?
+Mặc dù chúng ta gọi Apache là web server, nhưng nó lại không phải là server vật lý, nó là một phần mềm chạy trên server đó. Công việc của nó là thiết lập kết nối giữa server và trình duyệt người dùng (Firefox, Google Chrome, Safari,....) rồi chuyển file tới và lui giữa chúng (cấu trúc 2 chiều dạng client-server). Apache là một phần mềm đa nền tảng, nó hoạt động tốt với cả server Unix và Windows.</br>
+Khi một khách truy cập tải một trang web trên website của bạn, ví dụ, trang chủ “About Us”,trình duyệt người dùng sẽ gửi yêu cầu tải trang web đó lên server và Apache sẽ trả kết quả với tất cả đầy đủ các file cấu thành nên trang About Us (hình ảnh, chữ, vâng vâng). Server và client giao tiếp với nhau qua giao thức HTTP và Apache chịu trách nhiệm cho việc đảm bảo tiến trình này diễn ra mượt mà và bảo mật giữa 2 máy.</br>
+Apache là một nền tảng module có độ tùy biến rất cao. Moduels cho phép quản trị server tắt hoặc thêm chức năng. Apache có modules cho bảo mật caching, URL rewriting, chứng thực mật khẩu, vâng vâng.
