@@ -1,7 +1,8 @@
 # Apache là gì
 Apache là phần mềm web server miễn phí mã nguồn mở. Nó đang chiếm đến khoảng 46% thị phần websites trên toàn thế giới. Tên chính thức của Apache là Apache HTTP Server, được điều hành và phát triển bởi Apache Software Foundation.</br>
 Nó giúp chủ website đưa nội dung lên web – vì vậy có tên gọi là **web server**. Apache là một trong số những web server lâu đời và đáng tin cậy nhất, phiên bản đầu tiên đã được ra mắt từ hơn 20 năm trước, tận những năm 1995.</br>
-Khi một người truy cập vào website của bạn, họ sẽ điền tên miền vào thanh địa chỉ. Sau đó, web server sẽ chuyển những files được yêu cầu xuống như là một nhân viên chuyển hàng ảo.
+Khi một người truy cập vào website của bạn, họ sẽ điền tên miền vào thanh địa chỉ. Sau đó, web server sẽ chuyển những files được yêu cầu xuống như là một nhân viên chuyển hàng ảo.</br>
+Bạn có thể cài đặt WordPress website trên Apache web server mà không phải tùy chỉnh gì hết. Hơn nữa, Apache server hoạt động tốt với các hệ thống quản trị nội dung lớn trên thế giới (Joomla, Drupal, vâng vâng.), web frameworks (Django, Laravel, etc.), và các ngôn ngữ lập trình khác. Việc này giúp nó giữ vững vị trí số một trong số các nền tảng web hosting, đặc biệt là đối với VPS hoặc shared hosting.
 # Web Server là gì?
 File servers, database servers, mail servers, và web servers sử dụng nhiều phần mềm server khác nhau. Từng ứng dụng sẽ truy cập files riêng lưu trên server vật lý và dùng chung cho các mục đích khác nhau.</br>
 Nhiệm vụ của web server là đưa website lên internet. Để làm được điều đó, nó hoạt động giống như là một người đứng giữa server và máy khách (client). Nó sẽ kéo nội dung từ server về cho mỗi một truy vấn xuất phát từ máy khách để hiển thị kết quả tương ứng dưới hình thức là một website.</br>
@@ -29,16 +30,16 @@ Tomcat cũng khó cấu hình hơn các web server khác. Ví dụ, để chạy
 Apache web server là lựa chọn ưu việc để vận hành một website ổn định và có thể tùy chỉnh linh hoạt. Tuy nhiên, nó cũng có một số điểm bất lợi mà bạn nên biết.
 
 # Ưu điểm:
-Phần mềm mã nguồn mở và miễn phí, kể cả cho mục đích thương mại.
-Phần mềm đáng tin cậy, ổn định.
-Được cập nhật thường xuyên, nhiều bản vá lỗi bảo mật liên tục.
-Linh hoạt vì có cấu trúc module.
-Dễ cấu hình, thân thiện với người mới bắt đầu
-Đa nền tảng (hoạt động được cả với server Unix và Windows).
-Hoạt động cực kỳ hiệu quả với WordPress sites.
-Có cộng đồng lớn và sẵn sàng hỗ trợ với bất kỳ vấn đề nào.
+- Phần mềm mã nguồn mở và miễn phí, kể cả cho mục đích thương mại.
+- Phần mềm đáng tin cậy, ổn định.
+- Được cập nhật thường xuyên, nhiều bản vá lỗi bảo mật liên tục.
+- Linh hoạt vì có cấu trúc module.
+- Dễ cấu hình, thân thiện với người mới bắt đầu
+- Đa nền tảng (hoạt động được cả với server Unix và Windows).
+- Hoạt động cực kỳ hiệu quả với WordPress sites.
+- Có cộng đồng lớn và sẵn sàng hỗ trợ với bất kỳ vấn đề nào.
 # Nhược điểm:
-Gặp vấn đề hiệu năng nếu website có lượng truy cập cực lớn.
-Quá nhiều lựa chọn thiết lập có thể gây ra các điểm yếu bảo mật.
+- Gặp vấn đề hiệu năng nếu website có lượng truy cập cực lớn.
+- Quá nhiều lựa chọn thiết lập có thể gây ra các điểm yếu bảo mật.
 # Reference
 https://www.hostinger.vn/huong-dan/apache-la-gi-giai-thich-cho-nguoi-moi-bat-dau-hieu-ve-apache-web-server/
