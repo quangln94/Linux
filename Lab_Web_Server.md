@@ -14,6 +14,14 @@ Config MySQL
 ```
 mysql_secure_installation
 ```
+Step2: Create Databases 
+```
+create database name-database;
+create user 'user'@'IP' identified by 'password';
+grant all privileges on name-database to 'user'@'IP';
+flush privileges;
+exit
+```
 ## Server 2:
 IP: 192.168.1.1
 Step 1: Install Apache
