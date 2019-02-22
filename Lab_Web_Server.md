@@ -1,5 +1,5 @@
 # Topology
-Server 1: MySQL
+Server 1: MySQL</br>
 Server 2: Install Apache, PHP, WordPress</br>
 # Installation
 ## Server 1
@@ -32,3 +32,17 @@ yum install php php-mysql php-gd php-pear –y
 systemctl restart httpd
 ```
 Step 3: Install WordPress
+```sh
+cd /var/www/html/
+mv wordpress/* /var/www/html/
+cp wp-config-sample.php wp-config.php
+```
+Config file **wp-config.php**
+```sh
+vim wp-config.php
+
+define('DB_NAME', 'database_name_here');    
+define('DB_USER', 'username_here');    
+define('DB_PASSWORD', 'password_here');      
+define('DB_HOST', 'localhost'); 
+```
