@@ -27,8 +27,8 @@ exit
 ```
 **Example:**
 ```
-create database wordpress;
-create user 'user1'@'192.16.1.2' identified by 'password';
+create database wordpress;      # "wordpress" Name of database
+create user 'user1'@'192.16.1.2' identified by 'password';  # "user1'@'192.16.1.2'" and "'password'" User, Password can access from  IP's Client
 grant all privileges on name-database to 'user'@'192.168.1.2';
 flush privileges;
 exit
@@ -69,8 +69,8 @@ define('DB_HOST', 'localhost');
 ```sh
 vim wp-config.php
 
-define('DB_NAME', 'wordpress');    
-define('DB_USER', 'user1');    
-define('DB_PASSWORD', 'password');      
-define('DB_HOST', '192.168.1.1'); 
+define('DB_NAME', 'wordpress');    # "wordpress" is name of database on MySQL Server
+define('DB_USER', 'user1');        # #user1# is user can access to MySQL Server 
+define('DB_PASSWORD', 'password');     # "password# Password of user1
+define('DB_HOST', '192.168.1.1');     # "192.168.1.1" IP Address of MySQL Server
 ```
