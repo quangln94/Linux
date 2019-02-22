@@ -1,9 +1,9 @@
-# Topology
+# I. Topology
 ## Server 1: MySQL</br>
 IP: 192.168.1.1
 ## Server 2: Install Apache, PHP, WordPress
 IP 192.168.1.2
-# Installation
+# II. Installation
 ## Server 1
 **192.168.1.1**
 ### Step 1: Install MySQL
@@ -65,7 +65,7 @@ define('DB_PASSWORD', 'password_here');
 define('DB_HOST', 'localhost'); 
 ```
 
-**Examplr**
+**Example**
 ```sh
 vim wp-config.php
 
