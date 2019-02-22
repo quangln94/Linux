@@ -28,8 +28,8 @@ exit
 **Example:**
 ```
 create database wordpress;      # "wordpress" Name of database
-create user 'user1'@'192.16.1.2' identified by 'password';  # "user1'@'192.16.1.2'" and "'password'" User, Password can access from  IP's Client
-grant all privileges on name-database to 'user'@'192.168.1.2';
+create user 'user1'@'192.16.1.2' identified by 'password';    # "user1'@'192.16.1.2'" and "'password'" User, Password can access from  IP's Client (IP Client Or IP Server 2: 192.168.1.2)
+grant all privileges on wordpress.* to 'user1'@'192.168.1.2';   # Grand all Permission on wordpress for user1'@'192.168.1.2
 flush privileges;
 exit
 ```
