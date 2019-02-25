@@ -98,27 +98,21 @@ Cột 2: PROT (protocol – giao thức) quy định các giao thức sẽ đư�
 Cột 4, 5: SOURCE và DESTINATION địa chỉ của lượt truy cập được phép áp dụng quy tắc.</br>
 ### 3. Cách sử dụng Iptables để mở port VPS
 Để mở port trong Iptables, bạn cần chèn chuỗi ACCEPT PORT. Cấu trúc lệnh để mở port xxx như sau:
-```sh
-# iptables -A INPUT -p tcp -m tcp --dport xxx -j ACCEPT
-```
-A tức Append – chèn vào chuỗi INPUT (chèn xuống cuối)
-hoặc
-```sh
-# iptables -I INPUT -p tcp -m tcp --dport xxx -j ACCEPT
-```
-I tức Insert- chèn vào chuỗi INPUT (chèn vào dòng chỉ định rulenum)
+**# iptables -A INPUT -p tcp -m tcp --dport xxx -j ACCEPT**
+- A tức Append – chèn vào chuỗi INPUT (chèn xuống cuối)</br>
+hoặc</br>
+**# iptables -I INPUT -p tcp -m tcp --dport xxx -j ACCEPT**
+- I tức Insert- chèn vào chuỗi INPUT (chèn vào dòng chỉ định rulenum)</br>
 Để tránh xung đột với rule gốc, các bạn nên chèn rule vào đầu, sử dụng -I
-
 #### 3.1. Mở port SSH
-Để truy cập VPS qua SSH, bạn cần mở port SSH 22. Bạn có thể cho phép kết nối SSH ở bất cứ thiết bị nào, bởi bất cứ ai và bất cứ dâu.
-
-# iptables -I INPUT -p tcp -m tcp --dport 22 -j ACCEPT
+Để truy cập VPS qua SSH, bạn cần mở port SSH 22. Bạn có thể cho phép kết nối SSH ở bất cứ thiết bị nào, bởi bất cứ ai và bất cứ dâu.</br>
+**# iptables -I INPUT -p tcp -m tcp --dport 22 -j ACCEPT**
 Mặc định sẽ hiển thị ssh cho cổng 22, nếu bạn đổi ssh thành cổng khác thì iptables sẽ hiển thị số cổng
-
+```sh
 ACCEPT     tcp  --  anywhere             anywhere            tcp dpt:ssh
-Bạn có thể chỉ cho phép kết nối VPS qua SSH duy nhất từ 1 địa chỉ IP nhất định (xác định dễ dàng bằng cách truy cập các website check ip hoặc lệnh # w)
-
-# iptables -I INPUT -p tcp -s xxx.xxx.xxx.xxx -m tcp --dport 22 -j ACCEPT
+```
+Bạn có thể chỉ cho phép kết nối VPS qua SSH duy nhất từ 1 địa chỉ IP nhất định (xác định dễ dàng bằng cách truy cập các website check ip hoặc lệnh # w)</br>
+**# iptables -I INPUT -p tcp -s xxx.xxx.xxx.xxx -m tcp --dport 22 -j ACCEPT**
 Khi đó, trong iptables sẽ thêm rule
 ```sh
 ACCEPT     tcp  --  xxx.xxx.xxx.xxx       anywhere            tcp dpt:ssh
@@ -135,27 +129,24 @@ ACCEPT     tcp  --  anywhere             anywhere            tcp dpt:https
 ```
 #### $3.3. Mở port Mail
 – Để cho phép user sử dụng SMTP servers qua port mặc định 25 và 465:
-
-**# iptables -I INPUT -p tcp -m tcp --dport 25 -j ACCEPT**
-**# iptables -I INPUT -p tcp -m tcp --dport 465 -j ACCEPT**
+**# iptables -I INPUT -p tcp -m tcp --dport 25 -j ACCEPT**</br>
+**# iptables -I INPUT -p tcp -m tcp --dport 465 -j ACCEPT**</br>
 Mặc định Iptables sẽ hiển thị SMTP và URD
 ```sh
 ACCEPT     tcp  --  anywhere             anywhere            tcp dpt:smtp
 ACCEPT     tcp  --  anywhere             anywhere            tcp dpt:urd
 ```
-– Để user đọc email trên server, bạn cần mở port POP3 (port mặc định 110 và 995)
-
-**# iptables -A INPUT -p tcp -m tcp --dport 110 -j ACCEPT**
-**# iptables -A INPUT -p tcp -m tcp --dport 995 -j ACCEPT**
+– Để user đọc email trên server, bạn cần mở port POP3 (port mặc định 110 và 995)</br>
+**# iptables -A INPUT -p tcp -m tcp --dport 110 -j ACCEPT**</br>
+**# iptables -A INPUT -p tcp -m tcp --dport 995 -j ACCEPT**</br>
 Mặc định Iptables sẽ hiển thị POP3 và POP3S
 ```sh
 ACCEPT     tcp  --  anywhere             anywhere            tcp dpt:pop3
 ACCEPT     tcp  --  anywhere             anywhere            tcp dpt:pop3s
 ```
-Bên cạnh đó, bạn cũng cần cho phép giao thức IMAP mail protocol (port mặc định 143 và 993)
-
-# iptables -A INPUT -p tcp -m tcp --dport 143 -j ACCEPT
-# iptables -A INPUT -p tcp -m tcp --dport 993 -j ACCEPT
+Bên cạnh đó, bạn cũng cần cho phép giao thức IMAP mail protocol (port mặc định 143 và 993)</br>
+**# iptables -A INPUT -p tcp -m tcp --dport 143 -j ACCEPT**
+**# iptables -A INPUT -p tcp -m tcp --dport 993 -j ACCEPT**
 Mặc định Iptables sẽ hiển thị IMAP và IMAPS
 ```sh
 ACCEPT     tcp  --  anywhere             anywhere            tcp dpt:imap
@@ -167,15 +158,14 @@ ACCEPT     tcp  --  anywhere             anywhere            tcp dpt:imaps
 ```sh
 #iptables -A INPUT -p tcp -s IP_ADDRESS –dport PORT -j DROP
 ```
-Sau khi đã thiết lập đầy đủ, bao gồm mở các port cần thiết hay hạn chế các kết nối, bạn cần block toàn bộ các kết nối còn lại và cho phép toàn bộ các kết nối ra ngoài từ VPS
-
-# iptables -P OUTPUT ACCEPT
-# iptables -P INPUT DROP
+Sau khi đã thiết lập đầy đủ, bao gồm mở các port cần thiết hay hạn chế các kết nối, bạn cần block toàn bộ các kết nối còn lại và cho phép toàn bộ các kết nối ra ngoài từ VPS</br>
+**# iptables -P OUTPUT ACCEPT**
+**# iptables -P INPUT DROP**
 Sau khi đã thiết lập xong, bạn có thể kiểm tra lại các quy tắc
 ```sh
 # service iptables status
 ```
-`Hoặc
+Hoặc
 ```sh
 # iptables -L –n
 ```
