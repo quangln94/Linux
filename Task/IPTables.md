@@ -159,8 +159,8 @@ ACCEPT     tcp  --  anywhere             anywhere            tcp dpt:imaps
 #iptables -A INPUT -p tcp -s IP_ADDRESS –dport PORT -j DROP
 ```
 Sau khi đã thiết lập đầy đủ, bao gồm mở các port cần thiết hay hạn chế các kết nối, bạn cần block toàn bộ các kết nối còn lại và cho phép toàn bộ các kết nối ra ngoài từ VPS</br>
-**# iptables -P OUTPUT ACCEPT**
-**# iptables -P INPUT DROP**
+**# iptables -P OUTPUT ACCEPT**</br>
+**# iptables -P INPUT DROP**</br>
 Sau khi đã thiết lập xong, bạn có thể kiểm tra lại các quy tắc
 ```sh
 # service iptables status
@@ -169,7 +169,7 @@ Hoặc
 ```sh
 # iptables -L –n
 ```
-`-n` nghĩa là chúng ta chỉ quan tâm mỗi địa chỉ IP . Ví dụ, nếu chặn kết nối từ hocvps.com thì iptables sẽ hiển thị là xxx.xxx.xxx.xxx với tham số `-n`
+`-n` nghĩa là chúng ta chỉ quan tâm mỗi địa chỉ IP . Ví dụ, nếu chặn kết nối từ hocvps.com thì iptables sẽ hiển thị là xxx.xxx.xxx.xxx với tham số `-n`</br>
 Cuối cùng, bạn cần lưu lại các thiết lập tường lửa Iptables nếu không các thiết lập sẽ mất khi bạn reboot hệ thống. Tại CentOS, cấu hình được lưu tại `/etc/sysconfig/iptables`.
 ```sh
 **# iptables-save | sudo tee /etc/sysconfig/iptables**
