@@ -103,7 +103,7 @@ Cột 4, 5: SOURCE và DESTINATION địa chỉ của lượt truy cập đượ
 
 hoặc</br>
 **# iptables -I INPUT -p tcp -m tcp --dport xxx -j ACCEPT**
-- `I` tức Insert- chèn vào chuỗi INPUT (chèn vào dòng chỉ định rulenum)
+- `I` tức Insert - chèn vào chuỗi INPUT (chèn vào dòng chỉ định rulenum)
 
 Để tránh xung đột với rule gốc, các bạn nên chèn rule vào đầu, sử dụng -I
 #### 3.1. Mở port SSH
@@ -172,7 +172,7 @@ Hoặc
 ```sh
 # iptables -L –n
 ```
-`-n` nghĩa là chúng ta chỉ quan tâm mỗi địa chỉ IP . Ví dụ, nếu chặn kết nối từ hocvps.com thì iptables sẽ hiển thị là xxx.xxx.xxx.xxx với tham số `-n`</br>
+`-n` nghĩa là chúng ta chỉ quan tâm mỗi địa chỉ IP. Ví dụ, nếu chặn kết nối từ hocvps.com thì iptables sẽ hiển thị là xxx.xxx.xxx.xxx với tham số `-n`</br>
 Cuối cùng, bạn cần lưu lại các thiết lập tường lửa Iptables nếu không các thiết lập sẽ mất khi bạn reboot hệ thống. Tại CentOS, cấu hình được lưu tại `/etc/sysconfig/iptables`.
 ```sh
 **# iptables-save | sudo tee /etc/sysconfig/iptables**
