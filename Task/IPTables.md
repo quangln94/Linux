@@ -99,31 +99,30 @@ Cột 4, 5: SOURCE và DESTINATION địa chỉ của lượt truy cập đượ
 ### 3. Cách sử dụng Iptables để mở port VPS
 Để mở port trong Iptables, bạn cần chèn chuỗi ACCEPT PORT. Cấu trúc lệnh để mở port xxx như sau:</br>
 **# iptables -A INPUT -p tcp -m tcp --dport xxx -j ACCEPT**
-- A tức Append – chèn vào chuỗi INPUT (chèn xuống cuối)
+- `A` tức Append – chèn vào chuỗi INPUT (chèn xuống cuối)
 
 hoặc</br>
 **# iptables -I INPUT -p tcp -m tcp --dport xxx -j ACCEPT**
-- I tức Insert- chèn vào chuỗi INPUT (chèn vào dòng chỉ định rulenum)
+- `I` tức Insert- chèn vào chuỗi INPUT (chèn vào dòng chỉ định rulenum)
 
 Để tránh xung đột với rule gốc, các bạn nên chèn rule vào đầu, sử dụng -I
 #### 3.1. Mở port SSH
 Để truy cập VPS qua SSH, bạn cần mở port SSH 22. Bạn có thể cho phép kết nối SSH ở bất cứ thiết bị nào, bởi bất cứ ai và bất cứ dâu.</br>
-**# iptables -I INPUT -p tcp -m tcp --dport 22 -j ACCEPT**
+**# iptables -I INPUT -p tcp -m tcp --dport 22 -j ACCEPT**</br>
 Mặc định sẽ hiển thị ssh cho cổng 22, nếu bạn đổi ssh thành cổng khác thì iptables sẽ hiển thị số cổng
 ```sh
 ACCEPT     tcp  --  anywhere             anywhere            tcp dpt:ssh
 ```
 Bạn có thể chỉ cho phép kết nối VPS qua SSH duy nhất từ 1 địa chỉ IP nhất định (xác định dễ dàng bằng cách truy cập các website check ip hoặc lệnh # w)</br>
-**# iptables -I INPUT -p tcp -s xxx.xxx.xxx.xxx -m tcp --dport 22 -j ACCEPT**
-Khi đó, trong iptables sẽ thêm rule
+**# iptables -I INPUT -p tcp -s xxx.xxx.xxx.xxx -m tcp --dport 22 -j ACCEPT**</br>
+Khi đó, trong iptables sẽ thêm rule</br>
 ```sh
 ACCEPT     tcp  --  xxx.xxx.xxx.xxx       anywhere            tcp dpt:ssh
 ```
 #### 3.2. Mở port Web Server
-Để cho phép truy cập vào webserver qua port mặc định 80 và 443:
-
-**# iptables -I INPUT -p tcp -m tcp --dport 80 -j ACCEPT**
-**# iptables -I INPUT -p tcp -m tcp --dport 443 -j ACCEPT**
+Để cho phép truy cập vào webserver qua port mặc định 80 và 443:</br>
+**# iptables -I INPUT -p tcp -m tcp --dport 80 -j ACCEPT**</br>
+**# iptables -I INPUT -p tcp -m tcp --dport 443 -j ACCEPT**</br>
 Mặc định Iptables sẽ hiển thị HTTP và HTTPS
 ```sh
 ACCEPT     tcp  --  anywhere             anywhere            tcp dpt:http
@@ -131,6 +130,7 @@ ACCEPT     tcp  --  anywhere             anywhere            tcp dpt:https
 ```
 #### $3.3. Mở port Mail
 – Để cho phép user sử dụng SMTP servers qua port mặc định 25 và 465:
+
 **# iptables -I INPUT -p tcp -m tcp --dport 25 -j ACCEPT**</br>
 **# iptables -I INPUT -p tcp -m tcp --dport 465 -j ACCEPT**</br>
 Mặc định Iptables sẽ hiển thị SMTP và URD
@@ -138,7 +138,8 @@ Mặc định Iptables sẽ hiển thị SMTP và URD
 ACCEPT     tcp  --  anywhere             anywhere            tcp dpt:smtp
 ACCEPT     tcp  --  anywhere             anywhere            tcp dpt:urd
 ```
-– Để user đọc email trên server, bạn cần mở port POP3 (port mặc định 110 và 995)</br>
+– Để user đọc email trên server, bạn cần mở port POP3 (port mặc định 110 và 995)
+
 **# iptables -A INPUT -p tcp -m tcp --dport 110 -j ACCEPT**</br>
 **# iptables -A INPUT -p tcp -m tcp --dport 995 -j ACCEPT**</br>
 Mặc định Iptables sẽ hiển thị POP3 và POP3S
