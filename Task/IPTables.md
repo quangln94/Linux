@@ -54,14 +54,13 @@ Trên Ubuntu, Iptables là chuỗi lệnh không phải là 1 services nên bạ
 # iptables -F
 ```
 ### 2. Các nguyên tắc áp dụng trong Iptables
-Để bắt đầu, bạn cần xác định các services muốn đóng/mở và các port tương ứng.
+Để bắt đầu, bạn cần xác định các services muốn đóng/mở và các port tương ứng.</br>
+Ví dụ, với một website và mail server thông thường:</br>
+- Để truy cập VPS bằng SSH, bạn cần mở port SSH – 22.
+- Để truy cập website, bạn cần mở port HTTP – 80 và HTTPS – 443.
+- Để gửi mail, bạn sẽ cần mở port SMTP – 22 và SMTPS – 465/587
+- Để người dùng nhận được email, bạn cần mở port POP3 – 110, POP3s – 995, IMAP – 143 và IMAPs – 993
 
-Ví dụ, với một website và mail server thông thường
-
-Để truy cập VPS bằng SSH, bạn cần mở port SSH – 22.
-Để truy cập website, bạn cần mở port HTTP – 80 và HTTPS – 443.
-Để gửi mail, bạn sẽ cần mở port SMTP – 22 và SMTPS – 465/587
-Để người dùng nhận được email, bạn cần mở port POP3 – 110, POP3s – 995, IMAP – 143 và IMAPs – 993
 Sau khi đã xác định được các port cần mở, bạn cần thiết lập các quy tắc tường lửa tương ứng để cho phép.
 
 Bạn có thể xóa toàn bộ các quy tắc firewall mặc định để bắt đầu từ đầu: # iptables -F
