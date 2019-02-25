@@ -113,7 +113,7 @@ Mặc định sẽ hiển thị ssh cho cổng 22, nếu bạn đổi ssh thành
 ```sh
 ACCEPT     tcp  --  anywhere             anywhere            tcp dpt:ssh
 ```
-Bạn có thể chỉ cho phép kết nối VPS qua SSH duy nhất từ 1 địa chỉ IP nhất định (xác định dễ dàng bằng cách truy cập các website check ip hoặc lệnh # w)</br>
+Bạn có thể chỉ cho phép kết nối VPS qua SSH duy nhất từ 1 địa chỉ IP nhất định (xác định dễ dàng bằng cách truy cập các website check ip hoặc lệnh `# w`)</br>
 **# iptables -I INPUT -p tcp -s xxx.xxx.xxx.xxx -m tcp --dport 22 -j ACCEPT**</br>
 Khi đó, trong iptables sẽ thêm rule</br>
 ```sh
