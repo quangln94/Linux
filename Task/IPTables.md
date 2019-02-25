@@ -99,7 +99,8 @@ Cột 4, 5: SOURCE và DESTINATION địa chỉ của lượt truy cập đượ
 ### 3. Cách sử dụng Iptables để mở port VPS
 Để mở port trong Iptables, bạn cần chèn chuỗi ACCEPT PORT. Cấu trúc lệnh để mở port xxx như sau:</br>
 **# iptables -A INPUT -p tcp -m tcp --dport xxx -j ACCEPT**
-- A tức Append – chèn vào chuỗi INPUT (chèn xuống cuối)</br>
+- A tức Append – chèn vào chuỗi INPUT (chèn xuống cuối)
+
 hoặc</br>
 **# iptables -I INPUT -p tcp -m tcp --dport xxx -j ACCEPT**
 - I tức Insert- chèn vào chuỗi INPUT (chèn vào dòng chỉ định rulenum)</br>
