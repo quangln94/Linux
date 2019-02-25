@@ -61,12 +61,11 @@ Ví dụ, với một website và mail server thông thường:</br>
 - Để gửi mail, bạn sẽ cần mở port SMTP – 22 và SMTPS – 465/587
 - Để người dùng nhận được email, bạn cần mở port POP3 – 110, POP3s – 995, IMAP – 143 và IMAPs – 993
 
-Sau khi đã xác định được các port cần mở, bạn cần thiết lập các quy tắc tường lửa tương ứng để cho phép.
+Sau khi đã xác định được các port cần mở, bạn cần thiết lập các quy tắc tường lửa tương ứng để cho phép.</br>
+Bạn có thể xóa toàn bộ các quy tắc firewall mặc định để bắt đầu từ đầu: `# iptables -F`</br>
+Xem và hiểu các quy tắc của iptables. Liệt kê các quy tắc hiện tại:</br>
 
-Bạn có thể xóa toàn bộ các quy tắc firewall mặc định để bắt đầu từ đầu: # iptables -F
-
-Mình sẽ hướng dẫn các bạn xem và hiểu các quy tắc của iptables. Liệt kê các quy tắc hiện tại:
-
+```sh
 # iptables -L
 Chain INPUT (policy ACCEPT)
 target     prot opt source               destination
@@ -89,23 +88,24 @@ REJECT     all  --  anywhere             anywhere            reject-with icmp-ho
 
 Chain OUTPUT (policy ACCEPT)
 target     prot opt source               destination
+```
 Cột 1: TARGET hành động sẽ được áp dụng cho mỗi quy tắc
+- Accept: gói dữ liệu được chuyển tiếp để xử lý tại ứng dụng cuối hoặc hệ điều hành
+- Drop: gói dữ liệu bị chặn, loại bỏ
+- Reject: gói dữ liệu bị chặn, loại bỏ đồng thời gửi một thông báo lỗi tới người gửi
 
-Accept: gói dữ liệu được chuyển tiếp để xử lý tại ứng dụng cuối hoặc hệ điều hành
-Drop: gói dữ liệu bị chặn, loại bỏ
-Reject: gói dữ liệu bị chặn, loại bỏ đồng thời gửi một thông báo lỗi tới người gửi
-Cột 2: PROT (protocol – giao thức) quy định các giao thức sẽ được áp dụng để thực thi quy tắc, bao gồm all, TCP hay UDP. Các ứng dụng SSH, FTP, sFTP… đều sử dụng giao thức TCP.
-
-Cột 4, 5: SOURCE và DESTINATION địa chỉ của lượt truy cập được phép áp dụng quy tắc.
-
-3. Cách sử dụng Iptables để mở port VPS
+Cột 2: PROT (protocol – giao thức) quy định các giao thức sẽ được áp dụng để thực thi quy tắc, bao gồm all, TCP hay UDP. Các ứng dụng SSH, FTP, sFTP… đều sử dụng giao thức TCP.</br>
+Cột 4, 5: SOURCE và DESTINATION địa chỉ của lượt truy cập được phép áp dụng quy tắc.</br>
+### 3. Cách sử dụng Iptables để mở port VPS
 Để mở port trong Iptables, bạn cần chèn chuỗi ACCEPT PORT. Cấu trúc lệnh để mở port xxx như sau:
-
+```sh
 # iptables -A INPUT -p tcp -m tcp --dport xxx -j ACCEPT
+```
 A tức Append – chèn vào chuỗi INPUT (chèn xuống cuối)
 hoặc
-
+```sh
 # iptables -I INPUT -p tcp -m tcp --dport xxx -j ACCEPT
+```
 I tức Insert- chèn vào chuỗi INPUT (chèn vào dòng chỉ định rulenum)
 Để tránh xung đột với rule gốc, các bạn nên chèn rule vào đầu, sử dụng -I
 
