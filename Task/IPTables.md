@@ -126,8 +126,8 @@ ACCEPT     tcp  --  xxx.xxx.xxx.xxx       anywhere            tcp dpt:ssh
 #### 3.2. Mở port Web Server
 Để cho phép truy cập vào webserver qua port mặc định 80 và 443:
 
-# iptables -I INPUT -p tcp -m tcp --dport 80 -j ACCEPT
-# iptables -I INPUT -p tcp -m tcp --dport 443 -j ACCEPT
+**# iptables -I INPUT -p tcp -m tcp --dport 80 -j ACCEPT**
+**# iptables -I INPUT -p tcp -m tcp --dport 443 -j ACCEPT**
 Mặc định Iptables sẽ hiển thị HTTP và HTTPS
 ```sh
 ACCEPT     tcp  --  anywhere             anywhere            tcp dpt:http
@@ -136,8 +136,8 @@ ACCEPT     tcp  --  anywhere             anywhere            tcp dpt:https
 #### $3.3. Mở port Mail
 – Để cho phép user sử dụng SMTP servers qua port mặc định 25 và 465:
 
-# iptables -I INPUT -p tcp -m tcp --dport 25 -j ACCEPT
-# iptables -I INPUT -p tcp -m tcp --dport 465 -j ACCEPT
+**# iptables -I INPUT -p tcp -m tcp --dport 25 -j ACCEPT**
+**# iptables -I INPUT -p tcp -m tcp --dport 465 -j ACCEPT**
 Mặc định Iptables sẽ hiển thị SMTP và URD
 ```sh
 ACCEPT     tcp  --  anywhere             anywhere            tcp dpt:smtp
@@ -145,8 +145,8 @@ ACCEPT     tcp  --  anywhere             anywhere            tcp dpt:urd
 ```
 – Để user đọc email trên server, bạn cần mở port POP3 (port mặc định 110 và 995)
 
-# iptables -A INPUT -p tcp -m tcp --dport 110 -j ACCEPT
-# iptables -A INPUT -p tcp -m tcp --dport 995 -j ACCEPT
+**# iptables -A INPUT -p tcp -m tcp --dport 110 -j ACCEPT**
+**# iptables -A INPUT -p tcp -m tcp --dport 995 -j ACCEPT**
 Mặc định Iptables sẽ hiển thị POP3 và POP3S
 ```sh
 ACCEPT     tcp  --  anywhere             anywhere            tcp dpt:pop3
@@ -162,28 +162,32 @@ ACCEPT     tcp  --  anywhere             anywhere            tcp dpt:imap
 ACCEPT     tcp  --  anywhere             anywhere            tcp dpt:imaps
 ```
 #### 3.4. Chặn 1 IP truy cập
-# iptables -A INPUT -s IP_ADDRESS -j DROP
+**# iptables -A INPUT -s IP_ADDRESS -j DROP**
 – Chặn 1 IP truy cập 1 port cụ thể:
-
+```sh
 #iptables -A INPUT -p tcp -s IP_ADDRESS –dport PORT -j DROP
+```
 Sau khi đã thiết lập đầy đủ, bao gồm mở các port cần thiết hay hạn chế các kết nối, bạn cần block toàn bộ các kết nối còn lại và cho phép toàn bộ các kết nối ra ngoài từ VPS
 
 # iptables -P OUTPUT ACCEPT
 # iptables -P INPUT DROP
 Sau khi đã thiết lập xong, bạn có thể kiểm tra lại các quy tắc
-
+```sh
 # service iptables status
-Hoặc
-
+```
+`Hoặc
+```sh
 # iptables -L –n
--n nghĩa là chúng ta chỉ quan tâm mỗi địa chỉ IP . Ví dụ, nếu chặn kết nối từ hocvps.com thì iptables sẽ hiển thị là xxx.xxx.xxx.xxx với tham số -n
-Cuối cùng, bạn cần lưu lại các thiết lập tường lửa Iptables nếu không các thiết lập sẽ mất khi bạn reboot hệ thống. Tại CentOS, cấu hình được lưu tại /etc/sysconfig/iptables.
-
-# iptables-save | sudo tee /etc/sysconfig/iptables
+```
+`-n` nghĩa là chúng ta chỉ quan tâm mỗi địa chỉ IP . Ví dụ, nếu chặn kết nối từ hocvps.com thì iptables sẽ hiển thị là xxx.xxx.xxx.xxx với tham số `-n`
+Cuối cùng, bạn cần lưu lại các thiết lập tường lửa Iptables nếu không các thiết lập sẽ mất khi bạn reboot hệ thống. Tại CentOS, cấu hình được lưu tại `/etc/sysconfig/iptables`.
+```sh
+**# iptables-save | sudo tee /etc/sysconfig/iptables**
+```
 Hoặc
-
-# service iptables save
+```sh
+# service iptables save**
 iptables: Saving firewall rules to /etc/sysconfig/iptables:[ OK ]
-
+```
 # Reference
 https://hocvps.com/iptables/
