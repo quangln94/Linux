@@ -103,7 +103,8 @@ Cột 4, 5: SOURCE và DESTINATION địa chỉ của lượt truy cập đượ
 
 hoặc</br>
 **# iptables -I INPUT -p tcp -m tcp --dport xxx -j ACCEPT**
-- I tức Insert- chèn vào chuỗi INPUT (chèn vào dòng chỉ định rulenum)</br>
+- I tức Insert- chèn vào chuỗi INPUT (chèn vào dòng chỉ định rulenum)
+
 Để tránh xung đột với rule gốc, các bạn nên chèn rule vào đầu, sử dụng -I
 #### 3.1. Mở port SSH
 Để truy cập VPS qua SSH, bạn cần mở port SSH 22. Bạn có thể cho phép kết nối SSH ở bất cứ thiết bị nào, bởi bất cứ ai và bất cứ dâu.</br>
