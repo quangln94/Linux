@@ -148,8 +148,8 @@ ACCEPT     tcp  --  anywhere             anywhere            tcp dpt:pop3
 ACCEPT     tcp  --  anywhere             anywhere            tcp dpt:pop3s
 ```
 Bên cạnh đó, bạn cũng cần cho phép giao thức IMAP mail protocol (port mặc định 143 và 993)</br>
-**# iptables -A INPUT -p tcp -m tcp --dport 143 -j ACCEPT**
-**# iptables -A INPUT -p tcp -m tcp --dport 993 -j ACCEPT**
+**# iptables -A INPUT -p tcp -m tcp --dport 143 -j ACCEPT**</br>
+**# iptables -A INPUT -p tcp -m tcp --dport 993 -j ACCEPT**</br>
 Mặc định Iptables sẽ hiển thị IMAP và IMAPS
 ```sh
 ACCEPT     tcp  --  anywhere             anywhere            tcp dpt:imap
