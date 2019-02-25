@@ -97,7 +97,7 @@ Cột 1: TARGET hành động sẽ được áp dụng cho mỗi quy tắc
 Cột 2: PROT (protocol – giao thức) quy định các giao thức sẽ được áp dụng để thực thi quy tắc, bao gồm all, TCP hay UDP. Các ứng dụng SSH, FTP, sFTP… đều sử dụng giao thức TCP.</br>
 Cột 4, 5: SOURCE và DESTINATION địa chỉ của lượt truy cập được phép áp dụng quy tắc.</br>
 ### 3. Cách sử dụng Iptables để mở port VPS
-Để mở port trong Iptables, bạn cần chèn chuỗi ACCEPT PORT. Cấu trúc lệnh để mở port xxx như sau:
+Để mở port trong Iptables, bạn cần chèn chuỗi ACCEPT PORT. Cấu trúc lệnh để mở port xxx như sau:</br>
 **# iptables -A INPUT -p tcp -m tcp --dport xxx -j ACCEPT**
 - A tức Append – chèn vào chuỗi INPUT (chèn xuống cuối)</br>
 hoặc</br>
@@ -176,7 +176,7 @@ Cuối cùng, bạn cần lưu lại các thiết lập tường lửa Iptables 
 ```
 Hoặc
 ```sh
-# service iptables save**
+# service iptables save
 iptables: Saving firewall rules to /etc/sysconfig/iptables:[ OK ]
 ```
 # Reference
