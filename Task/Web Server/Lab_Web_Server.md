@@ -4,7 +4,7 @@
 |Service|MySQL Server|Apache, PHP, WordPress|
 |IP|192.168.1.1|192.168.1.2|
 # II. Installation
-## Server 1
+## Server 1 (MySQL Server)
 **192.168.1.1**
 ### Step 1: Install MySQL
 ```sh
@@ -33,7 +33,7 @@ grant all privileges on wordpress.* to 'user1'@'192.168.1.2';   # Grand all Perm
 flush privileges;
 exit
 ```
-## Server 2:
+## Server 2 (Install: Apache, PHP, WordPress)
 **IP: 192.168.1.2**
 ### Step 1: Install Apache
 ```sh
