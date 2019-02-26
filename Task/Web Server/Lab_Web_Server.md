@@ -55,7 +55,7 @@ cd /var/www/html/
 cd wordpress/* /var/www/html/
 cp wp-config-sample.php wp-config.php
 ```
-**Config file **wp-config.php**
+**Config file `wp-config.php`**
 ```sh
 vim wp-config.php
 
