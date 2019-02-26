@@ -52,7 +52,7 @@ systemctl restart httpd
 ### Step 3: Install WordPress
 ```sh
 cd /var/www/html/
-mv wordpress/* /var/www/html/
+cd wordpress/* /var/www/html/
 cp wp-config-sample.php wp-config.php
 ```
 **Config file **wp-config.php**
