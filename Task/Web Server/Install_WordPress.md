@@ -41,6 +41,5 @@ define('DB_USER', '<username>');
 /** MySQL database password */
    define('DB_PASSWORD', '<password>);
 ```  
-  # Reference
-  https://www.thermo.io/how-to/applications/installing-wordpress-on-centos-7
-  
+# Reference
+https://www.thermo.io/how-to/applications/installing-wordpress-on-centos-7
