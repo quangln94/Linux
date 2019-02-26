@@ -1,8 +1,8 @@
 # I. Topology
-## Server 1: MySQL</br>
-IP: 192.168.1.1
-## Server 2: Install Apache, PHP, WordPress
-IP 192.168.1.2
+||Server1|Server2|
+|---|---|--------|
+|Service|MySQL Server|Apache, PHP, WordPress|
+|IP|192.168.1.1|192.168.1.2|
 # II. Installation
 ## Server 1
 **192.168.1.1**
