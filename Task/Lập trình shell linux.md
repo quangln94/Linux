@@ -274,7 +274,7 @@ For string Comparisons use***
 |expression1,-a,expression2	|Logical AND|
 |expression1,-o,expression2	|Logical OR|
 
-**kiểm tra file, thư mục**
+**Kiểm tra file, thư mục**
 
 |Test|		Meaning|
 |----|----------|
