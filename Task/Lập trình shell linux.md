@@ -151,29 +151,26 @@ $ echo "ngay hom nay la: `date`"
 $echo $? #output 0, nghĩa là thành công
 ```
 ### V: Cấu trúc điều khiển trong shell script
-Cũng giống như các ngôn ngữ lập trình khác, Shell Scripts cũng cung cấp các vòng lặp: "for", "while"; và lệnh rẽ nhánh "if", "case".
-
-1. Cú pháp rẽ nhánh If Cú pháp:
-
+Cũng giống như các ngôn ngữ lập trình khác, Shell Scripts cũng cung cấp các vòng lặp: `for`, `while`; và lệnh rẽ nhánh `if`, `case`.
+#### 1. Cú pháp rẽ nhánh `If` 
+```
 if điều_kiện
 then
 câu lệnh 1
 …
 fi
-if...else...fi
-
-Cú pháp:
-
+```
+**if...else...fi**
+```sh
 if điều_kiện then
 	câu_lệnh_1
-….
+...
 else
 	câu_lệnh_2
 fi
-Vòng lặp For
-
-Cú pháp:
-
+```
+#### 2. Vòng lặp For**
+```sh
 for { tên biến } in { danh sách }
 do
 # Khối lệnh
@@ -186,8 +183,9 @@ for (( expr1; expr2; expr3 ))
 do
 # Lặp cho đến khi biểu thức expr2 trả về giá trị TRUE
 done
-example
-
+```
+***Example***
+```
 #  for 1
 for i in 1 2 3 4 5
 do
@@ -202,16 +200,18 @@ do
 echo $i
 done
 #ouput 1 2 3 4 5
-3. Vòng lặp While
-
+```
+#### 3. Vòng lặp While
+```
 while	[Điều kiện]
 do
 command1
 command2
 command3	..	....
 done
-example demo1.sh
-
+```
+***Example demo1.sh***
+```sh
 #!/bin/sh
 echo "Nhap vao cac so can tinh tong, nhap so am de exit"
 sum=0
@@ -222,9 +222,9 @@ sum=`expr $sum + $i`
 read i # nhận giá trị từ người dùng
 done
 echo "Total: $sum."
+```
 Kết quả sau khi chạy ./demo1.sh
-
-
+```sh
 #ouput
 ./demo1.sh
 Nhap vao cac so can tinh tong, nhap so am de exit
@@ -233,51 +233,49 @@ Nhap vao cac so can tinh tong, nhap so am de exit
 4
 -1
 Total= 10.
-VI: Lệnh test
-Lệnh test được dùng để kiểm tra một biểu thức là đúng hay không và trả lại
+```
+### VI: Lệnh test
+Lệnh test được dùng để kiểm tra một biểu thức là đúng hay không và trả lại:
+– 0 nếu biểu thức đúng
+– khác 0 sai
 
-–  0 nếu biểu thức đúng
-
-–  khác 0 sai
-
-Cú pháp:
-
+***Cú pháp:***
+```
 test biểu_thức HOẶC  [biểu thức]
-Các phép toán kiểm tra
-
-Mathematical Operator in,Shell Scrip	Meaning	Normal Arithmetical/ Mathematical Statements		
-For test statement with if command	For [ expr ] statement with if command
--eq	is equal to	5 == 6	if test 5 -eq 6	if [ 5 -eq 6 ]
--ne	is not equal to	5 != 6	if test 5 -ne 6	if [ 5 -ne 6 ]
--lt	is less than	5 < 6	if test 5 -lt 6	if [ 5 -lt 6 ]
--le	is less than or equal to	5 <= 6	if test 5 -le 6	if [ 5 -le 6 ]
--gt	is greater than	5 > 6	if test 5 -gt 6	if [ 5 -gt 6 ]
--ge	is greater than or equal to	5 >= 6	if test 5 -ge 6	if [ 5 -ge 6 ]
-NOTE: == is equal, != is not equal.
-
+```
+**Các phép toán kiểm tra**
+|Mathematical Operator in,Shell Scrip |Meaning |Normal Arithmetical/ Mathematical Statements|||
+|----------|--------------|--------|----------|-----------|
+||||For test statement with if command|For [ expr ] statement with if command|
+|-eq|	is equal to			|5 == 6	|if test 5 -eq 6|	if [ 5 -eq 6 ]
+|-ne|	is not equal to			|5 != 6	|if test 5 -ne 6|	if [ 5 -ne 6 ]
+|-lt|	is less than			|5 < 6	|if test 5 -lt 6|	if [ 5 -lt 6 ]
+|-le|	is less than or equal to	|5 <= 6	|if test 5 -le 6|	if [ 5 -le 6 ]
+|-gt|	is greater than			|5 > 6	|if test 5 -gt 6|	if [ 5 -gt 6 ]
+|-ge|	is greater than or equal to	|5 >= 6	|if test 5 -ge 6|	if [ 5 -ge 6 ]
+NOTE: == is equal, != is not equal.</br>
 For string Comparisons use
-
-Operator	Meaning
-string1 = string2	string1 is equal to string2
-string1 != string2	string1 is NOT equal to string2
-string1	string1 is NOT NULL or not defined
--n string1	string1 is NOT NULL and does exist
--z string1	string1 is NULL and does exist
-Toán tử logic
-
-Operator	Meaning
-! expression	Logical NOT
-expression1,-a,expression2	Logical AND
-expression1,-o,expression2	Logical OR
-kiểm tra	file,	thư mục
-
-Test	Meaning
--s file	Non empty file
--f file	Is File exist or normal file and not a directory
--d dir	Is Directory exist and not a file
--w file	Is writeable file
--r file	Is read-only file
--x file	Is file is executable
+|Operator|	Meaning|
+|-------------|---------|
+|string1 = string2|	string1 is equal to string2|
+|string1 != string2|	string1 is NOT equal to string2|
+|string1|		string1 is NOT NULL or not defined|
+|-n string1|		string1 is NOT NULL and does exist|
+|-z string1|		string1 is NULL and does exist|
+**Toán tử logic**
+|Operator	Meaning|
+|! expression	Logical NOT|
+|expression1,-a,expression2	Logical AND|
+|expression1,-o,expression2	Logical OR|
+**kiểm tra file, thư mục**
+|Test|		Meaning|
+|----|----------|
+|-s file|	Non empty file|
+|-f file|	Is File exist or normal file and not a directory|
+|-d dir	|	Is Directory exist and not a file|
+|-w file|	Is writeable file|
+|-r file|	Is read-only file|
+|-x file|	Is file is executable|
 
 # Reference
 https://viblo.asia/p/tim-hieu-lap-trinh-shell-linux-p1-wjAM7ydbvmWe
