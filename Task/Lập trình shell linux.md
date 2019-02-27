@@ -244,6 +244,7 @@ Lệnh test được dùng để kiểm tra một biểu thức là đúng hay k
 test biểu_thức HOẶC  [biểu thức]
 ```
 **Các phép toán kiểm tra**
+
 |Mathematical Operator in,Shell Scrip |Meaning |Normal Arithmetical/ Mathematical Statements|||
 |----------|--------------|--------|----------|-----------|
 ||||For test statement with if command|For [ expr ] statement with if command|
@@ -263,11 +264,13 @@ For string Comparisons use
 |-n string1|		string1 is NOT NULL and does exist|
 |-z string1|		string1 is NULL and does exist|
 **Toán tử logic**
+
 |Operator	Meaning|
 |! expression	Logical NOT|
 |expression1,-a,expression2	Logical AND|
 |expression1,-o,expression2	Logical OR|
 **kiểm tra file, thư mục**
+
 |Test|		Meaning|
 |----|----------|
 |-s file|	Non empty file|
