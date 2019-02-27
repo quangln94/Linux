@@ -254,6 +254,7 @@ test biểu_thức HOẶC  [biểu thức]
 |-le|	is less than or equal to	|5 <= 6	|if test 5 -le 6|	if [ 5 -le 6 ]|
 |-gt|	is greater than			|5 > 6	|if test 5 -gt 6|	if [ 5 -gt 6 ]|
 |-ge|	is greater than or equal to	|5 >= 6	|if test 5 -ge 6|	if [ 5 -ge 6 ]|
+
 NOTE: == is equal, != is not equal.</br>
 For string Comparisons use
 
@@ -264,12 +265,14 @@ For string Comparisons use
 |string1|		string1 is NOT NULL or not defined|
 |-n string1|		string1 is NOT NULL and does exist|
 |-z string1|		string1 is NULL and does exist|
+
 **Toán tử logic**
 
 |Operator	Meaning|
 |! expression	Logical NOT|
 |expression1,-a,expression2	Logical AND|
 |expression1,-o,expression2	Logical OR|
+
 **kiểm tra file, thư mục**
 
 |Test|		Meaning|
