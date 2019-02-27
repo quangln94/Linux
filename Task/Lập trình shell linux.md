@@ -255,8 +255,8 @@ test biểu_thức HOẶC  [biểu thức]
 |-gt|	is greater than			|5 > 6	|if test 5 -gt 6|	if [ 5 -gt 6 ]|
 |-ge|	is greater than or equal to	|5 >= 6	|if test 5 -ge 6|	if [ 5 -ge 6 ]|
 
-NOTE: == is equal, != is not equal.</br>
-For string Comparisons use
+***NOTE: == is equal, != is not equal.</br>
+For string Comparisons use***
 
 |Operator|	Meaning|
 |-------------|---------|
@@ -268,10 +268,11 @@ For string Comparisons use
 
 **Toán tử logic**
 
-|Operator	Meaning|
-|! expression	Logical NOT|
-|expression1,-a,expression2	Logical AND|
-|expression1,-o,expression2	Logical OR|
+|Operator	|Meaning|
+|--------|---------|
+|! expression			|Logical NOT|
+|expression1,-a,expression2	|Logical AND|
+|expression1,-o,expression2	|Logical OR|
 
 **kiểm tra file, thư mục**
 
