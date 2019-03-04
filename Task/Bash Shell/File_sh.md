@@ -32,7 +32,9 @@ read i
 if [ $i -eq 1 ] # nếu i = 1
 then 
 cat /etc/os-release
-if [ $i -eq 2 ] # nếu i = 2
+else if
+then
+[ $i -eq 2 ] # nếu i = 2
 uname –r
 fi
 ```
