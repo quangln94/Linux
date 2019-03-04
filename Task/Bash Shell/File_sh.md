@@ -7,6 +7,7 @@ cd /var/www/html/
 wget
 ```
 # Install WordPress
+```sh
 !#/bin/bash/
 echo "Scrip nay chi chay duoc tren CentOS"
 echo "Ban co muon tiep tuc khong"
@@ -20,7 +21,9 @@ tar zxf latest.tar.gz
 cp wordpress/* /var/www/html/
 cp wp-config-sample.php wp-config.php
 fi
+```
 # Check OS
+```sh
 !#/bin/bash/
 echo "Scrip nay chi chay duoc tren CentOS"
 echo "Nhap 1 de check OS"
@@ -32,3 +35,4 @@ cat /etc/os-releasefi
 if [ $i -eq 2 ] # nếu i = 2
 uname –r
 fi
+```
