@@ -286,5 +286,8 @@ For string Comparisons use***
 |-x file|	Is file is executable|
 
 # Reference
-https://viblo.asia/p/tim-hieu-lap-trinh-shell-linux-p1-wjAM7ydbvmWe
-https://viblo.asia/p/lap-trinh-shell-bash-script-1VgZvER9KAw
+https://viblo.asia/p/tim-hieu-lap-trinh-shell-linux-p1-wjAM7ydbvmWe</br>
+https://viblo.asia/p/lap-trinh-shell-bash-script-1VgZvER9KAw</br>
+https://hocvps.com/script-tu-dong-tai-va-cai-dat-wordpress-tren-vps/</br>
+https://forum.gocit.vn/threads/lp-trinh-bash-shell-script.225/</br>
+https://github.com/quangln94/Linux/blob/master/Task/Bash%20Shell/L%E1%BA%ADp%20tr%C3%ACnh%20shell%20linux.md
