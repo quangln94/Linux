@@ -31,7 +31,7 @@ echo "Nhap 2 để check Kernel"
 read i
 if [ $i -eq 1 ] # nếu i = 1
 then 
-cat /etc/os-releasefi
+cat /etc/os-release
 if [ $i -eq 2 ] # nếu i = 2
 uname –r
 fi
