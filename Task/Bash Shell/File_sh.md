@@ -24,17 +24,19 @@ fi
 ```
 # Check OS
 ```sh
-!#/bin/bash/
+#1/bin/bash
 echo "Scrip nay chi chay duoc tren CentOS"
 echo "Nhap 1 de check OS"
 echo "Nhap 2 để check Kernel"
 read i
-if [ $i -eq 1 ] # nếu i = 1
-then 
-cat /etc/os-release
-else if
+if [ $i -eq 1 ]; # nếu i = 1
 then
-[ $i -eq 2 ] # nếu i = 2
-uname –r
+cat /etc/os-release
+else
+if [ $i -eq 2 ]; # nếu i = 2
+then
+uname -r
 fi
+fi
+
 ```
