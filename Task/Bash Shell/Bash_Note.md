@@ -41,6 +41,7 @@ Dòng 2: Sử dụng lệnh `echo` để ghi `Hello World` vào đầu ra tiêu 
 - /bin/bash hello-world.sh
 - bash hello-world.sh – assuming /bin is in your $PATH
 - sh hello-world.sh
+
 Để sử dụng sản xuất thực tế, bạn sẽ bỏ qua phần mở rộng .sh (dù sao nó cũng gây hiểu lầm, vì đây là tập lệnh Bash,
 không phải là tập lệnh sh) và có lẽ di chuyển ﬁle vào một thư mục trong PATH của bạn để nó có sẵn cho bạn bất kể
 thư mục làm việc hiện tại của bạn, giống như một lệnh hệ thống như `cat` hoặc `ls`.
