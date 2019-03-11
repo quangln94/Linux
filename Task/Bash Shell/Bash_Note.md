@@ -36,3 +36,8 @@ Dòng 1: Dòng đầu tiên của tập lệnh phải bắt đầu bằng chuỗ
 E.g. /bin/bash hello-world.sh
 ```
 Dòng 2: Sử dụng lệnh `echo` để ghi `Hello World` vào đầu ra tiêu chuẩn.
+4. Execute the hello-world.sh script from the command line using one of the following: 
+- ./hello-world.sh – most commonly used, and recommended
+- /bin/bash hello-world.sh
+- bash hello-world.sh – assuming /bin is in your $PATH
+- sh hello-world.sh
