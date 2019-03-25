@@ -1,29 +1,23 @@
 # Virtualization và hypervisor
 ## Virtualization
-Virtualization là các phương pháp để tạo ra một phiên bản ảo của một cái gì đó trên một máy tính vật lý như máy tính ảo (virtual machine), ổ đĩa ảo(virtual disk), mạng ảo (virtual network), CPU ảo,... 
+`Virtualization` là các phương pháp để tạo ra một phiên bản ảo của một cái gì đó trên một máy tính vật lý như máy tính ảo (virtual machine), ổ đĩa ảo(virtual disk), mạng ảo (virtual network), CPU ảo,... 
 ## Hypervisor là gì?
 `Hypervisor` hay có tên khác là Virtual machine moniter (VMM) dùng để chỉ các phần mềm công nghệ cho phép tạo và quản lý các máy ảo. Quản lý và cho phép máy ảo truy cập vào tài nguyên phần cứng.
-Như vậy ta có thể hiểu ảo hóa là phương pháp tạo ra máy ảo còn hypervisor là một công nghệ để tạo máy ảo và giám sát, điều khiển nó.
-Có 2 loại hypervisor là `Native` hay `Bare metal` và `Host Based`
-
-#### Native
-Đây là loại hypervisor chạy trực tiếp trên nền phần cứng (chạy như một hệ điều hành). 
-
+Như vậy ta có thể hiểu ảo hóa là phương pháp tạo ra máy ảo còn `Hypervisor` là một công nghệ để tạo máy ảo và giám sát, điều khiển nó.
+Có 2 loại `Hypervisor` là `Native` hay `Bare metal` và `Host Based`
+### Native
+Đây là loại `Hypervisor` chạy trực tiếp trên nền phần cứng (chạy như một hệ điều hành). 
 ![](https://github.com/niemdinhtrong/NIEMDT/blob/master/KVM/images/hyper1.png)
 
-#### Host based
-Đây là loại hypervisor cài trên nền một hệ điều hành như một ứng dụng.
-
+### Host based
+Đây là loại `Hypervisor` cài trên nền một hệ điều hành như một ứng dụng.
 ![](https://github.com/niemdinhtrong/NIEMDT/blob/master/KVM/images/hyper2.png)
-
 ### Ring là gì?
 Trong kiến trúc x86 một cơ chế để cách ly ứng dụng người dùng với hệ điều hành để tạo một môi trường hoạt động an toàn bằng cách sử dụng khái niệm cấp đặc quyền (privileged levels).
-
 ![](https://github.com/niemdinhtrong/NIEMDT/blob/master/KVM/images/hyper3.png)
-
-Như ta thấy ở đây `ring 0` có đặc quyền cao nhất. Nó có có thể thao tác với bất kỳ phần cứng nào như disk, CPU, memory,...
-`Ring 3` có đặc quyền thấp nhất. Nó chạy các ứng dụng người dùng. Nó không thể trục tiếp tác động đến phần cứng. Nếu muốn sử dụn phần cứng nó phải thông qua `ring 0`.
-### Phân loại virtualization
+Như ta thấy ở đây `Ring 0` có đặc quyền cao nhất. Nó có có thể thao tác với bất kỳ phần cứng nào như disk, CPU, memory,...
+`Ring 3` có đặc quyền thấp nhất. Nó chạy các ứng dụng người dùng. Nó không thể trục tiếp tác động đến phần cứng. Nếu muốn sử dụng phần cứng nó phải thông qua `Ring 0`.
+## Phân loại Virtualization
 #### 1. Ảo hóa CPU
 ##### 1.1 Full virtualization
 
