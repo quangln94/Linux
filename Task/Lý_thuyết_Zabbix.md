@@ -13,13 +13,11 @@ Trong TH có lỗi xảy ra zabbix cảnh báo cho người quản trị, tuy nh
 **2.1. Open source**</br>
 **2.2. Agent-based vs Agentless**</br>
 * Agent-based
-Đây là một phần mềm được gọi là agent được cài đặt trên máy chủ local và các thiết bị cần monitor. Mục tiêu của nó là thu thập thông tin gửi về zabbix-server và có thể cảnh báo tới người quản trị.
 
-Agent được cài đặt đơn giản nhẹ nhàng, tiêu thụ ít tài nguyên của server.
-
+Đây là một phần mềm được gọi là agent được cài đặt trên máy chủ local và các thiết bị cần monitor. Mục tiêu của nó là thu thập thông tin gửi về zabbix-server và có thể cảnh báo tới người quản trị.</br>
+Agent được cài đặt đơn giản nhẹ nhàng, tiêu thụ ít tài nguyên của server.</br>
 Lợi ích của việc sử dụng agent là phân tích sâu hơn, ngoài ra có thể chuẩn đoán được hiệu suất phần cứng, cung cấp khả năng cảnh bảo và report.
-
-*  Agentless
+* Agentless
 
 Agentless là một giải pháp không yêu cầu bất kỳ cài đặt agent riêng biệt nào. Phân tích mạng dựa trên giám sát package tiếp. Nó được sử dụng để giám sát tính sẵn sàng của mạng và hiệu suất. Tuy nhiên, nó không cung cấp bất kỳ thông tin chi tiết nào về lỗi.
 
