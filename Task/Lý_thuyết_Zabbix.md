@@ -23,6 +23,7 @@ Agentless là một giải pháp không yêu cầu bất kỳ cài đặt agent 
 Dựa trên giao thức SNMP hoặc WMI, được dựa trên một trạm quản lý trung tâm, giám sát tất cả các thiết bị mạng khác.</br>
 Việc cài đặt không ảnh hưởng đến hiệu suất của server. Quá trình triển khai dễ dàng hơn, không phải cập nhật thường xuyên từ các agent. Tuy nhiên lại không đi sâu thu thập được các số liệu, không cung cấp khả năng phân tích và báo cáo.</br>
 Trong khi zabbix-agent cung cấp những tính năng tuyệt vời trên một số nền tảng, nhưng cũng có trường hợp có những nên tảng không thể cài đặt được nó. Đối với trường hợp này phương thức agentless được cung cấp bới zabbix server
+
 - Tính năng của Agentless
 Network Services Check: Zabbix server có thể kiểm tra một service đang lắng nghe trên port nào hoặc chúng phản hồi có đúng không. Phương thức này hiện tại support cho một số service như: FTP, IMAP, HTTP, HTTPS, LDAP, NNTP, POP3, SMTP, SSH, TCP and Telnet. Đối với các trường hợp không được xử lý bởi mục trước đó, Zabbix server có thể kiểm tra xem có gì đang lắng nghe trên cổng TCP hay không, thông báo nếu một dịch vụ có sẵn hay không.
 
@@ -114,3 +115,5 @@ API có thể có hiện tượng rất chậm, đặc biệt là khi nói đế
 **5.4. Scalability**
 
 **5.5. Security**
+# Reference
+https://github.com/domanhduy/zabbix-monitor/blob/master/L%C3%BD%20thuy%E1%BA%BFt%20Zabbix.md
