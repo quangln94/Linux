@@ -1,10 +1,13 @@
 # Install useful tools for virt management.
 ## 1.	Install virt tools.
-[root@dlp ~]# yum -y install libguestfs-tools libguestfs-xfs virt-top
+```
+[root@server ~]# yum -y install libguestfs-tools libguestfs-xfs virt-top
+```
 ## 2.	Get official OS image and Create a Virtual Machine.
 ( If you'd like to do from OS installation, refer to here of [1] )
 # display available OS template
-[root@dlp ~]# virt-builder -l 
+```
+[root@server ~]# virt-builder -l 
 opensuse-13.1            x86_64     openSUSE 13.1
 opensuse-13.2            x86_64     openSUSE 13.2
 opensuse-42.1            x86_64     openSUSE Leap 42.1
@@ -19,10 +22,11 @@ centos-7.4               x86_64     CentOS 7.4
 centos-7.5               x86_64     CentOS 7.5
 .....
 .....
-
+```
 # create an image of CentOS 7.5
-[root@dlp ~]# export LIBGUESTFS_BACKEND=direct 
-[root@dlp ~]# virt-builder centos-7.5 --format qcow2 --size 20G -o centos75.qcow2 --root-password password 
+```
+[root@server ~]# export LIBGUESTFS_BACKEND=direct 
+[root@server ~]# virt-builder centos-7.5 --format qcow2 --size 20G -o centos75.qcow2 --root-password password 
 [   3.8] Downloading: http://libguestfs.org/download/builder/centos-7.5.xz
 [  74.0] Planning how to build this image
 [  74.0] Uncompressing
@@ -33,11 +37,12 @@ centos-7.5               x86_64     CentOS 7.5
                  Output format: qcow2
             Total usable space: 19.4G
                     Free space: 18.3G (94%)
-
+```
 # to configure VM with the image above, run virt-install
-[root@dlp ~]# virt-install \
+```sh
+[root@server ~]# virt-install \
 --name centos-75 \
---ram 4096 \
+--ram 2048 \
 --disk path=/var/kvm/images/centos75.qcow2 \
 --vcpus 2 \
 --os-type linux \
@@ -48,6 +53,7 @@ centos-7.5               x86_64     CentOS 7.5
 --console pty \
 --boot hd \
 --import
+```
 ## 3.	"ls" a directory in a virtual machine.
 [root@dlp ~]# virt-ls -l -d centos7 /root 
 total 36
