@@ -4,7 +4,7 @@
 [root@server ~]# yum -y install libguestfs-tools libguestfs-xfs virt-top
 ```
 ## 2.	Get official OS image and Create a Virtual Machine.
-### display available OS template
+- **display available OS template**
 ```
 [root@server ~]# virt-builder -l 
 opensuse-13.1            x86_64     openSUSE 13.1
@@ -22,7 +22,7 @@ centos-7.5               x86_64     CentOS 7.5
 .....
 .....
 ```
-### Create an image of CentOS 7.5
+- **Create an image of CentOS 7.5**
 ```
 [root@server ~]# export LIBGUESTFS_BACKEND=direct 
 [root@server ~]# virt-builder centos-7.5 --format qcow2 --size 20G -o centos75.qcow2 --root-password password 
@@ -37,7 +37,7 @@ centos-7.5               x86_64     CentOS 7.5
             Total usable space: 19.4G
                     Free space: 18.3G (94%)
 ```
-### To configure VM with the image above, run virt-install
+- **To configure VM with the image above, run virt-install**
 ```sh
 [root@server ~]# virt-install \
 --name centos-75 \
