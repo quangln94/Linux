@@ -54,7 +54,8 @@ centos-7.5               x86_64     CentOS 7.5
 --import
 ```
 ## 3.	"ls" a directory in a virtual machine.
-[root@dlp ~]# virt-ls -l -d centos7 /root 
+```sh
+[root@server ~]# virt-ls -l -d centos7 /root 
 total 36
 dr-xr-x---.  2 root root 4096 Jan  8 22:38 .
 drwxr-xr-x. 17 root root 4096 Jan  8 22:36 ..
@@ -63,6 +64,7 @@ drwxr-xr-x. 17 root root 4096 Jan  8 22:36 ..
 -rw-r--r--.  1 root root  176 Dec 29  2013 .bash_profile
 -rw-r--r--.  1 root root  176 Dec 29  2013 .bashrc
 ...
+```
 ## 4.	"cat" a file in a virtual machine.
 ```sh
 [root@server ~]# virt-cat -d centos7 /etc/passwd 
