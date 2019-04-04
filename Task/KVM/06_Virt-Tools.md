@@ -22,7 +22,7 @@ centos-7.5               x86_64     CentOS 7.5
 .....
 .....
 ```
-### create an image of CentOS 7.5
+### Create an image of CentOS 7.5
 ```
 [root@server ~]# export LIBGUESTFS_BACKEND=direct 
 [root@server ~]# virt-builder centos-7.5 --format qcow2 --size 20G -o centos75.qcow2 --root-password password 
@@ -37,7 +37,7 @@ centos-7.5               x86_64     CentOS 7.5
             Total usable space: 19.4G
                     Free space: 18.3G (94%)
 ```
-### to configure VM with the image above, run virt-install
+### To configure VM with the image above, run virt-install
 ```sh
 [root@server ~]# virt-install \
 --name centos-75 \
@@ -64,7 +64,8 @@ drwxr-xr-x. 17 root root 4096 Jan  8 22:36 ..
 -rw-r--r--.  1 root root  176 Dec 29  2013 .bashrc
 ...
 ## 4.	"cat" a file in a virtual machine.
-[root@dlp ~]# virt-cat -d centos7 /etc/passwd 
+```sh
+[root@server ~]# virt-cat -d centos7 /etc/passwd 
 root:x:0:0:root:/root:/bin/bash
 bin:x:1:1:bin:/bin:/sbin/nologin
 daemon:x:2:2:daemon:/sbin:/sbin/nologin
@@ -72,8 +73,10 @@ adm:x:3:4:adm:/var/adm:/sbin/nologin
 lp:x:4:7:lp:/var/spool/lpd:/sbin/nologin
 sync:x:5:0:sync:/sbin:/bin/sync
 ...
-##5.	Edit a file in a virtual machine.
-[root@dlp ~]# virt-edit -d centos7 /etc/fstab 
+```
+## 5.	Edit a file in a virtual machine.
+```sh
+[root@server ~]# virt-edit -d centos7 /etc/fstab 
 #
 # /etc/fstab
 # Created by anaconda on Thu Jan  8 13:20:43 2015
@@ -84,22 +87,28 @@ sync:x:5:0:sync:/sbin:/bin/sync
 /dev/mapper/centos-root /                       xfs     defaults        1 1
 UUID=537b215f-30a1-4e82-b05d-f480aa8e1034 /boot xfs     defaults        1 2
 /dev/mapper/centos-swap swap                    swap    defaults        0 0
+```
 ## 6.	Display disk usage in a virtual machine.
-[root@dlp ~]# virt-df -d centos7 
+```sh
+[root@server ~]# virt-df -d centos7 
 Filesystem                     1K-blocks       Used  Available  Use%
 centos7:/dev/sda1                 508588      72348     436240   15%
 centos7:/dev/centos/root         8910848     779252    8131596    9%
-[7]	Mount a disk for a virtual machine. (NOT COMPLETE)
-[root@dlp ~]# guestmount -d centos7 -i /media 
-[root@dlp ~]# ll /media 
+```
+## 7.	Mount a disk for a virtual machine. (NOT COMPLETE)
+```sh
+[root@server ~]# guestmount -d centos7 -i /media 
+[root@server ~]# ll /media 
 total 32
 lrwxrwxrwx.  1 root root    7 Jan  8 22:22 bin -> usr/bin
 dr-xr-xr-x.  4 root root 4096 Jan  8 22:37 boot
 drwxr-xr-x.  2 root root    6 Jan  8 22:20 dev
 drwxr-xr-x. 74 root root 8192 Jan  8 22:36 etc
 ...
-[8]	Display the status of virtual machines. (NOT COMPLETE)
-[root@dlp ~]# virt-top 
+```
+## 8.	Display the status of virtual machines. (NOT COMPLETE)
+```sh
+[root@server ~]# virt-top 
 virt-top 22:32:14 - x86_64 4/4CPU 2801MHz 11968MB
 2 domains, 1 active, 1 running, 0 sleeping, 0 paused, 1 inactive D:0 O:0 X:0
 CPU: 0.2%  Mem: 500 MB (500 MB by guests)
@@ -107,3 +116,4 @@ CPU: 0.2%  Mem: 500 MB (500 MB by guests)
    ID S RDRQ WRRQ RXBY TXBY %CPU %MEM    TIME   NAME
     6 R    0    0            0.2  4.0   0:09.14 guestfs-o7nss1p3kxvyl1r5
     -                                           (centos7)
+```
