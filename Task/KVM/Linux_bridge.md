@@ -23,25 +23,23 @@ Kiến trúc linux bridge minh họa như hình vẽ trên. Một số khái ni�
 - Trường hợp 1: Tạo một switch ảo và gán interface eth1 vào switch đó, tạo một máy ảo bên trong máy host, gắn vào tap interface của switch và kiểm tra địa chỉ được cấp phát. (Có thể tạo 2 VM trong host cùng gắn vào tap interface của switch, ping kiểm tra kết nối).
 - Trường hợp 2: Gắn cả 2 card mạng eth1, eth2 của host vào switch ảo, set priority cho hai port ứng với 2 card. Kiểm tra xem máy ảo (gắn vào tap interface của switch ảo) nhận ip cùng dải với card mạng vật lý nào.
 ## 2.2. Cài đặt và cấu hình
-- **Trường hợp 1**
-
-<b>Bước 1</b>: Tạo switch ảo br1. Nếu đã tồn tại có thể xóa switch này đi và tạo lại:
+**Trường hợp 1**</br>
+- Bước 1: Tạo switch ảo br1. Nếu đã tồn tại có thể xóa switch này đi và tạo lại:
 ```sh
 brctl delbr br1 # xóa đi nếu đã tồn tại
 brctl addbr br1 # tạo mới
 ```
-- <b>Bước 2</b>: Gán port eth1 vào swith br1
+- Bước 2: Gán port eth1 vào swith br1
 ```sh
 brctl addif br1 eth1
 brctl stp br1 on # enable tính năng STP nếu cần
 ```
-- <b>Bước 3</b>: Khi tạo một switch mới <b>br1</b>, trên máy host sẽ xuất hiện thêm 1 NIC ảo trùng tên switch đó (br1). Ta có thể cấu hình xin cấp phát IP cho NIC này sử dụng command hoặc cấu hình trong file <b>/etc/network/interfaces</b> để giữ cấu hình cho switch ảo sau khi khởi động lại:
+- Bước 3: Khi tạo một switch mới <b>br1</b>, trên máy host sẽ xuất hiện thêm 1 NIC ảo trùng tên switch đó (br1). Ta có thể cấu hình xin cấp phát IP cho NIC này sử dụng command hoặc cấu hình trong file <b>/etc/network/interfaces</b> để giữ cấu hình cho switch ảo sau khi khởi động lại:
 ```sh
 dhclient br1
 ```
-Nếu trước đó trong file <b>/etc/network/interfaces</b> đã cấu hình cho NIC eth1, ta phải comment lại cấu hình đó hoặc xóa cấu hình đó đi và thay bằng các dòng cấu hình sau:
-<pre>
-<code>
+Nếu trước đó trong file `/etc/network/interfaces` đã cấu hình cho NIC eth1, ta phải comment lại cấu hình đó hoặc xóa cấu hình đó đi và thay bằng các dòng cấu hình sau:
+```sh
 /etc/network/interfaces
 auto br1
 iface br1 inet dhcp
@@ -49,16 +47,12 @@ bridge_ports eth1
 bridge_stp on
 bridge_fd 0
 bridge_maxwait 0
-</code>
-</pre>
-</li>
-<li><b>Bước 4</b>: Khởi động lại các card mạng và kiểm tra lại cấu hình bridge:
-<pre>
-<code>
+```
+- Bước 4: Khởi động lại các card mạng và kiểm tra lại cấu hình bridge:
+```sh
 ifdown -a && ifup -a # khởi động lại tất cả các NIC
 brctl show # kiểm tra cấu hình switch ảo
-</code>
-</pre>
+```
 Kết quả kiểm tra cấu hình sẽ tương tự như sau:
 <pre>
 <code>
