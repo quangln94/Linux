@@ -11,48 +11,34 @@ Kiến trúc linux bridge minh họa như hình vẽ trên. Một số khái ni�
 - <b>fd</b>: forward data - chuyển tiếp dữ liệu từ máy ảo tới bridge
 
 ## 1.3. Các tính năng
-
-<b>STP</b>: Spanning Tree Protocol - giao thức chống loop gói tin trong mạng
-<b>VLAN</b>: chia switch (do linux bridge tạo ra) thành các mạng LAN ảo, cô lập traffic giữa các VM trên các VLAN khác nhau của cùng một switch.
-<b>FDB</b>: chuyển tiếp các gói tin theo database để nâng cao hiệu năng switch
+- <b>STP</b>: Spanning Tree Protocol - giao thức chống loop gói tin trong mạng
+- <b>VLAN</b>: chia switch (do linux bridge tạo ra) thành các mạng LAN ảo, cô lập traffic giữa các VM trên các VLAN khác nhau của cùng một switch.
+- <b>FDB</b>: chuyển tiếp các gói tin theo database để nâng cao hiệu năng switch
 
 # 2. Lab tính năng Linux bridge
 ## 2.1. Topology
 <img src="http://i.imgur.com/zswlIDa.jpg"/>
-<ul>
-<li>Một máy tính với 2 card eth1, eth2 (có thể sử dụng máy ảo), cài ubuntu 14.04.</li>
-<li><b>Trường hợp 1</b>: Tạo một switch ảo và gán interface eth1 vào switch đó, tạo một máy ảo bên trong máy host, gắn vào tap interface của switch và kiểm tra địa chỉ được cấp phát. (Có thể tạo 2 VM trong host cùng gắn vào tap interface của switch, ping kiểm tra kết nối).</li>
-<li><b>Trường hợp 2</b>: Gắn cả 2 card mạng eth1, eth2 của host vào switch ảo, set priority cho hai port ứng với 2 card. Kiểm tra xem máy ảo (gắn vào tap interface của switch ảo) nhận ip cùng dải với card mạng vật lý nào.</li>
-</ul>
-</div>
+- Một máy tính với 2 card eth1, eth2 (có thể sử dụng máy ảo), cài ubuntu 14.04.
+- <b>Trường hợp 1</b>: Tạo một switch ảo và gán interface eth1 vào switch đó, tạo một máy ảo bên trong máy host, gắn vào tap interface của switch và kiểm tra địa chỉ được cấp phát. (Có thể tạo 2 VM trong host cùng gắn vào tap interface của switch, ping kiểm tra kết nối).
+- <b>Trường hợp 2</b>: Gắn cả 2 card mạng eth1, eth2 của host vào switch ảo, set priority cho hai port ứng với 2 card. Kiểm tra xem máy ảo (gắn vào tap interface của switch ảo) nhận ip cùng dải với card mạng vật lý nào.
+## 2.2. Cài đặt và cấu hình
+- <b>Trường hợp 1
 
-</li>
-<li><h3><a name="config">2.2. Cài đặt và cấu hình</a></h3>
-<ul>
-<li><b>Trường hợp 1: </b>
-<ul>
-<li><b>Bước 1</b>: Tạo switch ảo br1. Nếu đã tồn tại có thể xóa switch này đi và tạo lại:
-<pre>
-<code>
+<b>Bước 1</b>: Tạo switch ảo br1. Nếu đã tồn tại có thể xóa switch này đi và tạo lại:
+```sh
 brctl delbr br1 # xóa đi nếu đã tồn tại
 brctl addbr br1 # tạo mới
-</code>
-</pre>
-</li>
-<li><b>Bước 2</b>: Gán port eth1 vào swith br1
-<pre>
-<code>
+```
+
+- <b>Bước 2</b>: Gán port eth1 vào swith br1
+```sh
 brctl addif br1 eth1
 brctl stp br1 on # enable tính năng STP nếu cần
-</code>
-</pre>
-</li>
-<li><b>Bước 3</b>: Khi tạo một switch mới <b>br1</b>, trên máy host sẽ xuất hiện thêm 1 NIC ảo trùng tên switch đó (br1). Ta có thể cấu hình xin cấp phát IP cho NIC này sử dụng command hoặc cấu hình trong file <b>/etc/network/interfaces</b> để giữ cấu hình cho switch ảo sau khi khởi động lại:
-<pre>
-<code>
+```
+- <b>Bước 3</b>: Khi tạo một switch mới <b>br1</b>, trên máy host sẽ xuất hiện thêm 1 NIC ảo trùng tên switch đó (br1). Ta có thể cấu hình xin cấp phát IP cho NIC này sử dụng command hoặc cấu hình trong file <b>/etc/network/interfaces</b> để giữ cấu hình cho switch ảo sau khi khởi động lại:
+```sh
 dhclient br1
-</code>
-</pre>
+```
 Nếu trước đó trong file <b>/etc/network/interfaces</b> đã cấu hình cho NIC eth1, ta phải comment lại cấu hình đó hoặc xóa cấu hình đó đi và thay bằng các dòng cấu hình sau:
 <pre>
 <code>
