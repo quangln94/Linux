@@ -29,7 +29,6 @@ Kiến trúc linux bridge minh họa như hình vẽ trên. Một số khái ni�
 brctl delbr br1 # xóa đi nếu đã tồn tại
 brctl addbr br1 # tạo mới
 ```
-
 - <b>Bước 2</b>: Gán port eth1 vào swith br1
 ```sh
 brctl addif br1 eth1
