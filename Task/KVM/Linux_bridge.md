@@ -17,10 +17,10 @@ Kiến trúc linux bridge minh họa như hình vẽ trên. Một số khái ni�
 
 # 2. Lab tính năng Linux bridge
 ## 2.1. Topology
-<img src="http://i.imgur.com/zswlIDa.jpg"/>
+<img src="http://i.imgur.com/zswlIDa.jpg">
 - Một máy tính với 2 card eth1, eth2 (có thể sử dụng máy ảo), cài ubuntu 14.04.
-- <b>Trường hợp 1</b>: Tạo một switch ảo và gán interface eth1 vào switch đó, tạo một máy ảo bên trong máy host, gắn vào tap interface của switch và kiểm tra địa chỉ được cấp phát. (Có thể tạo 2 VM trong host cùng gắn vào tap interface của switch, ping kiểm tra kết nối).
-- <b>Trường hợp 2</b>: Gắn cả 2 card mạng eth1, eth2 của host vào switch ảo, set priority cho hai port ứng với 2 card. Kiểm tra xem máy ảo (gắn vào tap interface của switch ảo) nhận ip cùng dải với card mạng vật lý nào.
+- Trường hợp 1: Tạo một switch ảo và gán interface eth1 vào switch đó, tạo một máy ảo bên trong máy host, gắn vào tap interface của switch và kiểm tra địa chỉ được cấp phát. (Có thể tạo 2 VM trong host cùng gắn vào tap interface của switch, ping kiểm tra kết nối).
+- Trường hợp 2: Gắn cả 2 card mạng eth1, eth2 của host vào switch ảo, set priority cho hai port ứng với 2 card. Kiểm tra xem máy ảo (gắn vào tap interface của switch ảo) nhận ip cùng dải với card mạng vật lý nào.
 ## 2.2. Cài đặt và cấu hình
 - **Trường hợp 1**
 
