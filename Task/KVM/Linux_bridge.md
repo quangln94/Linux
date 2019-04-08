@@ -22,7 +22,7 @@ Kiến trúc linux bridge minh họa như hình vẽ trên. Một số khái ni�
 - <b>Trường hợp 1</b>: Tạo một switch ảo và gán interface eth1 vào switch đó, tạo một máy ảo bên trong máy host, gắn vào tap interface của switch và kiểm tra địa chỉ được cấp phát. (Có thể tạo 2 VM trong host cùng gắn vào tap interface của switch, ping kiểm tra kết nối).
 - <b>Trường hợp 2</b>: Gắn cả 2 card mạng eth1, eth2 của host vào switch ảo, set priority cho hai port ứng với 2 card. Kiểm tra xem máy ảo (gắn vào tap interface của switch ảo) nhận ip cùng dải với card mạng vật lý nào.
 ## 2.2. Cài đặt và cấu hình
-- <b>Trường hợp 1
+- **Trường hợp 1**
 
 <b>Bước 1</b>: Tạo switch ảo br1. Nếu đã tồn tại có thể xóa switch này đi và tạo lại:
 ```sh
