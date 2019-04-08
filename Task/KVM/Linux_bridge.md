@@ -5,18 +5,17 @@ Bản chất, linux bridge sẽ tạo ra các switch layer 2 kết nối các m�
 ### 1.2. Các thành phần
 <img src="http://i.imgur.com/GKs6wWF.png"/><br><br>
 Kiến trúc linux bridge minh họa như hình vẽ trên. Một số khái niệm liên quan tới linux bridge:
-<ul>
-<li><b>Port</b>: tương đương với port của switch thật</li>
-<li><b>Bridge</b>: tương đương với switch layer 2</li>
-<li><b>Tap</b>: hay <b>tap interface</b> có thể hiểu là giao diện mạng để các VM kết nối với bridge cho linux bridge tạo ra</li>
-<li><b>fd</b>: forward data - chuyển tiếp dữ liệu từ máy ảo tới bridge</li>
-</ul>
+
+<b>Port</b>: tương đương với port của switch thật</li>
+<b>Bridge</b>: tương đương với switch layer 2</li>
+<b>Tap</b>: hay <b>tap interface</b> có thể hiểu là giao diện mạng để các VM kết nối với bridge cho linux bridge tạo ra</li>
+<b>fd</b>: forward data - chuyển tiếp dữ liệu từ máy ảo tới bridge</li>
+
 ## 1.3. Các tính năng
-<ul>
-<li><b>STP</b>: Spanning Tree Protocol - giao thức chống loop gói tin trong mạng</li>
-<li><b>VLAN</b>: chia switch (do linux bridge tạo ra) thành các mạng LAN ảo, cô lập traffic giữa các VM trên các VLAN khác nhau của cùng một switch.</li>
-<li><b>FDB</b>: chuyển tiếp các gói tin theo database để nâng cao hiệu năng switch</li>
-</ul>
+
+<b>STP</b>: Spanning Tree Protocol - giao thức chống loop gói tin trong mạng
+<b>VLAN</b>: chia switch (do linux bridge tạo ra) thành các mạng LAN ảo, cô lập traffic giữa các VM trên các VLAN khác nhau của cùng một switch.
+<b>FDB</b>: chuyển tiếp các gói tin theo database để nâng cao hiệu năng switch
 
 # 2. Lab tính năng Linux bridge
 ## 2.1. Topology
