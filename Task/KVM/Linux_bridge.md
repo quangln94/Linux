@@ -54,41 +54,30 @@ ifdown -a && ifup -a # khởi động lại tất cả các NIC
 brctl show # kiểm tra cấu hình switch ảo
 ```
 Kết quả kiểm tra cấu hình sẽ tương tự như sau:
-<pre>
-<code>
+```sh
 bridge name	bridge id		STP enabled	interfaces
 br0		8000.000c29586f24	yes		eth0
 br1		8000.000c29586f2e	yes		eth1
 lxcbr0		8000.000000000000	no
 virbr0		8000.000000000000	yes
-</code>
-</pre>
-Kết quả cấu hình thành công gắn NIC eth1 vào switch ảo br1 sẽ hiển thị như đoạn mã trên.
-</li>
-<li><b>Bước 5:</b> Để kiểm tra, ta có thể tạo một máy ảo và tạo một NIC kết nối với switch <b>br1</b>.</li>
-</ul>
-</li>
+```
+Kết quả cấu hình thành công gắn NIC eth1 vào switch ảo br1 sẽ hiển thị như đoạn mã trên
 
-<li><b>Trường hợp 2</b>: Gắn 2 NIC eth1 và eth2 vào cùng switch <b>br1</b>. Do trước đó NIC eth1 đã gán vào br1, giờ ta sẽ tiến hành gán tiếp NIC eth2, đồng thời thiết lập mức độ ưu tiên của các port tương ứng với các NIC đã gán vào switch br1.
-<pre>
-<code>
+- Bước 5: Để kiểm tra, ta có thể tạo một máy ảo và tạo một NIC kết nối với switch
+
+**Trường hợp 2**: Gắn 2 NIC eth1 và eth2 vào cùng switch <b>br1</b>. Do trước đó NIC eth1 đã gán vào br1, giờ ta sẽ tiến hành gán tiếp NIC eth2, đồng thời thiết lập mức độ ưu tiên của các port tương ứng với các NIC đã gán vào switch br1.
+```sh
 brctl addif br1 eth2 # gán NIC eth2 vào sw br1
 # Thiết lập mức ưu tiên cho các port
 brctl setportprio br1 eth1 1
 brctl setportprio br1 eth2 2
-</code>
-</pre>
-Theo lý thuyết, port nào có độ ưu tiên cao hơn thì các VM khi gắn vào tap interface của switch ảo sẽ nhận IP cùng dải với NIC của máy host đã gán vào switch ảo đó. Theo như cấu hình trên, port tương ứng với NIC eth2 có độ ưu tiên cao hơn. Như vậy VM sẽ nhận IP cùng dải với eth2.
-<br>
+```
+Theo lý thuyết, port nào có độ ưu tiên cao hơn thì các VM khi gắn vào tap interface của switch ảo sẽ nhận IP cùng dải với NIC của máy host đã gán vào switch ảo đó. Theo như cấu hình trên, port tương ứng với NIC eth2 có độ ưu tiên cao hơn. Như vậy VM sẽ nhận IP cùng dải với eth2.<br>
 Trong bài lab này, card <b>eth1</b> thuộc dải mạng <b>10.10.10.0/24</b> và card <b>eth2</b> thuộc dải mạng <b>10.0.2.0/24</b>. Như vậy VM sẽ nhận IP thuộc dải <b>10.0.2.0/24</b>. Minh họa:
-<br><br>
+
 <img src="http://i.imgur.com/p6dNZV8.png"/>
-<br><br>
+
 <img src="http://i.imgur.com/gWcAeq1.png"/>
-<br><br>
-</li>
-</ul>
-</li>
 
 ## 3. Tham khảo
 - http://www.innervoice.in/blogs/2013/12/02/linux-bridge-virtual-networking
