@@ -113,9 +113,6 @@ Trong bài lab này, card <b>eth1</b> thuộc dải mạng <b>10.10.10.0/24</b> 
 </li>
 
 </ul>
-<h2><a name="ref">3. Tham khảo</a></h2>
-<div>
-[1] - <a href="http://www.innervoice.in/blogs/2013/12/02/linux-bridge-virtual-networking/">http://www.innervoice.in/blogs/2013/12/02/linux-bridge-virtual-networking/</a>
-<br>
-[2] - <a href="https://github.com/hocchudong/Linux-bridge">https://github.com/hocchudong/Linux-bridge</a>
-</div>
+## 3. Tham khảo
+[1] - http://www.innervoice.in/blogs/2013/12/02/linux-bridge-virtual-networking/
+[2] - https://github.com/hocchudong/Linux-bridge
