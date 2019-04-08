@@ -1,13 +1,8 @@
 # 1. Giới thiệu Linux bridge
 ## 1.1. Kiến trúc
-Linux bridge là một soft-switch, một trong ba công nghệ cung cấp switch ảo trong hệ thống Linux (bên cạnh macvlan và OpenvSwitch), giải quyết vấn đề ảo hóa network bên trong các máy vật lý.
-<br>
+Linux bridge là một soft-switch, một trong ba công nghệ cung cấp switch ảo trong hệ thống Linux (bên cạnh macvlan và OpenvSwitch), giải quyết vấn đề ảo hóa network bên trong các máy vật lý.<br>
 Bản chất, linux bridge sẽ tạo ra các switch layer 2 kết nối các máy ảo (VM) để các VM đó giao tiếp được với nhau và có thể kết nối được ra mạng ngoài. Linux bridge thường sử dụng kết hợp với hệ thống ảo hóa KVM-QEMU.
-</div>
-</li>
-
-<li><h3><a name="component">1.2. Các thành phần</a></h3>
-<div>
+## 1.2. Các thành phần
 <img src="http://i.imgur.com/GKs6wWF.png"/><br><br>
 Kiến trúc linux bridge minh họa như hình vẽ trên. Một số khái niệm liên quan tới linux bridge:
 <ul>
@@ -16,8 +11,6 @@ Kiến trúc linux bridge minh họa như hình vẽ trên. Một số khái ni�
 <li><b>Tap</b>: hay <b>tap interface</b> có thể hiểu là giao diện mạng để các VM kết nối với bridge cho linux bridge tạo ra</li>
 <li><b>fd</b>: forward data - chuyển tiếp dữ liệu từ máy ảo tới bridge</li>
 </ul>
-</div>
-</li>
 
 <li><h3><a name="func">1.3. Các tính năng</a></h3>
 <ul>
