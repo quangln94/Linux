@@ -18,12 +18,9 @@ Kiến trúc linux bridge minh họa như hình vẽ trên. Một số khái ni�
 <li><b>FDB</b>: chuyển tiếp các gói tin theo database để nâng cao hiệu năng switch</li>
 </ul>
 
-# 2. Lab tính năng Linux bridge</a></h2>
-<ul>
-<li><h3><a name="topo">2.1. Topology</a></h3>
+# 2. Lab tính năng Linux bridge
+## 2.1. Topology
 <img src="http://i.imgur.com/zswlIDa.jpg"/>
-<br><br>
-<div>
 <ul>
 <li>Một máy tính với 2 card eth1, eth2 (có thể sử dụng máy ảo), cài ubuntu 14.04.</li>
 <li><b>Trường hợp 1</b>: Tạo một switch ảo và gán interface eth1 vào switch đó, tạo một máy ảo bên trong máy host, gắn vào tap interface của switch và kiểm tra địa chỉ được cấp phát. (Có thể tạo 2 VM trong host cùng gắn vào tap interface của switch, ping kiểm tra kết nối).</li>
