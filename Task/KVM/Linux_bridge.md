@@ -27,24 +27,24 @@ Kiến trúc linux bridge minh họa như hình vẽ trên. Một số khái ni�
 **Trường hợp 1**</br>
 - Bước 1: Tạo switch ảo br1. Nếu đã tồn tại có thể xóa switch này đi và tạo lại:
 ```sh
-brctl delbr br1 # xóa đi nếu đã tồn tại
-brctl addbr br1 # tạo mới
+brctl delbr br0 # xóa đi nếu đã tồn tại
+brctl addbr br0 # tạo mới
 ```
 - Bước 2: Gán port eth1 vào swith br1
 ```sh
-brctl addif br1 eth1
-brctl stp br1 on # enable tính năng STP nếu cần
+brctl addif br0 eno1 
+brctl stp br0 on # enable tính năng STP nếu cần
 ```
 - Bước 3: Khi tạo một switch mới <b>br1</b>, trên máy host sẽ xuất hiện thêm 1 NIC ảo trùng tên switch đó (br1). Ta có thể cấu hình xin cấp phát IP cho NIC này sử dụng command hoặc cấu hình trong file <b>/etc/network/interfaces</b> để giữ cấu hình cho switch ảo sau khi khởi động lại:
 ```sh
-dhclient br1
+dhclient br0
 ```
 Nếu trước đó trong file `/etc/network/interfaces` đã cấu hình cho NIC eth1, ta phải comment lại cấu hình đó hoặc xóa cấu hình đó đi và thay bằng các dòng cấu hình sau:
 ```sh
 /etc/network/interfaces
-auto br1
-iface br1 inet dhcp
-bridge_ports eth1
+auto br0
+iface br0 inet dhcp
+bridge_ports eno1
 bridge_stp on
 bridge_fd 0
 bridge_maxwait 0
@@ -57,24 +57,22 @@ brctl show # kiểm tra cấu hình switch ảo
 Kết quả kiểm tra cấu hình sẽ tương tự như sau:
 ```sh
 bridge name	bridge id		STP enabled	interfaces
-br0		8000.000c29586f24	yes		eth0
-br1		8000.000c29586f2e	yes		eth1
-lxcbr0		8000.000000000000	no
-virbr0		8000.000000000000	yes
+br0		8000.000c29586f24	yes		eno1
 ```
 Kết quả cấu hình thành công gắn NIC eth1 vào switch ảo br1 sẽ hiển thị như đoạn mã trên
 
 - Bước 5: Để kiểm tra, ta có thể tạo một máy ảo và tạo một NIC kết nối với switch
 
-**Trường hợp 2**: Gắn 2 NIC eth1 và eth2 vào cùng switch <b>br1</b>. Do trước đó NIC eth1 đã gán vào br1, giờ ta sẽ tiến hành gán tiếp NIC eth2, đồng thời thiết lập mức độ ưu tiên của các port tương ứng với các NIC đã gán vào switch br1.
+**Trường hợp 2**: Gắn 2 NIC eth1 và eth2 vào cùng switch **br1**. Đồng thời thiết lập mức độ ưu tiên của các port tương ứng với các NIC đã gán vào switch br1
 ```sh
+brctl addif br1 eth1 # gán NIC eth1 vào sw br1
 brctl addif br1 eth2 # gán NIC eth2 vào sw br1
 # Thiết lập mức ưu tiên cho các port
 brctl setportprio br1 eth1 1
 brctl setportprio br1 eth2 2
 ```
 Theo lý thuyết, port nào có độ ưu tiên cao hơn thì các VM khi gắn vào tap interface của switch ảo sẽ nhận IP cùng dải với NIC của máy host đã gán vào switch ảo đó. Theo như cấu hình trên, port tương ứng với NIC eth2 có độ ưu tiên cao hơn. Như vậy VM sẽ nhận IP cùng dải với eth2.<br>
-Trong bài lab này, card <b>eth1</b> thuộc dải mạng <b>10.10.10.0/24</b> và card <b>eth2</b> thuộc dải mạng <b>10.0.2.0/24</b>. Như vậy VM sẽ nhận IP thuộc dải <b>10.0.2.0/24</b>. Minh họa:
+Trong bài lab này, card **eth1** thuộc dải mạng ***10.10.10.0/24*** và card **eth2** thuộc dải mạng ***10.0.2.0/24***. Như vậy VM sẽ nhận IP thuộc dải ***10.0.2.0/24***. Minh họa:
 
 <img src="http://i.imgur.com/p6dNZV8.png">
 
