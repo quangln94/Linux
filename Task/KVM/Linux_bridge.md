@@ -3,7 +3,7 @@
 Linux bridge là một soft-switch, một trong ba công nghệ cung cấp switch ảo trong hệ thống Linux (bên cạnh macvlan và OpenvSwitch), giải quyết vấn đề ảo hóa network bên trong các máy vật lý.<br>
 Bản chất, linux bridge sẽ tạo ra các switch layer 2 kết nối các máy ảo (VM) để các VM đó giao tiếp được với nhau và có thể kết nối được ra mạng ngoài. Linux bridge thường sử dụng kết hợp với hệ thống ảo hóa KVM-QEMU.
 ### 1.2. Các thành phần
-<img src="http://i.imgur.com/GKs6wWF.png"/><br><br>
+<img src="http://i.imgur.com/GKs6wWF.png">
 Kiến trúc linux bridge minh họa như hình vẽ trên. Một số khái niệm liên quan tới linux bridge:
 - <b>Port</b>: tương đương với port của switch thật
 - <b>Bridge</b>: tương đương với switch layer 2
@@ -75,9 +75,9 @@ brctl setportprio br1 eth2 2
 Theo lý thuyết, port nào có độ ưu tiên cao hơn thì các VM khi gắn vào tap interface của switch ảo sẽ nhận IP cùng dải với NIC của máy host đã gán vào switch ảo đó. Theo như cấu hình trên, port tương ứng với NIC eth2 có độ ưu tiên cao hơn. Như vậy VM sẽ nhận IP cùng dải với eth2.<br>
 Trong bài lab này, card <b>eth1</b> thuộc dải mạng <b>10.10.10.0/24</b> và card <b>eth2</b> thuộc dải mạng <b>10.0.2.0/24</b>. Như vậy VM sẽ nhận IP thuộc dải <b>10.0.2.0/24</b>. Minh họa:
 
-<img src="http://i.imgur.com/p6dNZV8.png"/>
+<img src="http://i.imgur.com/p6dNZV8.png">
 
-<img src="http://i.imgur.com/gWcAeq1.png"/>
+<img src="http://i.imgur.com/gWcAeq1.png">
 
 ## 3. Tham khảo
 - http://www.innervoice.in/blogs/2013/12/02/linux-bridge-virtual-networking
