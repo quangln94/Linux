@@ -5,6 +5,7 @@ Bản chất, linux bridge sẽ tạo ra các switch layer 2 kết nối các m�
 ### 1.2. Các thành phần
 <img src="http://i.imgur.com/GKs6wWF.png">
 Kiến trúc linux bridge minh họa như hình vẽ trên. Một số khái niệm liên quan tới linux bridge:
+
 - **Port**: tương đương với port của switch thật
 - **Bridge**: tương đương với switch layer 2
 - **Tap**: hay <b>tap interface</b> có thể hiểu là giao diện mạng để các VM kết nối với bridge cho linux bridge tạo ra
