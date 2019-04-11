@@ -5,10 +5,10 @@ Bản chất, linux bridge sẽ tạo ra các switch layer 2 kết nối các m�
 ### 1.2. Các thành phần
 <img src="http://i.imgur.com/GKs6wWF.png">
 Kiến trúc linux bridge minh họa như hình vẽ trên. Một số khái niệm liên quan tới linux bridge:
-- <b>Port</b>: tương đương với port của switch thật
-- <b>Bridge</b>: tương đương với switch layer 2
-- <b>Tap</b>: hay <b>tap interface</b> có thể hiểu là giao diện mạng để các VM kết nối với bridge cho linux bridge tạo ra
-- <b>fd</b>: forward data - chuyển tiếp dữ liệu từ máy ảo tới bridge
+- **Port**: tương đương với port của switch thật
+- **Bridge**: tương đương với switch layer 2
+- **Tap**: hay <b>tap interface</b> có thể hiểu là giao diện mạng để các VM kết nối với bridge cho linux bridge tạo ra
+- **fd**: forward data - chuyển tiếp dữ liệu từ máy ảo tới bridge
 
 ## 1.3. Các tính năng
 - <b>STP</b>: Spanning Tree Protocol - giao thức chống loop gói tin trong mạng
