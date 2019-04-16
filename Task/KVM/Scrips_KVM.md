@@ -13,13 +13,15 @@ virt-install \
 --location 'http://ftp.iij.ad.jp/pub/linux/centos/7/os/x86_64/' \
 --extra-args 'console=ttyS0,115200n8 serial'
 ```
+Hoặc bạn có thể copy `command` trên paster vào text thành 1 `commnad` như dưới đây sau khi đã chỉnh sửa các thông số:
 ```sh
 virt-install \
 --name centos7 --ram 4096 --disk path=/var/kvm/images/centos7.img,size=30 --vcpus 2 --os-type linux --os-variant rhel7 --network bridge=br0 --graphics none --console pty,target_type=serial --location 'http://ftp.iij.ad.jp/pub/linux/centos/7/os/x86_64/' --extra-args 'console=ttyS0,115200n8 serial'
 ```
 Trong đó:
---name: specify the name of Virtual Machine
---ram: specify the amount of memories of Virtual Machine
+```sh
+--name: Tên của Virtual Machine
+--ram: RAM của Virtual Machine
 --disk path=xxx ,size=xxx
 'path=' ⇒ specify the location of disks of Virtual Machine
 'size=' ⇒ specify the amount of disks of Virtual Machine
@@ -32,3 +34,4 @@ Trong đó:
 --console: specify the console type
 --location: specify the location of installation where from
 --extra-args: specify parameters that is set in kernel
+```
