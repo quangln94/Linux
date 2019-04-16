@@ -3,7 +3,7 @@
 ```sh
 [root@server ~]# virsh console Server1
 ```
-- Note: Nếu không connect được, sử dụng `command` sau tại máy VM
+- Note: Nếu không connect được, sử dụng `command` sau tại máy VM sau đó vào lại máy thật kiểm tra.
 ```sh
 # systemctl start serial-getty@ttyS0
 # systemctl enable serial-getty@ttyS0
