@@ -1,4 +1,13 @@
 # Install useful tools for virt management.
+## 1. Connect VM
+```sh
+[root@server ~]# virsh console Server1
+```
+- Note: Nếu không connect được, sử dụng `command` sau tại máy VM
+```sh
+# systemctl start serial-getty@ttyS0
+# systemctl enable serial-getty@ttyS0
+```
 ## 1.	Install virt tools.
 ```
 [root@server ~]# yum -y install libguestfs-tools libguestfs-xfs virt-top
