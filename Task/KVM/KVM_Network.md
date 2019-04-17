@@ -1,46 +1,48 @@
 # Card mạng trong KVM
 Cũng giống như các công cụ ảo hóa khác KVM cũng cung cấp các mô hình mạng trong việc ảo hóa network. Các mô hình bao gồm:
- * NAT
- * Bridge
- * Host-only
+ - NAT
+ - Bridge
+ - Host-only
  
 ## 1. NAT
 ![](https://github.com/niemdinhtrong/NIEMDT/blob/master/KVM/images/networknat.png)
 
-Với mô hình này KVM thực hiện ánh xạ một dải địa chỉ để cung cấp cho máy ảo. Dải địa chỉ ta có thể chọn tùy ý. Với mô hình này máy ảo của ta có thể giao tiếp với internet. Nhưng có một chú rằng từ VM của ta có thể ping được ra ngoài internet nhưng máy bên ngoài sẽ không thấy được VM của ta chính vì vậy ta không thể ping từ bên ngoài đến VM sử dụng mô hình mạng NAT.
+Với mô hình này KVM thực hiện ánh xạ một dải địa chỉ để cung cấp cho máy ảo. Dải địa chỉ ta có thể chọn tùy ý. Với mô hình này máy ảo của ta có thể giao tiếp với internet.</br> 
+Nhưng chú rằng từ VM có thể `ping` được ra internet nhưng máy bên ngoài sẽ không thấy được VM của ta, vì vậy không thể `ping` từ bên ngoài đến VM khi sử dụng `NAT`.
 
-### Cách cấu hình.
+### 1.1 Config.
 
-Bình thường khi cài KVM nó sẽ cung cấp cho ta một mạng ảo NAT mang tên `default` mạng này thường mang dải địa chỉ IP 192.168.122.x. Ta có thể add thêm một mạng ảo cũng với mô hình NAT khác. Có nhiều cách để thực hiện việc này nhưng ở đây tôi dùng công cụ `virt-manager`
-Mở công cụ `virt-manager` bằng câu lệnh `virt-manager`
+Bình thường sau khi cài KVM, KVM sẽ cung cấp cho ta một mạng ảo NAT mang tên `default` mạng này thường mang dải địa chỉ IP `192.168.122.x`. Ta có thể add thêm một mạng ảo cũng với mô hình NAT khác. Có nhiều cách để thực hiện việc này.</br>
+Ví dụ: dùng công cụ `virt-manager`:
+- Mở công cụ `virt-manager` bằng câu lệnh `virt-manager`
 
 ![](https://github.com/niemdinhtrong/NIEMDT/blob/master/KVM/images/net1.png)
 
-Chọn `Edit` chọn `Connection Details`. Ta có thể thấy các mạng có ở cột bên trái. Để tạo một mạng khác ta làm như sau:
+- Chọn `Edit` chọn `Connection Details`. Ta có thể thấy các mạng có ở cột bên trái. Để tạo một mạng khác ta làm như sau:
 
 ![](https://github.com/niemdinhtrong/NIEMDT/blob/master/KVM/images/net%202.png)
 
-Sau đó nhập tên cho mạng và nhấn `Forward`
+- Sau đó nhập tên cho mạng và nhấn `Forward`
 
 ![](https://github.com/niemdinhtrong/NIEMDT/blob/master/KVM/images/net3.png)
 
-Ta chọn địa chỉ mạng cho mạng định tạo (chọn địa chỉ mạng tùy ý). Sau đó chọn dải IP cấp phát cho máy ảo trong dải mạng. Ta cũng có có thể để đặt IP tĩnh trên máy ảo nếu tích vào `Enable Static Route Definition`. Chọn xong ta nhấn `Forward`
+- Ta chọn địa chỉ mạng cho mạng định tạo (chọn địa chỉ mạng tùy ý). Sau đó chọn dải IP cấp phát cho máy ảo trong dải mạng. Ta cũng có có thể để đặt IP tĩnh trên máy ảo nếu tích vào `Enable Static Route Definition`. Chọn xong ta nhấn `Forward`
 
 ![](https://github.com/niemdinhtrong/NIEMDT/blob/master/KVM/images/net4a.png)
 
-Bước này ta có thể chọn có sử dụng IPv6 hay không. Ở đây tôi không chọn.
+- Bước này ta có thể chọn có sử dụng IPv6 hay không. Ở đây tôi không chọn.
 
 ![](https://github.com/niemdinhtrong/NIEMDT/blob/master/KVM/images/net5.png)
 
-Ta chỉ ra mô hình mạng. Ở đây để là `NAT` sau đó chọn `Finish` để  kết thúc.
+- Ta chỉ ra mô hình mạng. Ở đây để là `NAT` sau đó chọn `Finish` để  kết thúc.
 
 ![](https://github.com/niemdinhtrong/NIEMDT/blob/master/KVM/images/net6.png)
 
-Sau khi tạo ta có thể thấy
+- Sau khi tạo ta có thể thấy
 
 ![](https://github.com/niemdinhtrong/NIEMDT/blob/master/KVM/images/net7.png)
 
-### Thao tác trên VM
+### 1.2 Thao tác trên VM
 
 ![](https://github.com/niemdinhtrong/NIEMDT/blob/master/KVM/images/net8.png)
 
