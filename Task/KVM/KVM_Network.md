@@ -40,7 +40,7 @@ Ví dụ: dùng công cụ `virt-manager`:
 
 - Sau khi tạo ta có thể thấy
 
-![](https://github.com/niemdinhtrong/NIEMDT/blob/master/KVM/images/net7.png)
+![](https://github.com/quangln94/Linux/blob/master/Task/KVM/Image/Screenshot_2.png)
 
 ### 1.2 Thao tác trên VM
 
