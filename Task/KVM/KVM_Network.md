@@ -16,19 +16,19 @@ Bình thường sau khi cài KVM, KVM sẽ cung cấp cho ta một mạng ảo N
 Ví dụ: dùng công cụ `virt-manager`:
 - Mở công cụ `virt-manager` bằng câu lệnh `virt-manager`
 
-![](https://github.com/niemdinhtrong/NIEMDT/blob/master/KVM/images/net1.png)
+![](https://github.com/quangln94/Linux/blob/master/Task/KVM/Image/Screenshot_1.png)
 
 - Chọn `Edit` chọn `Connection Details`. Ta có thể thấy các mạng có ở cột bên trái. Để tạo một mạng khác ta làm như sau:
 
-![](https://github.com/niemdinhtrong/NIEMDT/blob/master/KVM/images/net%202.png)
+![](https://github.com/quangln94/Linux/blob/master/Task/KVM/Image/Screenshot_2.png)
 
 - Sau đó nhập tên cho mạng và nhấn `Forward`
 
-![](https://github.com/niemdinhtrong/NIEMDT/blob/master/KVM/images/net3.png)
+![](https://github.com/quangln94/Linux/blob/master/Task/KVM/Image/Screenshot_3.png)
 
 - Ta chọn địa chỉ mạng cho mạng định tạo (chọn địa chỉ mạng tùy ý). Sau đó chọn dải IP cấp phát cho máy ảo trong dải mạng. Ta cũng có có thể để đặt IP tĩnh trên máy ảo nếu tích vào `Enable Static Route Definition`. Chọn xong ta nhấn `Forward`
 
-![](https://github.com/niemdinhtrong/NIEMDT/blob/master/KVM/images/net4a.png)
+![](https://github.com/quangln94/Linux/blob/master/Task/KVM/Image/Screenshot_4.png)
 
 - Bước này ta có thể chọn có sử dụng IPv6 hay không. Ở đây tôi không chọn.
 
@@ -36,7 +36,7 @@ Ví dụ: dùng công cụ `virt-manager`:
 
 - Ta chỉ ra mô hình mạng. Ở đây để là `NAT` sau đó chọn `Finish` để  kết thúc.
 
-![](https://github.com/niemdinhtrong/NIEMDT/blob/master/KVM/images/net6.png)
+![](https://github.com/quangln94/Linux/blob/master/Task/KVM/Image/Screenshot_5.png)
 
 - Sau khi tạo ta có thể thấy
 
