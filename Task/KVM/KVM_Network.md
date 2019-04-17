@@ -32,7 +32,7 @@ Ví dụ: dùng công cụ `virt-manager`:
 
 - Bước này ta có thể chọn có sử dụng IPv6 hay không. Ở đây tôi không chọn.
 
-![](https://github.com/niemdinhtrong/NIEMDT/blob/master/KVM/images/net5.png)
+![](https://github.com/quangln94/Linux/blob/master/Task/KVM/Image/Screenshot_8.png)
 
 - Ta chỉ ra mô hình mạng. Ở đây để là `NAT` sau đó chọn `Finish` để  kết thúc.
 
@@ -40,7 +40,7 @@ Ví dụ: dùng công cụ `virt-manager`:
 
 - Sau khi tạo ta có thể thấy
 
-![](https://github.com/quangln94/Linux/blob/master/Task/KVM/Image/Screenshot_2.png)
+![](https://github.com/quangln94/Linux/blob/master/Task/KVM/Image/Screenshot_7.png)
 
 ### 1.2 Thao tác trên VM
 
