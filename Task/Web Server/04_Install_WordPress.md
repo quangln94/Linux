@@ -1,8 +1,8 @@
 # Installing WordPress on CentOS 7
 ## 1: Install Wget and Vim
 ```sh
-yum install wget
-yum install vim
+yum install wget -y
+yum install vim -y
 ```
 ## 2. Download and install WordPress
 This step uses the previously installed Wget to install WordPress.
