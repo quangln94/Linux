@@ -114,11 +114,11 @@ ListenPort=10050
 Server=IP-server
 ServerActive=IP-server
 ```
-`SourceIP`: IP của zabbix agent. Khai báo này được sử dụng khi máy có nhiều IP ta cần chỉ ra IP giao tiếp với zabbix server
-`ListenIP`: IP của zabbix agent. IP được dùng để lắng nghe các gói tin mà zabbix server gửi đến.
-`ListenPost`: Port lắng nghe giao tiếp với server. Port mặc định ở đây là 10050
-`Server`: Bật chế độ Zabbix Monitor Passive ở agent
-`ServerActive`: Bật chế độ Zabbix Monitor Active ở agent
+`SourceIP`: IP của zabbix agent. Khai báo này được sử dụng khi máy có nhiều IP ta cần chỉ ra IP giao tiếp với zabbix server</br>
+`ListenIP`: IP của zabbix agent. IP được dùng để lắng nghe các gói tin mà zabbix server gửi đến.</br>
+`ListenPost`: Port lắng nghe giao tiếp với server. Port mặc định ở đây là 10050</br>
+`Server`: Bật chế độ Zabbix Monitor Passive ở agent</br>
+`ServerActive`: Bật chế độ Zabbix Monitor Active ở agent</br>
 **Khởi động lại agent**
 ```sh
 systemctl restart zabbix-agent
