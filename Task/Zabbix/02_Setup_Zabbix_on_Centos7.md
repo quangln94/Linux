@@ -4,7 +4,8 @@ Một mô hình giám sát zabbix sẽ bao gồm đầy đủ các thành phần
 
 ![](https://github.com/niemdinhtrong/thuctapsinh/blob/master/NiemDT/Ghichep-zabbix/images/cai-dat/1.jpg)
 
-Bài Lab giám sát với hệ thống nhỏ nên không cài đặt zabbix proxy. Cài đặt Web Server, Zabbix Server và Database Server trên cùng một máy.
+Bài Lab giám sát với hệ thống nhỏ nên không cài đặt zabbix proxy.</br>
+Cài đặt Web Server, Zabbix Server và Database Server trên cùng một máy.
 ## Chuẩn bị
 
 Một máy làm Zabbix Agent. Nhưng trong bài lab này tôi cài agent trên máy có HĐH centOS7.
