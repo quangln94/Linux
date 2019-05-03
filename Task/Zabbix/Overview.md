@@ -9,8 +9,8 @@ Zabbix cũng support web-based để có thể theo dõi trạng thái của cá
 **Agent**: Zabbix Agent được cài đặt trên các thiết bị mà ta cần giám sát. Nó sẽ có nhiệm vụ thu thập thông tin và gửi nó về Zabbix Server.
 # 3.Một số thuật ngữ
 Dưới đây là một số thuật ngữ mà ta hay gặp khi làm việc với Zabbix.
-|||
-|-------|-------|
+|Thuật ngữ|Ý nghĩa|
+|---------|-------|
 |**host**|Là một thiết bị mạng mà ta muốn giám sát sử dụng địa chỉ IP/DNS|
 |**host group**|Là một nhóm các host, nó có thể bao gồm các host và các template. Host group được sử dụng khi ta gán quyên truy cập host cho các nhóm người dùng khác nhau.|
 |**item**|Các thông số mà bạn muốn thu thập từ các host để giám sát.|
