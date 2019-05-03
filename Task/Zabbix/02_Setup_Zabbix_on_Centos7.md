@@ -1,63 +1,43 @@
 # Cài đặt zabbix server trên centOS 7
-
 ## Mô hình 
-
 Một mô hình giám sát zabbix sẽ bao gồm đầy đủ các thành phần như sau:
 
 ![](https://github.com/niemdinhtrong/thuctapsinh/blob/master/NiemDT/Ghichep-zabbix/images/cai-dat/1.jpg)
 
-Nhưng ở đây tôi giám sát với hệ thống nhỏ nên tôi sẽ không cài đặt zabbix proxy. Tôi và tôi cài đặt web server, Zabbix server và Database server trên cùng một máy.
-
+Bài Lab giám sát với hệ thống nhỏ nên không cài đặt zabbix proxy. Cài đặt Web Server, Zabbix Server và Database Server trên cùng một máy.
 ## Chuẩn bị
 
-Một máy cài centOS 7 dùng làm zabbix server có cấu hình:
-
- * 2 CPU
- * 2G RAM
- * 1 interface
- * 15G disk
-
-Một máy làm zabbix agent nên ko yêu cầu phần cứng. Nhưng trong bài lab này tôi cài agent trên máy có HĐH centOS7.
+Một máy làm Zabbix Agent. Nhưng trong bài lab này tôi cài agent trên máy có HĐH centOS7.
 
 Mô hình đơn giản của tôi như sau
 
 ![](https://github.com/niemdinhtrong/thuctapsinh/blob/master/NiemDT/Ghichep-zabbix/images/cai-dat/2.png)
 
-## Cài đặt
+## Setup
 
 Cài đặt LAMP tham khảo [tại đây](https://github.com/niemdinhtrong/NIEMDT/blob/master/wordpress/docs/LAMP.md)
 
 **Cài đặt zabbix server**
 
-Ở đây tôi sử dụng cách cài đặt bằng package
+- Cài đặt bằng package. Cài đặt gói cấu hình
 
-Cài đặt gói cấu hình
-
-```
+```sh
 rpm -ivh https://repo.zabbix.com/zabbix/4.0/rhel/7/x86_64/zabbix-release-4.0-1.el7.noarch.rpm
 ```
-
-Cài đặt zabbix server
-
-```
+- Cài đặt Zabbix Server
+```sh
 yum install zabbix-server-mysql
 ```
-
-Cài đặt zabbix frontend
-
-```
+- Cài đặt Zabbix Frontend
+```sh
 yum install zabbix-web-mysql
 ```
-
-Nếu mô hình của bạn có zabbix proxy thì bạn dùng lênh sau để cài đặt trên máy zabbix proxy
-
-```
+Nếu mô hình có Zabbix Proxy thì dùng lênh sau để cài đặt trên máy Zabbix Proxy
+```sh
 yum install zabbix-proxy-mysql
 ```
-
 **Tạo database cho zabbix**
-
-```
+```sh
 mysql -u root -p
 
 create database zabbix;
@@ -66,33 +46,24 @@ grant all privileges on zabbix.* to 'zabbix'@'localhost' identified by 'zabbix';
 
 exit
 ```
-
 **Import database**
-
 ```
 zcat /usr/share/doc/zabbix-server-mysql*/create.sql.gz | mysql -uzabbix -p zabbix
 ```
-
-Sửa file zabbix_server.conf để có thể sử dụng database (nếu ban có cài zabbix proxy thì cẩn sửa file zabbix_proxy.conf)
-
-```
-# vi /etc/zabbix/zabbix_server.conf
+Sửa file `zabbix_server.conf` để có thể sử dụng database (nếu cài Zabbix Proxy thì cẩn sửa file `zabbix_proxy.conf`)
+```sh
+# vim /etc/zabbix/zabbix_server.conf
 DBHost=localhost
 DBName=zabbix
 DBUser=zabbix
 DBPassword=zabbix
 ```
-
 Đây là các thông số mà tôi vừa tạo trong database ở câu lệnh bên trên
-
 **Start zabbix server**
-
-```
+```sh
 service zabbix-server start
-
 systemctl enable zabbix-server
 ```
-
 **Cấu hình zabbix frontend**
 
 Truy cập file `/etc/httpd/conf.d/zabbix.conf` và uncomment ở dòng timezone và chỉnh sửa lại timezone
