@@ -8,9 +8,9 @@ Click `Configuration` -> `Hosts` -> `Create host`
 ![](https://github.com/niemdinhtrong/thuctapsinh/blob/master/NiemDT/Ghichep-zabbix/images/new-host/1.png)
 
 Trong đó: 
- * `Host name`: Đặt tên cho host để dễ dàng phân biệt giữa các host
- * `Groups`: Chỉ ra ít nhất một group mà host này thuộc vào
- * `Agent interfaces`: Nếu bạn dùng kiểu `item` là Zabbix Agent. Bạn chỉ ra địa chỉ IP hoặc domain name. 
+ * **Host name**: Đặt tên cho host để dễ dàng phân biệt giữa các host
+ * **Groups**: Chỉ ra ít nhất một group mà host này thuộc vào
+ * **Agent interfaces**: Nếu bạn dùng kiểu `item` là Zabbix Agent. Bạn chỉ ra địa chỉ IP hoặc domain name. 
 
 ## 2. Chọn template
 
