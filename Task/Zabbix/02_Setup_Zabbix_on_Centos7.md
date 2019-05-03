@@ -66,6 +66,7 @@ service zabbix-server start
 systemctl enable zabbix-server
 ```
 **Cấu hình zabbix frontend**
+
 Truy cập file `/etc/httpd/conf.d/zabbix.conf` và uncomment ở dòng timezone và chỉnh sửa lại timezone
 ```sh
 vim /etc/httpd/conf.d/zabbix.conf
