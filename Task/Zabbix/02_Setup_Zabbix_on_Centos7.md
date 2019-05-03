@@ -65,10 +65,9 @@ service zabbix-server start
 systemctl enable zabbix-server
 ```
 **Cấu hình zabbix frontend**
-
 Truy cập file `/etc/httpd/conf.d/zabbix.conf` và uncomment ở dòng timezone và chỉnh sửa lại timezone
-
-```
+```sh
+vim /etc/httpd/conf.d/zabbix.conf
 php_value max_execution_time 300
 php_value memory_limit 128M
 php_value post_max_size 16M
@@ -76,99 +75,66 @@ php_value upload_max_filesize 2M
 php_value max_input_time 300
 php_value max_input_vars 10000
 php_value always_populate_raw_post_data -1
-php_value date.timezone Asia/Ho_Chi_minh
+php_value date.timezone Asia/Ho_Chi_Minh
 ```
-
 **Cầu hình selinux**
-
 Bạn có thể disable SElinux hoặc cho phép kết nối bằng câu lệnh sau
-
-```
+```sh
 setsebool -P httpd_can_connect_zabbix on
-
 setsebool -P httpd_can_network_connect_db on
 ```
-
-Restart lại Apache
-
-```
+**Restart lại Apache**
+```sh
 service httpd restart
 ```
-
-Bạn mở trình duyệt web và truy cập `http://IP-server/zabbix` bạn sẽ thấy như sau
+Mở trình duyệt web và truy cập `http://IP-server/zabbix` bạn sẽ thấy như sau
 
 ![](https://github.com/niemdinhtrong/thuctapsinh/blob/master/NiemDT/Ghichep-zabbix/images/cai-dat/3.png)
-
 ## Cài đặt zabbix agent
-
 Cài đặt zabbix agent trên các host muốn monitor
-
-Cài đặt gói cấu hình
-
-```
+- Cài đặt gói cấu hình
+```sh
 rpm -ivh https://repo.zabbix.com/zabbix/4.0/rhel/7/x86_64/zabbix-release-4.0-1.el7.noarch.rpm
 ```
-
-Cài đặt agent
-
-```
+- Cài đặt agent
+```sh
 yum install zabbix-agent
 ```
-
-Bật agent
-
-```
+- Bật agent
+```sh
 service zabbix-agent start
-
 systemctl enable zabbix-agent
 ```
-
 Sau đó và file `/etc/zabbix/zabbix_agentd.conf` và chỉnh sửa một số thông tin
-
 ```
+vim /etc/zabbix/zabbix_agentd.conf
 SourceIP=IP-agent
 ListenIP=IP-agent
 ListenPort=10050
 Server=IP-server
 ServerActive=IP-server
 ```
-
 `SourceIP`: IP của zabbix agent. Khai báo này được sử dụng khi máy có nhiều IP ta cần chỉ ra IP giao tiếp với zabbix server
-
 `ListenIP`: IP của zabbix agent. IP được dùng để lắng nghe các gói tin mà zabbix server gửi đến.
-
 `ListenPost`: Port lắng nghe giao tiếp với server. Port mặc định ở đây là 10050
-
 `Server`: Bật chế độ Zabbix Monitor Passive ở agent
-
 `ServerActive`: Bật chế độ Zabbix Monitor Active ở agent
-
 **Khởi động lại agent**
-
-```
+```sh
 systemctl restart zabbix-agent
-
 systemctl enable zabbix-agent
 ```
-
 **Mở port**
-
 Tắt SElinux
-
-```
+```sh
 setenforce 0
 ```
-
 Câu lệnh trên dùng để tắt tạm thời cho đến khi bạn reboot. Muốn tắt vĩnh viễn bạn vào file `/etc/selinux/config` và sửa như sau:
-
-```
+```sh
 SELINUX=disabled
 ```
-
 Mở port
-
-```
+```sh
 iptables -I INPUT -p tcp --dport 10050 -j ACCEPT
-
 iptables -I OUTPUT -p tcp --sport 10050 -j ACCEPT
 ```
