@@ -2,11 +2,13 @@
 Zabbix được tạo ra bởi Alexei Vladishev và đang được phát triển bởi zabbix SIA. Đây là giải pháp giám sát mã nguồn mở. Có khả năng giám sát hệ các thông số trong hệ thống mạng. Nó có thể cài đặt để gửi các thông báo qua nhiều kênh để đến với người quản trị nhằm khắc phục nhanh nhất các sự cố.</br>
 Zabbix cũng support web-based để có thể theo dõi trạng thái của các thiết bị. Điều này tạo điều kiện dễ dàng cho việc giám sát khi bạn ở bất kỳ đâu.</br>
 # 2. Kiến trúc của Zabbix gồm các thành phần chính sau:
-**Server**: Nơi xử lý tất cả các thông tin mà các thiết bị gửi về.</br>
-**Database storage**: Tất cả các thông tin từ các thiết bị được thu thập sẽ được lưu trữ trong một database.</br>
-**Web interface**: Web interface giúp ta có thể truy cập để theo dõi các thiết bị ở bất kỳ đâu. Nó là một phần của zabbix server.
-**Proxy**: Zabbix Proxy có nhiệm vụ thu thập và phân tích dữ liệu thay cho Zabbix Server. Đây là một tùy chọn nên bạn có thể cài nó hoặc không nhưng nó sẽ rất hữu ích với hột hệ thống lớn. Nó sẽ giúp giảm tải cho Zabbix Server.
-**Agent**: Zabbix Agent được cài đặt trên các thiết bị mà ta cần giám sát. Nó sẽ có nhiệm vụ thu thập thông tin và gửi nó về Zabbix Server.
+|Thành phần|Ý nghĩa|
+|----------|-------|
+|**Server**|Nơi xử lý tất cả các thông tin mà các thiết bị gửi về.|
+|**Database storage**|Tất cả các thông tin từ các thiết bị được thu thập sẽ được lưu trữ trong một database.|
+|**Web interface**|Web interface giúp ta có thể truy cập để theo dõi các thiết bị ở bất kỳ đâu. Nó là một phần của zabbix server.|
+|**Proxy**|Zabbix Proxy có nhiệm vụ thu thập và phân tích dữ liệu thay cho Zabbix Server. Đây là một tùy chọn nên bạn có thể cài nó hoặc không nhưng nó sẽ rất hữu ích với hột hệ thống lớn. Nó sẽ giúp giảm tải cho Zabbix Server.|
+|**Agent**|Zabbix Agent được cài đặt trên các thiết bị mà ta cần giám sát. Nó sẽ có nhiệm vụ thu thập thông tin và gửi nó về Zabbix Server.|
 # 3.Một số thuật ngữ
 Dưới đây là một số thuật ngữ mà ta hay gặp khi làm việc với Zabbix.
 
