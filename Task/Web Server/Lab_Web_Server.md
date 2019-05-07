@@ -53,7 +53,8 @@ systemctl restart httpd
 ```sh
 cd /var/www/html/
 wget http://wordpress.org/latest.tar.gz
-cd wordpress/* /var/www/html/
+tar xzvf latest.tar.gz
+cp wordpress/* /var/www/html/
 cp wp-config-sample.php wp-config.php
 ```
 **Config file `wp-config.php`**
