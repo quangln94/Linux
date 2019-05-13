@@ -31,8 +31,10 @@ namebot
 namebot
 ```
 
-Sau khi tạo xong kết quả sẽ trả về một chuỗi các ký tự. Nó là token của bot. Ví dụ dãy token sẽ là `877870930:XXXX-snEJ9cXXXXXXXXXXX9c2qsXRsD4HOg`
-
+Sau khi tạo xong kết quả sẽ trả về một chuỗi các ký tự. Nó là token của bot. Ví dụ dãy token sẽ là 
+```sh
+877870930:XXXX-snEJ9cXXXXXXXXXXX9c2qsXRsD4HOg
+```
 Bạn cần lưu lại chuỗi token này để khi báo khi gửi cảnh báo
 
 ## 2. Cấu hình alert scripts telegram
