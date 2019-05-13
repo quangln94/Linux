@@ -4,7 +4,7 @@
 
 # 1. Tạo bot telegram
 
-Để tạo bot bạn click [vào đây]( https://telegram.me/BotFather). Tiếp theo click vào `SEND MESSAGE`.
+Để tạo bot bạn click https://telegram.me/BotFather. Tiếp theo click vào `SEND MESSAGE`.
 ![](https://github.com/niemdinhtrong/thuctapsinh/blob/master/NiemDT/Ghichep-zabbix/images/telegram/1.png)
 
 Click vào `start`
