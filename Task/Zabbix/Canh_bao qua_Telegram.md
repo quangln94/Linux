@@ -1,42 +1,32 @@
 # Cấu hình gửi cảnh báo ZABBIX qua Telegram
-
 Để gửi cảnh báp qua telegram bạn cần có  `bot telegram`.
-
-# 1. Tạo bot telegram
-
+## 1. Tạo bot telegram
 Để tạo bot bạn click https://telegram.me/BotFather. Tiếp theo click vào `SEND MESSAGE`.
 ![](https://github.com/niemdinhtrong/thuctapsinh/blob/master/NiemDT/Ghichep-zabbix/images/telegram/1.png)
-
 Click vào `start`
-
 ![](https://github.com/niemdinhtrong/thuctapsinh/blob/master/NiemDT/Ghichep-zabbix/images/telegram/2.png)
 
 Sau đó tiến hành chat với bot telegram này
-
 Để tạo bot
 
-```
+```sh
 /newbot
 ```
-
 Đặt tên cho bot telegram. Lưu ý tên phải là chữ thường và phải được kết thúc bằng `bot`
 
-```
+```sh
 namebot
 ```
-
 Đặt username cho bot
 
-```
+```sh
 namebot
 ```
-
 Sau khi tạo xong kết quả sẽ trả về một chuỗi các ký tự. Nó là token của bot. Ví dụ dãy token sẽ là 
 ```sh
 877870930:XXXX-snEJ9cXXXXXXXXXXX9c2qsXRsD4HOg
 ```
-Bạn cần lưu lại chuỗi token này để khi báo khi gửi cảnh báo
-
+Lưu lại chuỗi token này để khi báo khi gửi cảnh báo
 ## 2. Cấu hình alert scripts telegram
 ### 2.1 Download scripts alert telegram
 Vào thưc mục để chứa scripts và download scripts về.
@@ -51,12 +41,10 @@ https://api.telegram.org/bot${TOKEN}/getUpdates
 Với `${TOKEN}` là cả chuỗi token API mà khi tạo `bot telegram` trả về ở trên.
 Chat trên Telegram ở kênh của mình vừa tạo và F5 trình duyệt sẽ thấy thông tin vừa chat, sẽ lấy được CHAT ID.
 
-## 2. Cấu hình cảnh báo telegram trên Web Zabbix
+## 3. Cấu hình cảnh báo telegram trên Web Zabbix
 Truy cập vào zabbix server trên trình duyệt web
 Vào `Administration` -> `Media types` -> `Create media type`
-
 ![](https://github.com/niemdinhtrong/thuctapsinh/blob/master/NiemDT/Ghichep-zabbix/images/telegram/3.png)
-
 Trong đó: 
  * Name: bạn đặt tên tùy ý
  * Type: chọn kiểu Script
