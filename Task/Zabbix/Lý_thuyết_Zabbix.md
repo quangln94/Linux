@@ -79,7 +79,7 @@ API có thể có hiện tượng rất chậm, đặc biệt là khi nói đế
 **5.4. Scalability**</br>
 **5.5. Security**</br>
 
-## 6 Cơ chế hoạt động
+## 6. Cơ chế hoạt động
 
 ### 6.1 Các giao thức sử dụng zabbix 
 
