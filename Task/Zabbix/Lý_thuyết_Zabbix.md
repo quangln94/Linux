@@ -78,5 +78,55 @@ API có thể có hiện tượng rất chậm, đặc biệt là khi nói đế
 **5.3. Reporting**</br>
 **5.4. Scalability**</br>
 **5.5. Security**</br>
-# Reference
-https://github.com/domanhduy/zabbix-monitor/blob/master/L%C3%BD%20thuy%E1%BA%BFt%20Zabbix.md
+
+## 6 Cơ chế hoạt động
+
+### 6.1 Các giao thức sử dụng zabbix 
+
+- Giao thức UDP được sử dụng khi check SNMP
+- Giao thức giữa web interface và zabbix server là http
+- Ngoài ra còn có giao thức json.RFC được sử dụng trong Zabbix
+
+Việc truy xuất giữa zabbix server, web interface, agent truy xuất database bằng giao thức TCP kết nối đến port 3306 nếu sử dụng mysql bằng ngôn ngữ SQL
+
+Giám sát SNMP được sử dụng để kiểm tra thông tin  trên các thiết bị như máy in, thiết bị chuyển mạch mạng, bộ định tuyến ...
+
+### 6.2 Cơ chế giữa server và client
+
+Zabbix server thu thập thông tin từ Agent thông qua các item tương ứng. Các item có nhiều loại, tuy nhiên 2 loại chính là Active Item và Passive Item
+
+#### Zabbix Passive Check là gì?
+
+- Đây là kiểu kiểm tra tương ứng với Item Zabbix Passive (bị động), kiểu này có đặc tính là công việc ưu cầu thông tin cần giám sát thuộc về Zabbix Server.
+- Zabbix Server sẽ request thông tin cần tìm kiếm đến các Agent theo các khoảng thời gian (interval time) đã được cấu hình trong item tương ứng, lấy thông tin monitor và báo cáo lại về hệ thống ngay lập tức. Server khởi tạo kết nối, Agent luôn ở chế động lắng nghe kết nối từ Server.
+
+Passive Check
+
+- Tiến trình :
+	
+	+ Server mở kết nối TCP đến Zabbix Agent
+	+ Server gửi ưu cầu thu thập thông tin với item tương ứng. Ví dụ : "agent.ping"
+	+ Agent nhận ưu cầu, phân tích, thu thập dữ liệu và gửi trả về Server. Với item "agent.ping", kết quả trả về ở đây sẽ là "0" hoặc "1".
+	+ Kết nối TCP đóng lại
+- Nội dung gói tin "Server request" : 
+	``agent.ping\n``
+- Nội dung gói tin "Agent response" : 
+	``<HEADER><DATALEN>1``
+	
+#### Zabbix Active Check là gì?
+
+- Đây là kiểu kiểm tra tương ứng với Item Active (chủ động), đặc tính của kiểu này là công việc chủ động request thông tin cần giám sát thuộc về Zabbix Agent. Kiểu kiếm tra này hay dùng khi Zabbix Server không thể kết nối trực tiếp đến Zabbix Agent (có thể do chính sách firewall...)
+- Zabbix Agent sẽ chủ động gửi request đến Zabbix Server nhằm lấy thông tin về các Item được Server chỉ định sẵn. Sau khi lấy được danh sách item thì Agent sẽ xử lý động lập rồi gửi tuần tự thông tin về cho Server. Server sẽ không khởi tạo kết nối nào mà chỉ trả lời request item list và nhận lại thông tin được trả về. Tuy nhiên nếu Agent trei hoặc chết thì Server sẽ không nhận được bất kỳ kết nối nào.
+
+Active Check
+
+- Tiến trình :
+	+ Agent mở kết nối TCP đến Zabbix Server
+	+ Agent yêu cầu danh sách item cần thu thập
+	+ Server phản hồi với danh sách item tương ứng ( danh sách này đã được định sẵn trước đó, gồm item key, delay).
+	+ Kết nối TCP đóng lại.
+Agent bắt đầu thu thập thông tin tương ứng với danh sách item nhận được.
+
+# Tài liệu tham khảo
+- https://github.com/MinhKMA/MediTech/edit/master/T%C3%ACm%20hi%E1%BB%83u%20v%E1%BB%81%20zabbix.md
+- https://github.com/domanhduy/zabbix-monitor/blob/master/L%C3%BD%20thuy%E1%BA%BFt%20Zabbix.md
