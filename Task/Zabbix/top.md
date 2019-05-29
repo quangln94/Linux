@@ -21,8 +21,8 @@ Số lượng user đang login: 1 user
 Load average của server trong 1/5/15 phút: 2.01 2.06 2.06
 
 Thông thường với một máy chủ có 1 Core CPU, không sử dụng Hyper Threading thì ngưỡng hoạt động trong 1 phút của hệ thống sẽ là khoảng 0.7, Nếu Load average của vượt quá ngưỡng trên cần kiểm tra lại xem process nào đang overload hoặc có phương hướng nâng cấp tài nguyên của hệ thống lên thêm nữa.
-– Tại dòng 2 Task: Thông tin các tiến trình đang hoạt động trên hệ thống.
-– Tại dòng 3 Phần trăm CPU: Bao gồm các thông số sau.
+– Tại dòng 2 Task: Thông tin các tiến trình đang hoạt động trên hệ thống.</br>
+– Tại dòng 3 Phần trăm CPU: Bao gồm các thông số sau.</br>
 
 `us`: %CPU được dùng cho từng tiến trình của User.</br>
 `sy`: %CPU được dùng cho từng tiến trình của hệ thống.</br>
@@ -33,8 +33,8 @@ Thông thường với một máy chủ có 1 Core CPU, không sử dụng Hyper
 `%si`: %CPU được dành cho phần mềm khi bị gián đoạn.</br>
 `%st`: %CPU ảo chờ đợi CPU thực xử lý các process.</br>
 
-– Tại dòng 4 là thông tin về RAM.
-– Tại dòng 5 là thông tin về SWAP.
+– Tại dòng 4 là thông tin về RAM.</br>
+– Tại dòng 5 là thông tin về SWAP.</br>
 
 * Tại phần tiếp theo, Lệnh top sẽ hiển thị ra thông số của một số tiến trình đang hoạt động:
 
