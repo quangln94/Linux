@@ -23,32 +23,32 @@ Thông thường với một máy chủ có 1 Core CPU, không sử dụng Hyper
 – Tại dòng 2 Task: Thông tin các tiến trình đang hoạt động trên hệ thống.
 – Tại dòng 3 Phần trăm CPU: Bao gồm các thông số sau.
 
-%us: %CPU được dùng cho từng tiến trình của User.</br>
-%sy: %CPU được dùng cho từng tiến trình của hệ thống.</br>
-%ni: %CPU dành cho low-priority processes.</br>
-%id: %CPU ở trạng thái nghỉ.</br>
-%wa: %CPU đang trong thời gian chờ I/O.</br>
-%hi: %CPU được dành cho phần cứng khi bị gián đoạn.</br>
-%si: %CPU được dành cho phần mềm khi bị gián đoạn.</br>
-%st: %CPU ảo chờ đợi CPU thực xử lý các process.</br>
+`us`: %CPU được dùng cho từng tiến trình của User.</br>
+`sy`: %CPU được dùng cho từng tiến trình của hệ thống.</br>
+`%ni`: %CPU dành cho low-priority processes.</br>
+`%id`: %CPU ở trạng thái nghỉ.</br>
+`%wa`: %CPU đang trong thời gian chờ I/O.</br>
+`%hi`: %CPU được dành cho phần cứng khi bị gián đoạn.</br>
+`%si`: %CPU được dành cho phần mềm khi bị gián đoạn.</br>
+`%st`: %CPU ảo chờ đợi CPU thực xử lý các process.</br>
 
 – Tại dòng 4 là thông tin về RAM.
 – Tại dòng 5 là thông tin về SWAP.
 
 * Tại phần tiếp theo, Lệnh top sẽ hiển thị ra thông số của một số tiến trình đang hoạt động:
 
-PID: Process ID</br>
-User: User thực hiện Process trên.</br>
-PR: Độ ưu tiên của Process.</br>
-NI: Giá trị nice value của tiến trình, giá trị âm tăng độ ưu tiên của Process, giá trị dương giảm độ ưu tiên của Process.</br>
-VIRT: Dung lượng RAM ảo cho việc thực hiện Process.</br>
-RES: Dung lượng RAM thực chạy Process.</br>
-SHR: Dung lượng RAM share cho Process.</br>
-S : Trạng thái Process đang hoạt động.</br>
-%CPU: %CPU được sử dụng cho Process.</br>
-%RAM: %RAM được dùng cho Process.</br>
-TIME+: Tổng thời gian thực hiện 1 Process.</br>
-COMMAND: Tên của Process.</br>
+`PID`: Process ID</br>
+`User`: User thực hiện Process trên.</br>
+`PR`: Độ ưu tiên của Process.</br>
+`NI`: Giá trị nice value của tiến trình, giá trị âm tăng độ ưu tiên của Process, giá trị dương giảm độ ưu tiên của Process.</br>
+`VIRT`: Dung lượng RAM ảo cho việc thực hiện Process.</br>
+`RES`: Dung lượng RAM thực chạy Process.</br>
+`SHR`: Dung lượng RAM share cho Process.</br>
+`S`: Trạng thái Process đang hoạt động.</br>
+`%CPU`: %CPU được sử dụng cho Process.</br>
+`%RAM`: %RAM được dùng cho Process.</br>
+`TIME+`: Tổng thời gian thực hiện 1 Process.</br>
+`COMMAND`: Tên của Process.</br>
 
 # Tài liệu tham khảo
 https://tailieu.123host.vn/kb/vps/huong-dan-su-dung-lenh-top-de-theo-doi-hieu-nang-may-chu-linux.html
