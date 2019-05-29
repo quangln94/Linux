@@ -27,10 +27,9 @@ Trong trường hợp không có swap, các bạn hãy sử dụng lệnh free -
 
 <img src=https://i.imgur.com/o8yaCvd.png>
 
-Hệ thống có tổng cộng 488MB RAM, sử dụng thực tế chỉ 125MB. Còn trống 6MB và 357MB (sử dụng làm buff/cache). Swap 1GB chưa được dùng đến. Điều bạn cần quan tâm là lượng RAM trống thực tếmà các ứng dụng có thể sử dụng (available) – 286MB
+Hệ thống có tổng cộng 7.5GB RAM, sử dụng thực tế chỉ 2.7GB. Còn trống 302MB và 4.6GB (sử dụng làm buff/cache). Swap 7.7GB chưa được dùng đến. Điều bạn cần quan tâm là lượng RAM trống thực tế mà các ứng dụng có thể sử dụng (available) – 4.5GB
 
 Như vậy, tín hiệu để bạn lo lắng là khi:
 
-Available memory hoặc free của -/+ buffers/cache tiến đến 0
-Mức sử dụng swap gia tăng
-Hy vọng, qua bài viết này, các bạn có cái nhìn đúng đắn về tình trạng tải của server cũng như có các quyết định kịp thời trong việc nâng cấp server(nếu cần thiết).
+`Available memory` hoặc free của `-/+ buffers/cache` tiến đến 0
+Mức sử dụng `swap` gia tăng
