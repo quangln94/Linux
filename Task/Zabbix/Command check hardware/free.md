@@ -24,6 +24,7 @@ Kết luận, dấu hiệu để nhận biết hệ thống có đang thiếu RA
 Trong trường hợp không có swap, các bạn hãy sử dụng lệnh free -h và nhìn vào dòng-/+ buffers/cache để xem hệ thống đang thực sự free bao nhiêu memory.
 
 Đối với CentOS 7
+
 <img src=https://i.imgur.com/o8yaCvd.png>
 
 Hệ thống có tổng cộng 488MB RAM, sử dụng thực tế chỉ 125MB. Còn trống 6MB và 357MB (sử dụng làm buff/cache). Swap 1GB chưa được dùng đến. Điều bạn cần quan tâm là lượng RAM trống thực tếmà các ứng dụng có thể sử dụng (available) – 286MB
