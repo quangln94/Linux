@@ -5,16 +5,14 @@ Lệnh top là một lệnh hết sức đơn giản, tuy nhiên lại cực k�
 Để sử dụng, trước hết ta cần SSH vào Server hoặc VPS.
 
 Sau khi đã truy cập được vào hệ thống, ta tiến hành gõ lệnh sau:
-
+```sh
 top 
-
+```
 Màn hình sẽ hiện thị ra thông số của Máy chủ hiện tại như sau:
+<src img=https://i.imgur.com/VFrOxte.png>
 
-TOP-01
+Lệnh `top` sẽ hiện thị ra rất nhiều thống số của server như: uptime, load average v.v. tại phần đầu tiên của thông báo
 
-* Lệnh top sẽ hiện thị ra rất nhiều thống số của server như: uptime, load average v.v. tại phần đầu tiên của thông báo
-
-TOP-02
 
 – Dòng đầu tiên sẽ thể hiện thời gian của server:
 
