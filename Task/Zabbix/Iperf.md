@@ -1,4 +1,4 @@
-# Iperf
+# Kiểm tra tốc độc mạng với Iperf
 
 Iperf là một công cụ miễn phí, dùng để đo lường lượng dữ liệu mạng (throughput) tối đa mà một server có thể xử lý.Công cụ này rất hữu ích để truy tìm ra các vấn đề đối với hệ thống mạng bởi Iperf có thể xác định được server nào không xử lý được lượng dữ liệu mạng (throughput) mà người quản trị mạng mong đợi.
 
