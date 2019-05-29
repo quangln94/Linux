@@ -19,6 +19,7 @@ Thời gian hoạt động hiện tại: 11:13:47
 Thời gian uptime: 12 ngày
 Số lượng user đang login: 1 user
 Load average của server trong 1/5/15 phút: 2.01 2.06 2.06
+
 Thông thường với một máy chủ có 1 Core CPU, không sử dụng Hyper Threading thì ngưỡng hoạt động trong 1 phút của hệ thống sẽ là khoảng 0.7, Nếu Load average của vượt quá ngưỡng trên cần kiểm tra lại xem process nào đang overload hoặc có phương hướng nâng cấp tài nguyên của hệ thống lên thêm nữa.
 – Tại dòng 2 Task: Thông tin các tiến trình đang hoạt động trên hệ thống.
 – Tại dòng 3 Phần trăm CPU: Bao gồm các thông số sau.
