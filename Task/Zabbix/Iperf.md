@@ -38,9 +38,10 @@ Bạn sẽ thấy kết quả xuất ra gần giống như sau:
 
 
 
-4) Để stop Iperf trên server, nhấn CTRL + C
+4) Để stop Iperf trên server, nhấn `CTRL + C`
 
 **UDP Clients & Servers**
+
 Với Iperf, bạn có thể kiểm tra lượng dữ liệu mạng có thể đạt được thông qua kết nối UDP
 
 1) Chạy Iperf trên server
