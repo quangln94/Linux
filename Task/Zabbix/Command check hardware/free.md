@@ -31,5 +31,4 @@ Hệ thống có tổng cộng 7.5GB RAM, sử dụng thực tế chỉ 2.7GB. C
 
 Như vậy, tín hiệu để bạn lo lắng là khi:
 
-`Available memory` hoặc free của `-/+ buffers/cache` tiến đến 0
-Mức sử dụng `swap` gia tăng
+`Available memory` hoặc free của `-/+ buffers/cache` tiến đến 0 -> Mức sử dụng `swap` gia tăng
