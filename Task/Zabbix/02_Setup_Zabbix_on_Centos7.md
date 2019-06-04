@@ -140,3 +140,5 @@ Mở port
 iptables -I INPUT -p tcp --dport 10050 -j ACCEPT
 iptables -I OUTPUT -p tcp --sport 10050 -j ACCEPT
 ```
+
+chown -R apache:apache /usr/share/zabbix/assets/
