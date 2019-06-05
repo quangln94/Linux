@@ -63,3 +63,5 @@ Nếu bạn không muốn thay đổi trực tiếp trên file test.txt bạn c�
 $ sed -i  ".back" -e "s/foo/bar/g" test.txt
 ```
 Câu lệnh trên sẽ lưu kết quả ra tập tin `test.txt.back`.
+## Tài liệu tham khảo 
+- https://www.codehub.vn/Tim-Kiem-va-Thay-The-Van-Ban-Su-Dung-Cau-Lenh-sed-trong-Linux
