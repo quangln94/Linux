@@ -14,7 +14,7 @@ Mô hình đơn giản của tôi như sau
 
 |Hostname|Server|Agent|
 |--------|------|-----|
-|IP|||
+|IP|192.168.1.1|192.168.1.2|
 
 ## Setup
 
@@ -143,5 +143,5 @@ Mở port
 iptables -I INPUT -p tcp --dport 10050 -j ACCEPT
 iptables -I OUTPUT -p tcp --sport 10050 -j ACCEPT
 ```
-
-chown -R apache:apache /usr/share/zabbix/assets/
+Nếu gặp lỗi này`Directory "/usr/share/zabbix/assets" must be writable.` trong quá trình cài đặt Zabbix. Hãy thử command sau:
+`chown -R apache:apache /usr/share/zabbix/assets/`
