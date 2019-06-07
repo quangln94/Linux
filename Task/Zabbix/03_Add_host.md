@@ -5,7 +5,7 @@
 
 Click `Configuration` -> `Hosts` -> `Create host`
 
-![](https://github.com/niemdinhtrong/thuctapsinh/blob/master/NiemDT/Ghichep-zabbix/images/new-host/1.png)
+<img src=https://i.imgur.com/Uu01nQX.png>
 
 Trong đó: 
  * **Host name**: Đặt tên cho host để dễ dàng phân biệt giữa các host
@@ -16,25 +16,25 @@ Trong đó:
 
 Click `Templates` để thêm 1 templates cho host
 
-![](https://github.com/niemdinhtrong/thuctapsinh/blob/master/NiemDT/Ghichep-zabbix/images/new-host/2.png)
+<img src=https://i.imgur.com/dRN1jZ6.png>
 
 Bạn có thể tạo một templates của riêng mình hoặc sử dụng một templates có sẵn. Khi gắn cho host 1 template thì bạn có thể thấy 
 
-![](https://github.com/niemdinhtrong/thuctapsinh/blob/master/NiemDT/Ghichep-zabbix/images/new-host/3.png)
+<img src=https://i.imgur.com/SFCrU4s.png>
 
 ## 3. Gắn thêm item
 
 Khi gắn template phù hợp cho host thông thường nó sẽ bao gồm đầy đủ các item để theo dõi các host một cách hợp lý nhất. Nhưng nếu bạn muốn có thêm một thông số nào đó của host mà trong trong template này không có bạn có thể tự tạo ra một item trong host này. Để tạo item bạn click vào item trên host mà bạn muốn tạo.
 
-![](https://github.com/niemdinhtrong/thuctapsinh/blob/master/NiemDT/Ghichep-zabbix/images/new-host/5.png)
+<img src=https://i.imgur.com/Wv8hGEu.png>
 
 Click `Create item`
 
-![](https://github.com/niemdinhtrong/thuctapsinh/blob/master/NiemDT/Ghichep-zabbix/images/new-host/6.png)
+<img src=https://i.imgur.com/QcsXvxs.png>
 
 Bạn cần thêm các thống số vào đây
 
-![](https://github.com/niemdinhtrong/thuctapsinh/blob/master/NiemDT/Ghichep-zabbix/images/new-host/8.png)
+<img src=https://i.imgur.com/Saq0V3k.png>
 
 Trong đó:
 
@@ -53,17 +53,17 @@ Trong đó:
 
 Để chọn `key` bạn click vào `Select` chọn kiểu item và chọn một key tương ứng bên dưới
 
-![](https://github.com/niemdinhtrong/thuctapsinh/blob/master/NiemDT/Ghichep-zabbix/images/new-host/16.png)
+<img src=https://i.imgur.com/EAC0ocu.png>
 
 Sửa mode chp phù hợp sau đó điền các thông tin và click `add` để hoàn thành viêc thêm item.
 
 Sau khi add thêm ta có thể thấy item này
 
-![](https://github.com/niemdinhtrong/thuctapsinh/blob/master/NiemDT/Ghichep-zabbix/images/new-host/9.png)
+<img src=https://i.imgur.com/m5PvPvT.png>
 
 Để quan sát thông số của host ứng với item này bạn vào `Monitoring` -> `Latest data` bạn lọc ra host mà bạn vủa tạo item bạn có thể thấy dữ kiệu gửi về
 
-![](https://github.com/niemdinhtrong/thuctapsinh/blob/master/NiemDT/Ghichep-zabbix/images/new-host/10.png)
+<img src=https://i.imgur.com/vpicAI8.png>
 
 ## 4. Add trigger
 
@@ -71,11 +71,11 @@ Sau khi add thêm ta có thể thấy item này
 
 Click vào `trigger` trên host mà bạn muốn tạo
 
-![](https://github.com/niemdinhtrong/thuctapsinh/blob/master/NiemDT/Ghichep-zabbix/images/new-host/11.png)
+<img src=https://i.imgur.com/80SiLjM.png>
 
 Click vào `Create trigger` 
 
-![](https://github.com/niemdinhtrong/thuctapsinh/blob/master/NiemDT/Ghichep-zabbix/images/new-host/12.png)
+<img src=https://i.imgur.com/HDTIzhF.png>
 
 Trong đó: 
  * **Name**: Tên hiển thị của trigger
@@ -102,16 +102,16 @@ Cách tạo `Expression`
 
 Ckick `Add`
 
-![](https://github.com/niemdinhtrong/thuctapsinh/blob/master/NiemDT/Ghichep-zabbix/images/new-host/12.png)
+<img src=https://i.imgur.com/HDTIzhF.png>
 
 Trong đó: 
  * **Items**: Chọn một item phù hợp để lấy giá trị cho việc tính toán.
  * **Function**: chọn một hàm để tính toán các giá trị
  * **Result**: giá trị dùng so sánh để đưa ra cảnh báo
 
-![](https://github.com/niemdinhtrong/thuctapsinh/blob/master/NiemDT/Ghichep-zabbix/images/new-host/13.png)
+<img src=https://i.imgur.com/3oK3dUo.png>
 
 Cảnh báo của trigger vừa tạo
 
-![](https://github.com/niemdinhtrong/thuctapsinh/blob/master/NiemDT/Ghichep-zabbix/images/new-host/14.png)
+<img src=https://i.imgur.com/WRE6NPR.png>
 
