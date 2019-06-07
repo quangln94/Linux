@@ -2,7 +2,7 @@
 ## Mô hình 
 Một mô hình giám sát zabbix sẽ bao gồm đầy đủ các thành phần như sau:
 
-![](https://github.com/niemdinhtrong/thuctapsinh/blob/master/NiemDT/Ghichep-zabbix/images/cai-dat/1.jpg)
+<img src=https://i.imgur.com/4FTd21l.jpg>
 
 Bài Lab giám sát với hệ thống nhỏ nên không cài đặt zabbix proxy.</br>
 Cài đặt Web Server, Zabbix Server và Database Server trên cùng một máy.
@@ -12,7 +12,9 @@ Một máy làm Zabbix Agent. Nhưng trong bài lab này tôi cài agent trên m
 
 Mô hình đơn giản của tôi như sau
 
-![](https://github.com/niemdinhtrong/thuctapsinh/blob/master/NiemDT/Ghichep-zabbix/images/cai-dat/2.png)
+|Hostname|Server|Agent|
+|--------|------|-----|
+|IP|||
 
 ## Setup
 
@@ -91,7 +93,8 @@ service httpd restart
 ```
 Mở trình duyệt web và truy cập `http://IP-server/zabbix` bạn sẽ thấy như sau
 
-![](https://github.com/niemdinhtrong/thuctapsinh/blob/master/NiemDT/Ghichep-zabbix/images/cai-dat/3.png)
+<img src=https://i.imgur.com/TBwPP1E.png>
+
 ## Cài đặt zabbix agent
 Cài đặt zabbix agent trên các host muốn monitor
 - Cài đặt gói cấu hình
