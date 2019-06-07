@@ -6,7 +6,14 @@
 # II. Installation
 ## Server 1 (MySQL Server)
 **192.168.1.1**
-### Step 1: Install MySQL
+### Step 1: Install MySQL hoặc MariaDB 
+- Install MariaDB
+```sh
+yum -y install mariadb-server -y
+systemctl start mariadb 
+systemctl enable mariadb
+```
+- Install MySQL
 ```sh
 wget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm
 rpm -ivh mysql-community-release-el7-5.noarch.rpm
