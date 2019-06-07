@@ -18,7 +18,7 @@ Mô hình đơn giản của tôi như sau
 
 ## Setup
 
-Cài đặt LAMP tham khảo [tại đây](https://github.com/niemdinhtrong/NIEMDT/blob/master/wordpress/docs/LAMP.md)
+Cài đặt LAMP tham khảo [tại đây](https://github.com/quangln94/Linux/blob/master/Task/Web%20Server/Lab_Web_Server.md)
 
 **Cài đặt zabbix server**
 
