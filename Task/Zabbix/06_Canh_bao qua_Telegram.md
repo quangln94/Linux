@@ -2,9 +2,7 @@
 Để gửi cảnh báp qua telegram bạn cần có  `bot telegram`.
 ## 1. Tạo bot telegram
 Để tạo bot bạn click https://telegram.me/BotFather. Tiếp theo click vào `SEND MESSAGE`.
-![](https://github.com/niemdinhtrong/thuctapsinh/blob/master/NiemDT/Ghichep-zabbix/images/telegram/1.png)
-Click vào `start`
-![](https://github.com/niemdinhtrong/thuctapsinh/blob/master/NiemDT/Ghichep-zabbix/images/telegram/2.png)
+<img src=https://i.imgur.com/47l8F4W.png>
 
 Sau đó tiến hành chat với bot telegram này
 Để tạo bot
@@ -113,13 +111,7 @@ Tôi tạo 1 trigger để test việc gửi cảnh báo
 
 ![](https://github.com/niemdinhtrong/thuctapsinh/blob/master/NiemDT/Ghichep-zabbix/images/telegram/11.png)
 
-Tôi dùng lệnh `zabbix_sender` để gửi giá trị vượt quá ngưỡng để zabbix server gửi cảnh báo tôi sẽ thấy trong telegram của tôi
-
-![](https://github.com/niemdinhtrong/thuctapsinh/blob/master/NiemDT/Ghichep-zabbix/images/telegram/12.png)
-
-Khi tôi gửi giá trị xuống dưới mức cảnh báo
-
-![](https://github.com/niemdinhtrong/thuctapsinh/blob/master/NiemDT/Ghichep-zabbix/images/telegram/13.png)
+Dùng lệnh `zabbix_sender` để gửi giá trị vượt quá ngưỡng để zabbix server gửi cảnh báo tôi sẽ thấy trong telegram 
 
 # Reference
 - https://blogcloud365vn.github.io/monitor/zabbix4-thiet-lap-canh-bao-qua-telegram/
