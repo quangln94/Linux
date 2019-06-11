@@ -25,7 +25,7 @@ Ví dụ:
 Tôi tạo một item
 ![](/images/sender-get/1.png)
 ```sh
-[root@niemdt1 ~]# zabbix_sender -z 10.10.10.160 -p 10051 -s "10.161" -k sender -o 10 
+[root@database]# zabbix_sender -z 192.168.1.1 -p 10051 -s "Database" -k sender -o 10 
 info from server: "processed: 1; failed: 0; total: 1; seconds spent: 0.000421"
 sent: 1; skipped: 0; total: 1
 ```
@@ -46,7 +46,7 @@ Trong đó:
 
 Ví dụ
 ```sh
-[root@niemdt0 ~]# zabbix_get -s 10.10.10.161 -k vm.memory.size[total]
+[root@zabbix]# zabbix_get -s 192.168.1.2 -k vm.memory.size[total]
 1039659008
 ```
-Câu lệnh trên tôi kiểm tra tổng dung lượng RAM của máy 10.10.10.160
+Câu lệnh trên kiểm tra tổng dung lượng RAM của máy 192.168.1.2
