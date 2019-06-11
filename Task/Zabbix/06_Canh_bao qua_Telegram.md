@@ -56,7 +56,7 @@ Trong đó:
 
 Sau đó click add
 
-Để có thể nhận được cảnh báo về telegram của bạn thì bạn cần phải có ID telegram của bạn. Để lấy được ID bạn vào chat bất ky thông tin gì vào bot telegram của bạn sau đó bạn truy cập bào địa chỉ 
+Để có thể nhận được cảnh báo về telegram của bạn thì bạn cần phải có ID telegram của bạn. Để lấy được ID bạn vào **chat** bất kỳ thông tin gì vào bot telegram của bạn sau đó bạn truy cập bào địa chỉ 
 
 https://api.telegram.org/bot`TOKEN`/getUpdates
 
