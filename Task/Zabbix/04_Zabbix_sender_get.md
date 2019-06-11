@@ -22,15 +22,11 @@ Hoặc thay vì khai báo lần lượt các giá trị như bên trên ta có t
 zabbix_sender -c /etc/zabbix/zabbix_agentd.conf -k key -o giá-trị
 ```
 Ví dụ:
-Tôi tạo một item
-![](/images/sender-get/1.png)
 ```sh
 [root@database]# zabbix_sender -z 192.168.1.1 -p 10051 -s "Database" -k sender -o 10 
 info from server: "processed: 1; failed: 0; total: 1; seconds spent: 0.000421"
 sent: 1; skipped: 0; total: 1
 ```
-Tôi thấy kết quả trên web
-![](/images/sender-get/2.png)
 # Zabbix get
 Zabbix_get là một câu lệnh được sử dụng trên zabbix server để trả về thông tin của host zabbix-agent. Trước tiên cần cài đặt nó
 ```
