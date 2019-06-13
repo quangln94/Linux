@@ -28,7 +28,7 @@ info from server: "processed: 1; failed: 0; total: 1; seconds spent: 0.000421"
 sent: 1; skipped: 0; total: 1
 ```
 # Zabbix get
-Zabbix_get là một câu lệnh được sử dụng trên zabbix server để trả về thông tin của host zabbix-agent. Trước tiên cần cài đặt nó
+`Zabbix_get` là một câu lệnh được sử dụng trên zabbix server để trả về thông tin của host zabbix-agent. Trước tiên cần cài đặt nó
 ```
 yum install zabbix-sender
 ```
