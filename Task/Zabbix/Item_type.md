@@ -57,3 +57,26 @@ Quy trình nhận trap:
 - Đối với mỗi trap, Zabbix tìm tất cả các items "SNMP trapper" với host interfaces khớp với địa chỉ trap nhận được. Lưu ý rằng chỉ có các lựa chọn IP hoặc DNS trong host interface được sử dụng trong quá trình matching.
 - Đối với mỗi item tìm thấy, trap được so sánh với regrec trong “snmptrap[regexp]”. Trap được đặt là giá trị của tất cả các item phù hợp. Nếu không tìm thấy item phù hợp nào và có một item “snmptrap.fallback”, thì trap được đặt là giá trị của item đó.
 - Nếu trap không được đặt làm giá trị của bất kỳ item nào, Zabbix theo mặc định sẽ ghi lại trap chưa có. (Điều này được cấu hình bởi "Log unmatched SNMP traps" trong Administration → General → Other.)
+## 4. IPMI checks
+
+Bạn có thể theo dõi sức khỏe và tính khả dụng của các thiết bị Intelligent Platform Management Interface (IPMI) trên Zabbix. Để thực hiện kiểm tra IPMI Máy chủ Zabbix phải được cấu hình ban đầu với sự hỗ trợ IPMI.
+
+IPMI là một giao diện được tiêu chuẩn hóa cho việc quản lý các hệ thống máy tính từ xa ngoài khu vực điều khiển. Nó cho phép theo dõi trạng thái phần cứng trực tiếp từ các thẻ được gọi là thẻ quản lý ngoài băng tần, độc lập với hệ điều hành hoặc xem máy có được bật hay không.
+
+Giám sát Zabbix IPMI chỉ hoạt động đối với các thiết bị có hỗ trợ IPMI (HP iLO, DELL DRAC, IBM RSA, Sun SSP, v.v.).
+
+Kể từ Zabbix 3.4, một quy trình quản lý IPMI mới đã được thêm vào để lên lịch kiểm tra IPMI bởi IPMI pollers. Giờ đây, một máy chủ luôn được thăm dò bởi một trình đẩy IPMI tại một thời điểm, làm giảm số lượng kết nối mở tới bộ điều khiển BMC. Với những thay đổi đó, an toàn để tăng số lượng thăm dò IPMI mà không phải lo lắng về việc quá tải bộ điều khiển BMC. Quá trình quản lý IPMI được tự động bắt đầu khi có ít nhất một trình đẩy IPMI được khởi động.
+## 5. Simple checks
+
+Simple checks thường được sử dụng để kiểm tra các dịch vụ agent-less
+
+Lưu ý rằng Zabbix agent không cần thiết cho simple checks. Zabbix server/proxy chịu trách nhiệm xử lý các simple checks (thực hiện các kết nối bên ngoài, v.v.).
+
+Ví dụ về sử dụng simple checks:
+```sh
+net.tcp.service [ftp ,, 155] 
+net.tcp.service [http] 
+net.tcp.service.perf [http ,, 8080] 
+net.udp.service.perf [ntp]
+```
+Trường User name và Password trong item cấu hình được sử dụng cho các item giám sát VMware
