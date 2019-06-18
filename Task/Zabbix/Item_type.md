@@ -8,7 +8,6 @@ Các loại `item` được cung cấp bởi Zabbix:
 - SNMP traps
 - IPMI checks
 - Simple checks
-- VMware monitoring
 - Log file monitoring
 - Calculated items
 - Zabbix internal checks
@@ -80,3 +79,23 @@ net.tcp.service.perf [http ,, 8080]
 net.udp.service.perf [ntp]
 ```
 Trường User name và Password trong item cấu hình được sử dụng cho các item giám sát VMware
+## 6. Log file monitoring
+
+Zabbix có thể được sử dụng để theo dõi và phân tích tập trung các file log có/không hỗ trợ log rotation.
+
+Thông báo có thể được sử dụng để cảnh báo người dùng khi file log chứa các chuỗi hoặc mẫu chuỗi nhất định.
+
+Để theo dõi một file log, bạn phải có:
+
+Zabbix agent chạy trên host
+item giám sát log được thiết lập
+
+## 7. Calculated items
+Với các item calculated, bạn có thể tạo các phép tính dựa trên các item.
+
+Do đó, các item calculated là một cách tạo nguồn dữ liệu ảo. Các giá trị sẽ được tính toán định kỳ dựa trên biểu thức số học. Tất cả các tính toán được thực hiện bởi Zabbix server - không có gì liên quan đến các item calculated được thực hiện trên Zabbix agents hoặc proxies. của Zabbix.
+
+Dữ liệu kết quả sẽ được lưu trữ trong cơ sở dữ liệu Zabbix như đối với bất kỳ item nào khác - điều này có nghĩa là lưu trữ cả giá trị lịch sử và trend để tạo biểu đồ nhanh. Các item được tính toán có thể được sử dụng trong các trigger, được tham chiếu bởi các macro hoặc các thực thể khác giống như bất kỳ loại item nào khác.
+
+Để sử dụng các item calculated , chọn item type Calculated.
+## 8. Internal checks
