@@ -99,3 +99,19 @@ Dữ liệu kết quả sẽ được lưu trữ trong cơ sở dữ liệu Zabb
 
 Để sử dụng các item calculated , chọn item type Calculated.
 ## 8. Internal checks
+Internal checks cho phép giám sát các processes nội bộ của Zabbix. Nói cách khác, bạn có thể theo dõi những gì diễn ra với Zabbix server or Zabbix proxy.
+
+Internal checks được tính toán:
+
+trên Zabbix server - nếu host được giám sát bởi server
+trên Zabbix proxy - nếu host được giám sát bởi proxy
+Internal checks được xử lý bởi server hoặc proxy bất kể trạng thái bảo trì host.
+
+Để sử dụng item này, chọn Zabbix internal item type.
+
+Internal checks được xử lý bởi Zabbix pollers.
+## 9. SSH checks
+SSH checks được thực hiện với agent-less monitoring. Zabbix agent không cần cho SSH checks. Để thực hiện kiểm tra SSH, Zabbix server phải được cấu hình hỗ trợ của SSH2. 
+## 10. Telnet checks
+Telnet checks được thực hiện như agent-less monitoring. Zabbix agent không cần cho Telnet checks.
+## 11. External checks
