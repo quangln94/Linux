@@ -115,3 +115,53 @@ SSH checks được thực hiện với agent-less monitoring. Zabbix agent khô
 ## 10. Telnet checks
 Telnet checks được thực hiện như agent-less monitoring. Zabbix agent không cần cho Telnet checks.
 ## 11. External checks
+External check là kiểm tra được thực hiện bởi Zabbix server bằng cách chạy tập lệnh shell hoặc binary. Tuy nhiên, khi các host được giám sát bởi Zabbix proxy, external checks được thực thi bởi proxy.
+
+External checks không yêu cầu bất kỳ agent nào chạy trên một host được theo dõi.
+
+Cú pháp của item key là:
+```sh
+script[<parameter1>,<parameter2>,...]
+```
+Trong đó:
+|Argument|Định nghĩa|
+|--------|----------|
+|script|Tên của 1 shell script hoặc binary.|
+|parameter(s)|Tùy chọn tham số dòng lệnh.|
+
+Nếu bạn không muốn chuyển bất kỳ tham số nào cho tập lệnh, bạn có thể sử dụng:
+```
+script[] or
+script
+```
+Zabbix server sẽ tìm trong thư mục được xác định là vị trí cho external scripts (tham số ' InternalScripts ' trong tệp cấu hình Zabbix server) và thực hiện lệnh. Lệnh sẽ được thực thi khi Zabbix server của người dùng chạy, do đó, mọi quyền truy cập hoặc biến môi trường sẽ được xử lý trong tập lệnh bao bọc, nếu cần và các quyền trên lệnh sẽ cho phép người dùng thực thi lệnh đó. Chỉ các lệnh trong thư mục được chỉ định có sẵn để thực hiện.
+
+Đừng lạm dụng external checks! Vì mỗi script yêu cầu bắt đầu quá trình rẽ nhánh bởi Zabbix server, việc chạy nhiều script có thể làm giảm hiệu suất của Zabbix rất nhiều.
+
+Ví dụ:
+
+Thực thi script check_oracle.sh với tham số đầu tiên '-h'. Tham số thứ hai sẽ được thay thế bằng địa chỉ IP hoặc tên DNS , tùy thuộc vào lựa chọn trong thuộc tính host.
+```sh
+check_oracle.sh ["- h", "{HOST.CONN}"]
+```
+Giả sử host được cấu hình để sử dụng địa chỉ IP, Zabbix sẽ thực thi:
+
+```
+check_oracle.sh '-h' '192.168.1.4'
+```
+Kết quả External check
+
+Giá trị trả về của kiểm tra là đầu ra tiêu chuẩn cùng với lỗi tiêu chuẩn 
+
+Trong trường hợp không tìm thấy script được yêu cầu hoặc Zabbix server không có quyền để thực thi tập lệnh đó, item sẽ không được hỗ trợ và thông báo lỗi tương ứng sẽ được đặt. Trong trường hợp hết thời gian, item cũng sẽ được đánh dấu là không được hỗ trợ, thông báo lỗi theo sẽ được hiển thị và quá trình rẽ nhánh cho tập lệnh sẽ bị hủy.
+## 12. Aggregate checks
+## 17. HTTP agent
+Item cho phép bỏ phiếu dữ liệu bằng giao thức HTTP/HTTPS. Trapping cũng có thể sử dụng giao thức Zabbix sender.
+
+HTTP item check được thực hiện bởi Zabbix server. Tuy nhiên, khi các host được giám sát bởi Zabbix proxy, HTTP item checks được thực thi bởi proxy.
+
+HTTP item checks không yêu cầu bất kỳ agent nào chạy trên máy host được theo dõi.
+
+HTTP agent hỗ trợ cả HTTP và HTTPS. Zabbix sẽ tùy chọn theo dõi chuyển hướng. 
+
+Zabbix server/proxy phải được cấu hình với sự hỗ trợ của cURL (libcurl).
