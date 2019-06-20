@@ -10,6 +10,7 @@ Lưu ý:
 
 ## 2. Trend
 Cứ mỗi giờ thì Zabbix server sẽ thu gom các giá trị từ các table **history** và tính toán giá trị min, trung bình và max cho khung thời gian 1 giờ. Giá trị đơn vị của **trend** là số duy nhất (numeric). Có thể coi **trend** là 1 kỹ thuật nhằm giảm thiểu số lượng dữ liệu lưu trữ của history bằng cách chỉ tính các giá trị min, max, average và tổng (total) giá trị dữ liệu thu thập được. Nhờ đó ta có được các giá trị cần thiết phục vụ cho việc xem biểu đồ của thời gian cũ.
+
 **Trends** thường được set giá trị lưu trữ lâu hơn **history**. Vi dụ: history 14 ngày, trends 1 năm. Dù bạn giữ giá trị **history** số ngày lưu trữ thấp còn **trends** dài hơn thì bạn vẫn hoàn toàn xem được thông tin biểu đồ thời gian cũ do **graph** sẽ sử dụng các thông tin trong table **trends** nhằm hiển thị cho bạn xem.
 
 Lưu ý:
