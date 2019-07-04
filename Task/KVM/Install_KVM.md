@@ -10,7 +10,7 @@ kvm             441119  1 kvm_intel
 [root@server1 ~]# systemctl start libvirtd 
 [root@server1 ~]# systemctl enable libvirtd 
 yum install "@X Window System" xorg-x11-xauth xorg-x11-fonts-* xorg-x11-utils -y
-yum install virt-manager
+yum install virt-manager -y
 ```
 ## 2. Configure Bridge networking for KVM virtual machine.Replace the interface name "eth0" for your own environment's one.
 ```sh
