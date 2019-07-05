@@ -145,3 +145,5 @@ iptables -I OUTPUT -p tcp --sport 10050 -j ACCEPT
 ```
 Nếu gặp lỗi này`Directory "/usr/share/zabbix/assets" must be writable.` trong quá trình cài đặt Zabbix. Hãy thử command sau:
 `chown -R apache:apache /usr/share/zabbix/assets/`
+## Tài liệu tham khảo
+https://computingforgeeks.com/how-to-install-zabbix-server-4-0-on-centos-7/
