@@ -78,11 +78,11 @@ exit;
 ```
 **Kết quả**
 ```sh
-$ mysql -u root -p
+[root@client01 ~]# mysql -u root -p
 Enter password:
 Welcome to the MariaDB monitor.  Commands end with ; or \g.
-Your MariaDB connection id is 12
-Server version: 10.2.22-MariaDB-log MariaDB Server
+Your MariaDB connection id is 8
+Server version: 10.2.26-MariaDB-log MariaDB Server
 
 Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
 
@@ -136,15 +136,15 @@ MariaDB [(none)]> show global variables like 'general_log';
 +---------------+-------+
 1 row in set (0.00 sec)
 
-MariaDB [(none)]> exit
+MariaDB [(none)]> exit;
 ```
 **Kiểm tra thư mục chứa log**
 ```sh
-$ ll /var/log/mariadb/
-total 28
--rw-rw---- 1 mysql mysql 20060 Mar  1 16:08 error.log
--rw-rw---- 1 mysql mysql  1474 Mar  1 16:29 mysql.log
--rw-r--r-- 1 mysql mysql  1328 Mar  1 16:07 slow.log
+[root@client01 ~]# ll /var/log/mariadb
+total 24
+-rw-rw---- 1 mysql mysql 14910 Aug  6 23:22 error.log
+-rw-rw---- 1 mysql mysql  3306 Aug  7 16:22 mysql.log
+-rw-rw---- 1 mysql mysql  1502 Aug  6 23:22 slow.log
 ```
 ***Thử khởi động lại MariaDB***
 ```sh
@@ -152,44 +152,45 @@ systemctl restart mariadb
 ```
 ***Log ghi lại***
 ```sh
-[root@thanhnb ~]# tailf /var/log/mariadb/error.log
-2019-03-13 16:03:06 140448053733120 [Note] /usr/sbin/mysqld (initiated by: unknown): Normal shutdown
-2019-03-13 16:03:06 140448053733120 [Note] Event Scheduler: Purging the queue. 0 events
-2019-03-13 16:03:06 140447619991296 [Note] InnoDB: FTS optimize thread exiting.
-2019-03-13 16:03:06 140448053733120 [Note] InnoDB: Starting shutdown...
-2019-03-13 16:03:06 140447435450112 [Note] InnoDB: Dumping buffer pool(s) to /var/lib/mysql/ib_buffer_pool
-2019-03-13 16:03:06 140447435450112 [Note] InnoDB: Buffer pool(s) dump completed at 190313 16:03:06
-2019-03-13 16:03:07 140448053733120 [Note] InnoDB: Shutdown completed; log sequence number 1620097
-2019-03-13 16:03:07 140448053733120 [Note] InnoDB: Removed temporary tablespace data file: "ibtmp1"
-2019-03-13 16:03:07 140448053733120 [Note] /usr/sbin/mysqld: Shutdown complete
+[root@client01 ~]# tailf /var/log/mariadb/error.log
+2019-08-07 16:25:12 139996208822016 [Note] /usr/sbin/mysqld (initiated by: unknown): Normal shutdown
+2019-08-07 16:25:12 139996208822016 [Note] Event Scheduler: Purging the queue. 0 events
+2019-08-07 16:25:12 139995650184960 [Note] InnoDB: FTS optimize thread exiting.
+2019-08-07 16:25:12 139996208822016 [Note] InnoDB: Starting shutdown...
+2019-08-07 16:25:12 139995197208320 [Note] InnoDB: Dumping buffer pool(s) to /var/lib/mysql/ib_buffer_pool
+2019-08-07 16:25:12 139995197208320 [Note] InnoDB: Buffer pool(s) dump completed at 190807 16:25:12
+2019-08-07 16:25:14 139996208822016 [Note] InnoDB: Shutdown completed; log sequence number 1620183
+2019-08-07 16:25:14 139996208822016 [Note] InnoDB: Removed temporary tablespace data file: "ibtmp1"
+2019-08-07 16:25:14 139996208822016 [Note] /usr/sbin/mysqld: Shutdown complete
 
-2019-03-13 16:03:07 139773417674944 [Note] InnoDB: Mutexes and rw_locks use GCC atomic builtins
-2019-03-13 16:03:07 139773417674944 [Note] InnoDB: Uses event mutexes
-2019-03-13 16:03:07 139773417674944 [Note] InnoDB: Compressed tables use zlib 1.2.7
-2019-03-13 16:03:07 139773417674944 [Note] InnoDB: Using Linux native AIO
-2019-03-13 16:03:07 139773417674944 [Note] InnoDB: Number of pools: 1
-2019-03-13 16:03:07 139773417674944 [Note] InnoDB: Using SSE2 crc32 instructions
-2019-03-13 16:03:07 139773417674944 [Note] InnoDB: Initializing buffer pool, total size = 128M, instances = 1, chunk size = 128M
-2019-03-13 16:03:07 139773417674944 [Note] InnoDB: Completed initialization of buffer pool
-2019-03-13 16:03:07 139772644132608 [Note] InnoDB: If the mysqld execution user is authorized, page cleaner thread priority can be changed. See the man page of setpriority().
-2019-03-13 16:03:07 139773417674944 [Note] InnoDB: Highest supported file format is Barracuda.
-2019-03-13 16:03:07 139773417674944 [Note] InnoDB: 128 out of 128 rollback segments are active.
-2019-03-13 16:03:07 139773417674944 [Note] InnoDB: Creating shared tablespace for temporary tables
-2019-03-13 16:03:07 139773417674944 [Note] InnoDB: Setting file './ibtmp1' size to 12 MB. Physically writing the file full; Please wait ...
-2019-03-13 16:03:07 139773417674944 [Note] InnoDB: File './ibtmp1' size is now 12 MB.
-2019-03-13 16:03:07 139773417674944 [Note] InnoDB: 5.7.25 started; log sequence number 1620097
-2019-03-13 16:03:07 139772479641344 [Note] InnoDB: Loading buffer pool(s) from /var/lib/mysql/ib_buffer_pool
-2019-03-13 16:03:07 139773417674944 [Note] Plugin 'FEEDBACK' is disabled.
-2019-03-13 16:03:07 139772479641344 [Note] InnoDB: Buffer pool(s) load completed at 190313 16:03:07
-2019-03-13 16:03:07 139773417674944 [Note] Server socket created on IP: '::'.
-2019-03-13 16:03:07 139773417674944 [Note] Reading of all Master_info entries succeded
-2019-03-13 16:03:07 139773417674944 [Note] Added new Master_info '' to hash table
-2019-03-13 16:03:07 139773417674944 [Note] /usr/sbin/mysqld: ready for connections.
-Version: '10.2.22-MariaDB-log'  socket: '/var/lib/mysql/mysql.sock'  port: 3306  MariaDB Server
+2019-08-07 16:25:14 139669141960896 [Note] InnoDB: Mutexes and rw_locks use GCC atomic builtins
+2019-08-07 16:25:14 139669141960896 [Note] InnoDB: Uses event mutexes
+2019-08-07 16:25:14 139669141960896 [Note] InnoDB: Compressed tables use zlib 1.2.7
+2019-08-07 16:25:14 139669141960896 [Note] InnoDB: Using Linux native AIO
+2019-08-07 16:25:14 139669141960896 [Note] InnoDB: Number of pools: 1
+2019-08-07 16:25:14 139669141960896 [Note] InnoDB: Using SSE2 crc32 instructions
+2019-08-07 16:25:14 139669141960896 [Note] InnoDB: Initializing buffer pool, total size = 128M, instances = 1, chunk size = 128M
+2019-08-07 16:25:14 139669141960896 [Note] InnoDB: Completed initialization of buffer pool
+2019-08-07 16:25:14 139668583855872 [Note] InnoDB: If the mysqld execution user is authorized, page cleaner thread priority can be changed. See the man page of setpriority().
+2019-08-07 16:25:14 139669141960896 [Note] InnoDB: Highest supported file format is Barracuda.
+2019-08-07 16:25:14 139669141960896 [Note] InnoDB: 128 out of 128 rollback segments are active.
+2019-08-07 16:25:14 139669141960896 [Note] InnoDB: Creating shared tablespace for temporary tables
+2019-08-07 16:25:14 139669141960896 [Note] InnoDB: Setting file './ibtmp1' size to 12 MB. Physically writing the file full; Please wait ...
+2019-08-07 16:25:14 139669141960896 [Note] InnoDB: File './ibtmp1' size is now 12 MB.
+2019-08-07 16:25:14 139669141960896 [Note] InnoDB: Waiting for purge to start
+2019-08-07 16:25:14 139669141960896 [Note] InnoDB: 5.7.27 started; log sequence number 1620183
+2019-08-07 16:25:14 139668284753664 [Note] InnoDB: Loading buffer pool(s) from /var/lib/mysql/ib_buffer_pool
+2019-08-07 16:25:14 139668284753664 [Note] InnoDB: Buffer pool(s) load completed at 190807 16:25:14
+2019-08-07 16:25:14 139669141960896 [Note] Plugin 'FEEDBACK' is disabled.
+2019-08-07 16:25:14 139669141960896 [Note] Server socket created on IP: '::'.
+2019-08-07 16:25:14 139669141960896 [Note] Reading of all Master_info entries succeeded
+2019-08-07 16:25:14 139669141960896 [Note] Added new Master_info '' to hash table
+2019-08-07 16:25:14 139669141960896 [Note] /usr/sbin/mysqld: ready for connections.
+Version: '10.2.26-MariaDB-log'  socket: '/var/lib/mysql/mysql.sock'  port: 3306  MariaDB Server
 ```
 ***Thử tạo slow query***
 ```sh
-mysql -u root
+mysql -u root -p
 
 SELECT SLEEP(10);
 
@@ -198,15 +199,12 @@ exit;
 ***Log ghi nhận***
 ```sh
 [root@client01 ~]# tailf /var/log/mariadb/slow.log 
-/usr/sbin/mysqld, Version: 10.2.22-MariaDB-log (MariaDB Server). started with:
-Tcp port: 0  Unix socket: (null)
-Time                 Id Command    Argument
-# Time: 190313 16:02:27
+# Time: 190807 16:27:27
 # User@Host: root[root] @ localhost []
-# Thread_id: 9  Schema:   QC_hit: No
-# Query_time: 10.000706  Lock_time: 0.000000  Rows_sent: 1  Rows_examined: 0
+# Thread_id: 8  Schema:   QC_hit: No
+# Query_time: 10.000389  Lock_time: 0.000000  Rows_sent: 1  Rows_examined: 0
 # Rows_affected: 0
-SET timestamp=1552467747;
+SET timestamp=1565170047;
 SELECT SLEEP(10);
 ```
 ***Thử kết nối tới MariaDB thông qua CLI***
@@ -217,12 +215,13 @@ exit;
 ***Log ghi nhận***
 ```sh
 [root@client01 ~]# cat /var/log/mariadb/mysql.log 
-/usr/sbin/mysqld, Version: 10.2.22-MariaDB-log (MariaDB Server). started with:
-Tcp port: 0  Unix socket: (null)
-Time                 Id Command    Argument
-190313 16:05:05	    8 Connect	root@localhost as anonymous on 
-		    8 Query	select @@version_comment limit 1
-190313 16:05:06	    8 Quit	
+190807 16:28:47     9 Connect   root@localhost as anonymous on
+                    9 Query     select @@version_comment limit 1
+190807 16:28:51     9 Quit
+190807 16:28:55    10 Connect   root@localhost as anonymous on
+                   10 Connect   Access denied for user 'root'@'localhost' (using password: YES)
+190807 16:29:03    11 Connect   root@localhost as anonymous on
+                   11 Query     select @@version_comment limit 1
 ```
 # Tài liệu tham khảo
 - https://blogcloud365vn.github.io/linux/cau-hinh-log-mariadb-10.2/
