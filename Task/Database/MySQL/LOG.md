@@ -197,7 +197,7 @@ exit;
 ```
 ***Log ghi nhận***
 ```sh
-[root@thanhnb ~]# tailf /var/log/mariadb/slow.log 
+[root@client01 ~]# tailf /var/log/mariadb/slow.log 
 /usr/sbin/mysqld, Version: 10.2.22-MariaDB-log (MariaDB Server). started with:
 Tcp port: 0  Unix socket: (null)
 Time                 Id Command    Argument
@@ -216,7 +216,7 @@ exit;
 ```
 ***Log ghi nhận***
 ```sh
-[root@thanhnb ~]# cat /var/log/mariadb/mysql.log 
+[root@client01 ~]# cat /var/log/mariadb/mysql.log 
 /usr/sbin/mysqld, Version: 10.2.22-MariaDB-log (MariaDB Server). started with:
 Tcp port: 0  Unix socket: (null)
 Time                 Id Command    Argument
