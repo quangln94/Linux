@@ -223,5 +223,53 @@ exit;
 190807 16:29:03    11 Connect   root@localhost as anonymous on
                    11 Query     select @@version_comment limit 1
 ```
+***LOG Thao tác với MySQL***
+Tất cả các thao tác đều được ghi vào `/var/log/mariadb/mysql.log`
+```sh
+[root@client01 ~]# tailf /var/log/mariadb/mysql.log
+190807 16:26:22     8 Query     SELECT SLEEP(10)
+190807 16:27:17     8 Query     SELECT SLEEP(10)
+190807 16:28:37     8 Quit
+190807 16:28:47     9 Connect   root@localhost as anonymous on
+                    9 Query     select @@version_comment limit 1
+190807 16:28:51     9 Quit
+190807 16:28:55    10 Connect   root@localhost as anonymous on
+                   10 Connect   Access denied for user 'root'@'localhost' (using password: YES)
+190807 16:29:03    11 Connect   root@localhost as anonymous on
+                   11 Query     select @@version_comment limit 1
+190807 16:39:38    12 Connect   root@localhost as anonymous on
+                   12 Query     select @@version_comment limit 1
+190807 16:40:02    12 Query     show databases
+190807 16:40:21    12 Query     create database test
+190807 16:40:40    12 Query     drop test
+190807 16:40:49    12 Query     drop databases test
+190807 16:40:56    12 Query     dell databases test
+190807 16:41:40    12 Query     create databases test1
+190807 16:42:19    12 Query     create database test1
+190807 16:42:34    12 Query     SELECT DATABASE()
+                   12 Init DB   test1
+                   12 Query     show databases
+                   12 Query     show tables
+190807 16:43:09    12 Query     create table table1
+190807 16:43:37    12 Query     create table table1(ho, ten)
+190807 16:44:32    12 Query     create table table1(ho NOT_NULL, ten NOT_NULL)
+190807 16:44:52    12 Query     create table table1(ho NOT NULL, ten NOT NULL)
+190807 16:46:19    12 Query     create table table1 (ho INT NOT NULL AUTO_INCREMENT, ten VARCHAR(50) NOT NULL)
+190807 16:46:23    12 Query     create table table1 (ho INT NOT NULL AUTO_INCREMENT, ten VARCHAR(50) NOT NULL)
+190807 16:46:55    12 Query     create table table1 (ho INT NOT NULL AUTO_INCREMENT, ten VARCHAR(50) NOT NULL, PRIMARY                  KEY (stt) )
+190807 16:47:28    12 Query     create table table1 (ho INT NOT NULL AUTO_INCREMENT, ten VARCHAR(50) NOT NULL, PRIMARY                  KEY (ho) )
+190807 16:48:15    12 Query     select * from table1
+190807 16:48:20    12 Query     select * from table1
+190807 16:48:29    12 Query     show tables
+190807 16:48:48    12 Query     drop table tables1
+190807 16:48:58    12 Query     drop table table1
+190807 16:49:13    12 Query     drop database test1
+                   12 Query     SELECT DATABASE()
+190807 16:49:23    12 Query     show databases
+190807 16:49:31    12 Quit
+```
+
+
+
 # Tài liệu tham khảo
 - https://blogcloud365vn.github.io/linux/cau-hinh-log-mariadb-10.2/
