@@ -24,6 +24,7 @@
 ## 2. Tạo Action
 - ***Vào `Configure` chọn `Action` chọn `Create Action`
 <img src=https://i.imgur.com/hFBJZYi.png>
+
 ***Trong `Action`***
 `Name`: Tên `Action`
 ***Trong `Operations`:
@@ -31,6 +32,7 @@
 - ***Chọn `Add` hoặc chọn `New` tại `Operatios` để thực hiện "Cảnh báo leo thang" trong `Operation details`***
 vd: 
 <img src=https://i.imgur.com/uAn0L2k.png>
-Step 1: Gửi cảnh báo tới user guest bằng tất cả các media ngay lập tức
-Step 2: Sau 60s (Default time) thực hiện step 2 3 4, mỗi step 60s
-Step 3: Sau 60s của step 2 thực hiện step 5.
+
+Step 1: Gửi cảnh báo tới user guest bằng tất cả các media ngay lập tức</br>
+Step 2: Sau 60s (Default time) thực hiện step 2 3 4, mỗi step 60s</br>
+Step 3: Sau 60s của step 2 thực hiện step 5.</br>
