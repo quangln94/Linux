@@ -25,11 +25,11 @@
 - ***Vào `Configure` chọn `Action` chọn `Create Action`***
 <img src=https://i.imgur.com/hFBJZYi.png>
 
-***Trong `Action`***
+***Trong `Action`***</br>
 `Name`: Tên `Action`
 <img src=https://i.imgur.com/I9cilRR.png>
 
-***Trong `Operations`:***
+***Trong `Operations`:***</br>
 `Default operation step duration`: Khoảng thời gian giữa các `step`
 
 - ***Chọn `Add` hoặc chọn `New` tại `Operatios` để thực hiện "Cảnh báo leo thang" trong `Operation details`***
