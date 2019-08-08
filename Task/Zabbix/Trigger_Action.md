@@ -3,10 +3,10 @@
 **Có thể tạo trigger trực tiếp cho mỗi `host` hoặc add vào `Template` tùy vào nhu cầu của mình.**
 - ***Vào `Template` chọn `Template` muốn add `trigger` chọn `trigger` sau đó chọn `Create Trigger`***
 <img src=https://i.imgur.com/0pjxKEf.png>
-**Trong đó:**
-`Name`: Tên trigger
-`Severity`: Mức độ cảnh báo
-`Expression:` Điều kiện xuất hiện cảnh báo
+**Trong đó:**</br>
+`Name`: Tên trigger</br>
+`Severity`: Mức độ cảnh báo</br>
+`Expression:` Điều kiện xuất hiện cảnh báo</br>
 Tại `Expression` chọn Add
 <img src=https://i.imgur.com/fQVRk9m.png>
 **Trong đó:**
