@@ -20,4 +20,4 @@
 `Time shift`: Khoảng thời gian giữa các lần thực hiện `Funtion`</br>
 `Result`: Điều kiện để `trigger` thực hiện cảnh báo.</br>
 
-- ***Chọn `add`.***
+- ***Chọn `Insert` sau đó chọn `add` để add `trigger`.***
