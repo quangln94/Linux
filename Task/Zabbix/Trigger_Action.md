@@ -15,8 +15,9 @@
 `Item`: Chọn `Item` mà `trigger` sẽ được add vào</br>
 `Functiont`: Điều kiện để `trigger` xảy ra</br>
 `Last of (T)`: 
-Với tham số là `Count`: Số lần thực hiện `Function` trong khoảng thời gian là `Time shift`
-Với tham số là `Time`: Số lần thực hiện `Time shift`
-`Time shift`: Khoảng thời gian giữa các lần thực hiện `Funtion`
-`Result`: Điều kiện để `trigger` thực hiện cảnh báo.
+    Với tham số là `Count`: Số lần thực hiện `Function` trong khoảng thời gian là `Time shift`</br>
+    Với tham số là `Time`: Số lần thực hiện `Time shift`</br>
+`Time shift`: Khoảng thời gian giữa các lần thực hiện `Funtion`</br>
+`Result`: Điều kiện để `trigger` thực hiện cảnh báo.</br>
+
 - ***Chọn `add`.***
