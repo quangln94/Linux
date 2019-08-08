@@ -23,7 +23,7 @@
 - ***Chọn `Insert` sau đó chọn `add` để add `trigger`.***
 ## 2. Tạo Action
 - ***Vào `Configure` chọn `Action` chọn `Create Action`***
-<img src=https://i.imgur.com/hFBJZYi.png>
+<img src=https://i.imgur.com/OWGYsoE.png>
 
 ***Trong `Action`***</br>
 `Name`: Tên `Action`
