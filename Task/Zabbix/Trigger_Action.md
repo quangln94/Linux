@@ -27,8 +27,11 @@
 
 ***Trong `Action`***
 `Name`: Tên `Action`
+<img srv=https://i.imgur.com/I9cilRR.png>
+
 ***Trong `Operations`:
 `Default operation step duration`: Khoảng thời gian giữa các `step`
+
 - ***Chọn `Add` hoặc chọn `New` tại `Operatios` để thực hiện "Cảnh báo leo thang" trong `Operation details`***
 vd: 
 <img src=https://i.imgur.com/uAn0L2k.png>
