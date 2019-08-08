@@ -8,11 +8,12 @@
 `Name`: Tên trigger</br>
 `Severity`: Mức độ cảnh báo</br>
 `Expression:` Điều kiện xuất hiện cảnh báo</br>
-Tại `Expression` chọn Add
+- ***Tại `Expression` chọn Add***
 <img src=https://i.imgur.com/fQVRk9m.png>
-**Trong đó:**
-`Item`: Chọn `Item` mà `trigger` sẽ được add vào
-`Functiont`: Điều kiện để `trigger` xảy ra
+
+**Trong đó:**</br>
+`Item`: Chọn `Item` mà `trigger` sẽ được add vào</br>
+`Functiont`: Điều kiện để `trigger` xảy ra</br>
 `Last of (T)`: 
 Với tham số là `Count`: Số lần thực hiện `Function` trong khoảng thời gian là `Time shift`
 Với tham số là `Time`: Số lần thực hiện `Time shift`
