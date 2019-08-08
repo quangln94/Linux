@@ -39,5 +39,5 @@ vd:
 <img src=https://i.imgur.com/uAn0L2k.png>
 
 Step 1: Gửi cảnh báo tới user guest bằng tất cả các media ngay lập tức</br>
-Step 2: Sau 60s (Default time) thực hiện step 2 3 4, mỗi step 60s</br>
-Step 3: Sau 60s của step 2 thực hiện step 5.</br>
+Step 2: Sau 60s (Default time) gửi cảnh báo đến user Monitor, thực hiện step 2 3 4, mỗi step 60s</br>
+Step 3: Sau 60s của step 2 thực hiện step 5 gửi cảnh báo đến user Admin.</br>
