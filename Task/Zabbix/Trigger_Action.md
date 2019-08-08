@@ -27,6 +27,7 @@
 
 ***Trong `Action`***</br>
 `Name`: Tên `Action`
+
 <img src=https://i.imgur.com/I9cilRR.png>
 
 ***Trong `Operations`:***</br>
@@ -34,6 +35,7 @@
 
 - ***Chọn `Add` hoặc chọn `New` tại `Operatios` để thực hiện "Cảnh báo leo thang" trong `Operation details`***
 vd: 
+
 <img src=https://i.imgur.com/uAn0L2k.png>
 
 Step 1: Gửi cảnh báo tới user guest bằng tất cả các media ngay lập tức</br>
