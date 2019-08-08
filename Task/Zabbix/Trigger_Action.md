@@ -1,7 +1,7 @@
 # Tạo trigger và Action trong Zabbix.
 ## 1. Tạo trigger
-**Có thể tạo trigger trực tiếp cho mỗi `host` hoặc add vào `Template` tùy vào nhu cầu của mình.
-- ***Vào `Template` chọn 'Template` muốn add `trigger` chọn `trigger` sau đó chọn `Create Trigger`
+**Có thể tạo trigger trực tiếp cho mỗi `host` hoặc add vào `Template` tùy vào nhu cầu của mình.**
+- ***Vào `Template` chọn 'Template` muốn add `trigger` chọn `trigger` sau đó chọn `Create Trigger`***
 <img src=https://i.imgur.com/0pjxKEf.png>
 **Trong đó:**
 `Name`: Tên trigger
@@ -17,4 +17,4 @@ Với tham số là `Count`: Số lần thực hiện `Function` trong khoảng 
 Với tham số là `Time`: Số lần thực hiện `Time shift`
 `Time shift`: Khoảng thời gian giữa các lần thực hiện `Funtion`
 `Result`: Điều kiện để `trigger` thực hiện cảnh báo.
-- **Chọn `add`.
+- ***Chọn `add`.***
