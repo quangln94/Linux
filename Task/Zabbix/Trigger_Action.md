@@ -21,3 +21,11 @@
 `Result`: Điều kiện để `trigger` thực hiện cảnh báo.</br>
 
 - ***Chọn `Insert` sau đó chọn `add` để add `trigger`.***
+## 2. Tạo Action
+- ***Vào `Configure` chọn `Action` chọn `Create Action`
+<img src=>
+***Trong `Action`***
+`Name`: Tên `Action`
+***Trong `Operations`:
+`Default operation step duration`: Khoảng thời gian giữa các `step`
+`Default subject`
