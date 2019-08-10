@@ -12,13 +12,14 @@ Trước tiên cài đặt grafana server. Có nhiều cách để cài. Dưới
 yum install https://dl.grafana.com/oss/release/grafana-5.4.2-1.x86_64.rpm
 ```
 **Cách 2**
+
 Tham khảo version và cài đặt như hương dẫn [tại đây](https://grafana.com/grafana/download)
 
 **Cách 3**
 
 Thêm các dòng sau vào file `/etc/yum.repos.d/grafana.repo`
 
-```
+```sh
 [grafana]
 name=grafana
 baseurl=https://packages.grafana.com/oss/rpm
@@ -33,26 +34,25 @@ sslcacert=/etc/pki/tls/certs/ca-bundle.crt
 Dùng câu lệnh `yum` để install
 
 ```
-yum install grafana
+yum install grafana -y
 ```
 
 Ở bước trên bạn có thể lựa chọn một trong 2 cách để cài. Bây giờ tiến hành start grafana
 
-```
+```sh
 systemctl daemon-reload
-
 systemctl start grafana-server
 ```
 
 Kiểm tra lại trạng thái của grafana
 
-```
+```sh
 systemctl status grafana-server
 ```
 
 Cho phép grafana khởi động cùng hệ thống
 
-```
+```sh
 systemctl enable grafana-server
 ```
 
@@ -62,29 +62,28 @@ Grafana sử dụng port `3000` vì vậy nếu bạn không stop firewalld thì
 
 Để sử dụng bạn mở trình duyệt web và truy cập `IP-grafana-server:3000`. Bạn sẽ thấy giao diện login như sau:
 
-![](https://github.com/niemdinhtrong/thuctapsinh/blob/master/NiemDT/Ghichep-zabbix/images/grafana/1.png)
+<img src=https://i.imgur.com/QcbcoVa.png>
 
-Cả username và password mặc định lần đầu đăng nhập là `admin`. Khi đăng nhập lần đầu hệ thống sẽ yêu cầu bạn đổi pass.
+Cả `username` và `password` mặc định lần đầu đăng nhập là `admin`. Khi đăng nhập lần đầu hệ thống sẽ yêu cầu bạn đổi `pass`.
 
 Khi login vào bạn sẽ thấy giao diện như sau
 
-![](https://github.com/niemdinhtrong/thuctapsinh/blob/master/NiemDT/Ghichep-zabbix/images/grafana/2.png)
+<img src=https://i.imgur.com/R2l1uu1.png>
 
 Bạn có thể add data source để hiển thị các biểu đồ thông qua data từ data source mà bạn add vào. Nếu muốn sử dụng grafana để hiển thị các metric từ zabbix server thì bạn cần chạy lệnh sau trên grafana server
 
 ```
 grafana-cli plugins install alexanderzobnin-zabbix-app
-
 systemctl restart grafana-server
 ```
 
 Và bây giờ bạn có thể add data source là `zabbix` vào grafana.
 
-![](https://github.com/niemdinhtrong/thuctapsinh/blob/master/NiemDT/Ghichep-zabbix/images/grafana/3.1.png)
+<img src=https://i.imgur.com/B77yFJe.png>
 
 Cấu hình thông tin đến zabbix server
 
-![](https://github.com/niemdinhtrong/thuctapsinh/blob/master/NiemDT/Ghichep-zabbix/images/grafana/4.png)
+<img src=https://i.imgur.com/tfoghXu.png>
 
 Ta có thể thấy một số thông số cần thiết cần phải cấu hình
 
@@ -98,19 +97,23 @@ Bây giờ ta có thể tạo Dashboard để tạo các biểu đồ để quan
 
 Ban đầu bạn cần tạo một Dashboard sau đó tạo các biểu đồ trên đó. Để tạo Dashboard bạn click vào biểu tượng dấu cộng
 
-![](https://github.com/niemdinhtrong/thuctapsinh/blob/master/NiemDT/Ghichep-zabbix/images/grafana/8.png)
+<img src=https://i.imgur.com/aZ2E6bL.png>
 
 Sau đó chọn loại biểu đồ. Để thêm các thông số cho biểu đồ để hiển thị bạn click vào `edit`
 
-![](https://github.com/niemdinhtrong/thuctapsinh/blob/master/NiemDT/Ghichep-zabbix/images/grafana/6.png)
+<img src=https://i.imgur.com/pEqVFXB.png>
 
-Bạn thêm các metric tương tự như trong zabbix để hiển thị 
+Bạn thêm các `metric tương tự như trong zabbix để hiển thị 
 
-![](https://github.com/niemdinhtrong/thuctapsinh/blob/master/NiemDT/Ghichep-zabbix/images/grafana/7.png)
+<img src=https://i.imgur.com/sqinWIs.png>
 
 Bạn có thể thêm nhiều biểu đồ trong một màn hình Dashboard
 
-![](https://github.com/niemdinhtrong/thuctapsinh/blob/master/NiemDT/Ghichep-zabbix/images/grafana/9.png)
+<img src=https://i.imgur.com/b9ouMYc.png>
 
 # Tài liệu tham khảo
 - https://github.com/niemdinhtrong/thuctapsinh/blob/master/NiemDT/Ghichep-zabbix/labs/grafana.md
+- [https://github.com/hocchudong/thuctap012017/blob/master/TamNT/Graphite-Collectd-Grafana/docs/10.Grafana_nang_cao.md](https://github.com/hocchudong/thuctap012017/blob/master/TamNT/Graphite-Collectd-Grafana/docs/10.Grafana_nang_cao.md)
+- [https://github.com/alexanderzobnin/grafana-zabbix](https://github.com/alexanderzobnin/grafana-zabbix)
+- [https://grafana.com/docs/reference/templating/](https://grafana.com/docs/reference/templating/)
+- [https://alexanderzobnin.github.io/grafana-zabbix/reference/functions/](https://alexanderzobnin.github.io/grafana-zabbix/reference/functions/)
