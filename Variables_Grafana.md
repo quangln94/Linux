@@ -27,6 +27,7 @@
 
 - Tiếp tục làm  tương tự với biến tiếp theo. 
 <img src=https://i.imgur.com/zm93PSa.png>
+
 ***Chú ý:*** Ở mục `Query Option`. Trường `Query` trỏ đến biến `group` vừa tạo ở trên để lấy `query.
 - Sau khi tạo xong biến tiếp theo ta có thể thấy các biến được liệt kê như dưới đây. Dầu mũi tên ngoài cùng bên phải chỉ mối quán hệ giữa các biến. 
 <img src=https://i.imgur.com/Nl4ixik.png>
