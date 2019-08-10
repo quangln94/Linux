@@ -1,8 +1,6 @@
-# Tài liệu hướng dẫn cài đặt và cấu hình grafana kết hợp zabbix
-
+# Cài đặt và cấu hình Grafana kết hợp Zabbix
 Grafana là một công cụ hiển thị các thông số dưới dạng biểu đồ. Như vậy grafana có thể lấy các dữ liệu tử một nơi bất kì nào đó để hiển thị lên. Trong bài viết này tôi sẽ kết hợp grafana và zabbix để lấy các metric từ zabbix và hiển thị nó dưới dạng biểu đồ một cách trực quan.
-
-## Cài đặt grafana
+## 1. Cài đặt grafana
 
 Grafana có thể cài đặt ngay tại server cài zabbix server hoăc một server khác.
 
@@ -13,8 +11,10 @@ Trước tiên cài đặt grafana server. Có nhiều cách để cài. Dưới
 ```
 yum install https://dl.grafana.com/oss/release/grafana-5.4.2-1.x86_64.rpm
 ```
-
 **Cách 2**
+Tham khảo version và cài đặt như hương dẫn [tại đây](https://grafana.com/grafana/download)
+
+**Cách 3**
 
 Thêm các dòng sau vào file `/etc/yum.repos.d/grafana.repo`
 
