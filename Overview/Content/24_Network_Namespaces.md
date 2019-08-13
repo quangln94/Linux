@@ -1,14 +1,37 @@
 # Linux Network Namespaces
-Các thiết bị mạng chuyên dụng sử dụng Virtual Routing and Forwarding (VRF), có nghĩa là nhiều bộ định tuyến ảo (ví dụ chuyển tiếp lớp 3) có thể chạy trên cùng một thiết bị vật lý. Trong Linux virtual networking space, các không gian tên mạng cho phép các phiên bản riêng của giao diện mạng và bảng định tuyến hoạt động độc lập với nhau.
-## Hoạt động cơ bản trên namespace
+
+## 1. Khái niệm
+
+Network namspace là khái niệm cho phép bạn cô lập môi trường mạng network trong một host. Namespace phân chia việc sử dụng các khác niệm liên quan tới network như devices, địa chỉ addresses, ports, định tuyến và các quy tắc tường lửa vào trong một hộp (box) riêng biệt, chủ yếu là ảo hóa mạng trong một máy chạy một kernel duy nhất.
+
+Trong Linux virtual networking space, các Network Namespace cho phép tạo ra network interface và có bảng định tuyến riêng, các thiết lập iptables riêng cung cấp cơ chế NAT và lọc đối với các máy ảo thuộc namespace đó. Linux network namespaces cũng cung cấp thêm khả năng để chạy các tiến trình riêng biệt trong nội bộ mỗi namespace.
+
+Network namespace được sử dụng trong khá nhiều dự án như Openstack, Docker và Mininet.
+
+Các thiết bị mạng chuyên dụng sử dụng Virtual Routing and Forwarding (VRF), có nghĩa là nhiều bộ định tuyến ảo (ví dụ chuyển tiếp lớp 3) có thể chạy trên cùng một thiết bị vật lý. 
+
+## 2. Một số thao tác với Network Namespace
+- Liệt kê `namespace`:
+```sh
+ip netns
+ # hoặc
+ip netns list
 ```
-[root@server1 ~]# ip netns add Blue
-[root@server1 ~]# ip netns list
-Blue
-[root@server1 ~]# ll /var/run/netns/
-total 0
--r--r--r--. 1 root root 0 Dec 27 22:18 Blue
+Nếu chưa thêm bất kì `network namespace` nào thì đầu ra màn hình sẽ để trống. `root namespace` sẽ không được liệt kê khi sử dụng câu lệnh `ip netns list`.
+
+- Add `namespace`:
+
+```sh
+ip netns add ns1
+ip netns add ns2
 ```
+Mỗi khi thêm vào một `namespace`, một file mới được tạo trong thư mục `/var/run/netns` với tên giống như tên `namespace`. (không bao gồm file của root namespace).
+```sh
+[root@client01 ~]# ls -al /var/run/netns/
+-r--r--r--  1 root root    0 Aug 13 19:10 ns1
+-r--r--r--  1 root root    0 Aug 13 19:10 ns2
+```
+
 Mỗi network namespace có giao diện loopback riêng, bảng định tuyến riêng và thiết lập iptables riêng cung cấp nat và filtering.
 ```
 [root@server1 ~]# ip netns exec Blue ip addr list
