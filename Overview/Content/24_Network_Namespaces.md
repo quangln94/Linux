@@ -184,3 +184,7 @@ PING 10.10.10.1 (10.10.10.1) 56(84) bytes of data.
 64 bytes from 10.10.10.1: icmp_seq=1 ttl=64 time=0.545 ms
 64 bytes from 10.10.10.1: icmp_seq=2 ttl=64 time=0.369 ms
 ```
+# Tài liệu tham khảo
+- http://man7.org/linux/man-pages/man8/ip-netns.8.html
+- https://ops.tips/blog/using-network-namespaces-and-bridge-to-isolate-servers/
+- https://github.com/hocchudong/thuctap012017/blob/master/TamNT/Virtualization/docs/7.Linux_network_namespace.md
