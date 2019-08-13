@@ -31,53 +31,87 @@ Mỗi khi thêm vào một `namespace`, một file mới được tạo trong th
 -r--r--r--  1 root root    0 Aug 13 19:10 ns1
 -r--r--r--  1 root root    0 Aug 13 19:10 ns2
 ```
+- Thực thi lệnh trong `namespace`
+Để thực hiện các lệnh trong một `namespace` thì làm như sau: `ip netns exec <namespace> <command>`
+Ví dụ:
 
-Mỗi network namespace có giao diện loopback riêng, bảng định tuyến riêng và thiết lập iptables riêng cung cấp nat và filtering.
+Thay vì gõ :
+```sh
+ip a
 ```
-[root@server1 ~]# ip netns exec Blue ip addr list
+thì ta làm như sau:
+```
+[root@client01 ~]# ip netns exec ns1 ip a
+1: lo: <LOOPBACK> mtu 65536 qdisc noop state DOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+
+```
+Để liệt kê tất các các địa chỉ interface của các namespace sử dụng tùy chọn `–a` hoặc `–all` như sau:
+``sh
+[root@client01 ~]# ip -a netns exec ip a
+
+netns: ns2
+1: lo: <LOOPBACK> mtu 65536 qdisc noop state DOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+7: veth2@if8: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+    link/ether 6e:5e:83:fe:72:00 brd ff:ff:ff:ff:ff:ff link-netnsid 0
+    inet 192.168.1.2/24 scope global veth2
+       valid_lft forever preferred_lft forever
+    inet6 fe80::6c5e:83ff:fefe:7200/64 scope link
+       valid_lft forever preferred_lft forever
+
+netns: ns1
 1: lo: <LOOPBACK> mtu 65536 qdisc noop state DOWN group default qlen 1000
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
 ```
-Đảm bảo hiển thị giao diện đó trước để hoạt động với network namespace
+Kết quả đầu ra sẽ khác so với khi chạy câu lệnh ip a ở chế độ mặc định (trong root namespace). Mỗi namespace sẽ có một môi trường mạng cô lập, có giao diện loopback riêng, có các interface và bảng định tuyến riêng và thiết lập iptables riêng cung cấp nat và filtering.
 ```
-[root@server1 ~]# ip netns exec Blue ip link set dev lo up
-[root@server1 ~]# ip netns exec Blue ifconfig
-lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
-        inet 127.0.0.1  netmask 255.0.0.0
-        inet6 ::1  prefixlen 128  scopeid 0x10<host>
-        loop  txqueuelen 1000  (Local Loopback)
-        RX packets 0  bytes 0 (0.0 B)
-        RX errors 0  dropped 0  overruns 0  frame 0
-        TX packets 0  bytes 0 (0.0 B)
-        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+Thoát khỏi vùng làm việc của namespace gõ `exit`
+
+
+- Xóa `namespace`
+Xóa namespace sử dụng câu lệnh:
+```sh
+ip netns delete <namespace_name>
 ```
-Network namespaces còn có khả năng chạy các tiến trình trong network namespace. Ví dụ: chạy phiên bash trong Blue namespace
+- `Network namespaces` còn có khả năng chạy các tiến trình trong `network namespace`. Ví dụ: chạy phiên bash trong một `namespace`
+```sh
+ip netns exec <namespacwe> bash
 ```
-[root@server1 ~]# ip netns exec Blue bash
-[root@server1 ~]# ifconfig
-lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
-        inet 127.0.0.1  netmask 255.0.0.0
-        inet6 ::1  prefixlen 128  scopeid 0x10<host>
-        loop  txqueuelen 1000  (Local Loopback)
-        RX packets 0  bytes 0 (0.0 B)
-        RX errors 0  dropped 0  overruns 0  frame 0
-        TX packets 0  bytes 0 (0.0 B)
-        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+```sh
+
+[root@client01 ~]# ip netns exec ns1 bash
+[root@client01 ~]# ip a
+1: lo: <LOOPBACK> mtu 65536 qdisc noop state DOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+[root@client01 ~]# exit
+exit
 ```
-Xóa namespace
+Lưu ý: gõ `exit` để thoát khỏi `bash` của name space hiện tại.
 ```
-[root@server1 ~]# ip netns add Yellow
-[root@server1 ~]# ip netns list
-Yellow
-Blue
-[root@server1 ~]# ip netns delete Yellow
-[root@server1 ~]# ip netns list
-Blue
+- Xóa namespace
+```sh
+ip netns delete <namespace_name>
+``
+[root@client01 ~]# ip netns add ns1
+[root@client01 ~]# ip netns add ns2
+[root@client01 ~]# ip netns list
+ns2
+ns1
+[root@client01 ~]# ip netns delete ns1
+[root@client01 ~]# ip netns list
+ns2
 ```
-Add interfaces to network namespaces</br>
-Để kết nối một network namespace với bên ngoài, hãy đính kèm một virtual interface vào “default” hoặc “global” namespace nơi physical interfaces tồn tại. Để thực hiện điều này, hãy tạo một vài giao diện ảo, được gọi là `vetha` và `vethb`
+- Add `interfaces` vào network `namespaces`:
+
+```sh
+ip link set <interface_name> netns <namespace_name>
 ```
-[root@server1 ~]# ip link add vetha type veth peer name vethb
+
+Để kết nối một `network namespace` với bên ngoài, hãy đính kèm một `virtual interface` vào `default` hoặc `global` `namespace` nơi `physical interfaces` tồn tại. Để thực hiện điều này, hãy tạo một vài `interface` ảo, được gọi là `veth1` và `veth2`
+
+```
+[root@client01 ~]# ip link add veth` type veth peer name veth`
 ```
 Đính kèm vethb vào Blue namespace
 ```
