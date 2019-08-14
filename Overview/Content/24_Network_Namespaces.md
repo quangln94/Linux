@@ -119,11 +119,11 @@ Virtual network interface `veth1` vẫn gắn liền với `global namespace`
 ```
 [root@client01 ~]# ip link set dev veth1 up
 ```
-Configure the virtual interface trong global network namespace
+- Configure the virtual interface trong global network namespace
 ```
 [root@client01 ~]# ip addr add 192.168.1.1/24 dev veth1
 ```
-và trong `ns` network namespace
+và trong `ns2` network namespace
 ```
 [root@client01 ~]# ip netns exec ns2 ip addr add 192.168.1.2/24 dev veth2
 ```
