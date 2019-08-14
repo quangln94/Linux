@@ -130,7 +130,28 @@ và trong `ns2` network namespace
 
 ## 3. Lab cơ bản
 
-
+Tạo 2 `Network Namespace`
+```sh
+ip netns add ns2
+```
+- Tạo 1 cặp `veth` kể kết nối với `Namespace`
+```sh
+ip link add veth1 type veth peer name veth2
+```
+- Kết nối `veth2` với `ns2` 
+```sh
+ip link set veth2 netns ns2
+```
+- Enable interface
+```sh
+ip link set dev veth1 up
+ip netns exec ns2 ip link set dev veth2 up
+```
+- Add IP 
+```sh
+ip addr add 192.168.1.1/24 dev veth1
+ip netns exec ns2 ip addr add 192.168.1.2/24 dev veth2
+```
 
 # Tài liệu tham khảo
 - http://man7.org/linux/man-pages/man8/ip-netns.8.html
