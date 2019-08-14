@@ -47,7 +47,7 @@ thì ta làm như sau:
 
 ```
 Để liệt kê tất các các địa chỉ interface của các namespace sử dụng tùy chọn `–a` hoặc `–all` như sau:
-``sh
+```sh
 [root@client01 ~]# ip -a netns exec ip a
 
 netns: ns2
@@ -65,9 +65,6 @@ netns: ns1
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
 ```
 Kết quả đầu ra sẽ khác so với khi chạy câu lệnh ip a ở chế độ mặc định (trong root namespace). Mỗi namespace sẽ có một môi trường mạng cô lập, có giao diện loopback riêng, có các interface và bảng định tuyến riêng và thiết lập iptables riêng cung cấp nat và filtering.
-```
-Thoát khỏi vùng làm việc của namespace gõ `exit`
-
 
 - Xóa `namespace`
 Xóa namespace sử dụng câu lệnh:
@@ -79,7 +76,6 @@ ip netns delete <namespace_name>
 ip netns exec <namespacwe> bash
 ```
 ```sh
-
 [root@client01 ~]# ip netns exec ns1 bash
 [root@client01 ~]# ip a
 1: lo: <LOOPBACK> mtu 65536 qdisc noop state DOWN group default qlen 1000
@@ -88,11 +84,12 @@ ip netns exec <namespacwe> bash
 exit
 ```
 Lưu ý: gõ `exit` để thoát khỏi `bash` của name space hiện tại.
-```
+
 - Xóa namespace
 ```sh
 ip netns delete <namespace_name>
-``
+```
+```sh
 [root@client01 ~]# ip netns add ns1
 [root@client01 ~]# ip netns add ns2
 [root@client01 ~]# ip netns list
@@ -111,78 +108,30 @@ ip link set <interface_name> netns <namespace_name>
 Để kết nối một `network namespace` với bên ngoài, hãy đính kèm một `virtual interface` vào `default` hoặc `global` `namespace` nơi `physical interfaces` tồn tại. Để thực hiện điều này, hãy tạo một vài `interface` ảo, được gọi là `veth1` và `veth2`
 
 ```
-[root@client01 ~]# ip link add veth` type veth peer name veth`
+[root@client01 ~]# ip link add veth1 type veth peer name veth2
 ```
-Đính kèm vethb vào Blue namespace
+Đính kèm `veth2` vào `ns` namespace
 ```
-[root@centos-01 ~]# ip link set vethb netns Blue
-[root@centos-01 ~]# ip netns exec Blue ip link set dev vethb up
-[root@centos-01 ~]# ip netns exec Blue ifconfig
-lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
-        inet 127.0.0.1  netmask 255.0.0.0
-        inet6 ::1  prefixlen 128  scopeid 0x10<host>
-        loop  txqueuelen 0  (Local Loopback)
-vethb: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
-        ether 7e:e4:29:bc:9c:67  txqueuelen 1000  (Ethernet)
+[root@client01 ~]# ip link set veth2 netns ns2
+[root@client01 ~]# ip netns exec ns2 ip link set dev veth2 up
 ```
-Virtual network interface vetha vẫn gắn liền với global namespace
+Virtual network interface `veth1` vẫn gắn liền với `global namespace`
 ```
-[root@centos-01 ~]# ip link set dev vetha up
-[root@centos-01 ~]# ifconfig
-ens32: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
-        inet 10.10.10.21  netmask 255.255.255.0  broadcast 10.10.10.255
-        inet6 fe80::20c:29ff:fe1e:6bf1  prefixlen 64  scopeid 0x20<link>
-        ether 00:0c:29:1e:6b:f1  txqueuelen 1000  (Ethernet)
-lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
-        inet 127.0.0.1  netmask 255.0.0.0
-        inet6 ::1  prefixlen 128  scopeid 0x10<host>
-        loop  txqueuelen 0  (Local Loopback)
-vetha: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
-        inet6 fe80::e899:ceff:fef6:3010  prefixlen 64  scopeid 0x20<link>
-        ether ea:99:ce:f6:30:10  txqueuelen 1000  (Ethernet)
+[root@client01 ~]# ip link set dev veth1 up
 ```
 Configure the virtual interface trong global network namespace
 ```
-[root@centos-01 ~]# ip addr add 192.168.100.1/24 dev vetha
-[root@centos-01 ~]# route
-Kernel IP routing table
-Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
-default         gateway         0.0.0.0         UG    100    0        0 ens32
-10.10.10.0      0.0.0.0         255.255.255.0   U     100    0        0 ens32
-192.168.100.0   0.0.0.0         255.255.255.0   U     0      0        0 vetha
-[root@centos-01 ~]#
+[root@client01 ~]# ip addr add 192.168.1.1/24 dev veth1
 ```
-và trong Blue network namespace
+và trong `ns` network namespace
 ```
-[root@centos-01 ~]# ip netns exec Blue ip addr add 192.168.100.2/24 dev vethb
-[root@centos-01 ~]# ip netns exec Blue route
-Kernel IP routing table
-Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
-192.168.100.0   0.0.0.0         255.255.255.0   U     0      0        0 vethb
-[root@centos-01 ~]#
+[root@client01 ~]# ip netns exec ns2 ip addr add 192.168.1.2/24 dev veth2
 ```
-Both the namespaces, Blue and global bây giờ có thể truy cập lẫn nhau thông qua virtual network interfaces
-```
-[root@centos-01 ~]# ping 192.168.100.2
-PING 192.168.100.2 (192.168.100.2) 56(84) bytes of data.
-64 bytes from 192.168.100.2: icmp_seq=1 ttl=64 time=0.041 ms
-64 bytes from 192.168.100.2: icmp_seq=2 ttl=64 time=0.029 ms
-^C
-[root@centos-01 ~]# ip netns exec Blue ping 192.168.100.1
-PING 192.168.100.1 (192.168.100.1) 56(84) bytes of data.
-64 bytes from 192.168.100.1: icmp_seq=1 ttl=64 time=0.034 ms
-64 bytes from 192.168.100.1: icmp_seq=2 ttl=64 time=0.039 ms
-^C
-```
-Nhưng chúng là các thực thể định tuyến hoàn toàn tách biệt
-```
-[root@centos-01 ~]# ip netns exec Blue ping 10.10.10.1
-connect: Network is unreachable
-[root@centos-01 ~]#
-[root@centos-01 ~]# ping 10.10.10.1
-PING 10.10.10.1 (10.10.10.1) 56(84) bytes of data.
-64 bytes from 10.10.10.1: icmp_seq=1 ttl=64 time=0.545 ms
-64 bytes from 10.10.10.1: icmp_seq=2 ttl=64 time=0.369 ms
+
+## 3. Lab cơ bản
+
+
+
 ```
 # Tài liệu tham khảo
 - http://man7.org/linux/man-pages/man8/ip-netns.8.html
