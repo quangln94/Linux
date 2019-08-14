@@ -132,7 +132,6 @@ và trong `ns` network namespace
 
 
 
-```
 # Tài liệu tham khảo
 - http://man7.org/linux/man-pages/man8/ip-netns.8.html
 - https://ops.tips/blog/using-network-namespaces-and-bridge-to-isolate-servers/
