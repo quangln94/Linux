@@ -180,15 +180,15 @@ ip link set br-veth2 up
 ```
 - Tạo bridge devive
 ```sh
-ip link add name br type bridge
-ip link set br up
+ip link add name br1 type bridge
+ip link set br1 up
 ```
 ```sh
-ip link set br-veth1 master br
-ip link set br-veth2 master br
+ip link set br-veth1 master br1
+ip link set br-veth2 master br1
 ```
 ```sh
-ip addr add 192.168.1.10/24 brd + dev br
+ip addr add 192.168.1.10/24 brd + dev br1
 ```
 
 
