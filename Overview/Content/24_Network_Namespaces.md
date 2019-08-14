@@ -157,6 +157,46 @@ ip netns exec ns2 ip addr add 192.168.1.2/24 dev veth2
 Đứng tại `ns2` ping đến `veth1` và Internet</br>
 Đứng tại `veth1` ping đến `ns2` và Internet</br>
 
+### 3.2
+- Tạo 2 `Namespace`
+```sh
+ip netns add ns1
+ip netns add ns2
+```
+- Tạo 2 cặp `veth`
+```sh
+ip link add veth1 type veth peer name br-veth1
+ip link add veth2 type veth peer name br-veth2
+```
+- Link `veth` vào `namespace`
+```sh
+ip link set veth1 netns ns1
+ip link set veth2 netns ns2
+```
+- Gán IP và enable Interface
+```sh
+ip netns exec ns1 ip add add 192.168.1.1/24 dev veth1
+ip netns exec ns2 ip add add 192.168.1.2/24 dev veth2
+ip netns exec ns1 ip link set dev veth1 up
+ip netns exec ns2 ip link set dev veth2 up
+ip link set br-veth1 up
+ip link set br-veth2 up
+
+```
+- Tạo bridge devive
+```sh
+ip link add name br1 type bridge
+ip link set br1 up
+```
+```sh
+ip link set br-veth1 master br1
+ip link set br-veth2 master br1
+```
+```sh
+ip addr add 192.168.1.10/24 brd + dev br1
+```
+
+
 # Tài liệu tham khảo
 - http://man7.org/linux/man-pages/man8/ip-netns.8.html
 - https://ops.tips/blog/using-network-namespaces-and-bridge-to-isolate-servers/
