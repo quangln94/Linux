@@ -130,7 +130,7 @@ và trong `ns2` network namespace
 
 ## 3. Lab cơ bản
 
-Tạo 2 `Network Namespace`
+- Tạo `Network Namespace`
 ```sh
 ip netns add ns2
 ```
