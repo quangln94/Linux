@@ -152,8 +152,10 @@ ip netns exec ns2 ip link set dev veth2 up
 ip addr add 192.168.1.1/24 dev veth1
 ip netns exec ns2 ip addr add 192.168.1.2/24 dev veth2
 ```
+- Kiểm tra
 
-
+Đứng tại `ns2` ping đến `veth1` và Internet</br>
+Đứng tại `veth1` ping đến `ns2` và Internet</br>
 
 # Tài liệu tham khảo
 - http://man7.org/linux/man-pages/man8/ip-netns.8.html
