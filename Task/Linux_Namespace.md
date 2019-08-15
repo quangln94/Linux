@@ -30,9 +30,28 @@ Các công cụ namespace như Docker cho phép kiểm soát tốt hơn các quy
 
 Mount Namespace cô lập danh sách các mountpoint được nhìn thấy bởi các process trong mỗi namespace. Do đó, các process trong mỗi trường hợp Mount Namespace sẽ thấy các cấu trúc thư mục đơn riêng biệt.
 
+<img src=https://i.imgur.com/dmdIdD8.png>
+
 ### 3.2 UTS Namespace
 
-UTS Namespace là một namespace để cô lập các thiết lập liên quan đến hostname và domainname nhận diện của hệ thống:
+UTS Namespace là một namespace để cô lập các thiết lập liên quan đến hostname và domainname nhận diện của hệ thống
+
+Lệnh `unshare` cho phép chạy một chương trình với một số namespace và "không chia sẻ" với parent của nó, có nghĩa là unshare sẽ chạy bất kỳ chương trình nào trong một namespace.
+
+Sự cô lập này có thể được kiểm tra bằng cách chạy `hostname my-new-hostname` bên trong UTS namespace `/bin/sh` và xác nhận thay đổi `hostname` không được phản ánh bên ngoài process đó.
+```
+[root@client01 ~]# hostname
+client01
+[root@client01 ~]# unshare -u /bin/sh
+sh-4.2# hostname client02
+sh-4.2# hostname
+client02
+sh-4.2# exit
+exit
+[root@client01 ~]# hostname
+client01
+[root@client01 ~]#
+```
 
 ### 3.3 
 
@@ -50,18 +69,26 @@ Với sự cô lập Process namespace PID, các tprocess trong child namespace 
 
 Trong mã nguồn Linux, chúng ta có thể thấy rằng một cấu trúc có tên pid, được sử dụng để theo dõi chỉ một PID, giờ đây theo dõi nhiều PID thông qua việc sử dụng một cấu trúc có upid:
 
-### 2.4 Network Namespace
+### 3.5 Network Namespace
 
 Tham khảo phần Network Namespace [tại đây](https://github.com/quangln94/Linux/blob/master/Overview/Content/24_Network_Namespaces.md)
 
-### 2.5 User namespace
+### 3.6 User namespace
 
 User Namespace cô lập các định danh và thuộc tính liên quan đến bảo mật, đặc biệt là User ID Group ID. User ID và Group ID của một process có thể khác nhau giữa bên trong và bên ngoài một User Namespace. Cụ thể, một process có thể có User ID không có đặc quyền bình thường bên ngoài User namespace đồng thời có User ID bằng 0 trong namespace; nói cách khác, process có đầy đủ quyền cho các hoạt động bên trong User Namespace nhưng không được ưu tiên cho các hoạt động bên ngoài namespace.
 
 User namespace được lồng vào nhau tương tự PID Namespace
+
+## 4. 
+
+- Để xem `namespace trên server
+```sh
+lsns
+```
 
 # Tài liệu tham khảo
 - https://www.toptal.com/linux/separation-anxiety-isolating-your-system-with-linux-namespaces
 - https://blogd.net/linux/gioi-thieu-ve-linux-namespaces/
 - http://man7.org/linux/man-pages/man7/namespaces.7.html
 - https://medium.com/@teddyking/linux-namespaces-850489d3ccf
+- https://wvi.cz/diyC/namespaces/#namespaces
