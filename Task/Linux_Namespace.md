@@ -5,19 +5,19 @@ Linux namespace bao gồm một số công nghệ cơ bản đằng sau hầu h�
 
 ## 2. Các loại namespace
 
-Mount - cô lập các filesystem mount point
+***Mount*** - cô lập các filesystem mount point
 
-UTS - cô lập hostname và domainname
+***UTS*** - cô lập hostname và domainname
 
-IPC - cô lập tài nguyên giao tiếp liên tiến trình(IPC)
+***IPC*** - cô lập tài nguyên giao tiếp liên tiến trình(IPC)
 
-PID - cô lập vùng số cấp cho ID của tiến trình
+***PID*** - cô lập vùng số cấp cho ID của tiến trình
 
-Network - cô lập giao diện mạng
+***Network*** - cô lập giao diện mạng
 
-User - cô lập về UID/GID
+***User*** - cô lập về UID/GID
 
-Cgroup - cô lập về thư mục root của tính năng cgroups, chỉ mới xuất hiện từ Linux Kernel phiên bản 4.6 trở đi
+***Cgroup*** - cô lập về thư mục root của tính năng cgroups, chỉ mới xuất hiện từ Linux Kernel phiên bản 4.6 trở đi
 
 ### 2.5. Process Namespace - PID
 
