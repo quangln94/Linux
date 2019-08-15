@@ -13,7 +13,7 @@ Network - cô lập giao diện mạng
 User - cô lập về UID/GID
 Cgroup - cô lập về thư mục root của tính năng cgroups, chỉ mới xuất hiện từ Linux Kernel phiên bản 4.6 trở đi
 
-### 2.1. Process Namespace - PID
+### 2.5. Process Namespace - PID
 
 Trong Linux duy trì một process tree. Tre tham chiếu đến mọi process đang chạy trong hệ thống phân cấp parent-child. Một process có đủ quyền và thỏa mãn một số điều kiện nhất định có thể kiểm tra một quy trình khác hoặc thậm chí có thể kill process đó.
 
@@ -27,6 +27,9 @@ Với sự cô lập Process namespace PID, các tprocess trong child namespace 
 
 Trong mã nguồn Linux, chúng ta có thể thấy rằng một cấu trúc có tên pid, được sử dụng để theo dõi chỉ một PID, giờ đây theo dõi nhiều PID thông qua việc sử dụng một cấu trúc có upid:
 
+### 2.6 Network Namespace
+
+Tham khảo phần Network Namespace (tại đây)[https://github.com/quangln94/Linux/blob/master/Overview/Content/24_Network_Namespaces.md]
 # Tài liệu tham khảo
 - https://www.toptal.com/linux/separation-anxiety-isolating-your-system-with-linux-namespaces
 - https://blogd.net/linux/gioi-thieu-ve-linux-namespaces/
