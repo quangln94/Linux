@@ -2,8 +2,15 @@
 
 ## 1. Giới thiệu
 Linux namespace bao gồm một số công nghệ cơ bản đằng sau hầu hết các triển khai container hiện đại. Ở cấp độ cao, chúng cho phép cô lập tài nguyên hệ thống. Ví dụ, namespace PID cô lập không gian số ID tiến trình. Điều này có nghĩa là hai tiến trình đang chạy trên cùng một máy chủ có thể có cùng một PID!
+## 2. Mục tiêu 
 
-## 2. Các loại namespace
+Cung cấp một môi trường an toàn để tránh rủi ro
+
+Trên 1 máy thông thường một môi trường hệ thống duy nhất có thể ổn. Nhưng trên một máy chủ, nơi bạn muốn chạy nhiều dịch vụ, điều cần thiết là phải bảo mật và ổn định và các dịch vụ càng cách ly nhau càng tốt. Hãy tưởng tượng một máy chủ chạy nhiều dịch vụ, một trong số đó bị xâm nhập bởi hacker. Trong trường hợp đó, hacker có thể khai thác dịch vụ đó và tìm đường đến các dịch vụ khác và thậm chí có thể xâm nhập toàn bộ máy chủ. Namespace Isolation - Cô lập Name Space có thể cung cấp một môi trường an toàn để loại bỏ rủi ro này.
+
+Các công cụ namespace như Docker cũng cho phép kiểm soát tốt hơn các quy trình sử dụng tài nguyên hệ thống, làm cho các công cụ đó trở nên cực kỳ phổ biến để các nhà cung cấp PaaS sử dụng. Các dịch vụ như Heroku và Google App Engine sử dụng các công cụ như vậy để cô lập và chạy nhiều ứng dụng máy chủ web trên cùng một phần cứng. Các công cụ này cho phép họ chạy từng ứng dụng (có thể được triển khai bởi bất kỳ người dùng nào khác) mà không phải lo lắng về việc một trong số họ sử dụng quá nhiều tài nguyên hệ thống hoặc can thiệp và/hoặc xung đột với các dịch vụ được triển khai khác trên cùng một máy. 
+
+## 3. Các loại namespace
 
 ***Mount*** - cô lập các filesystem mount point
 
@@ -19,15 +26,17 @@ Linux namespace bao gồm một số công nghệ cơ bản đằng sau hầu h�
 
 ***Cgroup*** - cô lập về thư mục root của tính năng cgroups, chỉ mới xuất hiện từ Linux Kernel phiên bản 4.6 trở đi
 
-### 2.1 Mount Namespace
+### 3.1 Mount Namespace
 
 Mount Namespace cô lập danh sách các mountpoint được nhìn thấy bởi các process trong mỗi namespace. Do đó, các process trong mỗi trường hợp Mount Namespace sẽ thấy các cấu trúc thư mục đơn riêng biệt.
 
-### 2.2 UTS Namespace
+### 3.2 UTS Namespace
 
 UTS Namespace là một namespace để cô lập các thiết lập liên quan đến hostname và domainname nhận diện của hệ thống:
 
-### 2.4. Process Namespace - PID
+### 3.3 
+
+### 3.4. Process Namespace - PID
 
 Trong Linux duy trì một process tree. Process tre tham chiếu đến mọi process đang chạy trong hệ thống phân cấp parent-child. Một process có đủ quyền và thỏa mãn một số điều kiện nhất định có thể kiểm tra một quy trình khác hoặc thậm chí có thể kill process đó.
 
@@ -41,11 +50,11 @@ Với sự cô lập Process namespace PID, các tprocess trong child namespace 
 
 Trong mã nguồn Linux, chúng ta có thể thấy rằng một cấu trúc có tên pid, được sử dụng để theo dõi chỉ một PID, giờ đây theo dõi nhiều PID thông qua việc sử dụng một cấu trúc có upid:
 
-### 2.5 Network Namespace
+### 2.4 Network Namespace
 
 Tham khảo phần Network Namespace [tại đây](https://github.com/quangln94/Linux/blob/master/Overview/Content/24_Network_Namespaces.md)
 
-### 2.6 User namespace
+### 2.5 User namespace
 
 User Namespace cô lập các định danh và thuộc tính liên quan đến bảo mật, đặc biệt là User ID Group ID. User ID và Group ID của một process có thể khác nhau giữa bên trong và bên ngoài một User Namespace. Cụ thể, một process có thể có User ID không có đặc quyền bình thường bên ngoài User namespace đồng thời có User ID bằng 0 trong namespace; nói cách khác, process có đầy đủ quyền cho các hoạt động bên trong User Namespace nhưng không được ưu tiên cho các hoạt động bên ngoài namespace.
 
@@ -54,3 +63,5 @@ User namespace được lồng vào nhau tương tự PID Namespace
 # Tài liệu tham khảo
 - https://www.toptal.com/linux/separation-anxiety-isolating-your-system-with-linux-namespaces
 - https://blogd.net/linux/gioi-thieu-ve-linux-namespaces/
+- http://man7.org/linux/man-pages/man7/namespaces.7.html
+- https://medium.com/@teddyking/linux-namespaces-850489d3ccf
