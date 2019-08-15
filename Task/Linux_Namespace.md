@@ -19,9 +19,17 @@ Linux namespace bao gồm một số công nghệ cơ bản đằng sau hầu h�
 
 ***Cgroup*** - cô lập về thư mục root của tính năng cgroups, chỉ mới xuất hiện từ Linux Kernel phiên bản 4.6 trở đi
 
-### 2.5. Process Namespace - PID
+### 2.1 Mount Namespace
 
-Trong Linux duy trì một process tree. Tre tham chiếu đến mọi process đang chạy trong hệ thống phân cấp parent-child. Một process có đủ quyền và thỏa mãn một số điều kiện nhất định có thể kiểm tra một quy trình khác hoặc thậm chí có thể kill process đó.
+Mount Namespace cô lập danh sách các mountpoint được nhìn thấy bởi các process trong mỗi namespace. Do đó, các process trong mỗi trường hợp Mount Namespace sẽ thấy các cấu trúc thư mục đơn riêng biệt.
+
+### 2.2 UTS Namespace
+
+UTS Namespace là một namespace để cô lập các thiết lập liên quan đến hostname và domainname nhận diện của hệ thống:
+
+### 2.4. Process Namespace - PID
+
+Trong Linux duy trì một process tree. Process tre tham chiếu đến mọi process đang chạy trong hệ thống phân cấp parent-child. Một process có đủ quyền và thỏa mãn một số điều kiện nhất định có thể kiểm tra một quy trình khác hoặc thậm chí có thể kill process đó.
 
 Với Process namespace có thể có nhiều process tree lồng vào nhau. Mỗi process tree có thể có một bộ quy trình hoàn toàn độc lập. Điều này có thể đảm bảo rằng các process thuộc một process tree không thể kiểm tra hoặc kill hoặc thậm chí không thể biết được sự tồn tại của các process trong các sibling hoặc parent process trees khác.
 
@@ -33,9 +41,15 @@ Với sự cô lập Process namespace PID, các tprocess trong child namespace 
 
 Trong mã nguồn Linux, chúng ta có thể thấy rằng một cấu trúc có tên pid, được sử dụng để theo dõi chỉ một PID, giờ đây theo dõi nhiều PID thông qua việc sử dụng một cấu trúc có upid:
 
-### 2.6 Network Namespace
+### 2.5 Network Namespace
 
 Tham khảo phần Network Namespace [tại đây](https://github.com/quangln94/Linux/blob/master/Overview/Content/24_Network_Namespaces.md)
+
+### 2.6 User namespace
+
+User Namespace cô lập các định danh và thuộc tính liên quan đến bảo mật, đặc biệt là User ID Group ID. User ID và Group ID của một process có thể khác nhau giữa bên trong và bên ngoài một User Namespace. Cụ thể, một process có thể có User ID không có đặc quyền bình thường bên ngoài User namespace đồng thời có User ID bằng 0 trong namespace; nói cách khác, process có đầy đủ quyền cho các hoạt động bên trong User Namespace nhưng không được ưu tiên cho các hoạt động bên ngoài namespace.
+
+User namespace được lồng vào nhau tương tự PID Namespace
 
 # Tài liệu tham khảo
 - https://www.toptal.com/linux/separation-anxiety-isolating-your-system-with-linux-namespaces
