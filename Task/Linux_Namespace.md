@@ -29,7 +29,8 @@ Trong mã nguồn Linux, chúng ta có thể thấy rằng một cấu trúc có
 
 ### 2.6 Network Namespace
 
-Tham khảo phần Network Namespace (tại đây)[https://github.com/quangln94/Linux/blob/master/Overview/Content/24_Network_Namespaces.md]
+Tham khảo phần Network Namespace [tại đây](https://github.com/quangln94/Linux/blob/master/Overview/Content/24_Network_Namespaces.md)
+
 # Tài liệu tham khảo
 - https://www.toptal.com/linux/separation-anxiety-isolating-your-system-with-linux-namespaces
 - https://blogd.net/linux/gioi-thieu-ve-linux-namespaces/
