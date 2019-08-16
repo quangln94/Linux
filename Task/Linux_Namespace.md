@@ -79,6 +79,16 @@ User Namespace cô lập các định danh và thuộc tính liên quan đến b
 
 User namespace được lồng vào nhau tương tự PID Namespace
 
+### 3.7 Control Group
+
+Control groups thường được gọi là `cgroups`. `Cgroups` cho phép bạn có thể cấp phát tài nguyên – như thời gian sử dụng CPU, bộ nhớ hệ thống, băng thông mạng. Bạn có thể theo dõi cgroups, từ chối cgroups sử dụng tài nguyên nhất định và ngay cả việc cấu hình lại cgroups trên một hệ thống đang chạy.
+
+Tài nguyên phần cứng sẽ được chia sẽ hiệu quả giữa các người dùng và tăng khả năng ổn định của hệ thống.
+
+Tương tự như các tiến trình, cgroups có cấu trúc phân cấp, những cgroups con (child) sẽ thừa hưởng các thuộc tính từ cgroups cha (parent). Trong cgroups, các tài nguyên hệ thống được gọi bằng thuật ngữ “subsystem” hay “resource controller” và các tiến trình trên hệ thống được gọi là "task".
+
+[tại đây]()
+
 ## 4. 
 
 - Để xem `namespace trên server
@@ -92,3 +102,5 @@ lsns
 - http://man7.org/linux/man-pages/man7/namespaces.7.html
 - https://medium.com/@teddyking/linux-namespaces-850489d3ccf
 - https://wvi.cz/diyC/namespaces/#namespaces
+- https://minhkma.github.io/2019/01/cgroup/
+- https://mrhien.info/blog/gioi-thieu-ve-linux-control-groups-cgroups/
