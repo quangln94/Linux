@@ -87,7 +87,7 @@ Tài nguyên phần cứng sẽ được chia sẽ hiệu quả giữa các ngư
 
 Tương tự như các tiến trình, cgroups có cấu trúc phân cấp, những cgroups con (child) sẽ thừa hưởng các thuộc tính từ cgroups cha (parent). Trong cgroups, các tài nguyên hệ thống được gọi bằng thuật ngữ “subsystem” hay “resource controller” và các tiến trình trên hệ thống được gọi là "task".
 
-[tại đây]()
+Xem thêm [tại đây](https://github.com/quangln94/Linux/blob/master/Task/Cgroup.md)
 
 ## 4. 
 
