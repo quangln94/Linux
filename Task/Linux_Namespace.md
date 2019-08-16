@@ -89,9 +89,9 @@ Tương tự như các tiến trình, cgroups có cấu trúc phân cấp, nhữ
 
 Xem thêm [tại đây](https://github.com/quangln94/Linux/blob/master/Task/Cgroup.md)
 
-## 4. 
+## 4. Thao tác với Namespace
 
-- Để xem `namespace trên server
+- Để xem `namespace` trên server
 ```sh
 lsns
 ```
