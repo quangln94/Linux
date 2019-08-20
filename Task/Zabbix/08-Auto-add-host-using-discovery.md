@@ -38,8 +38,10 @@ Trong đó:
 ```sh
 Discovery: {DISCOVERY.DEVICE.STATUS} {DISCOVERY.DEVICE.IPADDRESS}
 ```
-- ***Default message:*** Discovery rule: {DISCOVERY.RULE.NAME}
+- ***Default message:*** 
 ```sh
+Discovery rule: {DISCOVERY.RULE.NAME}
+
 Device IP: {DISCOVERY.DEVICE.IPADDRESS}
 Device DNS: {DISCOVERY.DEVICE.DNS}
 Device status: {DISCOVERY.DEVICE.STATUS}
