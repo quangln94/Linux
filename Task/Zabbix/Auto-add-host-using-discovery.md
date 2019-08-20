@@ -27,5 +27,24 @@ Trong đó:
 - ***Type of calculation:*** Cách thực hiện điều kiện trong `Conditions`. Tham khảo thêm [tại đây](https://www.zabbix.com/documentation/4.2/manual/config/notifications/action/conditions)
 <img src=https://i.imgur.com/fABBFwB.png>
 - ***Conditions:*** Điều kiện
-<img src=https://i.imgur.com/C2DJ11H.png>
 - Chọn `Add`
+- Tại mục `Operations`
+<img src=https://i.imgur.com/C2DJ11H.png>
+
+Điền như sau: 
+- ***Default subject:*** 
+```sh
+Discovery: {DISCOVERY.DEVICE.STATUS} {DISCOVERY.DEVICE.IPADDRESS}
+```
+- ***Default message:*** Discovery rule: {DISCOVERY.RULE.NAME}
+```sh
+Device IP: {DISCOVERY.DEVICE.IPADDRESS}
+Device DNS: {DISCOVERY.DEVICE.DNS}
+Device status: {DISCOVERY.DEVICE.STATUS}
+Device uptime: {DISCOVERY.DEVICE.UPTIME}
+
+Device service name: {DISCOVERY.SERVICE.NAME}
+Device service port: {DISCOVERY.SERVICE.PORT}
+Device service status: {DISCOVERY.SERVICE.STATUS}
+Device service uptime: {DISCOVERY.SERVICE.UPTIME}
+```
