@@ -47,7 +47,6 @@ Device DNS: {DISCOVERY.DEVICE.DNS}
 Device status: {DISCOVERY.DEVICE.STATUS}
 Device uptime: {DISCOVERY.DEVICE.UPTIME}
 
-Device service name: {DISCOVERY.SERVICE.NAME}
 Device service port: {DISCOVERY.SERVICE.PORT}
 Device service status: {DISCOVERY.SERVICE.STATUS}
 Device service uptime: {DISCOVERY.SERVICE.UPTIME}
