@@ -20,3 +20,19 @@ Thể hiện các device được giám sat dựa trên hình ảnh mình họa 
 Các device được tìm thấy dựa trên các rule
 ### 1.10 Service
 ## 2. Inventory
+## 3.
+## 4. Configuration
+### 4.1 Host group
+Tạo `Host group`. Mỗi `Host` được thêm vào sẽ thuộc 1 hoặc nhiều group khác nhau
+### 4.2 Templates
+Cung cấp các Templates sẵn có hoặc tự tạo tùy nhu cầu. Ví dụ: tạo 1 Templates chứa các item giám sát các thông số như RAM, CPU, DISK...Tất cả các host có như cầu giám sát các thông số này đều có thể sử dụng Template này. Rút ngắn thời gian cấu hình thủ công cho từng host. Có thể add thêm các thuộc tính như: Applications,	Items,	Triggers,	Graphs,	Screens,	Discovery,	Web,	Linked templates,	Linked to.
+### 4.3 Host
+Dùng để add host hoặc chỉnh sửa host....
+### 4.4 Maintenance
+### 4.5 Actions
+Tạo các action khi thỏa mãn 1 điều kiện nào đó như: gửi cảnh báo, add host dựa vào rule...
+### 4.6 Event correlation
+### 4.7 Discovery
+Cấu hình khám phá device theo rule
+### 4.8 Service
+## 5. Administration
