@@ -8,6 +8,7 @@
 
 - Ở đây chọn `agent check` sử dụng `key` là `system.uname` là check host nào đã cài `zabbix-agent` 
 - Chọn `Add` tại mục `check` -> ***Add***
+
 Trong đó:
 
 - ***Name:*** Tên Rule
@@ -56,6 +57,6 @@ Tìm thấy được 3 `host` thỏa mãn điều kiện
 
 <img src=https://i.imgur.com/PqplwQV.png>
 
-`host` 10.10.10.222 được đặt tên, add vào group và template như `Rules` đã tạo
+***host*** 10.10.10.222 được đặt tên, add vào group và template như `Rules` đã tạo
 
 <img src=https://i.imgur.com/2Xz891d.png>
