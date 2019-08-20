@@ -1,4 +1,4 @@
-# Chức năng chính của các `TAB` trong Zabbix
+# Chức năng cơ bản của các `TAB` trong Zabbix
 ## 1. Monitoring
 Giám sat chung
 ### 1.1. Dashbroad
