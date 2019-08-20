@@ -124,10 +124,10 @@ KiB Swap:  4079612 total,     3072 used,  4076540 free.   326620 cached Mem
  1408 ceilome+  20   0  254312  20560   4260 R   1.0  0.5  64:28.69 ceilometer-agen
 ...
 ```
-Dòng đầu tiên của `top` hiển thị một bản tóm tắt nhanh chóng về những gì đang xảy ra trong hệ thống bao gồm:
-	1. Hệ thống đã hoạt động được bao lâu rồi
-	2. Có bao nhiêu người dùng đang đăng nhập
-	3. Trung bình tải là gì
+Dòng đầu tiên của `top` hiển thị một bản tóm tắt nhanh chóng về những gì đang xảy ra trong hệ thống bao gồm:</br>
+	1. Hệ thống đã hoạt động được bao lâu rồi</br>
+	2. Có bao nhiêu người dùng đang đăng nhập</br>
+	3. Trung bình tải là gì</br>
 Trung bình tải xác định mức làm việc của hệ thống. Trung bình tải của 1,00 trên mỗi CPU cho biết hệ thống được đăng ký đầy đủ, nhưng không bị quá tải. Nếu trung bình tải vượt quá giá trị này, nó chỉ ra rằng các quy trình đang cạnh tranh về thời gian của CPU. Nếu trung bình tải rất cao, nó có thể chỉ ra rằng hệ thống đang gặp sự cố, chẳng hạn như quá trình chạy trốn (một quá trình ở trạng thái không phản hồi).</br>
 Dòng thứ hai của `top` hiển thị tổng số tiến trình, số lượng tiến trình chạy, ngủ, dừng và zombie. So sánh số lượng các tiến trình đang chạy với trung bình tải giúp xác định xem hệ thống đã đạt đến công suất hay có lẽ một người dùng cụ thể đang chạy quá nhiều tiến trình. Các tiến trình dừng nên được kiểm tra để xem mọi thứ có chạy đúng không.</br>
 Dòng thứ ba của `top` cho biết thời gian CPU được phân chia giữa user(us) và kernel(sy) bằng cách hiển thị phần trăm thời gian CPU được sử dụng cho mỗi lần. Tỷ lệ phần trăm công việc user đang chạy ở mức ưu tiên thấp hơn(ni) sau đó được liệt kê. Chế độ không tải (id) nên ở mức thấp nếu trung bình tải cao và ngược lại. Tỷ lệ phần trăm công việc đang chờ (wa) cho I/O được liệt kê. Ngắt bao gồm tỷ lệ phần cứng(hi) so với ngắt phần mềm(si). Steal time(st) thường được sử dụng với các máy ảo, có một số thời gian CPU nhàn rỗi của nó dành cho các mục đích sử dụng khác.</br>
