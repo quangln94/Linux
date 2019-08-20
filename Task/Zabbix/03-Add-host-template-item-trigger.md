@@ -100,18 +100,38 @@ Trong đó:
 
 Cách tạo `Expression`
 
-Ckick `Add`
+- ***Tại `Expression` chọn Add***
+<img src=https://i.imgur.com/fQVRk9m.png>
 
-<img src=https://i.imgur.com/HDTIzhF.png>
+**Trong đó:**</br>
+`Item`: Chọn `Item` mà `trigger` sẽ được add vào</br>
+`Functiont`: Điều kiện để `trigger` xảy ra</br>
+`Last of (T)`:</br>
+    - Với tham số là `Count`: Số lần thực hiện `Function` trong khoảng thời gian là `Time shift`</br>
+    - Với tham số là `Time`: Số lần thực hiện `Time shift`</br>
+`Time shift`: Khoảng thời gian giữa các lần thực hiện `Funtion`</br>
+`Result`: Điều kiện để `trigger` thực hiện cảnh báo.</br>
 
-Trong đó: 
- * **Items**: Chọn một item phù hợp để lấy giá trị cho việc tính toán.
- * **Function**: chọn một hàm để tính toán các giá trị
- * **Result**: giá trị dùng so sánh để đưa ra cảnh báo
+Tham khảo thêm các Expression [tại đây]() hoặc tại [Zabbix document]()
 
-<img src=https://i.imgur.com/3oK3dUo.png>
+- ***Chọn `Insert` sau đó chọn `add` để add `trigger`.***
+## 2. Tạo Action
+- ***Vào `Configure` chọn `Action` chọn `Create Action`***
+<img src=https://i.imgur.com/OWGYsoE.png>
 
-Cảnh báo của trigger vừa tạo
+***Trong `Action`***</br>
+`Name`: Tên `Action`
 
-<img src=https://i.imgur.com/WRE6NPR.png>
+<img src=https://i.imgur.com/I9cilRR.png>
 
+***Trong `Operations`:***</br>
+`Default operation step duration`: Khoảng thời gian giữa các `step`
+
+- ***Chọn `Add` hoặc chọn `New` tại `Operatios` để thực hiện "Cảnh báo leo thang" trong `Operation details`***
+vd: 
+
+<img src=https://i.imgur.com/uAn0L2k.png>
+
+Step 1: Gửi cảnh báo tới user guest bằng tất cả các media ngay lập tức</br>
+Step 2: Sau 60s (Default time) gửi cảnh báo đến user Monitor, thực hiện step 2 3 4, mỗi step 60s</br>
+Step 3: Sau 60s của step 2 thực hiện step 5 gửi cảnh báo đến user Admin.</br>
