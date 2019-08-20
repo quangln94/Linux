@@ -1,4 +1,4 @@
-# Add host để giám sát với zabbix server
+# Add host, template, item, trigger để giám sát với zabbix server
 
 ## 1. Add host
 Để giám sát 1 host trong hệ thống Zabbix ta cần thêm nó vào Zabbix Server. Để thêm 1 host vào giao diện trên web
