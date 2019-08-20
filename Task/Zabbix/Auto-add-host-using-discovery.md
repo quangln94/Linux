@@ -6,7 +6,7 @@
 - Tiếp theo điển các thông số trong `Discovery rules`
 <img src=https://i.imgur.com/rIw7zQ2.png>
 
-- Ở đây chọn `agent check` là để check host nào đã cài `zabbix-agent` 
+- Ở đây chọn `agent check` sử dụng `key` là `system.uname` là check host nào đã cài `zabbix-agent` 
 
 Trong đó:
 
