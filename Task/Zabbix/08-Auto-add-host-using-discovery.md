@@ -51,6 +51,8 @@ Device service name: {DISCOVERY.SERVICE.NAME}
 Device service port: {DISCOVERY.SERVICE.PORT}
 Device service status: {DISCOVERY.SERVICE.STATUS}
 Device service uptime: {DISCOVERY.SERVICE.UPTIME}
+
+Device service name: {DISCOVERY.SERVICE.NAME}
 ```
 -Tại `Operations` Thực hiện add host vào `Group` và `Template` hoặc túy chỉnh theo ý của mình
 
