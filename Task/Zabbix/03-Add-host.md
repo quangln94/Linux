@@ -67,7 +67,7 @@ Sau khi add thêm ta có thể thấy item này
 
 ## 4. Add trigger
 
-Để phát hiện kịp thời những điều bất thường trên hệ thống bạn cần cấu hình các trigger để nó kịp thời cảnh báo khi các thông số trên hệ thống của bạn vượt quá ngưỡng đặt cảnh báo. Thông thường khi gắn một template cho host thì các trigger đã được đặt. Nếu bạn muốn thêm một trigger mới bạn có thể làm như sau
+Để phát hiện kịp thời những điều bất thường trên hệ thống bạn cần cấu hình các trigger để nó kịp thời cảnh báo khi các thông số trên hệ thống của bạn vượt quá ngưỡng đặt cảnh báo. Thông thường khi gắn một template cho host thì các trigger đã được đặt. Nếu muốn thêm một trigger mới bạn có thể làm như sau
 
 Click vào `trigger` trên host mà bạn muốn tạo
 
