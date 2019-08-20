@@ -20,6 +20,8 @@
 `Time shift`: Khoảng thời gian giữa các lần thực hiện `Funtion`</br>
 `Result`: Điều kiện để `trigger` thực hiện cảnh báo.</br>
 
+Tham khảo thêm các Expression [tại đây]() hoặc tại [Zabbix document]()
+
 - ***Chọn `Insert` sau đó chọn `add` để add `trigger`.***
 ## 2. Tạo Action
 - ***Vào `Configure` chọn `Action` chọn `Create Action`***
