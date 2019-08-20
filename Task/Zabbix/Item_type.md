@@ -1,7 +1,7 @@
 # I. Item type
 
 Để lây dữ liệu từ hệ thống ta sử dụng các loại `item` khác nhau.</br>
-Các loại `item` được cung cấp bởi Zabbix:
+Các loại `item` được sử dụng trong Zabbix:
 
 - Zabbix agent checks
 - SNMP agent checks
@@ -26,13 +26,12 @@ Nhiều Interface có thể được set trên host: Zabbix agent, SNMP agent, J
 Tất cả các mục trả về text (character, log, text types of information) chỉ có thể trả về khoảng trắng (nếu có).
 ## 1. Zabbix agent checks
 
-Cách kiểm tra này sử dụng giao tiếp với Zabbix-agent để thu thập dữ liệu.,/br>
+Zabbix-agent cần được ài đặt trên client để lấy dữ liệu.
 
 Có passive and active agent checks. Khi cấu hình `item`, bạn có thể chọn loại yêu cầu:
-- Zabbix agent - for passive checks
-- Zabbix agent (active) - for active checks
+- Zabbix agent - for passive checks: Zabbix-agent sẽ chủ động gửi data cho Zabbix-server
+- Zabbix agent (active) - for active checks: Zabbix-server chủ động lấy data từ Zabbix-agent
 
-Các tham số không có dấu <> là bắt buộc. Các tham số được đánh dấu bằng dấu <> là tùy chọn.
 ## 2. SNMP agent checks
 Bạn có thể muốn sử dụng giám sát SNMP trên các thiết bị như  printers, network switches, routers hoặc UPS thường được kích hoạt SNMP và trên đó sẽ không thực tế khi thử thiết lập hệ điều hành và Zabbix-agnet hoàn chỉnh.</br>
 Để có thể truy xuất dữ liệu được cung cấp bởi các SNMP-agent trên các thiết bị này, máy chủ Zabbix phải được cấu hình với sự hỗ trợ SNMP.</br>
@@ -65,11 +64,12 @@ IPMI là một giao diện được tiêu chuẩn hóa cho việc quản lý cá
 Giám sát Zabbix IPMI chỉ hoạt động đối với các thiết bị có hỗ trợ IPMI (HP iLO, DELL DRAC, IBM RSA, Sun SSP, v.v.).
 
 Kể từ Zabbix 3.4, một quy trình quản lý IPMI mới đã được thêm vào để lên lịch kiểm tra IPMI bởi IPMI pollers. Giờ đây, một máy chủ luôn được thăm dò bởi một trình đẩy IPMI tại một thời điểm, làm giảm số lượng kết nối mở tới bộ điều khiển BMC. Với những thay đổi đó, an toàn để tăng số lượng thăm dò IPMI mà không phải lo lắng về việc quá tải bộ điều khiển BMC. Quá trình quản lý IPMI được tự động bắt đầu khi có ít nhất một trình đẩy IPMI được khởi động.
+
 ## 5. Simple checks
 
 Simple checks thường được sử dụng để kiểm tra các dịch vụ agent-less
 
-Lưu ý rằng Zabbix agent không cần thiết cho simple checks. Zabbix server/proxy chịu trách nhiệm xử lý các simple checks (thực hiện các kết nối bên ngoài, v.v.).
+Zabbix-agent không cần thiết cho simple checks. Zabbix server/proxy chịu trách nhiệm xử lý các simple checks (thực hiện các kết nối bên ngoài, v.v.).
 
 Ví dụ về sử dụng simple checks:
 ```sh
@@ -79,6 +79,7 @@ net.tcp.service.perf [http ,, 8080]
 net.udp.service.perf [ntp]
 ```
 Trường User name và Password trong item cấu hình được sử dụng cho các item giám sát VMware
+
 ## 6. Log file monitoring
 
 Zabbix có thể được sử dụng để theo dõi và phân tích tập trung các file log có/không hỗ trợ log rotation.
@@ -111,9 +112,16 @@ Internal checks được xử lý bởi server hoặc proxy bất kể trạng t
 
 Internal checks được xử lý bởi Zabbix pollers.
 ## 9. SSH checks
-SSH checks được thực hiện với agent-less monitoring. Zabbix agent không cần cho SSH checks. Để thực hiện kiểm tra SSH, Zabbix server phải được cấu hình hỗ trợ của SSH2. 
+SSH check tức là Zabbix server sẽ thực hiện SSH vào agent mà nó cần check đế lấy các thông số theo nhu cầu.
+
+SSH checks thuộc loại agent-less monitoring tức là zabbix-agent không cần phải cài lên phía client. Để có thể SSH checks, Zabbix server phải được cấu hình hỗ trợ của SSH2. 
+
 ## 10. Telnet checks
-Telnet checks được thực hiện như agent-less monitoring. Zabbix agent không cần cho Telnet checks.
+
+Telnet check tức là Zabbix server sẽ thực hiện Telnet vào Agent mà nó cần check đế lấy các thông số theo nhu cầu.
+
+Telnet checks thuộc loại agent-less monitoring tức là zabbix-agent không cần phải cài lên phía client. 
+
 ## 11. External checks
 External check là kiểm tra được thực hiện bởi Zabbix server bằng cách chạy tập lệnh shell hoặc binary. Tuy nhiên, khi các host được giám sát bởi Zabbix proxy, external checks được thực thi bởi proxy.
 
@@ -165,3 +173,4 @@ HTTP item checks không yêu cầu bất kỳ agent nào chạy trên máy host 
 HTTP agent hỗ trợ cả HTTP và HTTPS. Zabbix sẽ tùy chọn theo dõi chuyển hướng. 
 
 Zabbix server/proxy phải được cấu hình với sự hỗ trợ của cURL (libcurl).
+
