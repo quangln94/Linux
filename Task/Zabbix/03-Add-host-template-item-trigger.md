@@ -1,5 +1,5 @@
-# Add host, template, item, trigger để giám sát với zabbix server
-
+# Add host, template, item, trigger và tạo action để giám sát với zabbix server
+ 
 ## 1. Add host
 Để giám sát 1 host trong hệ thống Zabbix ta cần thêm nó vào Zabbix Server. Để thêm 1 host vào giao diện trên web
 
@@ -115,7 +115,7 @@ Cách tạo `Expression`
 Tham khảo thêm các Expression [tại đây]() hoặc tại [Zabbix document]()
 
 - ***Chọn `Insert` sau đó chọn `add` để add `trigger`.***
-## 2. Tạo Action
+## 5. Tạo Action
 - ***Vào `Configure` chọn `Action` chọn `Create Action`***
 <img src=https://i.imgur.com/OWGYsoE.png>
 
