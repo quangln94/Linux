@@ -115,7 +115,9 @@ Cách tạo `Expression`
 Tham khảo thêm các Expression [tại đây]() hoặc tại [Zabbix document]()
 
 - ***Chọn `Insert` sau đó chọn `add` để add `trigger`.***
+
 ## 5. Tạo Action
+
 - ***Vào `Configure` chọn `Action` chọn `Create Action`***
 <img src=https://i.imgur.com/OWGYsoE.png>
 
