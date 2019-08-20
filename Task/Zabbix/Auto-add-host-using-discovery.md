@@ -48,3 +48,9 @@ Device service port: {DISCOVERY.SERVICE.PORT}
 Device service status: {DISCOVERY.SERVICE.STATUS}
 Device service uptime: {DISCOVERY.SERVICE.UPTIME}
 ```
+-Tại `Operations` Thực hiện add host vào `Group` và `Template` hoặc túy chỉnh theo ý của mình
+
+- Chọn ***Add*** và xem kết quả: 
+<img src=https://i.imgur.com/PqplwQV.png>
+
+<img src=https://i.imgur.com/2Xz891d.png>
