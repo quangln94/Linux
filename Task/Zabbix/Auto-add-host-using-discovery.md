@@ -27,6 +27,7 @@ Trong đó:
 - ***Name:*** Tên Action
 - ***Type of calculation:*** Cách thực hiện điều kiện trong `Conditions`. Tham khảo thêm [tại đây](https://www.zabbix.com/documentation/4.2/manual/config/notifications/action/conditions)
 <img src=https://i.imgur.com/fABBFwB.png>
+
 - ***Conditions:*** Điều kiện
 - Chọn `Add`
 - Tại mục `Operations`
