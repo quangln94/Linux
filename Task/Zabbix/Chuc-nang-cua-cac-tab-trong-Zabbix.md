@@ -1,5 +1,6 @@
 # Chức năng chính của các `TAB` trong Zabbix
 ## 1. Monitoring
+Giám sat chung
 ### 1.1. Dashbroad
 Màn hình hiển thị tổng quan giám sát. Tại đây bạn có thể tùy chỉnh: Sửa, xóa, show thông tin mà bạn cần giám sát
 ### 1.2. Problem
