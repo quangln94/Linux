@@ -51,6 +51,11 @@ Device service uptime: {DISCOVERY.SERVICE.UPTIME}
 -Tại `Operations` Thực hiện add host vào `Group` và `Template` hoặc túy chỉnh theo ý của mình
 
 - Chọn ***Add*** và xem kết quả: 
+
+Tìm thấy được 3 `host` thỏa mãn điều kiện
+
 <img src=https://i.imgur.com/PqplwQV.png>
+
+`host` 10.10.10.222 được đặt tên, add vào group và template như `Rules` đã tạo
 
 <img src=https://i.imgur.com/2Xz891d.png>
