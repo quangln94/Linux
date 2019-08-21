@@ -53,7 +53,7 @@ client01
 [root@client01 ~]#
 ```
 
-### 3.3 
+### 3.3 IPC Namespace
 
 ### 3.4. Process Namespace - PID
 
