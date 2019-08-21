@@ -1,4 +1,11 @@
 # Cài đặt Zabbix-agent trên Window 10
+
+Bản chất việc cài cũng tương tự trên Linux gổm 2 bước:
+- Cài gói zabbix-agent
+- Trỏ IP về zabbix-server
+
+## Các bước thực hiện
+
 - Download Zabbix-agent [tại đây](https://www.zabbix.com/download_agents#tab:40LTS). Lưu ý chọn bản phù hợp với OS của mình.
 - Sau khi tải xong, thực hiện giải nén và copy vào ổ C:
 - Vào File cấu hình `` sửa dòng Server=127.0.0.1 thành IP của zabbix server sau đó lưu lại
