@@ -36,11 +36,11 @@ Linux cũng duy trì cấu trúc dữ liệu cho tất cả các mountpoint củ
 
 Ban đầu, process con nhìn thấy các mountpoint giống như process cha của nó nhìn thấy. Tuy nhiên, trong Mount namespace mới, process con có thể mount hoặc umount hay đại loại là thay đổi cấu trúc file hệ thống mà không ảnh hưởng đến các Child Mount Namespace  khác hay chính Parent Mount Namespace của nó (độc lập và không có sự đồng bộ giữa các Mount Namespace).
 
-<img src=https://i.imgur.com/lr75RJJ.png>
+<img src=https://i.imgur.com/Zz4eDtP.png>
 
 Hình trên mô tả việc tạo ra 3 Child Mount Namespace có cấu trúc File khác hoặc tương tự như Parent Namespace.
 
-<img src=https://i.imgur.com/zoImSX8.png>
+<img src=https://i.imgur.com/s00Ltb0.png>
 
 Sau đó thực hiện thay đổi Mountpoint cho 1 hoặc nhiều Mount Namespace thậm chí thay đổi cả Paren Mount Namespace.
 
