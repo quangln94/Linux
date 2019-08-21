@@ -19,6 +19,7 @@ Thể hiện các device được giám sat dựa trên hình ảnh mình họa 
 ### 1.9. Discovery
 Các device được tìm thấy dựa trên các rule
 ### 1.10 Service
+Trong nhiều trường hợp, khi không cần quan tâm đến các thông số về phần cứng như RAM, CPU, DISK...sở hạ tầng CNTT hiện có và các thông tin khác ở cấp độ cao hơn. Khi đó Chức năng giám sát dịch vụ trên cơ sở hạ tầng thường được sử dụng
 ## 2. Inventory
 ## 3.
 ## 4. Configuration
