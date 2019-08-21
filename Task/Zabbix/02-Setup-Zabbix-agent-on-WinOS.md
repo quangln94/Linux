@@ -13,4 +13,10 @@ cd..
 cd /zabbix/bin
 zabbix.exe -c c:
 ```
+Trong đó:
+- Thực hiện `cd` 2 lần để quay về thư mục gốc `C:\`
+- `cd /zabbix/bin`: Truy cập vào thư mục `bin` chứa file `` để chạy
+- ``: Lệnh thực hiện Setup
+- Vậy là đã thực hiện tài thành công zabbix-agent trên WinOS
+
 - Sau đó vào Zabbix server thực hiện add host
