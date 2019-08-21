@@ -43,6 +43,7 @@ Hình trên mô tả việc tạo ra 3 Child Mount Namespace có cấu trúc Fil
 <img src=https://i.imgur.com/zoImSX8.png>
 
 Sau đó thực hiện thay đổi Mountpoint cho 1 hoặc nhiều Mount Namespace thậm chí thay đổi cả Paren Mount Namespace.
+
 Việc thay đổi Mountpoint của mỗi Mount Namespace không anh hương các Mount Namespace còn lại.
 
 ### 3.2 UTS Namespace
