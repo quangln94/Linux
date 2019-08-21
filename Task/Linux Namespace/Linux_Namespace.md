@@ -61,13 +61,21 @@ Trong Linux duy trì một process tree. Process tre tham chiếu đến mọi p
 
 Với Process namespace có thể có nhiều process tree lồng vào nhau. Mỗi process tree có thể có một bộ quy trình hoàn toàn độc lập. Điều này có thể đảm bảo rằng các process thuộc một process tree không thể kiểm tra hoặc kill hoặc thậm chí không thể biết được sự tồn tại của các process trong các sibling hoặc parent process trees khác.
 
-Mỗi khời động Linux, nó khởi động chỉ bằng một process với PID=1. Quá trình này là gốc của process tree và nó khởi tạo phần còn lại của hệ thống. Tất cả các process khác bắt đầu bên dưới process này trong process tree. Namespace PID cho phép vào 1 proces tree mới với PID=1 của riêng nó. Quá trình này vẫn ở trong parent namespace, trong tree ban đầu, nhưng làm cho child trở thành gốc của process tree riêng của nó.
+Mỗi khời động Linux, nó khởi động chỉ bằng một process với PID=1. Quá trình này là gốc của process tree và nó khởi tạo phần còn lại của hệ thống. Tất cả các process khác bắt đầu bên dưới process này trong process tree. PID Namespace cho phép vào 1 proces tree mới với PID=1 của riêng nó. Quá trình này vẫn ở trong parent namespace, trong tree ban đầu, nhưng làm cho child trở thành gốc của process tree riêng của nó.
 
 <img src=https://i.imgur.com/E3xgJ1H.png>
 
-Với sự cô lập Process namespace PID, các tprocess trong child namespace không biết được sự tồn tại của parent process. Tuy nhiên, các process trong parent namespace có một cái nhìn đầy đủ về các process trong child namespace như thể chúng là những process khác trong parent namespace.
+Để hiểu rõ hơn về PID Namespace, hãy cùng phân tích hình trên như sau:
 
-Trong mã nguồn Linux, chúng ta có thể thấy rằng một cấu trúc có tên pid, được sử dụng để theo dõi chỉ một PID, giờ đây theo dõi nhiều PID thông qua việc sử dụng một cấu trúc có upid:
+- Khi Linux khởi động, nó khởi động bằng 1 process với PID=1
+- Sau đó, từ PID=1 nó sinh ra các PID=2,3,4,5,6,7,8.
+- 1 Namespace được tạo ra, tại đây hiểu nôm na rằng nó cùng là 1 process tuy nhiên sẽ đóng vai trò là PID=8 với vùng bên ngoài namespace ( Process tree ban đầu) và sẽ đóng vai trò là PID=1 trong vùng Namespace vừa được tạo ra.
+- Với PID=1 trong vùng Namespace này lần lượt sẽ tạo ra các PID=2,3 hình thành 1 Process tree riêng trong Namespace. Các PID này sẽ không biết được sự tồn tại của các PID bên ngoài hay nó coi nó ra 1 Process tree duy nhất.
+- Ở bên ngoài Namespace, Process tree ban đầu cùng không biết được sự hình thành 1 process tree bên trong 1 Namespace, nó chỉ biết rắng các PID nằm trong Process tree ban đầu của mình và có PID=8,9.
+
+Với sự cô lập PID namespace, các process trong child namespace không biết được sự tồn tại của parent process. Tuy nhiên, các process trong parent namespace có một cái nhìn đầy đủ về các process trong child namespace như thể chúng là những process khác trong parent namespace.
+
+Trong Linux, chúng ta có thể thấy rằng một cấu trúc có tên pid, được sử dụng để theo dõi chỉ một PID, giờ đây theo dõi nhiều PID thông qua việc sử dụng một cấu trúc có upid
 
 ### 3.5 Network Namespace
 
