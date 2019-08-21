@@ -69,8 +69,8 @@ Mỗi khời động Linux, nó khởi động chỉ bằng một process với 
 
 - Khi Linux khởi động, nó khởi động bằng 1 process với PID=1
 - Sau đó, từ PID=1 nó sinh ra các PID=2,3,4,5,6,7,8.
-- Ở đây ta thấy 1 Process có 2 giá trị là 8-1, 9-2, 10-3 tức là nó sẽ có PID=1,2,3 trong vùng Namespace được tạo ra nhưng bên ngoài cùng Namespace này Process tree gốc sẽ coi nó với PID=8,9,10 và sẽ không biết được sự hình thành và tồn tại của Namesapce hay process tree này.
-- Ngược lại process tree trong Namespace này sẽ không biết được sự tồn tại của các PID bên ngoài Namespace của nó và nó coi nó là 1 process tree duy nhất.
+- Ở đây ta thấy 1 Process có 2 giá trị là 8-1, 9-2, 10-3 tức là nó sẽ có PID=1,2,3 trong vùng child PID Namespace được tạo ra nhưng bên ngoài vùng Namespace này Process tree gốc sẽ coi nó với PID=8,9,10 và sẽ không biết được sự hình thành và tồn tại của child PID Namesapce hay process tree này.
+- Ngược lại process tree trong child PID Namespace này sẽ không biết được sự tồn tại của các PID bên ngoài Namespace của nó và nó coi nó là 1 process tree duy nhất.
 
 Tóm lại: vớii sự cô lập PID namespace, các process trong child namespace không biết được sự tồn tại của parent process. Tuy nhiên, các process trong parent namespace có một cái nhìn đầy đủ về các process trong child namespace như thể chúng là những process khác trong parent namespace.
 
