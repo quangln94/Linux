@@ -24,6 +24,7 @@ Trong nhiều trường hợp, khi không cần quan tâm đến các thông s�
 Tham khảo cài đặt cơ bản [tại đây]()
 
 ## 2. Inventory
+Dùng cho việc quản lý tài sản gồm các thông số như: Serial, CPU, RAM, OS, Application, Date Invoice,....
 ## 3.
 ## 4. Configuration
 ### 4.1 Host group
