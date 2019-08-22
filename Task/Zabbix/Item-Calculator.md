@@ -4,7 +4,7 @@
 - Vào `Configuration` -> `Host` -> `Item` -> `Create Item`
 <img src=https://i.imgur.com/ldd0Wms.png>
 
-Trong đó: 
+**Trong đó:**
 ***Name:*** Tên Item</br>
 ***Type:*** Chọn Calculator</br>
 ***Key:*** Đặt 1 tên bất kỳ</br>
@@ -21,12 +21,15 @@ last("vfs.fs.size[/,free]") + last("vfs.fs.size[/boot,free]")
 ```sh
 100*last("vfs.fs.size[/,free]")/last("vfs.fs.size[/,total]")
 ```
+```sh
 avg("Zabbix Server:zabbix[wcache,values]",600)
-
+```
+```sh
 last("net.if.in[eth0,bytes]")+last("net.if.out[eth0,bytes]")
-
-
+```
+```sh
 100*last("net.if.in[eth0,bytes]")/(last("net.if.in[eth0,bytes]")+last("net.if.out[eth0,bytes]"))
-
-
+```
+```sh
 last("grpsum[\"video\",\"net.if.out[eth0,bytes]\",\"last\"]") / last("grpsum[\"video\",\"nginx_stat.sh[active]\",\"last\"]") 
+```
