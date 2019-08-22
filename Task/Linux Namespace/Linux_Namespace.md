@@ -16,7 +16,7 @@ Các công cụ namespace như Docker cho phép kiểm soát tốt hơn các quy
 
 ***UTS*** - cô lập hostname và domainname
 
-***IPC*** - cô lập tài nguyên giao tiếp liên tiến trình(IPC)
+***IPC*** - cô lập tài nguyên giao tiếp liên tiến trình
 
 ***PID*** - cô lập vùng số cấp cho ID của tiến trình
 
