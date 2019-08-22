@@ -4,7 +4,7 @@
 - Vào `Configuration` -> `Host` -> `Item` -> `Create Item`
 <img src=https://i.imgur.com/ldd0Wms.png>
 
-**Trong đó:**
+**Trong đó:**</br>
 ***Name:*** Tên Item</br>
 ***Type:*** Chọn Calculator</br>
 ***Key:*** Đặt 1 tên bất kỳ</br>
