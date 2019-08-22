@@ -5,13 +5,14 @@
 <img src=https://i.imgur.com/ldd0Wms.png>
 
 Trong đó: 
-***Name:*** Tên Item
-***Type:*** Chọn Calculator
-***Key:*** Đặt 1 tên bất kỳ
+***Name:*** Tên Item</br>
+***Type:*** Chọn Calculator</br>
+***Key:*** Đặt 1 tên bất kỳ</br>
 ***Formula:*** Biểu thức tính toán (quan trọng nhất)
 
 - Chọn Add. Sau đó vào `Lastest data` xem kết quả.
 ## Một số ví dụ về `Formual`:
+
 - Check `Total disk free` bằng cách check `disk free` trên từng phân vùng( `/` và `/boot`)
 ```sh
 last("vfs.fs.size[/,free]") + last("vfs.fs.size[/boot,free]")
