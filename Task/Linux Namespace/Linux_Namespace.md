@@ -1,10 +1,10 @@
 # Linux Namespace
 
 ## 1. Giới thiệu
-Linux namespace bao gồm một số công nghệ cơ bản đằng sau hầu hết các triển khai container hiện đại. Ở cấp độ cao, chúng cho phép cô lập tài nguyên hệ thống. Ví dụ, namespace PID cô lập không gian số ID tiến trình. Điều này có nghĩa là hai tiến trình đang chạy trên cùng một máy chủ có thể có cùng một PID!
+Linux namespace bao gồm một số công nghệ cơ bản đằng sau hầu hết các triển khai container hiện đại. Ở cấp độ cao, chúng cho phép cô lập tài nguyên hệ thống.
 ## 2. Mục tiêu 
 
-Cung cấp một môi trường an toàn để tránh rủi ro
+Cung cấp một môi trường an toàn để tránh rủi ro.
 
 Trên 1 máy thông thường một môi trường hệ thống duy nhất có thể ổn. Nhưng trên một máy chủ chạy nhiều dịch vụ tính bảo mật và ổn định là điều cần thiết nên các dịch vụ càng độc lập càng tốt. Hãy tưởng tượng một máy chủ chạy nhiều dịch vụ và một trong số đó bị xâm nhập bởi hacker. Trong trường hợp đó, hacker có thể khai thác dịch vụ đó và tìm đường đến các dịch vụ khác và thậm chí có thể xâm nhập toàn bộ máy chủ. Namespace Isolation có thể cung cấp một môi trường an toàn để loại bỏ rủi ro này.
 
@@ -24,7 +24,7 @@ Các công cụ namespace như Docker cho phép kiểm soát tốt hơn các quy
 
 ***User*** - cô lập về UID/GID
 
-***Cgroup*** - cô lập về thư mục root của tính năng cgroups, chỉ mới xuất hiện từ Linux Kernel phiên bản 4.6 trở đi
+***Cgroup*** - cô lập về thư mục root của tính năng cgroups, xuất hiện từ Linux Kernel phiên bản 4.6 trở đi
 
 ### 3.1 Mount Namespace
 
@@ -96,9 +96,18 @@ Tham khảo phần Network Namespace [tại đây](https://github.com/quangln94/
 
 ### 3.6 User namespace
 
-User Namespace cô lập các định danh và thuộc tính liên quan đến bảo mật, đặc biệt là User ID Group ID. User ID và Group ID của một process có thể khác nhau giữa bên trong và bên ngoài một User Namespace. Cụ thể, một process có thể có User ID không có đặc quyền bình thường bên ngoài User namespace đồng thời có User ID bằng 0 trong namespace; nói cách khác, process có đầy đủ quyền cho các hoạt động bên trong User Namespace nhưng không được ưu tiên cho các hoạt động bên ngoài namespace.
+User Namespace được sử dụng để cô lập UID và GID giữa máy chủ và containers làm tăng tính bảo mật: Nó có thể là root của Namespace này nhưng lại là non-root  ngoài namespace.
+
+User Namespace cô lập các định danh và thuộc tính liên quan đến bảo mật, đặc biệt là User ID Group ID. User ID và Group ID của một process có thể khác nhau giữa bên trong và bên ngoài một User Namespace. 
 
 User namespace được lồng vào nhau tương tự PID Namespace
+
+<img src=https://i.imgur.com/FOwUGt5.png>
+
+Hinh trên thể hiện 1 ví dụ về User Namespace
+
+- Trong Namespace 1 có Process 1 với UID=0 và GID=0 (user root) , Process 2 có UID=1000, GID=1000 (user non-root)
+- Process 2 tạo ra 1 Namespace 2 và đóng vai trò là user root trong Namespace này với UID=0, GID=0.
 
 ### 3.7 Control Group
 
@@ -109,13 +118,6 @@ Tài nguyên phần cứng sẽ được chia sẽ hiệu quả giữa các ngư
 Tương tự như các tiến trình, `Cgroups` có cấu trúc phân cấp, những Child Cgroups sẽ thừa hưởng các thuộc tính từ Parent Cgroups. Trong `Cgroups`, các tài nguyên hệ thống được gọi bằng thuật ngữ “subsystem” hay “resource controller” và các tiến trình trên hệ thống được gọi là "task".
 
 Xem thêm [tại đây](https://github.com/quangln94/Linux/blob/master/Task/Cgroup.md)
-
-## 4. Thao tác với Namespace
-
-- Để xem `namespace` trên server
-```sh
-lsns
-```
 
 # Tài liệu tham khảo
 - https://www.toptal.com/linux/separation-anxiety-isolating-your-system-with-linux-namespaces
