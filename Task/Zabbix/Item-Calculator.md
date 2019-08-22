@@ -5,10 +5,10 @@
 <img src=https://i.imgur.com/ldd0Wms.png>
 
 Trong đó: 
-- ***Name:*** Tên Item
-- ***Type:*** Chọn Calculator
-- ***Key:*** Đặt 1 tên bất kỳ
-- ***Formula:*** Biểu thức tính toán (quan trọng nhất)
+***Name:*** Tên Item
+***Type:*** Chọn Calculator
+***Key:*** Đặt 1 tên bất kỳ
+***Formula:*** Biểu thức tính toán (quan trọng nhất)
 
 - Chọn Add. Sau đó vào `Lastest data` xem kết quả.
 ## Một số ví dụ về `Formual`:
