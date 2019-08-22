@@ -102,11 +102,11 @@ User namespace được lồng vào nhau tương tự PID Namespace
 
 ### 3.7 Control Group
 
-Control groups thường được gọi là `cgroups`. `Cgroups` cho phép bạn có thể cấp phát tài nguyên – như thời gian sử dụng CPU, bộ nhớ hệ thống, băng thông mạng. Bạn có thể theo dõi cgroups, từ chối cgroups sử dụng tài nguyên nhất định và ngay cả việc cấu hình lại cgroups trên một hệ thống đang chạy.
+Control groups thường được gọi là `Cgroups`. `Cgroups` cho phép bạn có thể cấp phát tài nguyên – như thời gian sử dụng CPU, RAM, Network. Bạn có thể theo dõi `Cgroups`, từ chối `Cgroups` sử dụng tài nguyên nhất định và ngay cả việc cấu hình lại `Cgroups` trên một hệ thống đang chạy.
 
 Tài nguyên phần cứng sẽ được chia sẽ hiệu quả giữa các người dùng và tăng khả năng ổn định của hệ thống.
 
-Tương tự như các tiến trình, cgroups có cấu trúc phân cấp, những cgroups con (child) sẽ thừa hưởng các thuộc tính từ cgroups cha (parent). Trong cgroups, các tài nguyên hệ thống được gọi bằng thuật ngữ “subsystem” hay “resource controller” và các tiến trình trên hệ thống được gọi là "task".
+Tương tự như các tiến trình, `Cgroups` có cấu trúc phân cấp, những Child Cgroups sẽ thừa hưởng các thuộc tính từ Parent Cgroups. Trong `Cgroups`, các tài nguyên hệ thống được gọi bằng thuật ngữ “subsystem” hay “resource controller” và các tiến trình trên hệ thống được gọi là "task".
 
 Xem thêm [tại đây](https://github.com/quangln94/Linux/blob/master/Task/Cgroup.md)
 
