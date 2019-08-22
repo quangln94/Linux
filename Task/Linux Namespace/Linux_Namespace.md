@@ -24,7 +24,7 @@ Các công cụ namespace như Docker cho phép kiểm soát tốt hơn các quy
 
 ***User*** - cô lập về UID/GID
 
-***Cgroup*** - cô lập về thư mục root của tính năng cgroups, xuất hiện từ Linux Kernel phiên bản 4.6 trở đi
+***Cgroup*** - cô lập về thư mục root của tính năng cgroups
 
 ### 3.1 Mount Namespace
 
@@ -68,6 +68,12 @@ client01
 ```
 
 ### 3.3 IPC Namespace
+
+<img src=https://i.imgur.com/zJ2cSCu.png>
+
+Hãy nhìn vào hình trên để hiểu thế nào là IPC Namespace.
+
+IPC là gì? IPC là inter-process communication có nghĩa là Giáo tiếp giữa các process nội miền. Vậy IPC Namespace là việc cô lập các giao tiếp giữa các process này của các IPC Namespace khác nhau. 
 
 ### 3.4. Process Namespace - PID
 
