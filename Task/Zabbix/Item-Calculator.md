@@ -17,16 +17,19 @@
 ```sh
 last("vfs.fs.size[/,free]") + last("vfs.fs.size[/boot,free]")
 ```
-- Check `% disk free`
+- Calculating percentage of free disk space on '/'.
 ```sh
 100*last("vfs.fs.size[/,free]")/last("vfs.fs.size[/,total]")
 ```
+- Calculating a 10-minute average of the number of values processed by Zabbix.
 ```sh
 avg("Zabbix Server:zabbix[wcache,values]",600)
 ```
+- Calculating total bandwidth on eth0.
 ```sh
 last("net.if.in[eth0,bytes]")+last("net.if.out[eth0,bytes]")
 ```
+- Calculating percentage of incoming traffic.
 ```sh
 100*last("net.if.in[eth0,bytes]")/(last("net.if.in[eth0,bytes]")+last("net.if.out[eth0,bytes]"))
 ```
