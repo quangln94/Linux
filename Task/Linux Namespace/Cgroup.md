@@ -24,13 +24,13 @@ drwxr-xr-x 5 root root  0 Aug 13 18:19 systemd
 |-------|------------|
 |cpu|	Sử dụng bộ lập lịch để cung cấp cho các task cgroup truy cập vào CPU.|
 |cpuacct|	Tự động tạo ra các các báo cáo về tài nguyên CPU.|
-|cpuset|	It assigns individual CPUs on a multicore system and memory nodes to tasks.|
+|cpuset|	Giới hạn việc sử dụng CPU trên hệ thống nhiều CPU.|
 |devices|	It allows or denies access to devices by tasks.|
 |freezer|	It suspends or resumes tasks in a cgroup.|
 |hugetlb|	It limits to use HugeTLB.|
 |memory|	Giới hạn việc sử dụng bộ nhớ bởi các task và tự tạo báo cáo về tài nguyên bộ nhớ.|
-|net_cls|	It tags network packets with a class identifier (classid).|
-|net_prio|	It provides a way to dynamically set the priority of network traffic per network interface.|
+|net_cls|	Đánh số classid cho từng gói tin nhằm giúp Linux Traffic Controller(tc) có thể biết gói tin đến từ cgroup nào.|
+|net_prio|	Giới hạn băng thông mạng theo độ ưu tiên.|
 |perf_event|	It identifies cgroup membership of tasks and can be used for performance analysis.|
 |pids|	Giới hạn số lượng processes.|
 
