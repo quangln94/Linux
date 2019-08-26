@@ -20,19 +20,19 @@ drwxr-xr-x 3 root root  0 Aug 13 18:19 perf_event
 drwxr-xr-x 5 root root  0 Aug 13 18:19 pids
 drwxr-xr-x 5 root root  0 Aug 13 18:19 systemd
 ```
-|blkio|	It limits on input/output access to and from block devices.|
+|blkio|	Giới hạn quyền truy cập đầu vào/đầu ra và từ các block devives.|
 |-------|------------|
-|cpu|	It uses the scheduler to provide cgroup tasks access to the CPU.|
-|cpuacct|	It generates automatic reports on CPU resources.|
+|cpu|	Sử dụng bộ lập lịch để cung cấp cho các task cgroup truy cập vào CPU.|
+|cpuacct|	Tự động tạo ra các các báo cáo về tài nguyên CPU.|
 |cpuset|	It assigns individual CPUs on a multicore system and memory nodes to tasks.|
 |devices|	It allows or denies access to devices by tasks.|
 |freezer|	It suspends or resumes tasks in a cgroup.|
 |hugetlb|	It limits to use HugeTLB.|
-|memory|	It limits on memory use by tasks and generates automatic reports on memory resources.|
+|memory|	Giới hạn việc sử dụng bộ nhớ bởi các task và tự tạo báo cáo về tài nguyên bộ nhớ.|
 |net_cls|	It tags network packets with a class identifier (classid).|
 |net_prio|	It provides a way to dynamically set the priority of network traffic per network interface.|
 |perf_event|	It identifies cgroup membership of tasks and can be used for performance analysis.|
-|pids|	It limits number of processes.|
+|pids|	Giới hạn số lượng processes.|
 
 # Tài liệu tham khảo 
 - https://www.server-world.info/en/note?os=CentOS_7&p=cgroups&f=1
