@@ -128,16 +128,14 @@ Ví dụ như khi hệ thống của bạn có 10GB RAM và bạn có 2 người
 
 Ngoài ra còn 1 số tính năng khác như: 
 
-- ***cpuacct:*** báo cáo về trình trạng sử dụng CPU của các “task”.
+- ***cpuacct:*** báo cáo về trình trạng sử dụng CPU của các `task`.
 - ***cpuset:*** giới hạn việc sử dụng số lượng CPU trên hệ thống nhiều CPU.
 - ***blkio:*** giới hạn việc truy cập nhập/xuất(I/O) đến các thiết bị như ổ đĩa cứng.
 - ***net_cls:*** đánh số classid cho từng gói tin nhằm giúp Linux Traffic Controller(tc) có thể biết gói tin đến từ cgroup nào.
 
-Xem thêm [tại đây](https://www.server-world.info/en/note?os=CentOS_7&p=cgroups&f=1)
+Các tính năng của `Cgroup` xem thêm [tại đây](https://www.server-world.info/en/note?os=CentOS_7&p=cgroups&f=1)
 
 Tương tự như các process, `Cgroups` có cấu trúc phân cấp, các Child Cgroups sẽ thừa hưởng các thuộc tính từ Parent Cgroups. Trong `Cgroups`, các tài nguyên hệ thống được gọi bằng thuật ngữ `subsystem` hay `resource controller` và các process trên hệ thống được gọi là `task`.
-
-Xem thêm [tại đây](https://github.com/quangln94/Linux/blob/master/Task/Linux%20Namespace/Cgroup.md)
 
 # Tài liệu tham khảo
 - https://www.toptal.com/linux/separation-anxiety-isolating-your-system-with-linux-namespaces
