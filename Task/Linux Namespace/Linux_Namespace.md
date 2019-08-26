@@ -119,9 +119,23 @@ Hinh trên thể hiện 1 ví dụ về User Namespace
 
 Control groups thường được gọi là `Cgroups`. `Cgroups` cho phép bạn có thể cấp phát tài nguyên – như thời gian sử dụng CPU, RAM, Network. Bạn có thể theo dõi `Cgroups`, từ chối `Cgroups` sử dụng tài nguyên nhất định và ngay cả việc cấu hình lại `Cgroups` trên một hệ thống đang chạy.
 
-Tài nguyên phần cứng sẽ được chia sẽ hiệu quả giữa các người dùng và tăng khả năng ổn định của hệ thống. Ví dụ như khi hệ thống của bán có 10GB RAM và bạn có 2 người dùng. Khi đó, bạn cấp cho mỗi người dùng 3GB RAM thì mỗi người được giới hạn sử dụng tối đã là 3GB mà không thể sử dụng hơn phần mình được cấp. Do đó sẽ không ảnh hưởng đến tài nguyên của người khác hay toàn bộ hệ thống.
+Tài nguyên phần cứng sẽ được chia sẽ hiệu quả giữa các người dùng và tăng khả năng ổn định của hệ thống. Tài nguyên phần cứng ở đây là:
+- ***memory:*** giới hạn việc sử dụng bộ nhớ hệ thống.
+- ***cpu:*** sử dụng OS scheduler để cấp phát CPU cho các “task”.
+- ***net_prio:*** giới hạn băng thông mạng theo độ ưu tiên.
 
-Tương tự như các proess, `Cgroups` có cấu trúc phân cấp, những Child Cgroups sẽ thừa hưởng các thuộc tính từ Parent Cgroups. Trong `Cgroups`, các tài nguyên hệ thống được gọi bằng thuật ngữ “subsystem” hay “resource controller” và các process trên hệ thống được gọi là "task".
+Ví dụ như khi hệ thống của bạn có 10GB RAM và bạn có 2 người dùng. Khi đó, bạn cấp cho mỗi người dùng 3GB RAM thì mỗi người được giới hạn sử dụng tối đã là 3GB mà không thể sử dụng hơn phần mình được cấp. Do đó sẽ không ảnh hưởng đến tài nguyên của người khác hay toàn bộ hệ thống.
+
+Ngoài ra còn 1 số tính năng khác như: 
+
+- ***cpuacct:*** báo cáo về trình trạng sử dụng CPU của các “task”.
+- ***cpuset:*** giới hạn việc sử dụng số lượng CPU trên hệ thống nhiều CPU.
+- ***blkio:*** giới hạn việc truy cập nhập/xuất(I/O) đến các thiết bị như ổ đĩa cứng.
+- ***net_cls:*** đánh số classid cho từng gói tin nhằm giúp Linux Traffic Controller(tc) có thể biết gói tin đến từ cgroup nào.
+
+Xem thêm [tại đây](https://www.server-world.info/en/note?os=CentOS_7&p=cgroups&f=1)
+
+Tương tự như các process, `Cgroups` có cấu trúc phân cấp, các Child Cgroups sẽ thừa hưởng các thuộc tính từ Parent Cgroups. Trong `Cgroups`, các tài nguyên hệ thống được gọi bằng thuật ngữ `subsystem` hay `resource controller` và các process trên hệ thống được gọi là `task`.
 
 Xem thêm [tại đây](https://github.com/quangln94/Linux/blob/master/Task/Linux%20Namespace/Cgroup.md)
 
