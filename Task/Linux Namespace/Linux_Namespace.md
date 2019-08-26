@@ -119,11 +119,11 @@ Hinh trên thể hiện 1 ví dụ về User Namespace
 
 Control groups thường được gọi là `Cgroups`. `Cgroups` cho phép bạn có thể cấp phát tài nguyên – như thời gian sử dụng CPU, RAM, Network. Bạn có thể theo dõi `Cgroups`, từ chối `Cgroups` sử dụng tài nguyên nhất định và ngay cả việc cấu hình lại `Cgroups` trên một hệ thống đang chạy.
 
-Tài nguyên phần cứng sẽ được chia sẽ hiệu quả giữa các người dùng và tăng khả năng ổn định của hệ thống.
+Tài nguyên phần cứng sẽ được chia sẽ hiệu quả giữa các người dùng và tăng khả năng ổn định của hệ thống. Ví dụ như khi hệ thống của bán có 10GB RAM và bạn có 2 người dùng. Khi đó, bạn cấp cho mỗi người dùng 3GB RAM thì mỗi người được giới hạn sử dụng tối đã là 3GB mà không thể sử dụng hơn phần mình được cấp. Do đó sẽ không ảnh hưởng đến tài nguyên của người khác hay toàn bộ hệ thống.
 
-Tương tự như các tiến trình, `Cgroups` có cấu trúc phân cấp, những Child Cgroups sẽ thừa hưởng các thuộc tính từ Parent Cgroups. Trong `Cgroups`, các tài nguyên hệ thống được gọi bằng thuật ngữ “subsystem” hay “resource controller” và các tiến trình trên hệ thống được gọi là "task".
+Tương tự như các proess, `Cgroups` có cấu trúc phân cấp, những Child Cgroups sẽ thừa hưởng các thuộc tính từ Parent Cgroups. Trong `Cgroups`, các tài nguyên hệ thống được gọi bằng thuật ngữ “subsystem” hay “resource controller” và các process trên hệ thống được gọi là "task".
 
-Xem thêm [tại đây](https://github.com/quangln94/Linux/blob/master/Task/Cgroup.md)
+Xem thêm [tại đây](https://github.com/quangln94/Linux/blob/master/Task/Linux%20Namespace/Cgroup.md)
 
 # Tài liệu tham khảo
 - https://www.toptal.com/linux/separation-anxiety-isolating-your-system-with-linux-namespaces
