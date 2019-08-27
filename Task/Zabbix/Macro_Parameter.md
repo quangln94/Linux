@@ -1,7 +1,9 @@
 Tim hiều về cách sử dụng Macro và Parameter trong Zabbix
 # Monitor nhiều disk sử dụng Macro và Parameter
 Để tìm hiểu về `macro` và `parameter` trong zabbix ta làm 1 ví dụ về việc monitor nhiều disk trên 1 host
+
 Để có thể monitor nhiều disk trên host, ta khai báo 1 biến $DISK để liệt kệ số lượng disk trên host và giám sát nó.
+
 Mục tiêu của nó sẽ đươc thực hiện như sau:
 ## 1. Trên Zabbix-agent
 Sử dụng một script python để list ra tên disk. 
