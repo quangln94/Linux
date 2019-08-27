@@ -42,11 +42,16 @@ Trong đó:
 ```sh
 systemctl restart zabbix-agent
 ```  
-## Trên Dashbroad Zabbix
-- Vào `Administration` -> `General` -> `Macro` -> Add `macro` Tạo 1 biến $DISK
+## 2. Trên Dashbroad Zabbix
+### Tạo biến và rạo Rule list disk
+
+- Vào `Administration` -> `General` -> `Macro` -> Tạo 1 biến $DISK
+<img src=https://i.imgur.com/6EA15or.png>
+
 |Macro|Value|
 |-----|-----
 |{$DISK}|all|
+
 - Chọn`Add` -> `Update`
 - Tạo `discovery rule` trên host để liệt kê các disk tìm được 
 - Vào `Configuration` -> chọn `Host` -> Discovery - `Create discovery rule`
