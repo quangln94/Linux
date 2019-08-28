@@ -35,7 +35,7 @@ vim /etc/zabbix/zabbix_agent.conf
 UserParameter=custom.disks.discovery_python,/usr/local/bin/discover_disk.py
 ```
 Trong đó: 
-  - ***custom.disks.discovery_python:*** là Key item được dùng để cấu hình Item cho host
+  - ***custom.disks.discovery_python:*** là Key item được dùng để cấu hình Item list disk cho host
   - ***/usr/local/bin/discover_disk.py:*** là câu lệnh thực thi file python
 
 - Sau đó lưu lại và Restart zabbix-agent
