@@ -1,5 +1,6 @@
 # IP Tables
-## I. Giới thiệu về IP Tables
+## I. Tổng quan về 
+### 1.1 Giới thiệu về IPTables
 Iptables là Firewall được cấu hình và hoạt động trên nền Console rất nhỏ và tiện dụng, Iptables do Netfilter Organiztion viết ra để tăng tính năng bảo mật trên hệ thống Linux. Iptables cung cấp các tính năng sau:
 - Tích hợp tốt với kernel của Linux.
 - Có khả năng phân tích package hiệu quả.
@@ -7,6 +8,35 @@ Iptables là Firewall được cấu hình và hoạt động trên nền Consol
 - Cung cấp chi tiết các tùy chọn để ghi nhận sự kiện hệ thống.
 - Cung cấp kỹ thuật NAT.
 - Có khả năng ngăn chặn một số cơ chế tấn công theo kiểu DoS.
+
+### 1.2 Các bảng trong Iptables
+
+IPtable gồm có 5 bảng với với mục đích và thứ tự xử lý khác nhau. Thứ tự xử lý các gói tin được mô tả cơ bản trong bảng sau:
+
+#### Filter Table
+
+Filter là bảng được dùng nhiều nhất trong IPtables. Bảng này dùng để quyết định xem có nên cho một gói tin tiếp tục đi tới đích hoặc chặn gói tin này lại (lọc gói tin). Đây là chức năng chính của IPtables.
+
+#### NAT Table
+
+Bảng NAT được dùng để NAT địa chỉ IP, khi các gói tin đi vào bảng này, gói tin sẽ được kiểm tra xem có cần thay đổi và sẽ thay đổi địa chỉ nguồn, đích của gói tin như thế nào.
+
+Bảng này được sử dụng khi có một gói tin từ một kết nối mới gửi đến hệ thống, các gói tin tiếp theo của kết nối này sẽ được áp rule và xử lý tương tự như gói tin đầu tiên mà không cần phải đi qua bảng NAT nữa.
+
+#### Mangle Table
+
+Bảng mangle dùng để điều chỉnh một số trường trong IP header như TTL (Time to Live), TOS (Type of Serivce) dùng để quản lý chât lượng dịch vụ (Quality of Serivce)... hoặc dùng để đánh dấu các gói tin để xử lý thêm trong các bảng khác.
+
+#### Raw Table
+
+Theo mặc định, iptables sẽ lưu lại trạng thái kết nối của các gói tin, tính năng này cho phép iptables xem các gói tin rời rạc là một kết nối, một session chung để dễ dàng quản lý. Tính năng theo dõi này được sử dụng ngay từ khi gói tin được gởi tới hệ thống trong bảng raw.
+
+Với bảng raw, ta có thể bật/tắt tính năng theo dõi này đối với một số gói tin nhất định, các gói tin được đánh dấu NOTRACK sẽ không được ghi lại trong bảng connection tracking nữa.
+
+#### Security Table
+
+Bảng security dùng để đánh dấu policy của SELinux lên các gói tin, các dấu này sẽ ảnh hưởng đến cách thức xử lý của SELinux hoặc của các máy khác trong hệ thống có áp dụng SELinux. Bảng này có thể đánh dấu theo từng gói tin hoặc theo từng kết nối.
+
 ## II. Install Iptables
 ### 1. Install
 Iptables thường được cài đặt mặc định trong hệ thống. Nếu chưa được cài đặt:</br>
