@@ -75,7 +75,7 @@ Trong đó:
 
 <img src=https://i.imgur.com/rUdrd85.png>
 
-- Như trong ví dụ tạo item giám sát tốc độ đọc trên disk bằng key `vfs.dev.read[/dev/vda]` nhưng thay vì giám sát trên 1 disk `vda`, ta giám sát trên nhiều disk sử dụng `$DISK` như sau: `vfs.dev.read[/dev/$DISK]`
+- Như trong ví dụ tạo item giám sát tốc độ đọc trên disk bằng key `vfs.dev.read[/dev/vda]` nhưng thay vì giám sát trên 1 disk `vda`, ta giám sát trên nhiều disk sử dụng `$DISK` như sau: `vfs.dev.read[/dev/#DISK]`
 - Sau khi tạo xong bạn sẽ thấy item đã được tạo
 - Bây giờ bạn có thể thấy metric đẩy về. Lúc này trên máy của tôi có 2 disk.
 <img src=https://i.imgur.com/aAi5zhb.png>
