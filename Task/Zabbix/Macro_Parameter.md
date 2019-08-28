@@ -34,6 +34,9 @@ chmod +x /usr/local/bin/discover_disk.py
 vim /etc/zabbix/zabbix_agent.conf
 UserParameter=custom.disks.discovery_python,/usr/local/bin/discover_disk.py
 ```
+
+Cú pháp khai báo Parameter: `UserParameter=<key>,<command>`
+
 Trong đó: 
   - ***custom.disks.discovery_python:*** là Key item được dùng để cấu hình Item list disk cho host
   - ***/usr/local/bin/discover_disk.py:*** là câu lệnh thực thi file python
@@ -84,3 +87,4 @@ Trong đó:
    # Tài liệu tham khảo
    - https://github.com/MinhKMA/mdt-ghichep-zabbix/blob/master/docs/discovery_disk.md
    - https://blog.cloud365.vn/monitor/monitor-multi-disk-zabbix/
+   - https://www.zabbix.com/documentation/4.0/manual/config/items/userparameters
