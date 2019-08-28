@@ -56,7 +56,7 @@ systemctl restart zabbix-agent
 - Tạo `discovery rule` trên host để liệt kê các disk tìm được 
 - Vào `Configuration` -> chọn `Host` -> Discovery - `Create discovery rule`
 
-<img src=>
+<img src=https://i.imgur.com/k6rdg52.png>
 
 Trong đó: 
 - ***Name:*** là tên của discovery rule
@@ -64,14 +64,21 @@ Trong đó:
 
 - Sau đó chuyển sang tab `Filters` để lọc ra những disk mà ta muốn giám sát
 
+<img src=https://i.imgur.com/X41qzvU.png>
+
 - ***^vd(a-z)$***: Lọc ra tất cả các disk từ vda->vdz: vda, vdb, vdc,...vdz.
 - Sau đó click `Add`. Ta sẽ thấy discovery rule đã được tạo để list disk trên host
+
 - Để giám sát một thông số nào đó trên những disk được tìm thấy ta phải tạo các item cho nó. Để tạo item trên discovery rule ta click vào Item prototypes
 - Click vào Create item prototype
 - Thực hiện tạo item như bình thường. Ở những vị trí thay vì phải khai báo tên disk bạn thay vào đó là tham số macros đã khai báo từ trước để nó nhận giá trị mà discovery rule tìm thấy
+
+<img src=https://i.imgur.com/rUdrd85.png>
+
 - Như trong ví dụ tôi tạo item giám sát tốc độ đọc trên disk.
 - Sau khi tạo xong bạn sẽ thấy item đã được tạo
 - Bây giờ bạn có thể thấy metric đẩy về. Lúc này trên máy của tôi có 2 disk.
+<img src=https://i.imgur.com/aAi5zhb.png>
 
    # Tài liệu tham khảo
    - https://github.com/MinhKMA/mdt-ghichep-zabbix/blob/master/docs/discovery_disk.md
