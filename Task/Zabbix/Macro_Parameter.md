@@ -75,7 +75,7 @@ Trong đó:
 
 <img src=https://i.imgur.com/rUdrd85.png>
 
-- Như trong ví dụ tạo item giám sát tốc độ đọc trên disk.
+- Như trong ví dụ tạo item giám sát tốc độ đọc trên disk bằng key `vfs.dev.read[<device>,<type>,<mode>]`
 - Sau khi tạo xong bạn sẽ thấy item đã được tạo
 - Bây giờ bạn có thể thấy metric đẩy về. Lúc này trên máy của tôi có 2 disk.
 <img src=https://i.imgur.com/aAi5zhb.png>
