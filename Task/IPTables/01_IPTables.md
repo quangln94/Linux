@@ -222,4 +222,7 @@ Hoặc
 iptables: Saving firewall rules to /etc/sysconfig/iptables:[ OK ]
 ```
 # Reference
-https://hocvps.com/iptables/
+- https://hocvps.com/iptables/
+- https://cloudcraft.info/gioi-thieu-ve-iptables/
+- https://tech.bizflycloud.vn/tim-hieu-ve-iptables-phan-1-660.htm
+- https://tech.bizflycloud.vn/iptables-phan-2-691.htm
