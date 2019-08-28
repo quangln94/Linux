@@ -4,7 +4,12 @@ Trong Network, Firewall là bức tường chống lại những xâm nhập tr�
 
 Firewall sẽ kiểm soát các luồng traffic vào ra theo các Rule được thiết lập sẵn.
 ## 2. Iptables là gì
-Iptables là 1 ứng dụng tường lửa được tích hợp trong hầu hết các bản phân phối của hệ điều hành Linux (CentOS, Ubuntu…). Tuy nhiên từ phiên bản CentOS 7. Tường lừa mặc định trên CentOS 7 là `Firewalld`. Nếu bạn muốn dùng `Iptables` thì thực hiện như sau: 
+Iptables là 1 ứng dụng tường lửa được tích hợp trong hầu hết các bản phân phối của hệ điều hành Linux (CentOS, Ubuntu…).
+
+Tuy nhiên từ phiên bản CentOS 7. Tường lừa mặc định trên CentOS 7 là `Firewalld`.
+
+Nếu bạn muốn dùng `Iptables` thì thực hiện như sau: 
+
 - Cài đặt các gói Iptables
 ```sh
 yum install -y iptables-services
