@@ -37,6 +37,25 @@ Với bảng raw, ta có thể bật/tắt tính năng theo dõi này đối v�
 
 Bảng security dùng để đánh dấu policy của SELinux lên các gói tin, các dấu này sẽ ảnh hưởng đến cách thức xử lý của SELinux hoặc của các máy khác trong hệ thống có áp dụng SELinux. Bảng này có thể đánh dấu theo từng gói tin hoặc theo từng kết nối.
 
+### 1.2 Các chain trong tables
+
+Mỗi một table đều có một số chain của riêng mình, sau đây là bảng cho biết các chain thuộc mỗi table
+
+|Tables/Chain|PREROUTING|INPUT|FORWARD|OUTPUT|POSTROUTING|
+|------------|----------|-----|-------|------|-----------|
+|RAW|x|||x||
+|MANGLE|x|x|x|x|x|
+|DNAT|x|||x||
+|FILTER||x|x|x||
+|SECURITY||x|x|x||
+|SNAT||x|||x|
+
+- **INPUT** – Chain này dùng để kiểm soát hành vi của những các kết nối tới máy chủ. Ví dụ một user cần kết nối SSH và máy chủ, iptables sẽ xét xem IP và port của user này có phù hợp với một rule trong chain INPUT hay ko.
+- **FORWARD** – Chain này được dùng cho các kết nối chuyển tiếp sang một máy chủ khác (tương tự như router, thông tin gởi tới router sẽ được forward đi nơi khác). Ta chỉ cần định tuyến hoặc NAT một vài kết nối (cần phải forward dữ liệu) thì ta mới cần tới chain này.
+- **OUTPUT** – Chain này sẽ xử lý các kết nối đi ra ngoài. Ví dụ như khi ta truy cập google.com, chain này sẽ kiểm tra xem có rules nào liên quan tới http, https và google.com hay không trước khi quyết định cho phép hoặc chặn kết nối.
+- **PREROUTING** –Header của gói tin sẽ được chỉnh sửa tại đây trước khi việc routing được diễn ra.
+- **POSTROUTING** – Header của gói tin sẽ được chỉnh sửa tại đây sau khi việc routing được diễn ra.
+
 ## II. Install Iptables
 ### 1. Install
 Iptables thường được cài đặt mặc định trong hệ thống. Nếu chưa được cài đặt:</br>
