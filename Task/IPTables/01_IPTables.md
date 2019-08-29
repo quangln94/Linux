@@ -37,7 +37,7 @@ Với bảng raw, ta có thể bật/tắt tính năng theo dõi này đối v�
 
 Bảng security dùng để đánh dấu policy của SELinux lên các gói tin, các dấu này sẽ ảnh hưởng đến cách thức xử lý của SELinux hoặc của các máy khác trong hệ thống có áp dụng SELinux. Bảng này có thể đánh dấu theo từng gói tin hoặc theo từng kết nối.
 
-### 1.2 Các chain trong tables
+### 1.3 Các chain trong tables
 
 Mỗi một table đều có một số chain của riêng mình, sau đây là bảng cho biết các chain thuộc mỗi table
 
@@ -55,6 +55,41 @@ Mỗi một table đều có một số chain của riêng mình, sau đây là 
 - **OUTPUT** – Chain này sẽ xử lý các kết nối đi ra ngoài. Ví dụ như khi ta truy cập google.com, chain này sẽ kiểm tra xem có rules nào liên quan tới http, https và google.com hay không trước khi quyết định cho phép hoặc chặn kết nối.
 - **PREROUTING** –Header của gói tin sẽ được chỉnh sửa tại đây trước khi việc routing được diễn ra.
 - **POSTROUTING** – Header của gói tin sẽ được chỉnh sửa tại đây sau khi việc routing được diễn ra.
+
+### 1.4 Các RULE trong CHAIN 
+
+Các rule là tập điều kiện và hành động tương ứng để xử lý gói tin (ví dụ ta sẽ tạo một rule chặn giao thức FTP, drop toàn bộ các gói tin FTP được gởi đến máy chủ). Mỗi chain sẽ chứa rất nhiều rule, gói tin được xử lý trong một chain sẽ được so với lần lượt từng rule trong chain này.
+
+Cơ chế kiểm tra gói tin dựa trên rule vô cùng linh hoạt và có thể dễ dàng mở rộng thêm nhờ các extension của IPtables có sẵn trên hệ thống. Rule có thể dựa trên protocol, địa chỉ nguồn/đích, port nguồn/đích, card mạng, header gói tin, trạng thái kết nối... Dựa trên những điều kiện này, ta có thể tạo ra một tập rule phức tạp để kiểm soát luồng dữ liệu ra vào hệ thống.
+
+Mỗi rule sẽ đươc gắn một hành động để xử lý gói tin, hành động này có thể là:
+
+- **ACCEPT:** gói tin sẽ được chuyển tiếp sang bảng kế tiếp.
+- **DROP:** gói tin/kết nối sẽ bị hủy, hệ thống sẽ không thực thi bất kỳ lệnh nào khác.
+- **REJECT:** gói tin sẽ bị hủy, hệ thống sẽ gởi lại 1 gói tin báo lỗi ICMP – Destination port unreachable
+- **LOG:** gói tin khớp với rule sẽ được ghi log lại.
+- **REDIRECT:** chuyển hướng gói tin sang một proxy khác.
+- **MIRROR:** hoán đổi địa chỉ IP nguồn, đích của gói tin trước khi gởi gói tin này đi.
+- **QUEUE:** chuyển gói tin tới chương trình của người dùng qua một module của kernel.
+
+### 1.5. Các trạng thái của kết nối
+
+Đây là những trạng thái mà hệ thống connection tracking (module conntrack của IPtables) theo dõi trạng thái của các kết nối:
+
+***NEW:*** Khi có một gói tin mới được gởi tới và không nằm trong bất kỳ connection nào hiện có, hệ thống sẽ khởi tạo một kết nối mới và gắn nhãn NEW cho kết nối này. Nhãn này dùng cho cả TCP và UDP.
+
+***ESTABLISHED:*** Kết nối được chuyển từ trạng thái NEW sang ESTABLISHED khi máy chủ nhận được phản hồi từ bên kia.
+RELATED: Gói tin được gởi tới không thuộc về một kết nối hiện có nhưng có liên quan đến một kết nối đang có trên hệ thống. Đây có thể là một kết nối phụ hỗ trợ cho kết nối chính, ví dụ như giao thức FTP có kết nối chính dùng để chuyển lệnh và kết nối phụ dùng để truyền dữ liệu.
+
+***INVALID:*** Gói tin được đánh dấu INVALID khi gói tin này không có bất cứ quan hệ gì với các kết nối đang có sẵn, không thích hợp để khởi tạo một kết nối mới hoặc đơn giản là không thể xác định được gói tin này, không tìm được kết quả trong bảng định tuyến.
+
+***UNTRACKED:*** Gói tin có thể được gắn hãn UNTRACKED nếu gói tin này đi qua bảng raw và được xác định là không cần theo dõi gói này trong bảng connection tracking.
+
+***SNAT:*** Trạng thái này được gán cho các gói tin mà địa chỉ nguồn đã bị NAT, được dùng bởi hệ thống connection tracking để biết khi nào cần thay đổi lại địa chỉ cho các gói tin trả về.
+
+***DNAT:*** Trạng thái này được gán cho các gói tin mà địa chỉ đích đã bị NAT, được dùng bởi hệ thống connection tracking để biết khi nào cần thay đổi lại địa chỉ cho các gói tin gởi đi.
+
+Các trạng thái này giúp người quản trị tạo ra những rule cụ thể và an toàn hơn cho hệ thống.
 
 ## II. Install Iptables
 ### 1. Install
