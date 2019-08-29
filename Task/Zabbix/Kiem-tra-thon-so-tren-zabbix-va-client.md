@@ -33,5 +33,14 @@ Vì sao lại là 2.98 mà không phải 3.21. Là vì cách tính khác nhau nh
 ```
 Vì sao lại thế thì [tham khảo tại đây](http://xahoithongtin.vnmedia.vn/trai-nghiem/download/201403/tai-sao-o-cung-hien-thi-sai-dung-luong-trong-windows-487440/)
 
+## Kết luật
+
+Zabbix là phần mềm giám sát cung cấp thông số khá là chính xác. Bạn có thể yên tâm khi sử dụng.
+
+Tuy nhiên vẫn có sự chênh lệch thông số giữa Zabbix-web và trên host thực tế do 1 vài lí do sau:
+- Cách tính toán thông số thông qua item có thể khác với trên host. VÌ thế bạn phải kiểm tra xem item đó lấy giá trị từ đâu hay lấy như thế nào.
+- 1 thông số trong item đó là `Update interval`. Việc bạn lấy thông số 1 cách liên tục hay sau 1 khoảng thời gian dài cũng có thể dẫn đến tình trạng thông số khác nhau giữa host và zabbix-web. Ví dụ: Bạn set 1 item với `Update interval=5m`. Tại thời điểm 5m giá trị là a nhưng tại thời điểm 5.2m trên zabbix-web vẫn hiển thị là a nhưng trên host giá trị đó lại là b.
+
+
 # Tài liệu tham khảo 
 - http://xahoithongtin.vnmedia.vn/trai-nghiem/download/201403/tai-sao-o-cung-hien-thi-sai-dung-luong-trong-windows-487440/
