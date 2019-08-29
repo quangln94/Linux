@@ -1,3 +1,7 @@
+Để kiểm tra xem các thông số hiển thị trên Zabbix web có giống với trên host không. Ta làm 1 số ví dụ sau:
+
+
+
 <img src=https://i.imgur.com/W7cdVft.png>
 <img src=https://i.imgur.com/3inYLes.png>
 <img src=https://i.imgur.com/yZkV1NR.png>
