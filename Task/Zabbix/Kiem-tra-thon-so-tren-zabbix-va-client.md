@@ -1,4 +1,9 @@
-Để kiểm tra xem các thông số hiển thị trên Zabbix web có giống với trên host không. Ta làm 1 số ví dụ sau:
+# Để kiểm tra xem các thông số hiển thị trên Zabbix web có giống với trên host không. Ta làm 1 số ví dụ sau:
+
+## 1. Check free disk bằng việc tạo ra 1 file 2.1G bằng lệnh dd như sau:
+```sh
+
+```
 
 
 
