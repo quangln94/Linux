@@ -33,6 +33,5 @@ Vì sao lại là 2.98 mà không phải 3.21. Là vì cách tính khác nhau nh
 ```
 Vì sao lại thế thì [tham khảo tại đây](# http://xahoithongtin.vnmedia.vn/trai-nghiem/download/201403/tai-sao-o-cung-hien-thi-sai-dung-luong-trong-windows-487440/)
 
-
-
-# http://xahoithongtin.vnmedia.vn/trai-nghiem/download/201403/tai-sao-o-cung-hien-thi-sai-dung-luong-trong-windows-487440/
+# Tài liệu tham khảo 
+- http://xahoithongtin.vnmedia.vn/trai-nghiem/download/201403/tai-sao-o-cung-hien-thi-sai-dung-luong-trong-windows-487440/
