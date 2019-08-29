@@ -27,7 +27,7 @@ Kiểm tra trên zabbix web
 
 Giá trị hiển thị là 2.98Gbits/s.
 
-Vì sao lại là 2.98 mà không phải 3.21. Là vì cách tính khác nhau như sau (Cái này do suy đoán cá nhân:D ):
+Vì sao lại là 2.98 mà không phải 3.21. Là vì cách tính khác nhau như sau ***(Cái này do suy đoán cá nhân và cần phải kiểm chứng lại:D )***:
 ```sh
 3.21*(1000*1000*1000)/(1024*1024*1024)=2.98
 ```
