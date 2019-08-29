@@ -1,16 +1,18 @@
 # Để kiểm tra xem các thông số hiển thị trên Zabbix web có giống với trên host không. Ta làm 1 số ví dụ sau:
 
 ## 1. Check free disk bằng việc tạo ra 1 file 2.1G bằng lệnh dd như sau:
-```sh
-
-```
-
-
-
+- Đầu tiên ta kiểm tra disk đang free là 17.27G
 <img src=https://i.imgur.com/W7cdVft.png>
+
+Sau đó ta tạo 1 file ung lượng 2.1G bằng lệnh `dd` nhu sau:
 <img src=https://i.imgur.com/3inYLes.png>
+
+-Kiêm tra sự thay đổi trên zabbix-web
 <img src=https://i.imgur.com/yZkV1NR.png>
 
+=> Vậy thông số hiển thị khá chính xác.
+## 2. Kiểm tra băng thông trên cổng `eth0`
+- Đầu tiên ta sử dụng 1 item để tính toán băng thông trên cổng `eth0` bằng cách cộng lưu lượng vào ra trên cồng `eth0` sử dụng item caculated.
 - Kiểm tra thông số hiển thị thông qua việc giám sát bandwidth trên cổng eth0.
 Sử dụng lệnh iperf thực hiện đầy băng thông cổng eht0 lên 3.21Gbits/s 
 ```sh
