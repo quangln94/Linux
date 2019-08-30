@@ -140,10 +140,10 @@ CT_SKIP_TIME_WAIT = "0"
 CT_STATES = ""
 
 
-# Reference
-https://vpssim.vn/1635-bao-ve-vpsserver-chong-lai-ddos-bang-iptables-hoac-csf.html
-https://whitehat.vn/threads/phong-chong-tan-cong-su-dung-iptables.4933/
-https://thachpham.com/linux-webserver/iptables-linux-toan-tap.html
-https://www.hostinger.vn/huong-dan/huong-dan-iptables-bao-mat-ubuntu-vps-voi-linux-firewall/
-https://viblo.asia/p/network-tim-hieu-ve-iptables-n7prv348RKod
-https://support.maxserver.com/319787--B%E1%BA%A3o-v%E1%BB%87-vps-b%E1%BA%B1ng-IPTABLES-tr%C3%AAn-linux
+# Tài liệu tham khảo
+- https://vpssim.vn/1635-bao-ve-vpsserver-chong-lai-ddos-bang-iptables-hoac-csf.html
+- https://whitehat.vn/threads/phong-chong-tan-cong-su-dung-iptables.4933/
+- -https://thachpham.com/linux-webserver/iptables-linux-toan-tap.html
+- https://www.hostinger.vn/huong-dan/huong-dan-iptables-bao-mat-ubuntu-vps-voi-linux-firewall/
+- https://viblo.asia/p/network-tim-hieu-ve-iptables-n7prv348RKod
+- https://support.maxserver.com/319787--B%E1%BA%A3o-v%E1%BB%87-vps-b%E1%BA%B1ng-IPTABLES-tr%C3%AAn-linux
