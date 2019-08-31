@@ -13,27 +13,27 @@ Iptables là Firewall được cấu hình và hoạt động trên nền Consol
 
 IPtable gồm có 5 bảng với với mục đích và thứ tự xử lý khác nhau. Thứ tự xử lý các gói tin được mô tả cơ bản trong bảng sau:
 
-#### Filter Table
+**Filter Table**
 
 Filter là bảng được dùng nhiều nhất trong IPtables. Bảng này dùng để quyết định xem có nên cho một gói tin tiếp tục đi tới đích hoặc chặn gói tin này lại (lọc gói tin). Đây là chức năng chính của IPtables.
 
-#### NAT Table
+**NAT Table**
 
 Bảng NAT được dùng để NAT địa chỉ IP, khi các gói tin đi vào bảng này, gói tin sẽ được kiểm tra xem có cần thay đổi và sẽ thay đổi địa chỉ nguồn, đích của gói tin như thế nào.
 
 Bảng này được sử dụng khi có một gói tin từ một kết nối mới gửi đến hệ thống, các gói tin tiếp theo của kết nối này sẽ được áp rule và xử lý tương tự như gói tin đầu tiên mà không cần phải đi qua bảng NAT nữa.
 
-#### Mangle Table
+**Mangle Table**
 
 Bảng mangle dùng để điều chỉnh một số trường trong IP header như TTL (Time to Live), TOS (Type of Serivce) dùng để quản lý chât lượng dịch vụ (Quality of Serivce)... hoặc dùng để đánh dấu các gói tin để xử lý thêm trong các bảng khác.
 
-#### Raw Table
+**Raw Table**
 
 Theo mặc định, iptables sẽ lưu lại trạng thái kết nối của các gói tin, tính năng này cho phép iptables xem các gói tin rời rạc là một kết nối, một session chung để dễ dàng quản lý. Tính năng theo dõi này được sử dụng ngay từ khi gói tin được gởi tới hệ thống trong bảng raw.
 
 Với bảng raw, ta có thể bật/tắt tính năng theo dõi này đối với một số gói tin nhất định, các gói tin được đánh dấu NOTRACK sẽ không được ghi lại trong bảng connection tracking nữa.
 
-#### Security Table
+**Security Table**
 
 Bảng security dùng để đánh dấu policy của SELinux lên các gói tin, các dấu này sẽ ảnh hưởng đến cách thức xử lý của SELinux hoặc của các máy khác trong hệ thống có áp dụng SELinux. Bảng này có thể đánh dấu theo từng gói tin hoặc theo từng kết nối.
 
@@ -94,8 +94,14 @@ Các trạng thái này giúp người quản trị tạo ra những rule cụ t
 ## II. Install Iptables
 ### 1. Install
 Iptables thường được cài đặt mặc định trong hệ thống. Nếu chưa được cài đặt:</br>
-Cài đặt trên ubuntu: `$ apt-get install iptables`</br>
-Cài đặt trên Redhat/CentOS: `$ yum install iptables`</br>
+Cài đặt trên ubuntu:
+```sh
+apt-get install iptables`
+```
+Cài đặt trên Redhat/CentOS:
+```sh
+yum install iptables`</br>
+```
 CentOS 7 sử dụng FirewallD làm tường lửa mặc định thay vì Iptables. Nếu bạn muốn sử dụng Iptables thực hiện:</br>
 ```sh
 # systemctl mask firewalld
@@ -190,73 +196,92 @@ Trong đó:
 -p <protocol> là giao thức mạng thực hiện lọc (tcp/udp)
 –dport <port no.> là cổng mà bạn muốn đặt bộ lọc
 
-Để mở port trong Iptables, bạn cần chèn chuỗi ACCEPT PORT. Cấu trúc lệnh để mở port xxx như sau:</br>
-**# iptables -A INPUT -p tcp -m tcp --dport xxx -j ACCEPT**
+Để mở port trong Iptables, bạn cần chèn chuỗi ACCEPT PORT. Cấu trúc lệnh để mở port xxx như sau:
+```sh
+# iptables -A INPUT -p tcp -m tcp --dport xxx -j ACCEPT
+```
 - `A` tức Append – chèn vào chuỗi INPUT (chèn xuống cuối)
 
-hoặc</br>
-**# iptables -I INPUT -p tcp -m tcp --dport xxx -j ACCEPT**
+hoặc
+```sh
+# iptables -I INPUT -p tcp -m tcp --dport xxx -j ACCEPT
+```
 - `I` tức Insert - chèn vào chuỗi INPUT (chèn vào dòng chỉ định rulenum)
 
 Để tránh xung đột với rule gốc, các bạn nên chèn rule vào đầu, sử dụng -I
+
 #### 3.1. Mở port SSH
 Để truy cập VPS qua SSH, bạn cần mở port SSH 22. Bạn có thể cho phép kết nối SSH ở bất cứ thiết bị nào, bởi bất cứ ai và bất cứ dâu.</br>
-**# iptables -I INPUT -p tcp -m tcp --dport 22 -j ACCEPT**</br>
+```sh
+# iptables -I INPUT -p tcp -m tcp --dport 22 -j ACCEPT
+```
 Mặc định sẽ hiển thị ssh cho cổng 22, nếu bạn đổi ssh thành cổng khác thì iptables sẽ hiển thị số cổng
 ```sh
 ACCEPT     tcp  --  anywhere             anywhere            tcp dpt:ssh
 ```
-Bạn có thể chỉ cho phép kết nối VPS qua SSH duy nhất từ 1 địa chỉ IP nhất định (xác định dễ dàng bằng cách truy cập các website check ip hoặc lệnh `# w`)</br>
-**# iptables -I INPUT -p tcp -s xxx.xxx.xxx.xxx -m tcp --dport 22 -j ACCEPT**</br>
-Khi đó, trong iptables sẽ thêm rule</br>
+Bạn có thể chỉ cho phép kết nối VPS qua SSH duy nhất từ 1 địa chỉ IP nhất định (xác định dễ dàng bằng cách truy cập các website check ip hoặc lệnh `# w`)
+```sh
+# iptables -I INPUT -p tcp -s xxx.xxx.xxx.xxx -m tcp --dport 22 -j ACCEPT
+```
+Khi đó, trong iptables sẽ thêm rule
 ```sh
 ACCEPT     tcp  --  xxx.xxx.xxx.xxx       anywhere            tcp dpt:ssh
 ```
 #### 3.2. Mở port Web Server
-Để cho phép truy cập vào webserver qua port mặc định 80 và 443:</br>
-**# iptables -I INPUT -p tcp -m tcp --dport 80 -j ACCEPT**</br>
-**# iptables -I INPUT -p tcp -m tcp --dport 443 -j ACCEPT**</br>
+Để cho phép truy cập vào webserver qua port mặc định 80 và 443:
+```sh
+# iptables -I INPUT -p tcp -m tcp --dport 80 -j ACCEPT
+# iptables -I INPUT -p tcp -m tcp --dport 443 -j ACCEPT
+```
 Mặc định Iptables sẽ hiển thị HTTP và HTTPS
 ```sh
 ACCEPT     tcp  --  anywhere             anywhere            tcp dpt:http
 ACCEPT     tcp  --  anywhere             anywhere            tcp dpt:https
 ```
-#### $3.3. Mở port Mail
-– Để cho phép user sử dụng SMTP servers qua port mặc định 25 và 465:
-
-**# iptables -I INPUT -p tcp -m tcp --dport 25 -j ACCEPT**</br>
-**# iptables -I INPUT -p tcp -m tcp --dport 465 -j ACCEPT**</br>
+#### 3.3. Mở port Mail
+Để cho phép user sử dụng SMTP servers qua port mặc định 25 và 465:
+```sh
+# iptables -I INPUT -p tcp -m tcp --dport 25 -j ACCEPT
+# iptables -I INPUT -p tcp -m tcp --dport 465 -j ACCEPT
+```
 Mặc định Iptables sẽ hiển thị SMTP và URD
 ```sh
 ACCEPT     tcp  --  anywhere             anywhere            tcp dpt:smtp
 ACCEPT     tcp  --  anywhere             anywhere            tcp dpt:urd
 ```
-– Để user đọc email trên server, bạn cần mở port POP3 (port mặc định 110 và 995)
-
-**# iptables -A INPUT -p tcp -m tcp --dport 110 -j ACCEPT**</br>
-**# iptables -A INPUT -p tcp -m tcp --dport 995 -j ACCEPT**</br>
+Để user đọc email trên server, bạn cần mở port POP3 (port mặc định 110 và 995)
+```sh
+# iptables -A INPUT -p tcp -m tcp --dport 110 -j ACCEPT
+# iptables -A INPUT -p tcp -m tcp --dport 995 -j ACCEPT
+```
 Mặc định Iptables sẽ hiển thị POP3 và POP3S
 ```sh
 ACCEPT     tcp  --  anywhere             anywhere            tcp dpt:pop3
 ACCEPT     tcp  --  anywhere             anywhere            tcp dpt:pop3s
 ```
-Bên cạnh đó, bạn cũng cần cho phép giao thức IMAP mail protocol (port mặc định 143 và 993)</br>
-**# iptables -A INPUT -p tcp -m tcp --dport 143 -j ACCEPT**</br>
-**# iptables -A INPUT -p tcp -m tcp --dport 993 -j ACCEPT**</br>
+Bên cạnh đó, bạn cũng cần cho phép giao thức IMAP mail protocol (port mặc định 143 và 993)
+```sh
+# iptables -A INPUT -p tcp -m tcp --dport 143 -j ACCEPT
+# iptables -A INPUT -p tcp -m tcp --dport 993 -j ACCEPT
+```
 Mặc định Iptables sẽ hiển thị IMAP và IMAPS
 ```sh
 ACCEPT     tcp  --  anywhere             anywhere            tcp dpt:imap
 ACCEPT     tcp  --  anywhere             anywhere            tcp dpt:imaps
 ```
 #### 3.4. Chặn 1 IP truy cập
-**# iptables -A INPUT -s IP_ADDRESS -j DROP**
-– Chặn 1 IP truy cập 1 port cụ thể:
 ```sh
-#iptables -A INPUT -p tcp -s IP_ADDRESS –dport PORT -j DROP
+# iptables -A INPUT -s IP_ADDRESS -j DROP
 ```
-Sau khi đã thiết lập đầy đủ, bao gồm mở các port cần thiết hay hạn chế các kết nối, bạn cần block toàn bộ các kết nối còn lại và cho phép toàn bộ các kết nối ra ngoài từ VPS</br>
-**# iptables -P OUTPUT ACCEPT**</br>
-**# iptables -P INPUT DROP**</br>
+Chặn 1 IP truy cập 1 port cụ thể:
+```sh
+# iptables -A INPUT -p tcp -s IP_ADDRESS –dport PORT -j DROP
+```
+Sau khi đã thiết lập đầy đủ, bao gồm mở các port cần thiết hay hạn chế các kết nối, bạn cần block toàn bộ các kết nối còn lại và cho phép toàn bộ các kết nối ra ngoài từ VPS
+```sh
+# iptables -P OUTPUT ACCEPT
+# iptables -P INPUT DROP
+```
 Sau khi đã thiết lập xong, bạn có thể kiểm tra lại các quy tắc
 ```sh
 # service iptables status
@@ -265,10 +290,11 @@ Hoặc
 ```sh
 # iptables -L –n
 ```
-`-n` nghĩa là chúng ta chỉ quan tâm mỗi địa chỉ IP. Ví dụ, nếu chặn kết nối từ hocvps.com thì iptables sẽ hiển thị là xxx.xxx.xxx.xxx với tham số `-n`</br>
+`-n` nghĩa là chúng ta chỉ quan tâm mỗi địa chỉ IP. Ví dụ, nếu chặn kết nối từ `hocvps.com` thì iptables sẽ hiển thị là xxx.xxx.xxx.xxx với tham số `-n`
+
 Cuối cùng, bạn cần lưu lại các thiết lập tường lửa Iptables nếu không các thiết lập sẽ mất khi bạn reboot hệ thống. Tại CentOS, cấu hình được lưu tại `/etc/sysconfig/iptables`.
 ```sh
-**# iptables-save | sudo tee /etc/sysconfig/iptables**
+# iptables-save | sudo tee /etc/sysconfig/iptables
 ```
 Hoặc
 ```sh
@@ -280,6 +306,5 @@ iptables: Saving firewall rules to /etc/sysconfig/iptables:[ OK ]
 - https://cloudcraft.info/gioi-thieu-ve-iptables/
 - https://tech.bizflycloud.vn/tim-hieu-ve-iptables-phan-1-660.htm
 - https://tech.bizflycloud.vn/iptables-phan-2-691.htm
-
 - https://www.tecmint.com/linux-iptables-firewall-rules-examples-commands/
 - https://www.booleanworld.com/depth-guide-iptables-linux-firewall/
