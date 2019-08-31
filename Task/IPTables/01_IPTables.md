@@ -91,6 +91,14 @@ RELATED: Gói tin được gởi tới không thuộc về một kết nối hi�
 
 Các trạng thái này giúp người quản trị tạo ra những rule cụ thể và an toàn hơn cho hệ thống.
 
+### 1.7 Cơ chế hoạt động
+
+Cơ chế lọc gói tin của Iptable được xây dựng dựa trên 3 thành phần cơ bản đó là table, chain và target. Nói đơn giản, table xử lý các gói tin theo những cách cụ thể. Nếu không chỉ định cụ thể thì mặc định là chúng ta sẽ làm việc với filter table, ngoài ra còn có các bảng khác.
+
+Mỗi bảng sẽ được gắn thêm các chain. Việc gắn thêm chain vào table cho phép xử lý gói tin ở những giai đoạn khác nhau, ví dụ chúng ta có thể xử lý gói tin ngay khi gói tin vừa đến interface hay xử lý các gói tin trước khi các gói này được đẩy ra interface. Bạn có thể tạo ra rule rất cụ thể, ví dụ gói tin đó đến từ port nào, đến từ IP nào sau đó chỉ định hành động (TARGET) sẽ áp dụng với gói tin này.
+
+Khi có một gói tin đến hoặc gói tin đi Iptable sẽ so sánh với từng rule trong một chain. Khi một gói tin giống với rule đặt ra Iptable sẽ thực hiện hành động ứng với rule đó. Nhưng nếu gói tin không khớp với bất cứ rule nào thuộc chain, Iptable sẽ áp dụng "default policy" cho gói tin đó. Mặc định "default policy" của các chain là cho phép gói tin
+
 ## II. Install Iptables
 ### 1. Install
 Iptables thường được cài đặt mặc định trong hệ thống. Nếu chưa được cài đặt:</br>
