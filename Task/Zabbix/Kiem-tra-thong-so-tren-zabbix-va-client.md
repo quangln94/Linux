@@ -57,9 +57,9 @@ stress -m 1 --vm-bytes 500M
 Kiểm tra giá trị thấy trên host gần bằng trên zabbix-web
 <img src=https://i.imgur.com/2cFtIQD.png>
 
-Tuy nhiên thực hiện trên lab với lượng RAM thấp (2GB) thì độ chênh lệch giữa zabbix-server và client khá nhỏ. Nên tôi không dám chắc là không chênh quá nhiều
+Tuy nhiên thực hiện trên lab với lượng RAM thấp (2GB) thì độ chênh lệch giữa zabbix-server và client khá nhỏ. Nên tôi không dám chắc là phần chênh nhau do cách tính Available khác nhau hay không.
 
-Đổi với hệ thống lớn phần Available Memory giũa client và zabbix-web, các bạn hãy thử kiểm tra thêm phần Available Memory trên Zabbix-web = Cached + Available trên host. [Tham khảo thêm tại đây](https://www.zabbix.com/documentation/4.0/manual/appendix/items/vm.memory.size_params)
+Để kiểm chứng điều này, đổi với hệ thống lớn phần Available Memory giũa client và zabbix-web, các bạn hãy thử kiểm tra thêm phần Available Memory trên Zabbix-web = Cached + Available trên host. [Tham khảo thêm tại đây](https://www.zabbix.com/documentation/4.0/manual/appendix/items/vm.memory.size_params)
 
 
 ## Kết luật
