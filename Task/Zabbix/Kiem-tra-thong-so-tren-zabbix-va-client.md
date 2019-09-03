@@ -73,3 +73,5 @@ Tuy nhiên vẫn có sự chênh lệch thông số giữa Zabbix-web và trên 
 
 # Tài liệu tham khảo 
 - http://xahoithongtin.vnmedia.vn/trai-nghiem/download/201403/tai-sao-o-cung-hien-thi-sai-dung-luong-trong-windows-487440/
+- https://www.zabbix.com/documentation/4.0/manual/config/items/itemtypes/zabbix_agent
+- https://zabbix.com/documentation/4.0/manual/appendix/items/vm.memory.size_params
