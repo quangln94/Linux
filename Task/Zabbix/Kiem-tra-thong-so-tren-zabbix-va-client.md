@@ -33,6 +33,35 @@ Vì sao lại là 2.98 mà không phải 3.21. Là vì cách tính khác nhau nh
 ```
 Vì sao lại thế thì [tham khảo tại đây](http://xahoithongtin.vnmedia.vn/trai-nghiem/download/201403/tai-sao-o-cung-hien-thi-sai-dung-luong-trong-windows-487440/)
 
+## 3. Kiểm tra CPU trên host
+
+Sử dụng lênh `stress` thực hiện đẩy tải như sau:
+```sh
+stress -c 1
+```
+<img src=https://i.imgur.com/gySCJSH.png>
+
+Process có PID=8761 đang sử dụng 100% CPU, `%CPU(s)=49.9 us` bằng với giá trị hiển thị trên zabbix web
+<img src=https://i.imgur.com/qPWHWLI.png>
+
+## 4. Kiểm tra RAM trên host
+Trước khi đẩy tải thực hiện kiểm tra trên host và zabbix-web
+<img src=https://i.imgur.com/L9rtZw0.png>
+<img src=https://i.imgur.com/HvO8uHy.png>
+
+Thực hiện đẩy RAM bằng lệnh sau: 
+```sh
+stress -m 1 --vm-bytes 500M
+```
+<img src=https://i.imgur.com/z3qYSN3.png>
+Kiểm tra giá trị thấy trên host gần bằng trên zabbix-web
+<img src=https://i.imgur.com/2cFtIQD.png>
+
+Tuy nhiên thực hiện trên lab với lượng RAM thấp (2GB) thì độ chênh lệch giữa zabbix-server và client khá nhỏ. Nên tôi không dám chắc là không chênh quá nhiều
+
+Đổi với hệ thống lớn phần Available Memory giũa client và zabbix-web, các bạn hãy thử kiểm tra thêm phần Available Memory trên Zabbix-web = Cached + Available trên host. [Tham khảo thêm tại đây](https://www.zabbix.com/documentation/4.0/manual/appendix/items/vm.memory.size_params)
+
+
 ## Kết luật
 
 Zabbix là phần mềm giám sát cung cấp thông số khá là chính xác. Bạn có thể yên tâm khi sử dụng.
