@@ -12,7 +12,9 @@ Every time the business needed a new application, IT would go out and buy a new 
 
 Docker, Inc. made containers simple!
 
-Some of the major technologies that enabled the massive growth of containers in recent years include;kernel namespaces, control groups, union filesystems, and of courseDocker. 
+Some of the major technologies that enabled the massive growth of containers in recent years include;kernel namespaces, control groups, union filesystems, and of course Docker. 
+
+The Docker Engine is the infrastructure plumbing software that runs and orchestrates containers. 
 
 Windows containers: This way developers and sysadmins familiar with the Docker toolset from the Linux platform will feel at home using 
 
