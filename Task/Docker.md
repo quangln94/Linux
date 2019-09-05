@@ -14,9 +14,9 @@ Nhăm tối ưu về phần cứng như OS, RAM, DISK, CPU Containers ra đời
 
 Docker, Inc. made containers simple!
 
-Some of the major technologies that enabled the massive growth of containers in recent years include;kernel namespaces, control groups, union filesystems, and of course Docker. 
+Một số công nghệ phát triển containers gần đây như: kernel namespaces, control groups, union filesystems và Docker. 
 
-The Docker Engine is the infrastructure plumbing software that runs and orchestrates containers. 
+Docker Engine là phần mềm dùng để tạo ra Docker image và chạy Docker container.
 
 Windows containers: This way developers and sysadmins familiar with the Docker toolset from the Linux platform will feel at home using 
 
