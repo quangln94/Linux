@@ -84,7 +84,8 @@ Trong đó:
 - Bây giờ bạn có thể thấy metric đẩy về. Lúc này trên máy của tôi có 2 disk.
 <img src=https://i.imgur.com/aAi5zhb.png>
 
-   # Tài liệu tham khảo
-   - https://github.com/MinhKMA/mdt-ghichep-zabbix/blob/master/docs/discovery_disk.md
-   - https://blog.cloud365.vn/monitor/monitor-multi-disk-zabbix/
-   - https://www.zabbix.com/documentation/4.0/manual/config/items/userparameters
+# Tài liệu tham khảo
+- https://github.com/MinhKMA/mdt-ghichep-zabbix/blob/master/docs/discovery_disk.md
+- https://blog.cloud365.vn/monitor/monitor-multi-disk-zabbix/
+- https://www.zabbix.com/documentation/4.0/manual/config/items/userparameters
+- https://stackoverflow.com/questions/8110530/check-free-disk-space-for-current-partition-in-bash/8110535
