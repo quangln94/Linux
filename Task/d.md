@@ -1,4 +1,4 @@
-#
+# Cách gói tin đi từ `container` ra `Internet` và ngược lại
 ## Run 2 `container`
 ```sh
 docker run -it centos /bin/bash
