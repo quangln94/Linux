@@ -21,12 +21,12 @@ Ví dụ: map port 80 của máy host vào port 8080 của docker , sử dụng 
 ## Cách gói tin đi từ `container` ra `Internet`
 <img src=https://i.imgur.com/EUdWhF1.png>
 
-`container` có IP: 172.17.0.2 đi qua port 80 đến bridge -> qua `iptables` đi ra cổng `eth0` port 8080 có IP: 192.168.1.2 qua Gateway và ra `Internet`
+`container` có IP: 172.17.0.2 đi qua port 80 đến bridge `docker0` -> qua `iptables` đi ra cổng `eth0` port 8080 có IP: 192.168.1.2 qua Gateway và ra `Internet`
 
 ## Cách gói tin đi từ `Internet` vào `container`
 <img src=https://i.imgur.com/aeolbEb.png>
 
-Host từ `Internet` đi vào cổng `eth0` qua port 8080 -> qua `iptables` -> đến `bridge` -> qua port 80 của `container` có IP: 172.17.0.2
+Host từ `Internet` đi vào cổng `eth0` qua port 8080 -> qua `iptables` -> đến bridge `docker0` -> qua port 80 của `container` có IP: 172.17.0.2
 
 ## Cách gói tin đi trong `iptables`
 <img src=https://i.imgur.com/kN0VEAv.png>
