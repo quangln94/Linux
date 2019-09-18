@@ -4,11 +4,13 @@
 docker run -it centos /bin/bash
 docker run -it ubuntu /bin/bash
 ```
-Sau khi chạy `container` thì `docker host` sẽ sinh ra 1 card mang có tên là `docker0`
+Sau khi chạy `container` thì `docker host` sẽ sinh ra 1 card mang có tên là `docker0` đóng vài trò là bridge của các `container`
 <img src=https://i.imgur.com/tuS6Bc5.png>
 
 ## Kiểm tra bằng lệnh `brctl show`
 <img src=https://i.imgur.com/xITlHyI.png>
+
+Có 2 `veth` cùng kết nối vào `docker0`
 
 ## Kiểm tra `IP` của từng `container`
 <img src=https://i.imgur.com/UdmUmCC.png>
