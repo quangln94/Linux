@@ -46,3 +46,6 @@ Host từ `Internet` đi vào cổng `eth0` qua port 8080 -> qua `iptables` -> �
 
 Tại CHAIN `DOCKER`:
 - Cho phép gói tin có IPd: 172.17.0.4 qua port 80(httpd)
+
+## Tài liệu tham khảo
+- https://docs.docker.com/v17.09/engine/userguide/networking/default_network/container-communication/#communicating-to-the-outside-world
