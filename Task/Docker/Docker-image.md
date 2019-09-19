@@ -23,6 +23,7 @@ Dockerfile là một file kịch bản sử dụng để tạo mới một image
 Dockerfile gồm các command. Mỗi command sẽ tạo ra 1 layer.
 
 Một số command cơ bản
+
 **FROM**
 ```sh
 FROM centos:centos7
