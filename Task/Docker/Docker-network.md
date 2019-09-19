@@ -42,7 +42,7 @@ Host từ `Internet` đi vào cổng `eth0` qua port 8080 -> qua `iptables` -> �
 ## Cách gói tin đi trong `iptables`
 <img src=https://i.imgur.com/kN0VEAv.png>
 
-<img src=https://i.imgur.com/fQKXfeA.png>
+<img src=https://i.imgur.com/gRK9OXR.png>
 
 Tại CHAIN `DOCKER`:
 - Cho phép gói tin có IPd: 172.17.0.4 qua port 80(httpd)
