@@ -75,3 +75,10 @@ Kiểm tra tại node1
 mysql -u root -e "SHOW STATUS LIKE 'wsrep_cluster_size'"
 ```
 <img src=https://i.imgur.com/VYsahhH.png>
+
+## Kiểm tra kết quả
+- Show database trên 2 host
+<img src=https://i.imgur.com/eY5LbML.png>
+
+- Tạo thêm 1 bảng `test_2` sau đó kiểm tra database trên 2 host
+<img src=https://i.imgur.com/yiWglyc.png>
