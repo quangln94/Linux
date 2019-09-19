@@ -40,13 +40,13 @@ LABEL: Chỉ định label metadata của image. Để xem được các label n
 
 **MAINTAINER**
 ```sh
-MAINTAINER huytm
+MAINTAINER author
 ```
 MAINTERNER: là author (tác giả) build image đó.
 
 **RUN**
 ```sh
-RUN yum updae -y
+RUN yum update -y
 ```
 RUN thực hiện một câu lệnh Linux. Tùy vào image gốc mà có các câu lệnh tương ứng (ví dụ Ubuntu sẽ là `RUN apt-get update -y`)
 
@@ -106,7 +106,7 @@ EXPOSE Chỉ định các port sẽ Listen trong container khi khởi chạy con
 
 ## Tạo `image` từ `Dockerfile`
 ```sh
-docker build -t huytm/centos7-httpd .
+docker build -t folder/centos7-httpd .
 ```
 ## Tài liệu tham khảo
 - https://neo4j.com/blog/neo4j-containers-docker-azure/
