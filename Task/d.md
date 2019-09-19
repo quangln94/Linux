@@ -22,7 +22,7 @@ docker inspect --format '{{ .NetworkSettings.IPAddress }}' 862883f736c9
 ## Kết nối từ network ở ngoài vào container
 Để kết nối từ network ở ngoài vào container thì phải mapping port của máy host với port mà container expose thông qua docker0.
 
-Ví dụ: map port 80 của máy host vào port 8080 của docker , sử dụng httpd container:
+Ví dụ: map port 8080 của máy host vào port 80 của docker , sử dụng httpd container:
 ```sh
 docker run -it -p 8080:80 httpd /bin/bash
 ```
