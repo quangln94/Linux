@@ -14,6 +14,9 @@ Sau khi chạy `container` thì `docker host` sẽ sinh ra 1 card mang có tên 
 Có 2 `veth` cùng kết nối vào `docker0`
 
 ## Kiểm tra `IP` của từng `container`
+```sh
+docker inspect --format '{{ .NetworkSettings.IPAddress }}' 862883f736c9
+```
 <img src=https://i.imgur.com/UdmUmCC.png>
 
 ## Kết nối từ network ở ngoài vào container
