@@ -104,6 +104,10 @@ EXPOSE 80 443
 ```
 EXPOSE Chỉ định các port sẽ Listen trong container khi khởi chạy container từ image
 
+## Tạo `image` từ `Dockerfile`
+```sh
+docker build -t huytm/centos7-httpd .
+```
 ## Tài liệu tham khảo
 - https://neo4j.com/blog/neo4j-containers-docker-azure/
 - https://blog.cloud365.vn/container/tim-hieu-docker-phan-4/
