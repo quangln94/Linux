@@ -26,7 +26,7 @@ Một số command cơ bản
 
 **FROM**
 ```sh
-FROM centos:centos7
+FROM ubuntu:18.04
 ```
 FROM: chỉ định rằng image build này sẽ base trên image gốc nào
 
@@ -106,7 +106,7 @@ EXPOSE Chỉ định các port sẽ Listen trong container khi khởi chạy con
 
 ## Tạo `image` từ `Dockerfile`
 ```sh
-docker build -t folder/centos7-httpd .
+docker build -t image .
 ```
 ## Tài liệu tham khảo
 - https://neo4j.com/blog/neo4j-containers-docker-azure/
