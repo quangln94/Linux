@@ -8,9 +8,13 @@ MariaDB Galery Cluster đã được tích hợp sẵn trong các phiên bản c
 Hệ thống sử dụng trong bài viết: 2 server cấu hình
 
 CentOS 7.
+
 MariaDB 10.2.
+
 IP: 10.10.10.221, 10.10.10.222
+
 ***Lưu ý: Không khởi động dịch vụ mariadb sau khi cài (Liên quan tới cấu hình Galera Mariadb)***
+
 Vào file cấu hình của 2 máy và sửa như sau:
 ```sh
 vim /etc/my.cnf.d/server.cnf
