@@ -3,4 +3,71 @@ MariaDB Galera Cluster hỗ trợ đồng bộ dữ liệu MariaDB trên nhiều
 
 Hạn chế của MariaDB Galera Cluster là chỉ có thể sử dụng với kiểu lưu trữ InnoDB.
 ## Cấu hình MariaDB Galery Cluster
-MariaDB Galery Cluster đã được tích hợp sẵn trong các phiên bản của MariaDB Server (mình cài đặt với phiên bản 10.3.13 các bản trước các bạn tham khảo thêm trên website của MariaDB). Sau khi cài đặt chúng ta cần cấu hình để đồng bộ các server với nhau. Để cài đặt MariaDB các bạn có thể tham khảo bài viết Cài đặt MariaDB 10.x trên CentOS 7
+MariaDB Galery Cluster đã được tích hợp sẵn trong các phiên bản của MariaDB Server
+
+Hệ thống sử dụng trong bài viết: 2 server cấu hình
+
+CentOS 7.
+MariaDB 10.2.
+IP: 10.10.10.221, 10.10.10.222
+***Lưu ý: Không khởi động dịch vụ mariadb sau khi cài (Liên quan tới cấu hình Galera Mariadb)***
+Vào file cấu hình của 2 máy và sửa như sau:
+```sh
+vim /etc/my.cnf.d/server.cnf
+```
+Máy 10.10.10.221:
+```sh
+[galera]
+wsrep_on=ON
+wsrep_provider=/usr/lib64/galera/libgalera_smm.so
+wsrep_cluster_address=gcomm://10.10.10.221,10.10.10.222
+binlog_format=row
+default_storage_engine=InnoDB
+innodb_autoinc_lock_mode=2
+wsrep_node_name=Node1
+wsrep_node_address=10.10.10.221
+```
+Trong đó:
+- **wsrep_on=ON**: bắt buộc phải là ON
+- **wsrep_provider=/usr/lib64/galera/libgalera_smm.so** : đường dẫn đến thư viện của MariaDB Galery Cluster
+- **wsrep_cluster_address=gcomm://192.168.10.11,192.168.10.12** : danh sách các máy trong cụm
+- **wsrep_node_name=Node1**: đặt tên node trong trong cụm
+- **wsrep_node_address=10.10.10.221**: ip của máy hiện tại đang cấu hình
+
+Máy 10.10.10.222:
+```sh
+[galera]
+wsrep_on=ON
+wsrep_provider=/usr/lib64/galera/libgalera_smm.so
+wsrep_cluster_address=gcomm://10.10.10.221,10.10.10.222
+binlog_format=row
+default_storage_engine=InnoDB
+innodb_autoinc_lock_mode=2
+wsrep_node_name=Node1
+wsrep_node_address=10.10.10.222
+```
+Mặc định phương thức đồng bộ của MariaDB Galery Cluster là rsyns.
+
+Sau khi cài đặt xong chúng ta cần mở thêm các port tpc: 4444, 4567,4568 trong firewall
+```sh
+firewall-cmd --permanent --add-port={4567,4568,4444}/tcp
+```
+
+## Khởi động dịch vụ
+
+Tại node1, khởi tạo cluster
+```sh
+galera_new_cluster
+systemctl start mariadb
+systemctl enable mariadb
+```
+Tại node2, node3, chạy dịch vụ mariadb
+```sh
+systemctl start mariadb
+systemctl enable mariadb
+```
+Kiểm tra tại node1
+```sh
+mysql -u root -e "SHOW STATUS LIKE 'wsrep_cluster_size'"
+```
+<img src=https://i.imgur.com/VYsahhH.png>
