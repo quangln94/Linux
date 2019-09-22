@@ -85,7 +85,7 @@ wordpress: chứa mã nguồn và chạy ứng dụng wordpress
 
 mariadb: chạy ứng dụng mariadb database (giống với mysql database)
 
-Khi đó ta sẽ sử dụng bind mount mã nguồn của wordpress vào container wordpress, sử dụng volume để persist data của mariadb database. Sử dụng với docker compose ta có thể xem file docker-compose.yml sau. (các bạn có thể xem chi tiết file docker-compose.yml và cấu trúc thư mục tại đây: https://github.com/cuongtransc/docker-training/tree/master/compose/wordpress)
+Khi đó ta sẽ sử dụng bind mount mã nguồn của wordpress vào container wordpress, sử dụng volume để persist data của mariadb database. Sử dụng với docker compose ta có thể xem file docker-compose.yml sau. (các bạn có thể xem chi tiết file docker-compose.yml và cấu trúc thư mục [tại đây]https://github.com/cuongtransc/docker-training/tree/master/compose/wordpress):
 ```sh
 services:
     wordpress:
