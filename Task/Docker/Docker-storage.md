@@ -16,8 +16,8 @@ Bind mount có thể được lưu ở bất cứ đâu trên máy host. Các pr
 
 Tmpfs mount được lưu trên bộ nhớ (RAM) của máy host và không ghi lên trên host filesystem (không ghi lên disk).
 
-## Docker Storage
-**Volume**
+## 1. Docker Storage
+### 1.1 Volume
 
 Được khởi tạo và quản lý bởi Docker. Có thể khởi tạo một volume bằng cách sử dụng lệnh `docker volume create` hoặc tạo volume khi khởi tạo một  container/service.
 
@@ -29,7 +29,7 @@ Có thể đặt tên cho một volume, nếu chúng ta không đặt tên thì 
 
 Volume trên Docker hỗ trợ dùng nhiều loại volume drivers, cho phép lưu trữ dữ liệu trên remote host hoặc trên hạ tầng lưu trữ của các nhà cung cấp dịch vụ cloud.
 
-**Khi nào nên dùng volume**
+### 1.2 Khi nào nên dùng volume
 
 Volume là cách thường được dùng khi cần lưu trữ dữ liệu lâu dài trong container và services. Một số ứng dụng của volumes gồm:
 
@@ -43,13 +43,13 @@ Dữ liệu được lưu trên volume sẽ không làm tăng kích thước c�
 
 Khi cần backup, phục hồi hoặc di chuyển dữ liệu từ một Docker host này sang một host khác, volume là sự lựa chọn lý tưởng trong những trường hợp này. Ta có thể tạm dừng một container, backup volume của container này (thường nằm trong `/var/lib/docker/volumes/`)
 
-**Bind mounts**
+### 2.1 Bind mounts
 
 Có từ thời xửa thời xưa khi Docker mới ra đời. So với volume thì bind mount có ít chức năng hơn. Khi chúng ta dùng bind mount, chúng ta có thể mount 1 file hoặc một thư mục vào container. File hoặc thư mục này được truy cập theo đường dẫn tuyệt đối trên máy host. Bind mount có hiệu năng truy xuất rất cao, nhưng phụ thuộc vào file system của máy host.
 
 Chú ý: khi dùng bind mount, các process trong container có thể thay đổi filesystem của máy host (tạo file, thêm xóa sửa các dữ liệu hoặc thư mục quan trọng của hệ thống). Tính năng này tuy mạnh nhưng có thể tạo ra nhiều nguy cơ về bảo mật, gây ảnh hưởng tới các process khác trên máy host.
 
-**Khi nào nên dùng bind mount**
+### 2.2 Khi nào nên dùng bind mount
 
 Chia sẻ các file cấu hình từ máy host sang container. Ví dụ: bind mount file `/etc/resolv.conf` từ máy host lên mỗi container.
 
@@ -57,15 +57,15 @@ Chia sẻ source code từ Docker host sang container.
 
 Khi file container cần file và thư mục phải đồng bộ với Docker host.
 
-**tmpfs mounts**
+### 3.1 tmpfs mounts
 
 tmpfs mount không được lưu trên đĩa cứng. tmpfs mount thường được dùng để lưu dữ liệu khi container đang chạy (dữ liệu này không cần được lưu trữ lâu dài).
 
-**Khi nào nên dùng tmpfs mount**
+### 3.2 Khi nào nên dùng tmpfs mount
 
 tmpfs mount được dùng khi chúng ta không muốn lưu dữ liệu lâu dài trên cả máy host hoặc trong container vì lý do an ninh. Hoặc do chúng ta muốn đảm bảo hiệu năng của container khi cần xử lý một lượng lớn dữ liệu tạm thời
 
-**Một số chú ý khi dùng bind mount hoặc volume**
+## 2. Một số chú ý khi dùng bind mount hoặc volume**
 
 Khi dùng bind mount hoặc volume thì cần chú ý những điều sau:
 
@@ -77,7 +77,7 @@ Khi dùng cờ `-v` hoặc `--volume` để bind-mount một file hay thư mục
 
 Nếu chúng ta dùng cờ `--mount` để bind-mount một file hay thư mục chưa tồn tại trên Docker host thì Docker không tự động tạo thư mục mới mà sẽ thông báo lỗi.
 
-**Ví dụ về sử dụng docker storage**
+## 3. Ví dụ về sử dụng docker storage**
 
 Giả sử cần develop một ứng dụng wordpress bao gồm 2 container:
 
