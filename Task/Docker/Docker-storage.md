@@ -65,7 +65,7 @@ tmpfs mount không được lưu trên đĩa cứng. tmpfs mount thường đư�
 
 tmpfs mount được dùng khi chúng ta không muốn lưu dữ liệu lâu dài trên cả máy host hoặc trong container vì lý do an ninh. Hoặc do chúng ta muốn đảm bảo hiệu năng của container khi cần xử lý một lượng lớn dữ liệu tạm thời
 
-## 2. Một số chú ý khi dùng bind mount hoặc volume**
+## 2. Một số chú ý khi dùng bind mount hoặc volume
 
 Khi dùng bind mount hoặc volume thì cần chú ý những điều sau:
 
@@ -77,7 +77,7 @@ Khi dùng cờ `-v` hoặc `--volume` để bind-mount một file hay thư mục
 
 Nếu chúng ta dùng cờ `--mount` để bind-mount một file hay thư mục chưa tồn tại trên Docker host thì Docker không tự động tạo thư mục mới mà sẽ thông báo lỗi.
 
-## 3. Ví dụ về sử dụng docker storage**
+## 3. Ví dụ về sử dụng docker storage
 
 Giả sử cần develop một ứng dụng wordpress bao gồm 2 container:
 
