@@ -1,20 +1,14 @@
 # Quản lí dữ liệu trong Docker
 
 Mặc định tất cả các file được tạo bên trong container được lưu trữ trên một writable container layer. Nó có nhiều nhược điểm:
+- Dữ liệu sẽ mất khi container đó bị xóa, khó có thể truy xuất dữ liệu nếu một container khác hoặc process khác cần dữ liệu này. 
+- Container layer được gắn chặt với máy host khi mà container running. Khi đó chúng ta không dễ để chuyển dữ liệu được lưu trên container layer tới chỗ khác.
+- Ghi dữ liệu trên container layer cần phải đi qua 1 lớp storage driver => giảm hiệu năng ghi dữ liệu so với data volume (ghi trực tiếp lên host filesystem).
 
-Dữ liệu sẽ mất khi container đó bị xóa, khó có thể truy xuất dữ liệu nếu một container khác hoặc process khác cần dữ liệu này. 
-
-Container layer được gắn chặt với máy host khi mà container running. Khi đó chúng ta không dễ để chuyển dữ liệu được lưu trên container layer tới chỗ khác.
-
-Ghi dữ liệu trên container layer cần phải đi qua 1 lớp storage driver => giảm hiệu năng ghi dữ liệu so với data volume (ghi trực tiếp lên host filesystem).
-
-Docker hỗ trợ 3 cách để lưu trữ dữ liệu của Docker container là: volume, bind mount và tmpfs volume (Docker on Linux). Volume thường là lựa chọn tốt nhất.
-
-Dữ liệu trên volume được lưu trên filesystem của Docker host `/var/lib/docker/volumes/` và được quản lý bởi Docker deamon. Các process không liên quan đến Docker sẽ không sử dụng đến phần dữ liệu này. Volumes là cách lưu trữ dữ liệu tốt nhất trên Docker.
-
-Bind mount có thể được lưu ở bất cứ đâu trên máy host. Các process không liên quan đến Docker hoặc một container khác có thể chỉnh sửa các file này bất kỳ lúc nào.
-
-Tmpfs mount được lưu trên bộ nhớ (RAM) của máy host và không ghi lên trên host filesystem (không ghi lên disk).
+Docker hỗ trợ 3 cách để lưu trữ dữ liệu của Docker container là: volume, bind mount và tmpfs volume (Docker on Linux). Volume thường là lựa chọn tốt nhất: 
+- Dữ liệu trên volume được lưu trên filesystem của Docker host `/var/lib/docker/volumes/` và được quản lý bởi Docker deamon. Các process không liên quan đến Docker sẽ không sử dụng đến phần dữ liệu này. Volumes là cách lưu trữ dữ liệu tốt nhất trên Docker.
+- Bind mount có thể được lưu ở bất cứ đâu trên máy host. Các process không liên quan đến Docker hoặc một container khác có thể chỉnh sửa các file này bất kỳ lúc nào.
+- Tmpfs mount được lưu trên bộ nhớ (RAM) của máy host và không ghi lên trên host filesystem (không ghi lên disk).
 
 ## 1. Docker Storage
 ### 1.1 Volume
