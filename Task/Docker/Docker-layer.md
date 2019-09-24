@@ -17,6 +17,8 @@ ecf7275feff3  2 days ago /bin/sh -c npm install           3.439 MB
 
 <img src=https://i.imgur.com/EbQj2nv.png>
 
+Các layer sẽ lần lượt sắp xếp từ dưới lên, và trên cùng là `writeable layer` của `container`
+
 Dưới đây là sơ đồ của container được tạo từ lệnh run. Các container chứa có một layer có thể ghi được xếp chồng lên trên các layer của image ban đầu. Layer này cho phép bạn thực hiện các thay đổi vì các layer thấp chỉ cho phép đọc.
 
 <img src=https://i.imgur.com/PqStSeT.png>
