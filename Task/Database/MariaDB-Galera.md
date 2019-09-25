@@ -91,8 +91,8 @@ mysql -u root -e "SHOW STATUS LIKE 'wsrep_cluster_size'"
 
 **2.2 Restart cả cụm Cluster**
 - Cụm cluster bị lỗi
--`galera_new_cluster` trên host `10.10.10.222`
-- stop dịch vụ `systemctl stop mảiadb`
+- `galera_new_cluster` trên host `10.10.10.222`
+- stop dịch vụ `systemctl stop mariadb`
 - `galera_new_cluster` trên host `10.10.10.222`
 - Restart lại dịch vụ trên các host còn lại
 - Cụm trờ lại hoạt động bình thường
