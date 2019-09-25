@@ -83,13 +83,13 @@ mysql -u root -e "SHOW STATUS LIKE 'wsrep_cluster_size'"
 - Tạo thêm 1 bảng `test_2` sau đó kiểm tra database trên 2 host
 <img src=https://i.imgur.com/yiWglyc.png>
 
-**2.1 Tắt 1 trong số các host trong cụm cluster
+**2.1 Tắt 1 trong số các host trong cụm cluster**
 - `galera_new_cluster` trên host `10.10.10.222`
 - host `10.10.10.221` bị restart
 - Tạo thêm 1 database trên host `10.10.10.222`
 - Cụm Cluster vẫn chạy bình thường
 
-**2.2 Restart cả cụm Cluster
+**2.2 Restart cả cụm Cluster**
 - Cụm cluster bị lỗi
 -`galera_new_cluster` trên host `10.10.10.222`
 - stop dịch vụ `systemctl stop mảiadb`
