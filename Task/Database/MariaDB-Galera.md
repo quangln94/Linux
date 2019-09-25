@@ -96,3 +96,16 @@ mysql -u root -e "SHOW STATUS LIKE 'wsrep_cluster_size'"
 - `galera_new_cluster` trên host `10.10.10.222`
 - Restart lại dịch vụ trên các host còn lại
 - Cụm trờ lại hoạt động bình thường
+
+**2.3 Restart cả cụm Cluster**
+- Cụm cluster bị lỗi
+- `galera_new_cluster` trên host `10.10.10.222`
+- host `10.10.10.222` chết hẳn
+- stop dịch vụ `systemctl stop mariadb`
+- `galera_new_cluster` trên host `10.10.10.222`
+- Restart lại dịch vụ trên các host còn lại
+- Cụm trờ lại hoạt động bình thường
+
+=> Tóm lại: Khi triển khai mariadb cluster.
+- Khi cả cụm bị shutdown cùng 1 lúc. Thực hiện `new_galera_cluster` trên 1 host và restart lại dịch vụ. Sau đó restart lại dịch vụ trên các host còn lại để cụm hoạt động bình thường
+- khi 1 host bị down: Thực hiện stop dịch vụ trên 1 host, `new_galera_cluster` trên 1 host và restart lại dịch vụ. Sau đó restart lại dịch vụ trên các host còn lại để cụm hoạt động bình thường
