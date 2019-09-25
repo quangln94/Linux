@@ -2,7 +2,7 @@
 MariaDB Galera Cluster hỗ trợ đồng bộ dữ liệu MariaDB trên nhiều máy chủ trong cùng một cụm. Giữ cho các máy chủ lưu trữ dữ liệu MariaDB trên tất cả các máy chủ đồng bộ với nhau, trong đó tất cả các máy chủ đều là master, nên có thể đọc ghi như nhau trên tất cả các máy chủ trong mạng lưới. Và quan trọng hơn nó là một phần mềm miễn phí.
 
 Hạn chế của MariaDB Galera Cluster là chỉ có thể sử dụng với kiểu lưu trữ InnoDB.
-## Cấu hình MariaDB Galery Cluster
+## 1. Cấu hình MariaDB Galery Cluster
 MariaDB Galery Cluster đã được tích hợp sẵn trong các phiên bản của MariaDB Server
 
 Hệ thống sử dụng trong bài viết: 2 server cấu hình
@@ -76,9 +76,22 @@ mysql -u root -e "SHOW STATUS LIKE 'wsrep_cluster_size'"
 ```
 <img src=https://i.imgur.com/VYsahhH.png>
 
-## Kiểm tra kết quả
+## 2. Kiểm tra kết quả
 - Show database trên 2 host
 <img src=https://i.imgur.com/eY5LbML.png>
 
 - Tạo thêm 1 bảng `test_2` sau đó kiểm tra database trên 2 host
 <img src=https://i.imgur.com/yiWglyc.png>
+**2.1 Tắt 1 trong số các host trong cụm cluster
+- `galera_new_cluster` trên host `10.10.10.222`
+- host `10.10.10.221` bị restart
+- Tạo thêm 1 database trên host `10.10.10.222`
+- Cụm Cluster vẫn chạy bình thường
+
+**2.2 Restart cả cụm Cluster
+- Cụm cluster bị lỗi
+-`galera_new_cluster` trên host `10.10.10.222`
+- stop dịch vụ `systemctl stop mảiadb`
+- `galera_new_cluster` trên host `10.10.10.222`
+- Restart lại dịch vụ trên các host còn lại
+- Cụm trờ lại hoạt động bình thường
