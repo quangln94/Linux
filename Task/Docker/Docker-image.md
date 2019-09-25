@@ -108,6 +108,9 @@ EXPOSE Chỉ định các port sẽ Listen trong container khi khởi chạy con
 ```sh
 docker build -t image .
 ```
+
+***Nơi lưu trữ `image`: `/var/lib/docker/image/overlay2/imagedb/content`***
+
 ## Tài liệu tham khảo
 - https://neo4j.com/blog/neo4j-containers-docker-azure/
 - https://blog.cloud365.vn/container/tim-hieu-docker-phan-4/
