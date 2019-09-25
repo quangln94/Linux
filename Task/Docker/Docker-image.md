@@ -111,6 +111,8 @@ docker build -t image .
 
 ***Nơi lưu trữ `image`: `/var/lib/docker/image/overlay2/imagedb/content`***
 
+***Nơi lưu trữ `container`: `/var/lib/docker/containers***
+
 ## Tài liệu tham khảo
 - https://neo4j.com/blog/neo4j-containers-docker-azure/
 - https://blog.cloud365.vn/container/tim-hieu-docker-phan-4/
