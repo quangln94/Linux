@@ -24,5 +24,12 @@ Dưới đây là sơ đồ của container được tạo từ lệnh run. Các
 
 <img src=https://i.imgur.com/PqStSeT.png>
 
+Từ việc hiện các layer của image thì bạn có thể chạy 1 `container` ở bất kì layer nào mà bạn muốn bằng cách sử dụng Image-ID của layer đó
+
+Giả sử run 1 container ở layer 5 `ecf7275feff3  2 days ago /bin/sh -c npm install           3.439 MB` thì ta làm như sau:
+```sh
+docker run -it ecf7275feff3 /bin/bash
+```
+
 ## Tài liệu tham khảo
 - https://medium.com/@jessgreb01/digging-into-docker-layers-c22f948ed612
