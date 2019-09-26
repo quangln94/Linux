@@ -1,6 +1,6 @@
 # Docker image ID
 
-Trước Docker v1.10, khi 1 Layer mới được tạo ra thông qua `commit`, Docker sẽ tạo ra 1 ần tạo một image tương ứng được xác định bởi UUID 256 bit được tạo ngẫu nhiên thường được gọi là image-ID được trình bày trong UI dưới dạng chuỗi hex ngắn 12 chữ số ngắn hoặc chuỗi hex dài 64 chữ số).
+Trước Docker v1.10, khi 1 Layer mới được tạo ra thông qua `commit`, Docker sẽ tạo ra 1 một image tương ứng được xác định bởi UUID 256 bit được tạo ngẫu nhiên thường được gọi là image-ID được trình bày trong UI dưới dạng chuỗi hex ngắn 12 chữ số ngắn hoặc chuỗi hex dài 64 chữ số).
 
 Docker lưu trữ nội dung Layer trong một thư mục có tên giống với image-ID. Bên trong image gồm cấu hình object, chứa các đặc điểm của image bao gồm ID của nó và ID của image gốc. Theo cách này, Docker có thể xây dựng một hệ thống tập tin cho một container với mỗi image  lần lượt tham chiếu đến image's parent của nó và nội dung layer tương ứng.
 
