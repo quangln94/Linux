@@ -96,5 +96,4 @@ Trong ví dụ này, chỉ có một layer push, vì hai trong số các layer �
 ## Tài liệu tham khảo
 - https://windsock.io/explaining-docker-image-ids/
 - https://github.com/moby/moby/issues/20131
-- https://github.com/moby/moby/issues/20131
 - https://stackoverflow.com/questions/35310212/docker-missing-layer-ids-in-output
