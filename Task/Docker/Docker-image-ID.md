@@ -34,5 +34,9 @@ Một Docker-image bao gồm một configuration object, trong đó chứa một
 
 <img src=https://i.imgur.com/IdLy1s4.png>
 
+Thư mục diff để lưu trữ nội dung layer, được đặt tên theo 'cache ID' được tạo ngẫu nhiên và Docker Engine duy trì liên kết giữa layer và cache ID của nó để nó biết vị trí của nội dung của layer trên disk.
+
+Vì vậy, khi Docker-image được pull từ registry và lệnh `docker history` được sử dụng:
+
 ## Tài liệu tham khảo
 - https://windsock.io/explaining-docker-image-ids/
