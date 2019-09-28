@@ -22,6 +22,21 @@ git clone https://github.com/MogiePete/zabbix-galera-template.git
 ```sh
 cp userparameter_galera.conf /etc/zabbix/zabbix_agentd.d
 ```
+- Vào file `/etc/my.cnf.d/server.cnf` thêm các dòng sau:
+```sh
+vim /etc/my.cnf.d/server.cnf
+[client]
+user:zabbix
+password:zabbix
+```
+<img src=https://i.imgur.com/ITIjqL9.png>
+
+Trong đó:
+user:usermonitor
+password:passusermonitor
+
+
+
 - Restart lại zabbix-agent
 ```sh
 systemctl restart zabbix-agent`
