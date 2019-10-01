@@ -156,6 +156,40 @@ workdir=/var/lib/docker/overlay/ec444863a55a.../work)
 `rw` trên dòng thứ hai là `overlay` đọc-ghi.
 
 ### 1.3 Cách container reads and writes với overlay và overlay2
+**Reading files**
+
+Xem xét 3 Trường hớp trong đó một container mở một file để truy cập đọc với overlay.
+
+- File không tồn tại trong container-layer: Nếu 1 container mở file truy cập đọc và file không tồn tại trong container (Upperdir), nó sẽ đọc từ image (lowdir). Điều này phát sinh 1 ít hiệu năng cao.
+- File chỉ tồn tại trong container-layer: Nếu 1 container mở file truy cập đọc và file tồn tại trong container (Upperdir) chứ không phải trong image (lowdir), nó được đọc trực tiếp từ container.
+- File tồn tại trong cả container-layer và image-layer: Nếu 1 container mở file để truy cập đọc và file tồn tại trong image-layer và container-layer, phiên bản file trong container-layer được đọc. Các file trong container-layer (Upperdir) che khuất các file có cùng tên trong image-layer (lowdir).
+
+**Modifying files or directories**
+
+Xem xét một số tình huống trong đó các file trong 1 container được chỉnh sửa.
+
+- Ghi vào 1 file lần đầu tiên: Lần đầu tiên 1 container ghi vào file có sẵn, file đó không tồn tại trong container (Upperdir). Overlay/overlay2 driver thực hiện thao tác copy_up để sao chép file từ image (lowdir) vào container (Upperdir). Container sau đó ghi các thay đổi vào bản sao mới của file trong container-layer.
+
+Tuy nhiên, OverlayFS hoạt động ở cấp độ file chứ không phải cấp block. Điều này có nghĩa là tất cả các hoạt động của OverlayFS copy_up sao chép toàn file, ngay cả khi file rất lớn và chỉ một phần nhỏ của nó đang được sửa đổi. Điều này có thể có một tác động đáng chú ý đến hiệu suất ghi container. Tuy nhiên, có hai điều đáng chú ý:
+
+ - Hoạt động copy_up chỉ xảy ra lần đầu tiên khi một file đã cho được ghi vào.
+ - OverlayFS chỉ hoạt động với hai layer. Điều này có nghĩa là hiệu suất tốt hơn AUFS, có thể chịu độ trễ đáng kể khi tìm kiếm file trong image có nhiều layer. Đặc điểm này đúng cho cả overlay và overlay2 drivers. Overlayfs2 ít hiệu năng hơn một chút so với overlayfs khi đọc ban đầu, bởi vì nó phải xem qua nhiều layer hơn, nhưng nó lưu trữ kết quả nên đây chỉ là một điểm trừ nhỏ.
+ 
+**Deleting files and directories:**
+
+- Khi một file bị xóa trong 1 container, 1 file trắng sẽ được tạo trong container (Upperdir). Phiên bản của file trong image-layer (lowdir) không bị xóa (vì lowdir chỉ đọc). Tuy nhiên, file trắng ngăn không cho nó khả dụng cho container.
+- Khi một file bị xóa trong 1 container, 1 thư mục mờ được tạo trong container (Upperdir). Điều này hoạt động theo cách tương tự như 1 file trắng và ngăn chặn hiệu quả thư mục khỏi bị truy cập, mặc dù nó vẫn tồn tại trong image (lowdir).
+
+**Renaming directories**
+
+Gọi `rename(2)` cho 1 thư mục chỉ được phép khi cả nguồn và đường dẫn đích nằm ở layer trên cùng. Nếu không, nó sẽ trả về lỗi EXDEV (liên kết chéo thiết bị không được cho phép). Ứng dụng của bạn cần được thiết kế để xử lý EXDEV và quay lại chiến lược `copy and unlink`.
+
+## 2. AUFS
+### 2.1 Cách AUFS storage driver hoạt động
+
+
+
+
 
 
 
