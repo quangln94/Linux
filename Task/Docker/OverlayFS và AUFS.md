@@ -31,6 +31,47 @@ lrwxrwxrwx 1 root root 72 Jun 20 07:36 JEYMODZYFCZFYSDABYXD5MF6YO -> ../eca1e4e1
 lrwxrwxrwx 1 root root 72 Jun 20 07:36 NFYKDW6APBCCUCTOUSYDH4DXAT -> ../223c2864175491657d238e2664251df13b63adb8d050924fd1bfcdb278b866f7/diff
 lrwxrwxrwx 1 root root 72 Jun 20 07:36 UL2MW33MSE3Q5VYIKBRN4ZAGQP -> ../e8876a226237217ec61c4baf238a32992291d059fdac95ed6303bdff3f59cff5/diff
 ```
+Layer thấp nhất chứa một file gọi là link, chứa tên của mã định danh được rút ngắn và một file có tên là diff chứa nội dung layer.
+```sh
+ls /var/lib/docker/overlay2/3a36935c9df35472229c57f4a27105a136f5e4dbef0f87905b2e506e494e348b/
+diff  link
+```
+```sh
+cat /var/lib/docker/overlay2/3a36935c9df35472229c57f4a27105a136f5e4dbef0f87905b2e506e494e348b/link
+6Y5IM2XC7TSNIJZZFLJCS6I4I4
+```
+```sh
+ls  /var/lib/docker/overlay2/3a36935c9df35472229c57f4a27105a136f5e4dbef0f87905b2e506e494e348b/diff
+bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+```
+
+Lớp thấp thứ hai và mỗi lớp cao hơn chứa một file gọi là lower, biểu thị cha mẹ của nó và một file có tên diff chứa nội dung của nó. Nó cũng chứa một file `merged`, chứa các nội dung hợp nhất của lớp cha và chính nó, và một file `word` được sử dụng bên trong bởi OverlayFS.
+
+```sh
+ls /var/lib/docker/overlay2/223c2864175491657d238e2664251df13b63adb8d050924fd1bfcdb278b866f7
+diff  link  lower  merged  work
+```
+```sh
+cat /var/lib/docker/overlay2/223c2864175491657d238e2664251df13b63adb8d050924fd1bfcdb278b866f7/lower
+l/6Y5IM2XC7TSNIJZZFLJCS6I4I4
+```
+```sh
+ls /var/lib/docker/overlay2/223c2864175491657d238e2664251df13b63adb8d050924fd1bfcdb278b866f7/diff/
+etc  sbin  usr  var
+```
+
+Để xem các `mount` tồn tại khi bạn sử dụng overlay storage driver với Docker, hãy sử dụng lệnh `mount`.
+```sh
+mount | grep overlay
+
+overlay on /var/lib/docker/overlay2/9186877cdf386d0a3b016149cf30c208f326dca307529e646afce5b3f83f5304/merged
+type overlay (rw,relatime,
+lowerdir=l/DJA75GUWHWG7EWICFYX54FIOVT:l/B3WWEFKBG3PLLV737KZFIASSW7:l/JEYMODZYFCZFYSDABYXD5MF6YO:l/UL2MW33MSE3Q5VYIKBRN4ZAGQP:l/NFYKDW6APBCCUCTOUSYDH4DXAT:l/6Y5IM2XC7TSNIJZZFLJCS6I4I4,
+upperdir=9186877cdf386d0a3b016149cf30c208f326dca307529e646afce5b3f83f5304/diff,
+workdir=9186877cdf386d0a3b016149cf30c208f326dca307529e646afce5b3f83f5304/work)
+```
+`rw` trên dòng thứ hai cho thấy `overlay` mount là read-write
+
 
 ## Tài liệu tham khảo
 - https://docs.docker.com/storage/storagedriver/overlayfs-driver/
