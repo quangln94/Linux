@@ -84,6 +84,9 @@ Overlay driver chỉ hoạt động với hai layer. Điều này có nghĩa là
 
 Để tạo một container, overlay driver kết hợp thư mục đại diện cho lớp trên cùng image cộng với một thư mục mới cho container. Lớp trên cùng của image là lowerdirvtrong overlay và chỉ đọc. Thư mục mới cho container là `Upperdir` và có thể ghi.
 
+**Image-layer và container-layes trên disk**
+
+
 ## Tài liệu tham khảo
 - https://docs.docker.com/storage/storagedriver/overlayfs-driver/
 - https://docs.docker.com/storage/storagedriver/aufs-driver/
