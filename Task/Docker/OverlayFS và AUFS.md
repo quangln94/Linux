@@ -187,20 +187,69 @@ Gọi `rename(2)` cho 1 thư mục chỉ được phép khi cả nguồn và đ�
 ## 2. AUFS
 ### 2.1 Cách AUFS storage driver hoạt động
 
+AUFS là một union filesystem, có nghĩa là nó xếp nhiều thư mục trên một máy chủ Linux và trình bày chúng dưới dạng một thư mục. Các thư mục này được gọi là các nhánh trong thuật ngữ AUFS và các layer trong thuật ngữ Docker.
 
+Sơ đồ bên dưới hiển thị Docker container dựa trên image ubuntu:latest
 
+<img src=https://i.imgur.com/RdjPoC7.png>
 
+Mỗi image-layer và container-layer được biểu diễn trên Docker-host dưới dạng các thư mục con trong `/var/lib/docker/`. Union mount cung cấp cái nhìn thống nhất của tất cả các layer. Tên thư mục không tương ứng với ID của các layer.
 
+AUFS sử dụng chiến lược Copy-on-Write (CoW) để tối đa hóa hiệu quả lưu trữ và giảm thiểu chi phí.
 
+**Cấu trúc image và container trên disk**
 
+Sử dụng `docker pull` tải xuống image bao gồm 5 layer.
+```sh
+docker pull ubuntu
 
+Using default tag: latest
+latest: Pulling from library/ubuntu
+b6f892c0043b: Pull complete
+55010f332b04: Pull complete
+2955fb827c94: Pull complete
+3deef3fcbd30: Pull complete
+cf9722e506aa: Pull complete
+Digest: sha256:382452f82a8bbd34443b2c727650af46aced0f94a44463c62a9848133ecb1aa8
+Status: Downloaded newer image for ubuntu:latest
+```
 
+**Image-layer**
 
+Tất cả thông tin về các image-layer và container-layer được lưu trữ trong các thư mục con của `/var/lib/docker/aufs/`.
+- `diff/`: nội dung của mỗi layer, mỗi layer được lưu trữ trong một thư mục con riêng
+- `layer/`: metadata về cách các image-layer được xếp chồng lên nhau. Thư mục này chứa 1 file cho mỗi image-layer hoặc container-layer chứa trên Docker-host. Mỗi file chứa ID của tất cả các layer bên dưới nó trong stack (cha mẹ của nó).
+- `mnt/`: Mount points, một điểm trên mỗi image-layer hoặc container-layer, được sử dụng để lắp ráp và gắn kết filesystem thống nhất cho một container. Đối với image chỉ đọc, các thư mục này luôn trống.
 
+**Container-layer**
 
+Nếu 1 container đang chạy, nội dung của `/var/lib/docker/aufs/` thay đổi theo các cách sau:
+- `diff/`: Sự khác biệt được giới thiệu trong layer container có thể ghi, chẳng hạn như các tệp mới hoặc sửa đổi.
+- `layers/`: Metadata về container-layer có thể ghi của lớp cha mẹ.
+- `mnt/`: Một điểm gắn kết cho mỗi container đang chạy filesystem thống nhất, chính xác như nó xuất hiện từ bên trong container.
 
+## 2.3 Cách container reads and writes với aufs
 
+**Reading files**
 
+Xem xét 3 trường hợp trong đó 1 container mở một tệp để truy cập đọc với aufs.
+- File không tồn tại trong container-layer: Nếu 1 container mở file để truy cập đọc và file không tồn tại trong container-layer, storage driver tìm kiếm file trong các image-layer, bắt đầu với layer ngay bên dưới container-layer. Nó được đọc từ layer nơi nó được tìm thấy.
+- File chỉ tồn tại trong container-layer: Nếu 1 container mở file để truy cập đọc và file tồn tại trong container-layer, nó được đọc từ đó.
+- File tồn tại trong cả container-layer và image-layer: Nếu container mở file để truy cập đọc và file tồn tại trong container-layer và 1 hoặc nhiều image-layer, file sẽ được đọc từ container-layer. Các file trong container-layer che khuất các file có cùng tên trong các image-layer.
+
+**Modifying files or directories**
+
+Xem xét một số tình huống trong đó các file trong 1 container được sửa đổi.
+- Ghi vào một file lần đầu tiên: Lần đầu tiên một container ghi vào một file hiện có, file đó không tồn tại trong container (Upperdir). Driver aufs thực hiện thao tác copy_up để sao chép file từ image-layer nơi nó tồn tại sang container-layer có thể ghi. Container sau đó ghi các thay đổi vào bản sao mới của file trong container-layer.
+
+Tuy nhiên, AUFS hoạt động ở cấp độ file chứ không phải cấp block. Điều này có nghĩa là tất cả các hoạt động copy_up sao chép toàn bộ file, ngay cả khi file rất lớn và chỉ một phần nhỏ của nó đang được sửa đổi. Điều này có thể có một tác động đáng chú ý đến hiệu suất ghi container. AUFS có thể chịu độ trễ đáng chú ý khi tìm kiếm file trong image có nhiều layer. Tuy nhiên, điều đáng chú ý là thao tác copy_up chỉ xảy ra lần đầu tiên khi một file đã cho được ghi vào. Sau đó ghi vào cùng một file hoạt động chống lại bản sao của file đã được sao chép vào container.
+
+- Deleting files and directories:
+
+Khi một file bị xóa trong 1 container, 1 file trắng sẽ được tạo trong container-layer. Phiên bản của file trong image-layer không bị xóa (vì các image-layer chỉ đọc). Tuy nhiên, file trắng ngăn không cho nó có sẵn cho container.
+
+Khi 1 thư mục bị xóa trong 1 container, 1 file mờ được tạo trong container-layer. Điều này hoạt động theo cách tương tự như 1 file trắng và ngăn chặn hiệu quả thư mục khỏi bị truy cập, mặc dù nó vẫn tồn tại trong image-layer.
+- Đổi tên thư mục: Gọi `rename(2)` cho 1 thư mục không được hỗ trợ đầy đủ trên AUFS. Nó trả về EXDEV (liên kết giữa các thiết bị chéo không được cho phép), ngay cả khi cả hai nguồn và đường dẫn đích nằm trên cùng 1 layer AUFS, trừ khi thư mục không có con. Ứng dụng của bạn cần được thiết kế để xử lý EXDEV và quay lại chiến lược `copy and unlink`.
 
 ## Tài liệu tham khảo
 - https://docs.docker.com/storage/storagedriver/overlayfs-driver/
