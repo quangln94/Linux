@@ -72,6 +72,17 @@ workdir=9186877cdf386d0a3b016149cf30c208f326dca307529e646afce5b3f83f5304/work)
 ```
 `rw` trên dòng thứ hai cho thấy `overlay` mount là read-write
 
+### 1.1 Overlay
+
+Sơ đồ dưới đây cho thấy cách Docker-image layer và Docker-container layer được xếp. Image-layer là `lowerdir` và container-layer là `upprerdir`. Khung nhìn hợp nhất được thể hiện thông qua một thư mục được gọi là `merged`, đó là containers mount point. Sơ đồ cho thấy cách Docker xây dựng bản đồ cho các cấu trúc OverlayFS.
+
+<img src=https://i.imgur.com/xZqnMRm.png>
+
+Trong đó image-layer và container-layer chứa cùng một file, container-layer che khuất sự tồn tại của file trên image-layer.
+
+Overlay driver chỉ hoạt động với hai layer. Điều này có nghĩa là image nhiều lớp không thể được triển khai dưới dạng nhiều layer OverlayFS. Thay vào đó, mỗi image-layer được triển khai như thư mục riêng của nó trong `/var/lib/docker/overlay`. Hard links sau đó được sử dụng một cách hiệu quả về không gian để tham chiếu dữ liệu được chia sẻ với các lớp thấp hơn. Việc sử dụng Hard links gây ra việc sử dụng quá nhiều inodes, đó là một hạn chế đã biết của overlay storage driver và có thể yêu cầu cấu hình bổ sung backing filesystem. 
+
+Để tạo một container, overlay driver kết hợp thư mục đại diện cho lớp trên cùng image cộng với một thư mục mới cho container. Lớp trên cùng của image là lowerdirvtrong overlay và chỉ đọc. Thư mục mới cho container là `Upperdir` và có thể ghi.
 
 ## Tài liệu tham khảo
 - https://docs.docker.com/storage/storagedriver/overlayfs-driver/
