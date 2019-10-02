@@ -40,6 +40,29 @@ Notary tạo và lưu trữ các khóa ký trên máy chủ lưu trữ mà nó �
 $ notary -s https://notary.docker.io -d ~/.docker/trust remove docker.io/library/alpine 2.6
 Removal of 2.6 from docker.io/library/alpine staged for next publish.
 ```
+Trong ví dụ trước, output message chỉ ra rằng chỉ loại bỏ được tổ chức. Khi thực hiện bất kỳ thao tác ghi nào, chúng được sắp xếp thành một danh sách thay đổi. Danh sách này được áp dụng cho phiên bản mới nhất của repository ủy thác vào lần tiếp theo `notary publish` cho repository đó.
+
+Bạn có thể thấy một thay đổi đang chờ xử lý bằng cách sử dụng `notary status` cho  repository đã sửa đổi. `status` là một hoạt động ngoại tuyến và do đó, không yêu cầu cờ `-s`, tuy nhiên, nó sẽ âm thầm bỏ qua cờ nếu được cung cấp. Không cung cấp giá trị chính xác cho cờ `-d` có thể hiển thị danh sách thay đổi (có thể trống):
+```sh
+$ notary -d ~/.docker/trust status docker.io/library/alpine
+Unpublished changes for docker.io/library/alpine:
+
+action    scope     type        path
+----------------------------------------------------
+delete    targets   target      2.6
+$ notary -s https://notary.docker.io publish docker.io/library/alpine
+```
+
+## Configure the client
+
+Thật dài dòng và tẻ nhạt khi luôn cung cấp các cờ `-s` và `-d` theo cách thủ công cho hầu hết các lệnh. Một cách đơn giản để tạo các phiên bản cấu hình sẵn của lệnh Notary là thông qua các bí danh. Thêm phần sau vào `.bashrc` hoặc tương đương:
+```sh
+alias dockernotary="notary -s https://notary.docker.io -d ~/.docker/trust"
+```
+Các phương pháp cấu hình nâng cao hơn và các tùy chọn bổ sung có thể được tìm thấy trong tài liệu cấu hình và bằng cách chạy `notary --help`.
+
+
+
 
 ## Tài liệu tham khảo
 - https://docs.docker.com/notary/getting_started/
