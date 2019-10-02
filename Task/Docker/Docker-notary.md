@@ -35,6 +35,11 @@ Khi bạn chạy lệnh `docker pull`, Docker Engine đang sử dụng thư vi�
 
 ## Delete a tag
 
+Notary tạo và lưu trữ các khóa ký trên máy chủ lưu trữ mà nó đang chạy. Điều này có nghĩa là Docker Hub không thể xóa các tag khỏi dữ liệu tin cậy, chúng phải được xóa bằng cách sử dụng Notary client. Bạn có thể làm điều này với lệnh `notary remove`. Một lần nữa, bạn phải hướng nó đến Notary server chính xác. Cả bạn và tác giả đều không có quyền xóa các tag khỏi official `alpine` repository, vì vậy output dưới đây chỉ dành cho trình diễn:
+```sh
+$ notary -s https://notary.docker.io -d ~/.docker/trust remove docker.io/library/alpine 2.6
+Removal of 2.6 from docker.io/library/alpine staged for next publish.
+```
 
 ## Tài liệu tham khảo
 - https://docs.docker.com/notary/getting_started/
