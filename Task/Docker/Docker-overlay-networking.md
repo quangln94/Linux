@@ -88,15 +88,88 @@ Bạn đã tạo một overlaynetwork mới kéo dài trên 2 Node riêng biệt
 
 ### 1.4 Test the overlay network
 
+Kiểm tra overlay network bằng lệnh ping.
 
+Để thực hiện điều này, chúng ta cần phải đào sâu một chút để có được từng địa chỉ IP của container.
+```sh
+ $ docker network inspect uber-net
+ [
+   {
+     "Name": "uber-net",
+     "Id": "c740ydi1lm89khn5kd52skrd9",
+     "Scope": "swarm",
+     "Driver": "overlay",
+     "EnableIPv6": false,
+     "IPAM": {
+       "Driver": "default",
+       "Options": null,
+       "Config": [
+         {
+           "Subnet": "10.0.0.0/24",
+           "Gateway": "10.0.0.1"
+         }
+ <Snip>
+```
+Output ở trên cho thấy subnet của `uber-net` là `10.0.0.0/24`. Điều này không khớp với một trong hai mạng vật lý (`172.31.1.0/24` và `192.168.1.0/24`).
 
+Chạy hai lệnh sau trên Node1 và Node2 để lấy ID container và địa chỉ IP của chúng.
+```
+$ docker ps
+ CONTAINER ID  IMAGE           COMMAND            CREATED       STATUS
+ 396c8b142a85  ubuntu:latest   "sleep infinity"   2 hours ago   Up 2 hrs
+ $
+ $ docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' 396c8b142a85
+ 10.0.0.3
+```
+Hãy chắc chắn rằng bạn chạy các lệnh này trên cả hai Node để lấy địa chỉ IP của cả hai container.
 
+Biểu đồ dưới đây cho thấy cấu hình cho đến bây giờ.
 
+<img src=https://i.imgur.com/nab7ER8.png>
 
+Có thể thấy, có 1 Layer 2 overlay network nối 2 host và mỗi container có 1 địa chỉ IP trên overlay network này. Điều này có nghĩa là container trên Node1 sẽ có thể ping container trên Node2 bằng cách sử dụng địa chỉ IP `10.0.0.4` từ overlay network. Điều này hoạt động mặc dù thực tế là cả hai Node nằm trên các mạng lớp 2 riêng biệt. Hãy để chứng minh điều đó.
 
+Đăng nhập vào container trên Node1 và cài đặt tiện ích `ping` và sau đó ping container trên Node2 bằng địa chỉ IP` 10.0.0.4` của nó.
 
+ID container được sử dụng bên dưới sẽ khác trong môi trường của bạn.
 
+```sh
+$ docker exec -it 396c8b142a85 bash
+ root@396c8b142a85:/#
+ root@396c8b142a85:/#
+ root@396c8b142a85:/# apt-get update
+ <Snip>
+ root@396c8b142a85:/#
+ root@396c8b142a85:/#
+ root@396c8b142a85:/# apt-get install iputils-ping
+ Reading package lists... Done
+ Building dependency tree
+ Reading state information... Done
+ <Snip>
+ Setting up iputils-ping (3:20121221-5ubuntu2) ...
+ Processing triggers for libc-bin (2.23-0ubuntu3) ...
+ root@396c8b142a85:/#
+ root@396c8b142a85:/#
+ root@396c8b142a85:/# ping 10.0.0.4
+ PING 10.0.0.4 (10.0.0.4) 56(84) bytes of data.
+ 64 bytes from 10.0.0.4: icmp_seq=1 ttl=64 time=1.06 ms
+ 64 bytes from 10.0.0.4: icmp_seq=2 ttl=64 time=1.07 ms
+ 64 bytes from 10.0.0.4: icmp_seq=3 ttl=64 time=1.03 ms
+ 64 bytes from 10.0.0.4: icmp_seq=4 ttl=64 time=1.26 ms
+ ^C
+ root@396c8b142a85:/#
+```
+Như ở trên, container trên Node1 có thể ping container trên Node2 bằng cách sử dụng overlay network.
 
+Nếu bạn cài đặt `traceroute` trên container và theo dõi tuyến đường đến container từ xa, bạn sẽ chỉ thấy một hop duy nhất (xem bên dưới). Điều này chứng tỏ rằng các container đang nói chuyện trực tiếp qua overlay network và hoàn toàn không biết nó đi qua lớp nào.
+
+```sh
+$ root@396c8b142a85:/# traceroute 10.0.0.4
+ traceroute to 10.0.0.4 (10.0.0.4), 30 hops max, 60 byte packets
+ 1 test-svc.2.97v...a5.uber-net (10.0.0.4) 1.110ms 1.034ms 1.073ms
+ ```
+ 
+Cho đến nay, ta đã tạo ra một overlay network với một lệnh duy nhất. Sau đó, chúng tôi đã thêm các container vào mạng lớp phủ trên hai máy chủ trên hai mạng Lớp 2 khác nhau. Khi chúng tôi tìm ra các địa chỉ IP Container container, chúng tôi đã chứng minh rằng họ có thể nói chuyện trực tiếp qua mạng lớp phủ.
 
 ## Tài liệu tham khảo
 - http://blog.nigelpoulton.com/demystifying-docker-overlay-networking/
