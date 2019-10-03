@@ -216,12 +216,15 @@ Với ví dụ này, ta sẽ gọi container trên Node1 là C1 và container tr
 
 C1 ping đến IP `10.0.0.4` của C2. Nó gửi lưu lượng qua interface `veth` được kết nối với virtual switch `Br0`. Virtual switch không biết nơi gửi gói tin vì nó không có bảng địa chỉ MAC (bảng ARP) tương ứng với địa chỉ IP đích. Kết quả là, nó đẩy ra tất cả các cổng. Interface VTEP được kết nối với Br0 biết cách chuyển tiếp khung và trả lời với địa chỉ MAC của chính nó. Đây là 1 proxy ARP và kết quả là switch Br0 học cách chuyển tiếp gói và nó cập nhật bảng ARP của nó mapping với địa chỉ `10.0.0.4` sang địa chỉ MAC của VTEP.
 
+Bây giờ,  switch Br0 đã học cách chuyển tiếp lưu lượng đến C2, tất cả các gói sau này cho C2 sẽ được truyền trực tiếp đến interface VTEP. Interface `VTEP` biết về C2 vì tất cả các container mới khởi động đều có các chi tiết mạng được truyền đến các Node khác trong swarm bằng cách sử dụng giao thức network’s built-in gossip.
 
+Sau đó, switch sẽ gửi gói đến interface VTEP, đóng gói các khung để chúng có thể được gửi qua cơ hạ tầng vận chuyển bên dưới. Ở mức khá cao, đóng gói này bao gồm thêm tiêu đề VXLAN vào khung Ethernet. Tiêu đề VXLAN chứa VXLAN network ID (VNID) được sử dụng để ánh xạ các khung từ VLAN sang VXLAN và ngược lại. Mỗi Vlan được ánh xạ tới VNID để ở đầu nhận, gói có thể được gói lại và chuyển tiếp đến Vlan chính xác. Điều này rõ ràng duy trì sự cô lập mạng. Việc đóng gói cũng bao bọc khung trong IP/UDP packet với địa chỉ IP của VTEP trên Node2 trong trường IP đích và thông tin UDP port 4789 socket. Việc đóng gói này cho phép dữ liệu được gửi qua underlying networks mà không cần underlying networks phải biết bất cứ điều gì về VXLAN.
 
+Khi gói đến Node2, kernel thấy rằng nó được gửi đến UDP port 4789. Kernel cũng biết rằng nó có interface VTEP được liên kết với socket đó. Kết quả là, nó gửi packet đến VTEP để đọc VNID, de-encapsulates gói và gửi nó đến switch Br0 local của chính nó trên Vlan tương ứng với VNID. Từ đó nó được chuyển đến container C2.
 
+Đó là những điều cơ bản về cách công nghệ VXLAN được tận dụng bởi Docker overlay networks.
 
-
-
+Một điều cuối cùng cần đề cập về Docker overlay networks là Docker cũng hỗ trợ định tuyến lớp 3 trong cùng một overlay network. Ví dụ: bạn có thể tạo một overlay network với 2 mạng con và Docker sẽ đảm nhiệm việc định tuyến giữa chúng. Lệnh tạo một mạng như thế này có thể là `docker network create –subnet=10.1.1.0/24 –subnet=11.1.1.0/24 -d overlay prod-net`. Điều này sẽ dẫn đến 2 virtual switch Br0 và Br1 được tạo bên trong network namespace và việc định tuyến xảy ra theo mặc định.
 
 ## Tài liệu tham khảo
 - http://blog.nigelpoulton.com/demystifying-docker-overlay-networking/
