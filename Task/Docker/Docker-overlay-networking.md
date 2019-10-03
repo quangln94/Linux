@@ -171,5 +171,58 @@ $ root@396c8b142a85:/# traceroute 10.0.0.4
  
 Cho đến nay, ta đã tạo ra một overlay network với một lệnh duy nhất. Sau đó, chúng tôi đã thêm các container vào mạng lớp phủ trên hai máy chủ trên hai mạng Lớp 2 khác nhau. Khi chúng tôi tìm ra các địa chỉ IP Container container, chúng tôi đã chứng minh rằng họ có thể nói chuyện trực tiếp qua mạng lớp phủ.
 
+## 2. The theory of how it all works
+
+Bây giờ, ta đã thấy cách build và sử dụng 1 container overlay network, hãy cùng tìm hiểu cách thức hoạt động.
+
+### VXLAN primer
+Trước hết, Docker overlay networking sử dụng VXLAN tunnels làm nền tảng để tạo virtual Layer 2 overlay networks. Vì vậy, trước khi đi xa hơn, hãy lướt nhanh qua công nghệ VXLAN.
+
+Ở cấp độ cao nhất, VXLAN cho phép bạn tạo virtual Layer 2 network trên cơ sở hạ tầng Layer 3 hiện có. Ví dụ trước đã sử dụng để tạo ra một mạng 10.0.0.0/24 mới trên Layer 3 IP network bao gồm hai mạng Lớp 2: 172.31.1.0/24 và 192.168.1.0/24. Như dưới đây.
+
+<img src=https://i.imgur.com/UdFGaLU.png>
+
+Cái hay của VXLAN là các Router và cơ sở hạ tầng mạng hiện tại chỉ xem lưu lượng VXLAN là các gói IP/UDP thông thường và xử lý chúng mà không gặp sự cố.
+
+Để tạo virtual Layer 2 overlay network, 1 VXLAN tunnel được tạo thông qua cơ sở hạ tầng IP lớp 3 bên dưới. Bạn có thể nghe thấy thuật ngữ underlay network được sử dụng để chỉ cơ sở hạ tầng Lớp 3 bên dưới.
+
+Mỗi điểm cuối của VXLAN tunnel bị chấm dứt bởi VXLAN Tunnel Endpoint (VTEP). Nó có VTEP này thực hiện encapsulation/de-encapsulation và ma thuật khác cần thiết để thực hiện tất cả các công việc này. Xem bên dưới.
+
+<img src=https://i.imgur.com/AyV0xvF.png> 
+
+### Walk through our two-container example
+
+Trong ví dụ trước đó, ta có 2 host được kết nối qua mạng IP. Mỗi host chạy 1 container duy nhất và ta đã tạo 1  VXLAN overlay network duy nhất cho các container để sử dụng.
+
+Để thực hiện điều này, 1 network namespace mới đã được tạo trên mỗi host. 1 network namespace giống như 1 container, nhưng thay vì chạy một ứng dụng, nó chạy 1 isolated network stack - đó là 1 Sandboxed từ network stackđược trên chính host.
+
+Một virtual switch (a.k.a virtual bridge) được gọi là `Br0` được tạo bên trong network namespace. Một VTEP cũng được tạo ra với một đầu được cắm vào virtual switch Br0 và đầu còn lại cắm vào  host network stack. Phần cuối trong host network stack nhận được một địa chỉ IP trên underlay network mà host được kết nối và được liên kết với UDP socket trên port 4789. Hai VTEP trên mỗi host tạo overlay qua VXLAN tunnel như bên dưới.
+
+<img src=https://i.imgur.com/nAKuDuj.png>
+
+Đây thực chất là VXLAN overlay network được tạo và sẵn sàng để sử dụng.
+
+Mỗi container sau đó nhận virtual Ethernet (veth) adapter riêng cũng được cắm vào local virtual switch Br0. Topology bây giờ trông giống như hình ảnh bên dưới và sẽ dễ dàng hơn để xem cách 2 container có thể giao tiếp qua  VXLAN overlay network mặc dù các host của chúng nằm trên hai mạng riêng biệt.
+
+<img src=https://i.imgur.com/AUm5A0r.png>
+
+### Communication example
+
+Bây giờ ta đã thấy các yếu tố chính để các container giao tiếp với nhau.
+
+Với ví dụ này, ta sẽ gọi container trên Node1 là C1 và container trên Node2 là C2. Giả sử C1 muốn ping C2 như đã làm ở trên.
+
+<img src=https://i.imgur.com/hpHbyB2.png>
+
+C1 ping đến IP `10.0.0.4` của C2. Nó gửi lưu lượng qua interface `veth` được kết nối với virtual switch `Br0`. Virtual switch không biết nơi gửi gói tin vì nó không có bảng địa chỉ MAC (bảng ARP) tương ứng với địa chỉ IP đích. Kết quả là, nó đẩy ra tất cả các cổng. Interface VTEP được kết nối với Br0 biết cách chuyển tiếp khung và trả lời với địa chỉ MAC của chính nó. Đây là 1 proxy ARP và kết quả là switch Br0 học cách chuyển tiếp gói và nó cập nhật bảng ARP của nó mapping với địa chỉ `10.0.0.4` sang địa chỉ MAC của VTEP.
+
+
+
+
+
+
+
+
 ## Tài liệu tham khảo
 - http://blog.nigelpoulton.com/demystifying-docker-overlay-networking/
+
