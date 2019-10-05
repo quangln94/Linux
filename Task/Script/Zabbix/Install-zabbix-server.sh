@@ -43,6 +43,6 @@ sed -i "s/username_here/$userdatabase/" /var/www/html/wp-config.php
 read -p "Password cua User: " passworduser
 sed -i "s/password_here/$passworduser/" /var/www/html/wp-config.php
 read -p "IP cua database: " ipdatabase
-sed -i "s/localhost/$passworduser/" /var/www/html/wp-config.php
+sed -i "s/localhost/$ipdatabase/" /var/www/html/wp-config.php
 
-chmod +r apache:apache /var/www/html/wp-config.php
+chown apache:apache /var/www/html/wp-config.php
