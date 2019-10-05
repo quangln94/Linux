@@ -25,7 +25,8 @@ Cài đặt LAMP tham khảo [tại đây](https://github.com/quangln94/Linux/bl
 - Cài đặt bằng package. Cài đặt gói cấu hình
 
 ```sh
-rpm -ivh https://repo.zabbix.com/zabbix/4.0/rhel/7/x86_64/zabbix-release-4.0-1.el7.noarch.rpm
+rpm -Uvh https://repo.zabbix.com/zabbix/4.0/rhel/7/x86_64/zabbix-release-4.0-2.el7.noarch.rpm
+
 ```
 - Cài đặt Zabbix Server
 ```sh
