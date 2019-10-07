@@ -36,4 +36,37 @@ Notary signer giống như 1 back-end, lưu trữ private timestamp key (và có
 
 Thiết kế kiến trúc Notary như thế này đi kèm với những lợi thế rất quan trọng. Đầu tiên, TUF  metadata được gửi cho clients không bị lẫn với TUF keys trong một cơ sở dữ liệu. Thứ hai, TUF private keys không cần phải được lưu trữ trên 1 front-end dễ bị tấn công tiếp xúc trực tiếp với clients.
 
- 
+ **Tương tác giữa Client-Server-Signer**
+ 
+Với kiến trúc cơ bản của Notary, chúng tôi sẽ kiểm tra những gì diễn ra giữa 1 client, Notary server và Notary signer ngay khi client bắt đầu tương tác với Notary. Mô tả ngắn gọn các hành động được tạo ra bởi các bên liên quan. 
+
+<img src=https://i.imgur.com/8vccjG3.png>
+
+1. Notary-server tùy chọn hỗ trợ xác thực từ clients sử dụng JWT tokens. Điều này yêu cầu server xác thực quản lý các điều khiển truy cập và cert bundle từ server xác thực này chứa public key mà nó sử dụng để ký tokens.
+
+Nếu xác thực token được bật trên Notary-server thì mọi clients kết nối không có token sẽ được chuyển hướng đến server xác thực.
+
+2. Client sẽ đăng nhập vào server xác thực thông qua xác thực cơ bản qua HTTPS, nhận token và sau đó xuất trình token cho Notary-server theo các yêu cầu trong tương lai.
+
+3. Khi client tải lên metadata files mới, Notary-server sẽ kiểm tra chúng dựa trên bất kỳ phiên bản nào trước đó để tìm xung đột và xác minh chữ ký, checksums và tính hợp lệ của metadata đã tải lên.
+
+4. Khi tất cả metadata tải lên đã được xác thực, Notary-server sẽ tạo timestamp (and maybe snapshot) metadata. Nó sẽ gửi metadata được tạo này cho Notary signer để được ký.
+
+5. Notary signer lấy private keys được mã hóa cần thiết từ cơ sở dữ liệu của nó nếu có, giải mã keys và sử dụng chúng để ký metadata. Nếu thành công, nó sẽ gửi chữ ký trở lại Notary server.
+
+6. MNotary server là source of truth cho trạng thái của 1 collection of data đáng tin cậy, lưu trữ metadata trong TUF database của cả client-uploaded và server tạo. Timestamp và snapshot metadata tạo ra xác nhận rằng metadata files mà clients đã tải lên là mới nhất cho collection đáng tin cậy đó.
+
+Cuối cùng, Notary server sẽ thông báo cho client rằng quá trình tải lên của họ đã thành công.
+
+7. Bây giờ client có thể tải metadata mới nhất từ server bằng cách sử dụng token vẫn còn hiệu lực để kết nối. Notary server chỉ cần lấy metadata từ cơ sở dữ liệu, vì không có metadata nào hết hạn.
+
+Trong trường hợp timestamp đã hết hạn, Notary server sẽ đi qua toàn bộ chuỗi nơi timestamp mới, yêu cầu Notary signer cho một chữ ký, lưu trữ timestamp mới được ký trong cơ sở dữ liệu. Sau đó, nó sẽ gửi timestamp mới này cùng với phần còn lại của metadata được lưu trữ đến client yêu cầu.
+
+**Threat model**
+
+
+
+
+
+# https://blog.mi.hdm-stuttgart.de/index.php/2016/09/13/exploring-docker-security-part-3-docker-content-trust/
+# https://github.com/theupdateframework/notary/blob/master/docs/service_architecture.md
