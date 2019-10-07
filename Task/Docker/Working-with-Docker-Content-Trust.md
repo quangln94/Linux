@@ -43,3 +43,15 @@ RUN git clone https://github.com/docker/notary.git && \
  
 ENTRYPOINT ["bash"]
 ```
+**Use a private certificate**
+
+Cấu hình này chạy với 1 public certificate. Bất kỳ Docker client nào chạy với cùng public certificate đều có thể truy cập Notary server của bạn.
+
+Để thiết lập secure, chúng tôi khuyên bạn nên thay thế nó bằng organization's private certificate của bạn bằng cách thay thế public `root-ca.crt` certificate file bằng chứng chỉ riêng dưới `/root/notary/fixtures` trên Notary server của bạn và dưới `/usr/local/share/ca-certificates` trên máy chạy Docker client của bạn.
+
+**Build the test image:**
+
+
+## Tài liệu tham khảo
+- https://www.jfrog.com/confluence/display/RTF/Working+with+Docker+Content+Trust
+
