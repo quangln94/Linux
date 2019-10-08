@@ -25,6 +25,51 @@ Người dùng image có thể kích hoạt DCT để đảm bảo rằng image 
 
 <img src=https://i.imgur.com/JQVgjqE.png>
 
+Đối với người chưa kích hoạt DCT, không có gì về cách họ làm việc với Docker image thay đổi. Mọi image đều có thể nhìn thấy bất kể nó có được ký hay không.
+
+## 3. Docker Content Trust Keys
+
+Trust 1 image tag được quản lý thông qua việc sử dụng signing keys. 1 bộ key được tạo khi 1 hoạt động sử dụng lần đầu tiên. 1 bộ key bao gồm các lớp sau:
+- 1 offline key là root của DCT cho 1 image tag
+- repository hoặc tagging keys ký tags
+- server quản lý keys như timestamp key đảm bảo, cung cấp mới cho repository của bạn
+
+Hình ảnh sau đây mô tả các signing keys và các mối quan hệ của chúng:
+
+
+Bạn nên back up root key ở một nơi an toàn.
+
+## 4. Signing Images with Docker Content Trust
+
+Với Docker CLI ta có thể ký và push 1 container image với command `$ docker trust`. This is built on top of the Notary feature set, more information on Notary can be found here.
+
+Một điều kiện tiên quyết để ký 1 image là 1 Docker Registry với 1 Notary-server được đính kèm (Chẳng hạn như Docker Hub hoặc Docker Trusted Registry).
+
+Để ký 1 Docker Image, bạn sẽ cần 1 cặp khóa ủy quyền. Các khóa này có thể được tạo cục bộ bằng cách sử dụng ` $$ docker trust key generate`, được tạo bởi certificate authority hoặc nếu bạn đang sử dụng Docker Enterprise’s Universal Control Plane (UCP).
+
+Đầu tiên, chúng ta sẽ thêm private key ủy quyền vào Docker trust repository local. (Mặc định, được lưu trữ trong `~/.docker/trust/`). Nếu bạn tạo khóa ủy quyền với `$ docker trust key generate`, private key sẽ tự động được thêm vào local trust store. Nếu bạn đang  import 1 key riêng, chẳng hạn như từ 1 UCP Client Bundle, bạn sẽ cần sử dụng lệnh `$ docker trust key load`.
+
+```sh
+[root@server03 ~]# docker trust key generate quangln
+Generating key for quangln...
+Enter passphrase for new quangln key with ID bec9962:
+Passphrase is too short. Please use a password manager to generate and store a good random passphrase.
+Enter passphrase for new quangln key with ID bec9962:
+Repeat passphrase for new quangln key with ID bec9962:
+Successfully generated and loaded private key. Corresponding public key available: /root/quangln.pub
+```
+Hoặc nếu bạn đã có key:
+```sh
+docker trust key load key.pem --name quangln
+```
+Tiếp theo chúng ta sẽ cần thêm public key cho Notary-server; đây là đặc trưng cho image repository trong Notary được gọi là Global Unique Name (GUN). Nếu đây là lần đầu tiên bạn thêm một ủy quyền vào repository, lệnh này cũng sẽ khởi tạo repository.
+
+
+
+
+
+
+
 
 ## Tài liệu tham khảo
 - https://docs.docker.com/engine/security/trust/content_trust/
