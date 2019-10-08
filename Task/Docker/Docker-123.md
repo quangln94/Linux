@@ -25,7 +25,7 @@ Hãy nhớ rằng công việc của Notary không phải là kiểm tra nội d
 
 Nó cũng đề cập đến việc Notary, mặc dù đã được Docker triển khai, nhưng không bị hạn chế để áp dụng trên Docker-image dưới bất kỳ hình thức nào. Thay vào đó, Notary là một công cụ hoàn toàn độc lập, có thể hoạt động trên repositories hoặc collections dữ liệu.
 
-## Notary architecture
+## Notary Architecture and components
 
 Notary gồm 2 thành phần chính: Notary server và Notary signer. Notary clients chỉ tương tác với Notary-server bằng cách pulling hoặc pushing metadata. Nó lưu trữ TUF metadata files cho 1 hoặc nhiều collections đáng tin cậy trong cơ sở dữ liệu được liên kết.
 
