@@ -73,7 +73,6 @@ Trong trường hợp timestamp đã hết hạn, Notary server sẽ đi qua to�
 
 
 
-
-
-# https://blog.mi.hdm-stuttgart.de/index.php/2016/09/13/exploring-docker-security-part-3-docker-content-trust/
-# https://github.com/theupdateframework/notary/blob/master/docs/service_architecture.md
+## Tài liệu tham khảo
+- https://blog.mi.hdm-stuttgart.de/index.php/2016/09/13/exploring-docker-security-part-3-docker-content-trust/
+- https://github.com/theupdateframework/notary/blob/master/docs/service_architecture.md
