@@ -1,15 +1,22 @@
-# The Update Framework (TUF)
+# 1. The Update Framework (TUF)
 TUF là 1 software update framework được bắt đầu vào năm 2009. Nó đã dựa trên Thandy, ứng dụng cập nhật cho Tor browser.
 
 Trái ngược với Thandy hoặc các ứng dụng hoặc trình quản lý gói khác, TUF nhắm đến mục tiêu trở thành một phần mở rộng chung của bất kỳ software update system nào muốn sử dụng nó, hơn là một công cụ cập nhật phần mềm độc lập. Đặc tả TUF cũng như triển khai điều chỉnh có thể được tìm thấy trên Github.
 
-## Roles, keys and files
+## 1.1 Roles, keys and files
 Chúng tôi đã thấy rằng cách tiếp cận GPG dễ tấn công do 1 khóa ký duy nhất được giữ trực tuyến và do đó nó tiềm ẩn nguy cơ bị tấn công lớn. Để khắc phục vấn đề đó TUF xác định một hệ thống phân cấp các khóa khác nhau với các đặc quyền khác nhau và ngày hết hạn khác nhau thay vì dựa vào một khóa duy nhất. Các khóa này được ràng buộc với các vai trò cụ thể, chủ sở hữu của root key có vai trò root trong hệ thống. Trên hết, TUF xác định 1 metadata files phải có trong thư mục cấp cao nhất của repository. Cùng xem xét kỹ hơn về kiến trúc khung.
 
 <img src=https://i.imgur.com/zEX2yS8.png>
 
+- The root key is root of all trust. Nó ký vào root metadata file, liệt kê ID của root, targets, snapshot, and timestamp public keys. Clients  sử dụng public keys để xác minh chữ ký trên tất cả metadata files trong repository. Khóa này được giữ bởi chủ sở hữu collection và phải được giữ offline và an toàn nhiều hơn bất kỳ khóa nào khác.
 
+- The snapshot key ký snapshot metadata file, liệt kê filenames, sizes, và hashes của root, targets, and delegation metadata files cho collection. File này sử dụng để xác minh tính toàn vẹn của các metadata files khác. The snapshot key được giữ bởi collection owner/administratoris hoặc được giữ bởi Notary-service để tạo điều kiện cho nhiều người cộng tác ký thông qua vai trò ủy quyền.
 
+- The timestamp key ký timestamp metadata file, cung cấp đảm bảo độ mới cho collection bằng cách có shortest expiry time của bất kì metadata cụ thể nào và bằng cách chỉ định filename, size, và hash của hấu hết snapshot for the collection gần nhất. Nó được sử dụng để xác thức tính toàn vẹn của snapshot file. The timestamp key được giữ bởi Notary-service để timestamp có thể được tự đông tạo lại khi nó được yêu cầu từ server thay vì yêu cầu owner mỗi mỗi lần timestamp expiry.
+
+- The targets key ký targets metadata file, liệt kê filenames trong collection, kích thước và giá trị hashes tương ứng. File này được sử dụng để xác thực tính toàn vẹn của 1 vài hoặc tất cả contents của repository. Nó cũng được sử dụng để ủy quyền tin cậy cho collaborators thông qua vai trò ủy quyền. The targets key được giữ bời collection owner hoặc administrator.
+
+- Delegation keys ký delegation metadata files, liệt kê filenames trong collection, và kích thước và giá trị hashes tương ứng. File này được sử dụng để xác thực tính toàn vẹn của 1 số hoặc tất cả contents của. Nó cũng được sử dụng để ủy quyền tin cậy cho collaborators thông qua vai trò ủy quyển cấp thấp hơn. Delegation keys được giữ bởi bất kỳ ai từ collection owner hoặc administrator đển collection collaborators.
 
 # Docker Notary
 Vậy làm thế nào Docker có thể hưởng lợi từ TUF để phân phối image an toàn hơn? Câu trả lời khá đơn giản: The Docker team stuck to the TUF specification and built its own update system on top of it. Đây là lúc Notary đi vào hoạt động, trên thực tế là một triển khai có ý kiến của TUF. Nhiệm vụ chính của Notary là cho phép clients đảm bảo tính toàn vẹn của Docker-image cũng như xác minh danh tính của publisher.
