@@ -136,7 +136,10 @@ Trong đó:
 ```sh
 htpasswd registry.password USERNAME
 ```
-`USERNAME` và `PASSWORD` nhập vào sẽ được sử dụng để xác thực khi ta login đến Private Registry qua câu lệnh `docker login ...`.
+`USERNAME` và `PASSWORD` nhập vào sẽ được sử dụng để xác thực khi ta login đến Private Registry qua câu lệnh 
+```sh
+docker login ...
+```
 
 - Thực hiện cấu hình SSL cho NGINX, lần lượt sử dụng các câu lệnh sau:
 ```sh
