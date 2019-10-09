@@ -1,3 +1,7 @@
+- Login `registry`
+
+
+
 - Khi `DOCKER_CONTENT_TRUST=0` bạn có thể down bất kỳ image từ bất kì đâu
 ```sh
 export DOCKER_CONTENT_TRUST=0
@@ -19,3 +23,4 @@ docker tag ubuntu:16.04 notaryserver:5000/ubuntu:myos
 docker push notaryserver:5000/ubuntu:myos
 docker pull ubuntu
 ```
+- Logout `registry` 
