@@ -1,4 +1,19 @@
 #!bin/bash
+echo "Check distro"
+if [ -f /etc/redhat-release ]; then
+        cat /etc/redhat-release
+        bash install-zabbix-server.sh
+fi
+
+if [ -f /etc/lsb-release ]; then
+        sudo apt-get install zabbix-agent -y
+        bash install-zabbix-server.sh
+fi
+
+
+
+
+
 echo "Install Zabbix-server"
 echo "Step 1: Cai dat cac goi can thiet"
 rpm -Uvh https://repo.zabbix.com/zabbix/4.0/rhel/7/x86_64/zabbix-release-4.0-2.el7.noarch.rpm
