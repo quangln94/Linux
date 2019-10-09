@@ -15,65 +15,54 @@
 
 
 ### 1.2 Cài đặt và cấu hình Docker Registry <a name="deploy">
-
-    - Yêu cầu trước khi thực hiện cài đặt như sau:
-
-        | STT | Yêu cầu |
-        | ------------- | ------------- |
-        | 1 | Máy thực hiện cấu hình đã được cài đặt Docker Engine. |
-        | 2 | Hệ điều hành sử dụng: CentOS 7 |
-    
-    - Đầu tiên, ta cài đặt công cụ `htpasswd` của `http-tools` nhắm nâng cao tính bảo mật:
-
-            yum install -y httpd-tools
-
-    - Tiếp theo, cài đặt và cấu hình Private Docker Registry:
+- Cài đặt `htpasswd` của `http-tools` nhắm nâng cao tính bảo mật:
+```sh
+yum install -y httpd-tools
+```
+- Cài đặt và cấu hình Private Docker Registry:
 
         - Hiện tại, Private Registry được Docker công bố như một mã nguồn mở tồn tại dưới dạng là một image có tên là `registry`.
 
         - Cách đơn giản nhất để sử dụng Private Docker Registry đó là tạo ra một container từ image `registry` với câu lệnh sau:
+```sh
+docker run -d \
+--publish 5000:5000 \
+--restart=always \
+--name= registry \
+registry:2
+```
+Bây giờ registry đã có thể được sử dụng thông qua port 5000.
 
-                docker run -d \
-                --publish 5000:5000 \
-                --restart=always \
-                --name= registry \
-                registry:2
-
-            ngay bây giờ registry đã có thể được sử dụng thông qua port 5000.
-
-        - Để thực hiện pull image tới Private Registry, ta có thể thực hiện tương tự như sau:
+- Để thực hiện pull image tới Private Registry, ta có thể thực hiện tương tự như sau:
 
                 docker pull ubuntu:16.04
 
                 docker tag ubuntu:16.04 localhost:5000/ubuntu
 
-        - Lúc này, một image mới được tạo ra có `REPOSITORY` là `localhost:5000/ubuntu`. Để thực hiện push image tới Private Registry, ta sử dụng câu lệnh:
+- Lúc này, một image mới được tạo ra có `REPOSITORY` là `localhost:5000/ubuntu`. Để thực hiện push image tới Private Registry, ta sử dụng câu lệnh:
+```sh
+docker push localhost:5000/ubuntu
+```
+- Để kiểm tra kết quả, ta thực hiện xóa các image đã có để kiểm tra bằng việc sử dụng câu lệnh:
+```sh
+docker rmi ubuntu:16.04
+docker rmi localhost:5000/ubuntu
+```
+- Tiếp theo pull image từ `localhost:5000/ubuntu` về sử dụng câu lệnh:
+```sh
+docker pull localhost:5000/ubuntu
+```
+***Lưu ý: Khi thực hiện các thao tác giữa `image` và `private registry`. Ta cần phải thêm server của image đó đằng trước. Ví dụ:***
+```sh
+localhost:5000/ubuntu
+```
+Trong đó: 
+- `localhost:5000`: Khai báo server và port của registry
+- `ubuntu`: Tên image
 
-                docker push localhost:5000/ubuntu
+***Mặc định, Docker Engine sử dụng Cloud Registry là `Docker Hub`***.
 
-        - Để kiểm tra kết quả, ta thực hiện xóa các image đã có để kiểm tra bằng việc sử dụng câu lệnh:
-
-                docker rmi ubuntu:16.04
-                docker rmi localhost:5000/ubuntu
-
-            tiếp theo pull image `localhost:5000/ubuntu` về sử dụng câu lệnh:
-
-                docker pull localhost:5000/ubuntu
-
-        - Lưu ý: Khi thực hiện các thao tác giữa image và private registry. Ta cần phải thêm server của image đó đằng trước. Ví dụ:
-
-                localhost:5000/ubuntu
-
-            trong đó
-
-            | Mô tả | Ý nghĩa |
-            | ------------- | ------------- |
-            | localhost:5000 | Khai báo server và port của registry |
-            | ubuntu | Tên image |
-
-            vì mặc định, Docker Engine sử dụng Cloud Registry là `Docker Hub`.
-
-        Việc cấu hình như trên đã đáp ứng đủ để cung cấp một Private Docker Registry. Tuy nhiên, ta nên thực hiện cài đặt và cấu hình Private Docker Registry theo cách dưới đây.
+2. Việc cấu hình như trên đã đáp ứng đủ để cung cấp một Private Docker Registry. Tuy nhiên, ta nên thực hiện cài đặt và cấu hình Private Docker Registry theo cách dưới đây.
 
     - Tạo thư mục riêng để quản lý registry:
 
