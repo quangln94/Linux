@@ -6,17 +6,15 @@
 
 ### 1.1 Giới thiệu về Private Docker Registry <a name="about">
 
-    + Private Docker Registry là một Docker Registry được triển khai riêng biệt so với Docker Host và được triển khai trên chính server của bạn.
-
-    + Cho phép xử lý các thao tác với Docker image một cách nhanh chóng với pull, push. Và không cần thiết đến internet nếu như Registry được cài đặt trong mạng LAN, cho phép phân phối các image một cách nhanh chóng.
-
-    + Với Private Docker Registry, ta có thể:
+- Private Docker Registry là một Docker Registry được triển khai riêng biệt so với Docker Host và được triển khai trên chính server của bạn.
+- Cho phép xử lý các thao tác với Docker image một cách nhanh chóng với pull, push. Và không cần thiết đến internet nếu như Registry được cài đặt trong mạng LAN, cho phép phân phối các image một cách nhanh chóng.
+- Với Private Docker Registry, ta có thể:
 
         - Toàn quyền quyển soát được vị trí lưu trữ image.
         - Tích hợp vào quy trình phát triển các sản phẩm.
 
 
-- ### <a name="deploy">1.2 Cài đặt và cấu hình Docker Registry</a>
+### 1.2 Cài đặt và cấu hình Docker Registry <a name="deploy">
 
     - Yêu cầu trước khi thực hiện cài đặt như sau:
 
