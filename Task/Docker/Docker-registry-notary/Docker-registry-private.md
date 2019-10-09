@@ -4,9 +4,7 @@
 - [1.1 Giới thiệu về Private Docker Registry](#about)
 - [1.2 Cài đặt và cấu hình Docker Registry](#deploy)
 
-# <a name="content">Nội dung</a>
-
-- ### <a name="about">1.1 Giới thiệu về Private Docker Registry</a>
+### 1.1 Giới thiệu về Private Docker Registry <a name="about">
 
     + Private Docker Registry là một Docker Registry được triển khai riêng biệt so với Docker Host và được triển khai trên chính server của bạn.
 
