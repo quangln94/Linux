@@ -1,6 +1,62 @@
 # Docker Swarm Reference Architecture: Exploring Scalable, Portable Docker Container Networks
 
-## What You Will Learn
+## Table of Contents
+
+1. What You Will Learn
+2. Prerequisites
+3. Challenges of Networking Containers and Microservices
+4. The Container Networking Model
+5.CNM Constructs
+6.CNM Driver Interfaces
+7.Docker Native Network Drivers
+8. Network Scope
+9. Docker Remote Network Drivers
+10. Docker Remote IPAM Drivers
+11. Linux Network Fundamentals
+12. The Linux Bridge
+13. Network Namespaces
+14. Virtual Ethernet Devices
+15. iptables
+16. Microsoft Network Fundamentals
+17. Networking in Windows 2016 and 2019
+18. Windows Docker Network Drivers
+19. Joining Windows to the Swarm
+20. Networking in Windows: Further Reading
+21. Docker Network Control Plane
+22. Docker Host Network Driver
+23. Docker Bridge Network Driver
+24. Default Docker Bridge Network
+25. User-Defined Bridge Networks
+26. External Access for Standalone Containers
+27. Overlay Driver Network Architecture
+28. VXLAN Data Plane
+29. Overlay Driver Internal Architecture
+30. External Access for Docker Services
+31. MACVLAN
+32. VLAN Trunking with MACVLAN
+33. None (Isolated) Network Driver
+34. Physical Network Design Requirements
+35. Swarm Native Service Discovery
+36. Docker Native Load Balancing
+37. UCP Internal Load Balancing
+38. Swarm External L4 Load Balancing (Docker Routing Mesh)
+39. UCP External L7 Load Balancing (HTTP Routing Mesh)
+40. Docker Network Security and Encryption
+41. Network Segmentation and Data Plane Security
+42. Control Plane Security
+43. Data Plane Network Encryption
+44. Management Plane Security & RBAC with UCP
+45. IP Address Management
+46. Network Troubleshooting
+47. Network Deployment Models
+48. Bridge Driver on a Single Host
+49. Multi-Host Bridge Driver with External Service Discovery
+50. Multi-Host with Overlay Driver
+51. Tutorial App: MACVLAN Bridge Mode
+52. Conclusion
+
+
+## 1. What You Will Learn
 
 Docker container bao bọc một phần mềm trong một filesystem hoàn chỉnh chứa mọi thứ cần thiết để chạy: code, runtime, system tools, system libraries - bất cứ thứ gì có thể được cài đặt trên server. Điều này đảm bảo rằng phần mềm sẽ luôn chạy như nhau, bất kể môi trường của nó. Theo mặc định, containers cô lập các ứng dụng với nhau và cơ sở hạ tầng bên dưới, đồng thời cung cấp lớp bảo vệ bổ sung cho ứng dụng.
 
@@ -103,7 +159,7 @@ Có nhiều good use-cases cho publishing mode. `ingress` mode hoạt động t�
 
 <img src=https://i.imgur.com/IThw3C9.png>
 
-## MACVLAN
+## 31. MACVLAN
 
 ## Tài liệu tham khảo
 - https://success.docker.com/article/networking
