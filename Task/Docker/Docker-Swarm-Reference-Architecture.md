@@ -99,7 +99,11 @@ $ docker service create --replicas 2 --publish mode=host,target=80,published=808
 
 ### Ingress Design
 
+Có nhiều good use-cases cho publishing mode. `ingress` mode hoạt động tốt cho các service có nhiều replica và yêu cầu load balancing giữa các replicas đó. `host` mode hoạt động tốt nếu external service discovery được cung cấp bởi một tool khác. Một trường hợp sử dụng tốt khác cho `host` mode là cho các  global containers tồn tại một trên mỗi host. Các container này có thể tiết lộ thông tin cụ thể về local host (như monitoring hoặc logging) chỉ liên quan đến host đó và do đó bạn không muốn load balance khi truy cập service đó.
+
 <img src=https://i.imgur.com/IThw3C9.png>
+
+## MACVLAN
 
 ## Tài liệu tham khảo
 - https://success.docker.com/article/networking
