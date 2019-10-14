@@ -49,6 +49,29 @@ Các network drivers tồn tại:
 
 Sử dụng `docker network ls`, Docker network drivers có một khái niệm về *scope*. network scope là domain của driver có thể là `local` hoặc `swarm` scope. Local scope drivers cung cấp kết nối và network services (như DNS hoặc IPAM) trong phạm vi của host. Swarm scope drivers cung cấp kết nối và network services trên một cụm swarm. Swarm scope networks có cùng network ID trên toàn bộ cụm trong khi local scope networks có một network ID duy nhất trên mỗi host.
 
+## Docker Remote Network Drivers
+
+Cộng đồng và vendor tạo ra remote network drivers tương thích với CNM. Mỗi cung cấp khả năng độc đáo và network services cho container.
+
+|Driver|Description|
+|------|-----------|
+|||
+|||
+|||
+
+## Docker Remote IPAM Drivers
+
+Cộng đồng và vendor tạo ra  IPAM drivers cũng có thể được sử dụng để cung cấp tích hợp với các hệ thống hiện có hoặc các khả năng đặc biệt.
+
+|Driver|Description|
+|------|-----------|
+|||
+
+Có rất nhiều Docker plugins tồn tại và đang được tạo ra nhiều hơn nữa mọi lúc. Docker duy trì một danh sách các [plugin phổ biến nhất](https://docs.docker.com/engine/extend/legacy_plugins/).
+
+## Linux Network Fundamentals
+
+
 
 
 ## Tài liệu tham khảo
