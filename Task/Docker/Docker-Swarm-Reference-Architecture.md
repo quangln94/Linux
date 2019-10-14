@@ -69,9 +69,27 @@ Cộng đồng và vendor tạo ra  IPAM drivers cũng có thể được sử d
 
 Có rất nhiều Docker plugins tồn tại và đang được tạo ra nhiều hơn nữa mọi lúc. Docker duy trì một danh sách các [plugin phổ biến nhất](https://docs.docker.com/engine/extend/legacy_plugins/).
 
-## Linux Network Fundamentals
+## Nguyên tắc cơ bản của Linux Network
 
+Linux kernel có tính năng triển khai TCP/IP stack cực kỳ hoàn thiện và hiệu quả (ngoài các native kernel features khác như VXLAN và packet filtering). Docker networking sử dụng kernel's networking stack làm cơ sở để tạo network drivers cấp cao hơn. Nói một cách đơn giản, Docker networking là Linux networking.
 
+Việc triển khai các tính năng Linux kernel hiện có đảm bảo hiệu năng cao và mạnh mẽ. Quan trọng nhất, nó cung cấp tính di động trên nhiều bản phân phối và sersion, giúp tăng cường tính di động của ứng dụng.
+
+Có một số Linux networking xây dựng blocks sử dụng để triển khai native CNM network drivers. Danh sách này bao gồm ***Linux bridges, network namespaces, veth pairs, và iptables*** . Sự kết hợp của các công cụ này, được triển khai như network drivers, cung cấp các quy tắc chuyển tiếp, phân đoạn mạng và các công cụ quản lý cho chính sách dynamic network.
+
+## External Access for Docker Services
+
+Swarm & UCP cung cấp quyền truy cập vào các service từ cluster port publishing bên ngoài. Vào và ra cho các service không phụ thuộc vào gateways, nhưng phân phối vào/ra trên host nơi service cụ thể đang chạy. Có hai chế độ publishing port cho service, `host` mode và `ingress` mode.
+
+### Ingress Mode Service Publishing
+
+`ingress` mode port publishing sử dụng `Swarm Routing Mesh` để áp dụng `load balancing` trên các tasks trong 1 service. Ingress mode publishes exposed port trên mỗi UCP/Swarm node. Lưu lượng truy cập vào published port được cân bằng tải bởi Routing Mesh và được điều hướng thông qua round robin load balancing tời 1 trong các healthy tasks của service. Ngay cả khi một host nhất định không chạy service task, port được published trên host và được load balanced với máy chủ có task. Khi Swarm báo hiệu 1 task stop, mục nhập loadbalancer của nó bị tắt để nó dừng nhận lưu lượng truy cập mới.
+```sh
+$ docker service create --replicas 2 --publish mode=ingress,target=80,published=8080 nginx
+```
+***`mode=ingress` là chế độ mặc định cho service. Lệnh này cũng có thể được viết ngắn gọn như sau: `-p 80: 8080`. Port `8080` expose trên mỗi host trên cụm cluster và load balanced với 2 container trong service này.***
+
+### Host Mode Service Publishing
 
 
 ## Tài liệu tham khảo
