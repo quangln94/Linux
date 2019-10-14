@@ -91,6 +91,15 @@ $ docker service create --replicas 2 --publish mode=ingress,target=80,published=
 
 ### Host Mode Service Publishing
 
+`host` mode port publishing chỉ exposes ports trên host nơi các service tasks cụ thể đang chạy. Port được ánh xạ trực tiếp đến container trên host đó. Để ngăn va chạm port, chỉ 1 task duy nhất của 1 service nhất định có thể chạy trên mỗi host.
+```sh
+$ docker service create --replicas 2 --publish mode=host,target=80,published=8080 nginx
+```
+`host` mode yêu cầu `mode=host` flag. Nó publishes port `8080` locally trên các hosts nơi 2 container này đang chạy. Nó không áp dụng load balancing, vì vậy lưu lượng truy cập đến các node đó chỉ được hướng đến local container. Điều này có thể gây ra xung đột port nếu không có đủ host với port được published cho số lượng replicas.
+
+### Ingress Design
+
+<img src=https://i.imgur.com/IThw3C9.png>
 
 ## Tài liệu tham khảo
 - https://success.docker.com/article/networking
