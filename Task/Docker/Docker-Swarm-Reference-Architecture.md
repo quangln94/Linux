@@ -29,7 +29,26 @@ Kiến trúc Docker networking được xây dựng trên một tập hợp các
 <img src=https://i.imgur.com/xdvNwlf.png>
 
 
-## The Container Networking Model
+## CNM Constructs
+
+Có một số cấu trúc cấp cao trong CNM. Chúng đều là OS và cơ sở hạ tầng bất khả tri để các ứng dụng có thể có trải nghiệm thống nhất bất kể cơ sở hạ tầng.
+
+- ***Sandbox*** - 1 Sandbox chứa cấu hình của 1 container's network stack. Điều này bao gồm việc quản lý interafces, routing table và cài đặt DNS của container. Việc triển khai Sandbox có thể là Windows HNS hoặc Linux Network Namespace, 1 FreeBSD Jail, hoặc khái niệm tương tự khác. Một Sandbox có thể chứa nhiều endpoints từ multiple networks.
+- ***Endpoint*** - 1 Endpoint kết nối 1 Sandbox với 1 Network. Cấu trúc Endpoint tồn tại để kết nối thực tế với mạng có thể được trừu tượng hóa khỏi ứng dụng. Điều này giúp duy trì tính di động để một dịch vụ có thể sử dụng các loại network drivers khác nhau mà không cần quan tâm đến cách kết nối với mạng đó.
+- ***Network*** - CNM không chỉ định Network theo mô hình OSI. Việc triển khai Network có thể là Linux bridge, VLAN,... Network là tập hợp các endpoint có kết nối giữa chúng. Các endpoint không được kết nối với mạng không có kết nối trên mạng.
+
+## CNM Driver Interfaces
+
+Container Networking Model cung cấp 2 pluggable và open interfaces có thể được sử dụng bởi người dùng, cộng đồng và nhà cung cấp để tận dụng chức năng, khả năng hiển thị hoặc kiểm soát bổ sung trong mạng.
+
+Các network drivers tồn tại:
+-
+- 
+
+## Network Scope
+
+Sử dụng `docker network ls`, Docker network drivers có một khái niệm về *scope*. network scope là domain của driver có thể là `local` hoặc `swarm` scope. Local scope drivers cung cấp kết nối và network services (như DNS hoặc IPAM) trong phạm vi của host. Swarm scope drivers cung cấp kết nối và network services trên một cụm swarm. Swarm scope networks có cùng network ID trên toàn bộ cụm trong khi local scope networks có một network ID duy nhất trên mỗi host.
+
 
 
 ## Tài liệu tham khảo
