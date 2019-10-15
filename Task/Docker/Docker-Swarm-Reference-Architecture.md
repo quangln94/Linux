@@ -161,5 +161,26 @@ Có nhiều good use-cases cho publishing mode. `ingress` mode hoạt động t�
 
 ## 31. MACVLAN
 
+## Multi-Host Bridge Driver with External Service Discovery
+
+Vì bridge driver là local scope driver, multi-host networking yêu cầu 1 multi-host service discovery (SD). SD bên ngoài đăng ký location và status của một container hoặc service và sau đó cho phép các service khác khám phá vị trí đó. Vì bridge driver exposes ports để truy cập bên ngoài, SD bên ngoài lưu trữ host-ip:port như là vị trí của một container nhất định.
+
+Trong ví dụ sau, vị trí của mỗi dịch vụ được cấu hình thủ công, mô phỏng external service discovery. Vị trí của dịch vụ `db` được truyền tới `web` thông qua biến môi trường `DB`.
+```sh
+#Create the backend db service and expose it on port 8500
+host-A $ docker run -d -p 8500:8500 --name db consul
+
+#Display the host IP of host-A
+host-A $ ip add show eth0 | grep inet
+    inet 172.31.21.237/20 brd 172.31.31.255 scope global eth0
+    inet6 fe80::4db:c8ff:fea0:b129/64 scope link
+
+#Create the frontend web service and expose it on port 8000 of host-B
+host-B $ docker run -d -p 8000:5000 -e 'DB=172.31.21.237:8500' --name web chrch/docker-pets:1.0
+```
+Dịch vụ `web` hiện đang phục vụ trang `web` trên port `8000` của địa chỉ IP `host-B`.
+
+<img src=https://i.imgur.com/yATOceR.png>
+
 ## Tài liệu tham khảo
 - https://success.docker.com/article/networking
