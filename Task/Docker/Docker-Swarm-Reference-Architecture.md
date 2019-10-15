@@ -178,7 +178,7 @@ host-B $ ip add show eth0 | grep inet
 #Create the frontend web service and expose it on port 8000 of host-A
 host-B $ docker run -d -p 8000:5000 -e 'DB=172.31.21.237:8500' --name web chrch/docker-pets:1.0
 ```
-Dịch vụ `web` hiện đang phục vụ trang `web` trên port `8000` của địa chỉ IP `host-B`.
+Dịch vụ `web` hiện đang phục vụ trang `web` trên port `8000` của địa chỉ IP `host-A`.
 
 <img src=https://i.imgur.com/yATOceR.png>
 
