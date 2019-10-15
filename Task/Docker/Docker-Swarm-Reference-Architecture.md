@@ -229,6 +229,13 @@ Như trong ví dụ về single-host bridge, truyền vào `DB=db` dưới dạn
 Dịch vụ web được exposed trên port `8000` và **routing mesh** exposes port `8000` trên mọi host trong cụm Swarm cluster. Kiểm tra xem ứng dụng có hoạt động hay không bằng cách truy cập `<host-A>:8000` hoặc `<host-B>:8000` trên trình duyệt.
 
 ### Overlay Benefits and Use Cases
+- Kết nối multi-host rất đơn giản để triển khai nhỏ và lớn
+- Cung cấp service discovery và load balancing mà không cần cấu hình hoặc thành phần bổ sung
+- Hữu ích cho east-west micro-segmentation thông qua encrypted overlays
+- Routing mesh có thể được sử dụng để quảng bá dịch vụ trên cluster
+
+## <a name="51"> 51. Tutorial App: MACVLAN Bridge Mode </a>
+
 
 
 ## Tài liệu tham khảo
