@@ -3,19 +3,19 @@
 ## Table of Contents
 
 - [1. What You Will Learn](#1)
-- 2. Prerequisites
-3. Challenges of Networking Containers and Microservices
-4. The Container Networking Model
-5.CNM Constructs
-6.CNM Driver Interfaces
-7.Docker Native Network Drivers
-8. Network Scope
-9. Docker Remote Network Drivers
-10. Docker Remote IPAM Drivers
-11. Linux Network Fundamentals
-12. The Linux Bridge
-13. Network Namespaces
-14. Virtual Ethernet Devices
+- [2. Prerequisites]
+- [3. Challenges of Networking Containers and Microservices]
+- [4. The Container Networking Model]
+- [5.CNM Constructs]
+- [6.CNM Driver Interfaces]
+- [7.Docker Native Network Drivers]
+- [8. Network Scope]
+- [9. Docker Remote Network Drivers]
+- [10. Docker Remote IPAM Drivers]
+- [11. Linux Network Fundamentals]
+- [12. The Linux Bridge]
+- [13. Network Namespaces]
+[14. Virtual Ethernet Devices]
 15. iptables
 16. Microsoft Network Fundamentals
 17. Networking in Windows 2016 and 2019
