@@ -2,8 +2,8 @@
 
 ## Table of Contents
 
-[1. What You Will Learn](#1)
-2. Prerequisites
+- [1. What You Will Learn](#1)
+- 2. Prerequisites
 3. Challenges of Networking Containers and Microservices
 4. The Container Networking Model
 5.CNM Constructs
