@@ -62,7 +62,7 @@ Docker container bao bọc một phần mềm trong một filesystem hoàn chỉ
 
 Điều gì xảy ra nếu các ứng dụng cần liên lạc với nhau, với host hay mạng bên ngoài? Làm thế nào để thiết kế một mạng để cho phép kết nối phù hợp trong khi duy trì tính di động của ứng dụng- application portability, service discovery, load balancing, security, performance, and scalability ? Tài liệu này là tổng quan về các khái niệm kiến trúc và thiết kế để xây dựng và mở rộng Docker container networks cho cả Linux và Microsoft servers.
 
-## Challenges of Networking Containers and Microservices</a>
+## <a name="3"> 3. Challenges of Networking Containers and Microservices </a>
 
 Các thực tiễn của microservice đã cải thiện khả năng scale của các ứng dụng, điều này thậm chí còn quan trọng hơn đối với các phương thức kết nối và cách ly được cung cấp cho các ứng dụng. Triết lý Docker networking là hướng ứng dụng. Nó nhằm mục đích cung cấp các tùy chọn và tính linh hoạt cho các nhà khai thác mạng cũng như mức độ trừu tượng phù hợp cho các nhà phát triển ứng dụng.
 
