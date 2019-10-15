@@ -168,10 +168,10 @@ Vì bridge driver là local scope driver, multi-host networking yêu cầu 1 mul
 Trong ví dụ sau, vị trí của mỗi dịch vụ được cấu hình thủ công, mô phỏng external service discovery. Vị trí của dịch vụ `db` được truyền tới `web` thông qua biến môi trường `DB`.
 ```sh
 #Create the backend db service and expose it on port 8500
-host-A $ docker run -d -p 8500:8500 --name db consul
+host-B $ docker run -d -p 8500:8500 --name db consul
 
-#Display the host IP of host-A
-host-A $ ip add show eth0 | grep inet
+#Display the host IP of host-B
+host-B $ ip add show eth0 | grep inet
     inet 172.31.21.237/20 brd 172.31.31.255 scope global eth0
     inet6 fe80::4db:c8ff:fea0:b129/64 scope link
 
