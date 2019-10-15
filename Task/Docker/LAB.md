@@ -72,7 +72,7 @@ To add a manager to this swarm, run 'docker swarm join-token manager' and follow
 ```
 - Kết quả sẽ có thông báo như sau: 
  ```sh
-docker swarm join --token SWMTKN-1-587brhrevpeamzw61rx66r22xx05pj9                                                                                                                          zgs2nqqduoz8hs0v1m5-876nb2phj3ufn388sltlhomr0 10.10.10.221:2377
+docker swarm join --token SWMTKN-1-587brhrevpeamzw61rx66r22xx05pj9zgs2nqqduoz8hs0v1m5-876nb2phj3ufn388sltlhomr0 10.10.10.221:2377
 This node joined a swarm as a worker.
 [root@server02 ~]#
 ```
