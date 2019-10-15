@@ -222,7 +222,7 @@ t222cnez6n7h  web   replicated  0/1       chrch/docker-pets:1.0
 ```
 <img src=https://i.imgur.com/WWMKvcJ.png>
 
-Như trong ví dụ về single-host bridge, truyền vào `DB=db` dưới dạng biến môi trường cho dịch vụ web. Overlay driver phân giải tên service `db` thành địa chỉ TP db service VIP overlay. Giao tiếp giữa `web` và `db` chỉ xảy ra khi sử dụng overlay IP subnet.
+Như trong ví dụ về single-host bridge, truyền vào `DB=db` dưới dạng biến môi trường cho dịch vụ web. Overlay driver phân giải tên service `db` thành địa chỉ IP db service VIP overlay. Giao tiếp giữa `web` và `db` chỉ xảy ra khi sử dụng overlay IP subnet.
 
 ***Bên trong overlay và bridge networks, tất cả TCP và UDP port tới các container đều mở và có thể truy cập được tất cả các container khác được gắn vào overlay network.***
 
