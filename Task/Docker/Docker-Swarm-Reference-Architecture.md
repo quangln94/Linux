@@ -16,44 +16,44 @@
 [12. The Linux Bridge](#12)</br>
 [13. Network Namespaces](#13)</br>
 [14. Virtual Ethernet Devices](#14)</br>
-15. iptables
-16. Microsoft Network Fundamentals
-17. Networking in Windows 2016 and 2019
-18. Windows Docker Network Drivers
-19. Joining Windows to the Swarm
-20. Networking in Windows: Further Reading
-21. Docker Network Control Plane
-22. Docker Host Network Driver
-23. Docker Bridge Network Driver
-24. Default Docker Bridge Network
-25. User-Defined Bridge Networks
-26. External Access for Standalone Containers
-27. Overlay Driver Network Architecture
-28. VXLAN Data Plane
-29. Overlay Driver Internal Architecture
-30. External Access for Docker Services
-31. MACVLAN
-32. VLAN Trunking with MACVLAN
-33. None (Isolated) Network Driver
-34. Physical Network Design Requirements
-35. Swarm Native Service Discovery
-36. Docker Native Load Balancing
-37. UCP Internal Load Balancing
-38. Swarm External L4 Load Balancing (Docker Routing Mesh)
-39. UCP External L7 Load Balancing (HTTP Routing Mesh)
-40. Docker Network Security and Encryption
-41. Network Segmentation and Data Plane Security
-42. Control Plane Security
-43. Data Plane Network Encryption
-44. Management Plane Security & RBAC with UCP
-45. IP Address Management
-46. Network Troubleshooting
-47. Network Deployment Models
-48. Bridge Driver on a Single Host
-49. Multi-Host Bridge Driver with External Service Discovery
-50. Multi-Host with Overlay Driver
-51. Tutorial App: MACVLAN Bridge Mode
-52. Conclusion
+[15. iptables](#15)</br>
+[16. Microsoft Network Fundamentals](#16)</br>
+[17. Networking in Windows 2016 and 2019](#17)</br>
+[18. Windows Docker Network Drivers](#18)</br>
+[19. Joining Windows to the Swarm](#19)</br>
+[20. Networking in Windows: Further Reading](#20)</br>
+[21. Docker Network Control Plane](#21)</br>
+[22. Docker Host Network Driver](#22)</br>
+[23. Docker Bridge Network Driver](#23)</br>
+[24. Default Docker Bridge Network](#24)</br>
+[25. User-Defined Bridge Networks](#25)</br>
+[26. External Access for Standalone Containers](#26)</br>
+[27. Overlay Driver Network Architecture](#27)</br>
+[28. VXLAN Data Plane](#28)</br>
+[29. Overlay Driver Internal Architecture](#29)</br>
+[30. External Access for Docker Services](#30)</br>
+[31. MACVLAN](#31)</br>
+[32. VLAN Trunking with MACVLAN](#32)</br>
+[33. None (Isolated) Network Driver](#33)</br>
+[34. Physical Network Design Requirements](#34)</br>
+[35. Swarm Native Service Discovery](#35)</br>
+[36. Docker Native Load Balancing](#36)</br>
+[37. UCP Internal Load Balancing](#37)</br>
+[38. Swarm External L4 Load Balancing (Docker Routing Mesh)](#38)</br>
+[39. UCP External L7 Load Balancing (HTTP Routing Mesh)](#39)</br>
+[40. Docker Network Security and Encryption](#40)</br>
+[41. Network Segmentation and Data Plane Security](#41)</br>
+[42. Control Plane Security](#42)</br>
+[43. Data Plane Network Encryption](#43)</br>
+[44. Management Plane Security & RBAC with UCP](#44)</br>
+[45. IP Address Management](#45)</br>
+[46. Network Troubleshooting](#46)</br>
+[47. Network Deployment Models](#47)</br>
+[48. Bridge Driver on a Single Host](#48)</br>
+[49. Multi-Host Bridge Driver with External Service Discovery](#49)</br>
+[50. Multi-Host with Overlay Driver](#50)</br>
+[51. Tutorial App: MACVLAN Bridge Mode](#51)</br>
+[52. Conclusion](#52)</br>
 
 
 ## <a name="1"> 1. What You Will Learn </a>
@@ -62,7 +62,7 @@ Docker container bao bọc một phần mềm trong một filesystem hoàn chỉ
 
 Điều gì xảy ra nếu các ứng dụng cần liên lạc với nhau, với host hay mạng bên ngoài? Làm thế nào để thiết kế một mạng để cho phép kết nối phù hợp trong khi duy trì tính di động của ứng dụng- application portability, service discovery, load balancing, security, performance, and scalability ? Tài liệu này là tổng quan về các khái niệm kiến trúc và thiết kế để xây dựng và mở rộng Docker container networks cho cả Linux và Microsoft servers.
 
-## Challenges of Networking Containers and Microservices
+## Challenges of Networking Containers and Microservices</a>
 
 Các thực tiễn của microservice đã cải thiện khả năng scale của các ứng dụng, điều này thậm chí còn quan trọng hơn đối với các phương thức kết nối và cách ly được cung cấp cho các ứng dụng. Triết lý Docker networking là hướng ứng dụng. Nó nhằm mục đích cung cấp các tùy chọn và tính linh hoạt cho các nhà khai thác mạng cũng như mức độ trừu tượng phù hợp cho các nhà phát triển ứng dụng.
 
@@ -78,14 +78,14 @@ Làm cách nào để đảm bảo rằng một container có lưu lượng ki�
 - Performance: Làm cách nào để cung cấp dvanced network services trong khi giảm thiểu độ trễ và tối đa hóa băng thông?
 - Scalability: Làm cách nào để đảm bảo rằng không có đặc điểm nào trong số những đặc điểm này bị mất khi nhân rộng các ứng dụng trên nhiều máy chủ?
 
-## The Container Networking Model
+## The Container Networking Model</a>
 
 Kiến trúc Docker networking được xây dựng trên một tập hợp các giao diện được gọi là Container Networking Model (CNM). Triết lý của CNM là cung cấp tính di động ứng dụng trên các cơ sở hạ tầng đa dạng. Mô hình này tạo ra sự cân bằng để đạt được tính di động của ứng dụng và cũng tận dụng các tính năng và khả năng đặc biệt của cơ sở hạ tầng.
 
 <img src=https://i.imgur.com/xdvNwlf.png>
 
 
-## CNM Constructs
+## CNM Constructs</a>
 
 Có một số cấu trúc cấp cao trong CNM. Chúng đều là OS và cơ sở hạ tầng bất khả tri để các ứng dụng có thể có trải nghiệm thống nhất bất kể cơ sở hạ tầng.
 
@@ -93,7 +93,7 @@ Có một số cấu trúc cấp cao trong CNM. Chúng đều là OS và cơ s�
 - ***Endpoint*** - 1 Endpoint kết nối 1 Sandbox với 1 Network. Cấu trúc Endpoint tồn tại để kết nối thực tế với mạng có thể được trừu tượng hóa khỏi ứng dụng. Điều này giúp duy trì tính di động để một dịch vụ có thể sử dụng các loại network drivers khác nhau mà không cần quan tâm đến cách kết nối với mạng đó.
 - ***Network*** - CNM không chỉ định Network theo mô hình OSI. Việc triển khai Network có thể là Linux bridge, VLAN,... Network là tập hợp các endpoint có kết nối giữa chúng. Các endpoint không được kết nối với mạng không có kết nối trên mạng.
 
-## CNM Driver Interfaces
+## CNM Driver Interfaces</a>
 
 Container Networking Model cung cấp 2 pluggable và open interfaces có thể được sử dụng bởi người dùng, cộng đồng và nhà cung cấp để tận dụng chức năng, khả năng hiển thị hoặc kiểm soát bổ sung trong mạng.
 
@@ -101,11 +101,11 @@ Các network drivers tồn tại:
 -
 - 
 
-## Network Scope
+## Network Scope</a>
 
 Sử dụng `docker network ls`, Docker network drivers có một khái niệm về *scope*. network scope là domain của driver có thể là `local` hoặc `swarm` scope. Local scope drivers cung cấp kết nối và network services (như DNS hoặc IPAM) trong phạm vi của host. Swarm scope drivers cung cấp kết nối và network services trên một cụm swarm. Swarm scope networks có cùng network ID trên toàn bộ cụm trong khi local scope networks có một network ID duy nhất trên mỗi host.
 
-## Docker Remote Network Drivers
+## Docker Remote Network Drivers</a>
 
 Cộng đồng và vendor tạo ra remote network drivers tương thích với CNM. Mỗi cung cấp khả năng độc đáo và network services cho container.
 
@@ -115,7 +115,7 @@ Cộng đồng và vendor tạo ra remote network drivers tương thích với C
 |||
 |||
 
-## Docker Remote IPAM Drivers
+## Docker Remote IPAM Drivers</a>
 
 Cộng đồng và vendor tạo ra  IPAM drivers cũng có thể được sử dụng để cung cấp tích hợp với các hệ thống hiện có hoặc các khả năng đặc biệt.
 
@@ -125,7 +125,7 @@ Cộng đồng và vendor tạo ra  IPAM drivers cũng có thể được sử d
 
 Có rất nhiều Docker plugins tồn tại và đang được tạo ra nhiều hơn nữa mọi lúc. Docker duy trì một danh sách các [plugin phổ biến nhất](https://docs.docker.com/engine/extend/legacy_plugins/).
 
-## Nguyên tắc cơ bản của Linux Network
+## Nguyên tắc cơ bản của Linux Network</a>
 
 Linux kernel có tính năng triển khai TCP/IP stack cực kỳ hoàn thiện và hiệu quả (ngoài các native kernel features khác như VXLAN và packet filtering). Docker networking sử dụng kernel's networking stack làm cơ sở để tạo network drivers cấp cao hơn. Nói một cách đơn giản, Docker networking là Linux networking.
 
@@ -133,11 +133,11 @@ Việc triển khai các tính năng Linux kernel hiện có đảm bảo hiệu
 
 Có một số Linux networking xây dựng blocks sử dụng để triển khai native CNM network drivers. Danh sách này bao gồm ***Linux bridges, network namespaces, veth pairs, và iptables*** . Sự kết hợp của các công cụ này, được triển khai như network drivers, cung cấp các quy tắc chuyển tiếp, phân đoạn mạng và các công cụ quản lý cho chính sách dynamic network.
 
-## External Access for Docker Services
+## External Access for Docker Services</a>
 
 Swarm & UCP cung cấp quyền truy cập vào các service từ cluster port publishing bên ngoài. Vào và ra cho các service không phụ thuộc vào gateways, nhưng phân phối vào/ra trên host nơi service cụ thể đang chạy. Có hai chế độ publishing port cho service, `host` mode và `ingress` mode.
 
-### Ingress Mode Service Publishing
+### Ingress Mode Service Publishing</a>
 
 `ingress` mode port publishing sử dụng `Swarm Routing Mesh` để áp dụng `load balancing` trên các tasks trong 1 service. Ingress mode publishes exposed port trên mỗi UCP/Swarm node. Lưu lượng truy cập vào published port được cân bằng tải bởi Routing Mesh và được điều hướng thông qua round robin load balancing tời 1 trong các healthy tasks của service. Ngay cả khi một host nhất định không chạy service task, port được published trên host và được load balanced với máy chủ có task. Khi Swarm báo hiệu 1 task stop, mục nhập loadbalancer của nó bị tắt để nó dừng nhận lưu lượng truy cập mới.
 ```sh
@@ -145,7 +145,7 @@ $ docker service create --replicas 2 --publish mode=ingress,target=80,published=
 ```
 ***`mode=ingress` là chế độ mặc định cho service. Lệnh này cũng có thể được viết ngắn gọn như sau: `-p 80: 8080`. Port `8080` expose trên mỗi host trên cụm cluster và load balanced với 2 container trong service này.***
 
-### Host Mode Service Publishing
+### Host Mode Service Publishing</a>
 
 `host` mode port publishing chỉ exposes ports trên host nơi các service tasks cụ thể đang chạy. Port được ánh xạ trực tiếp đến container trên host đó. Để ngăn va chạm port, chỉ 1 task duy nhất của 1 service nhất định có thể chạy trên mỗi host.
 ```sh
@@ -153,15 +153,15 @@ $ docker service create --replicas 2 --publish mode=host,target=80,published=808
 ```
 `host` mode yêu cầu `mode=host` flag. Nó publishes port `8080` locally trên các hosts nơi 2 container này đang chạy. Nó không áp dụng load balancing, vì vậy lưu lượng truy cập đến các node đó chỉ được hướng đến local container. Điều này có thể gây ra xung đột port nếu không có đủ host với port được published cho số lượng replicas.
 
-### Ingress Design
+### Ingress Design</a>
 
 Có nhiều good use-cases cho publishing mode. `ingress` mode hoạt động tốt cho các service có nhiều replica và yêu cầu load balancing giữa các replicas đó. `host` mode hoạt động tốt nếu external service discovery được cung cấp bởi một tool khác. Một trường hợp sử dụng tốt khác cho `host` mode là cho các  global containers tồn tại một trên mỗi host. Các container này có thể tiết lộ thông tin cụ thể về local host (như monitoring hoặc logging) chỉ liên quan đến host đó và do đó bạn không muốn load balance khi truy cập service đó.
 
 <img src=https://i.imgur.com/IThw3C9.png>
 
-## 31. MACVLAN
+## 31. MACVLAN</a>
 
-## Multi-Host Bridge Driver with External Service Discovery
+## Multi-Host Bridge Driver with External Service Discovery</a>
 
 Vì bridge driver là local scope driver, multi-host networking yêu cầu 1 multi-host service discovery (SD). SD bên ngoài đăng ký location và status của một container hoặc service và sau đó cho phép các service khác khám phá vị trí đó. Vì bridge driver exposes ports để truy cập bên ngoài, SD bên ngoài lưu trữ host-ip:port như là vị trí của một container nhất định.
 
@@ -190,11 +190,11 @@ Mã hóa cứng của vị trí ứng dụng không được khuyến nghị cho
 
 Phần tiếp theo kiểm tra kịch bản overlay driver, cung cấp global service discovery qua cluster như một tính năng built-in. Sự đơn giản này là một lợi thế lớn của overlay driver, trái ngược với việc sử dụng nhiều công cụ bên ngoài để cung cấp network services.
 
-## Multi-Host with Overlay Driver
+## Multi-Host with Overlay Driver</a>
 
 Mô hình này sử dụng native overlay driver để cung cấp kết nối multi-host. Các cài đặt mặc định của overlay driver cung cấp kết nối bên ngoài với bên ngoài cũng như internal connectivity và service discovery bên trong một ứng dụng container. Phần Kiến trúc trình điều khiển lớp phủ xem xét các phần bên trong của trình điều khiển Lớp phủ mà bạn nên xem lại trước khi đọc phần này.
 
-## Multi-Host with Overlay Driver
+## Multi-Host with Overlay Driver</a>
 
 
 ## Tài liệu tham khảo
