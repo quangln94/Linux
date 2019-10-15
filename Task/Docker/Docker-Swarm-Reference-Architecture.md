@@ -182,5 +182,20 @@ Dịch vụ `web` hiện đang phục vụ trang `web` trên port `8000` của �
 
 <img src=https://i.imgur.com/yATOceR.png>
 
+***Trong ví dụ này, không chỉ định một mạng cụ thể sẽ sử dụng, do đó, Docker bridge network mặc định được chọn tự động.***
+
+Khi cấu hình vị trí của `db` tại `172.31.21.237:8500`, chúng ta đang tạo một hình thức service discovery. Chúng tôi đang cấu hình tĩnh vị trí của service `db` cho service `web`. Trong ví dụ single host, điều này được thực hiện tự động vì Docker Engine cung cấp built-in DNS resolution cho container names. Trong ví dụ multi-host, chúng tôi đang thực hiện service discovery theo cách thủ công.
+ 
+Mã hóa cứng của vị trí ứng dụng không được khuyến nghị cho production. Các công cụ external service discovery tồn tại cung cấp các ánh xạ này một cách linh hoạt khi các container được tạo và hủy trong 1 cluster.
+
+Phần tiếp theo kiểm tra kịch bản overlay driver, cung cấp global service discovery qua cluster như một tính năng built-in. Sự đơn giản này là một lợi thế lớn của overlay driver, trái ngược với việc sử dụng nhiều công cụ bên ngoài để cung cấp network services.
+
+## Multi-Host with Overlay Driver
+
+Mô hình này sử dụng native overlay driver để cung cấp kết nối multi-host. Các cài đặt mặc định của overlay driver cung cấp kết nối bên ngoài với bên ngoài cũng như internal connectivity và service discovery bên trong một ứng dụng container. Phần Kiến trúc trình điều khiển lớp phủ xem xét các phần bên trong của trình điều khiển Lớp phủ mà bạn nên xem lại trước khi đọc phần này.
+
+## Multi-Host with Overlay Driver
+
+
 ## Tài liệu tham khảo
 - https://success.docker.com/article/networking
