@@ -194,7 +194,34 @@ Phần tiếp theo kiểm tra kịch bản overlay driver, cung cấp global ser
 
 Mô hình này sử dụng native overlay driver để cung cấp kết nối multi-host. Các cài đặt mặc định của overlay driver cung cấp kết nối bên ngoài với bên ngoài cũng như internal connectivity và service discovery bên trong một ứng dụng container. Phần Kiến trúc trình điều khiển lớp phủ xem xét các phần bên trong của trình điều khiển Lớp phủ mà bạn nên xem lại trước khi đọc phần này.
 
-## Multi-Host with Overlay Driver</a>
+## <a name="50"> 50. Multi-Host with Overlay Driver</a>
+
+Ví dụ này sử dụng lại ứng dụng `docker-pet` trước đó. Thiết lập Docker Swarm trước khi làm theo ví dụ này. Sau khi Swarm được thiết lập, hãy sử dụng lệnh `docker service create` để tạo containers và networks do Swarm quản lý.
+
+Phần sau đây cho biết cách kiểm tra Swarm của bạn, tạo overlay network và sau đó cung cấp một số services trên overlay network đó. Tất cả các lệnh này được chạy trên 1 UCP/swarm controller node.
+```sh
+#Display the nodes participating in this swarm cluster that was already created
+$ docker node ls
+ID                           HOSTNAME          STATUS  AVAILABILITY  MANAGER STATUS
+a8dwuh6gy5898z3yeuvxaetjo    host-B  Ready   Active
+elgt0bfuikjrntv3c33hr0752 *  host-A  Ready   Active        Leader
+
+#Create the dognet overlay network
+host-A $ docker network create -d overlay petsOverlay
+
+#Create the backend service and place it on the dognet network
+host-A $ docker service create --network petsOverlay --name db consul
+
+#Create the frontend service and expose it on port 8000 externally
+host-A $ docker service create --network petsOverlay -p 8000:5000 -e 'DB=db' --name web chrch/docker-pets:1.0
+
+host-A $ docker service ls
+ID            NAME  MODE        REPLICAS  IMAGE
+lxnjfo2dnjxq  db    replicated  1/1       consul:latest
+t222cnez6n7h  web   replicated  0/1       chrch/docker-pets:1.0
+```
+<img src=https://i.imgur.com/WWMKvcJ.png>
+
 
 
 ## Tài liệu tham khảo
