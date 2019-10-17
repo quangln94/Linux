@@ -1,0 +1,4 @@
+- https://github.com/jcwimer/docker-swarm-autoscaler
+- https://github.com/sahajsoft/docker-swarm-service-autoscaler
+- https://botleg.com/stories/auto-scaling-with-docker/
+- https://scene-si.org/2017/05/02/auto-scaling-a-docker-swarm/
