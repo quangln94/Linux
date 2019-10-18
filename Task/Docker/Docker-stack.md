@@ -78,9 +78,49 @@ secrets:
 
 ## Looking closer at the stack file
 
-Stack file là 1 Docker Compose file.
+Stack file là 1 Docker Compose file. Yêu cầu duy nhất là version: key chỉ định giá trị là 3.0 trở lên.
 
+Một trong những điều đầu tiên Docker làm khi triển khai một ứng dụng từ stack file, là kiểm tra và tạo các network list trong  network: key. Nếu network chưa tồn tại, Docker sẽ tạo chúng.
 
+Xem network được chỉ định trong stack file.
+```sh
+networks:
+      front-tier:
+      back-tier:
+      payment:
+            driver: overlay
+            driver_opts:
+                  encrypted: 'yes'
+```
+Có 3 network được chỉ định: `front-tier`, `back-tier`, và `payment`. Mặc định tất cả được tạo như overlay networks bởi overlay driver. Nhưng `payment` là được biệt, nó yêu cầu mã hóa data plane.
+
+Mặc định control plane của tất cả overlay networks đều được mã hóa. Để mã hóa data plane, ta có 2 lựa chọn: 
+- Truyền vào flag `-o encrypted` tới lệnh `docker network create`
+- Chỉ định `encrypted: 'yes'` bên dưới `driver_opts` trong stack file.
+
+Chi phí phát sinh bằng cách mã hóa data plane phụ thuộc vào các yếu tố khác nhau như loại lưu lượng và lưu lượng truy cập. Tuy nhiên, hy vọng nó sẽ nằm trong khoảng 10%.
+
+## Secrets
+
+Secrets được chỉ định nhừ là top-level objects, và stack file chúng ta chỉ định 4:
+```sh
+secrets:
+      postgres_password:
+            external: true
+      staging_token:
+            external: true
+      revprox_key:
+            external: true
+      revprox_cert:
+            external: true
+```
+Chú ý rằng tất cả đều được chỉ định là `external`. Có nghĩa là chúng phải tồn tại trước khi stack có thể deployed
+
+Có thể các secrets được tạo theo yêu cầu khi ứng dụng được triển khai, chỉ cần thay thế `external: true` với `file: <filename>`. Tuy nhiên, để nó hoạt động 1 plaintext file chứa giá trị không được mã hóa phải tồn tại trên host’s filesystem. Điều này có ý nghĩa bảo mật rõ ràng.
+
+Chúng ta sẽ thấy cách tạo ra secrets khi triển khai ứng dụng. Cho đến bây giờ, nó đủ để biết rằng ứng dụng xác định 4 secrets cần tạo trước.
+
+## Services
 
 ## Tài liệu tham khảo
 - Docker Deep Dive Zero to Docker in a single book! - Nigel Poulton
