@@ -20,6 +20,65 @@ Về mặt kiến trúc, stacks nằm ở đầu phân cấp ứng dụng Docker
 
 <img src=https://i.imgur.com/25sn89a.png>
 
+## Overview of the sample app
+
+Chúng ta sẽ sử dụng 1 demo app phổ biến AtSea Shop trên GitHub và là Open-sourced under the Apache 2.0 license
+
+Chúng ta sử dụng app này bởi vì nó có độ phức tạp vừa phải mà không quá lớn để liệt kê và mô tả trong một cuốn sách
+
+Bên trong công nghệ nó có một ứng dụng multi-technology microservices sử dụng certificates và secrets
+
+<img src=https://i.imgur.com/r8rnRlG.png>
+
+Như ta thấy, nó bao gồm 5 Services, 3 networks, 4 secrets, và 3 port mappings
+
+Chúng tôi sẽ thấy từng chi tiết này khi chúng tôi kiểm tra stack file.
+
+***Lưu ý: Khi đề cập đến các service trong chương này, chúng tôi nói về Docker Services (một tập hợp các container được quản lý dưới dạng một object và service object tồn tại trong Docker API)***
+
+Clone application’s GitHub repo để bạn có tất cả các application source files trên máy cục bộ của mình
+```sh
+$ git clone https://github.com/dockersamples/atsea-sample-shop-app.git
+Cloning into 'atsea-sample-shop-app'...
+remote: Counting objects: 636, done.
+remote: Total 636 (delta 0), reused 0 (delta 0), pack-reused 636
+Receiving objects: 100% (636/636), 7.23 MiB | 28.25 MiB/s, done.
+Resolving deltas: 100% (197/197), done.
+```
+Ứng dụng này bao gồm một số thư mục và source files. Hãy khám phá tất cả. Tuy nhiên, ta sẽ tập trung vào file `docker-stack.yml`. Chúng tôi sẽ gọi đây là file stack, vì điều này xác định app và các yêu cầu của nó
+
+Ở level cao nhất, nó xác định 4 top-level key:
+- version
+- services
+- networks
+- secrets
+
+Version cho biết version của định Compose file. Điều này phải là 3.0 hoặc cao hơn để làm việc với stacks. Services là nơi xác định stack of services tạo nên ứng dụng. Networks liệt kê các networks cần thiết và secrets xác định secrets mà ứng dụng sử dụng
+
+Nếu ta mở rộng từng top-level key, ta sẽ xem cách mọi thứ ánh xạ tới Hình 14.1. Stack file có 5 services được gọi là `reverse_proxy`, `database`, `appserver`, `visualizer`,và `payment_gateway`. Stack file có 3 network được gọi là `front-tier`, `back-tier`, và `payment`. Cuối cùng stack file có 4 secrets được gọi là `postgres_password`, `staging_token`, `revprox_key`, và `revprox_cert`
+```sh
+version: "3.2"
+services:
+      reverse_proxy:
+      database:
+      appserver:
+      visualizer:
+      payment_gateway:
+networks:
+      front-tier:
+      back-tier:
+      payment:
+secrets:
+      postgres_password:
+      staging_token:
+      revprox_key:
+      revprox_cert:
+```
+Điều quan trọng để hiểu rằng stack file captures và xác định nhiều yêu cầu của toàn bộ ứng dụng. Như vậy, nó là một dạng application self-documentation và một công cụ tuyệt vời để thu hẹp khoảng cách giữa dev và ops
+
+## Looking closer at the stack file
+
+Stack file là 1 Docker Compose file.
 
 
 
