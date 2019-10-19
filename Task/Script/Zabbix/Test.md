@@ -3,12 +3,14 @@ echo "Install Zabbix-server"
 echo "Step 1: Cai dat cac goi can thiet"
 echo "Check distro"
 if [ -f /etc/redhat-release ]; then
+        cat /etc/redhat-release
         rpm -Uvh https://repo.zabbix.com/zabbix/4.4/rhel/8/x86_64/zabbix-release-4.4-1.el8.noarch.rpm
         dnf clean all
         dnf -y install zabbix-server-mysql zabbix-web-mysql zabbix-apache-conf zabbix-agent
 fi
 
 if [ -f /etc/lsb-release ]; then
+        cat /etc/lsb-release
         wget https://repo.zabbix.com/zabbix/4.4/ubuntu/pool/main/z/zabbix-release/zabbix-release_4.4-1+bionic_all.deb
         dpkg -i zabbix-release_4.4-1+bionic_all.deb
         apt update
