@@ -1,3 +1,7 @@
+Trong swarm mode, Docker sử dụng DNS cho service discovery như 1 service được tạo và routing meshes khác nhau được tích hợp vào Docker để đảm bảo các ứng dụng của bạn vẫn có tính sẵn sàng cao cao. Bản phát hành UCP 3.0 đã giới thiệu một version của application layer (Layer 7) routing mesh đa năng và nâng cao được gọi là **Interlock Proxy** nó định tuyến HTTP traffic dựa trên DNS hostname.
+
+
+
 # A minimal IPVS Load Balancer demo
 Trong cụm cluster, bạn có thể sử dụng K8s ingress controller để định tuyến lưu lượng truy cập đến apps và services cụ thể bằng các quy tắc định tuyến L7 phức tạp (như Host headers, cookies-stickiness, etc..). Tuy nhiên, điều này vẫn có nghĩa là các kết nối TCP có thể bị ngắt tại 1 node trong cụm cluster nếu bạn có DNS được setup theo cách đó. Sau đó, việc thêm L4 IP load balancer bên ngoài cụm K8s để cân bằng lưu lượng giữa tất cả các node chạy ingress controller là cần thiết.
 
@@ -171,3 +175,4 @@ Perhaps a little prometheus endpoint could be written help extract these things 
 
 ## Tài liệu tham khảo
 - https://medium.com/@benmeier_/a-quick-minimal-ipvs-load-balancer-demo-d5cc42d0deb4
+- https://success.docker.com/article/ucp-service-discovery-swarm
