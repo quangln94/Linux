@@ -56,5 +56,118 @@ This is B
 [root@server03 ~]#
 ```
 
+## 4. Set up a new IPVS service
+
+Bây giờ ta thiết lập một IPVS service mới được liên kết với public IP server (ví dụ: 192.168.1.100). Ta sẽ biến nó thành một tcp load balancer sử dụng thuật toán round robin (`-t` và `-s rr`):
+```sh
+[root@server03 ~]# ipvsadm -l -n
+IP Virtual Server version 1.2.1 (size=4096)
+Prot LocalAddress:Port Scheduler Flags
+  -> RemoteAddress:Port           Forward Weight ActiveConn InActConn
+TCP  192.168.1.100:80 rr
+[root@server03 ~]#
+```
+## 5. Add the Docker container IPs as the “real” hosts
+```sh
+[root@server03 ~]# ipvsadm -a -t 192.168.1.100:80 -r 172.17.0.2 -m
+[root@server03 ~]# ipvsadm -a -t 192.168.1.100:80 -r 172.17.0.3 -m
+[root@server03 ~]#
+```
+## 6. Issue some requests!
+Bạn có thể làm điều này từ chính VM hoặc cho một ví dụ hữu ích hơn, thực hiện nó từ một máy khác có thể kết nối với VM.
+```sh
+[root@server03 ~]# curl 192.168.1.100
+This is B
+[root@server03 ~]# curl 192.168.1.100
+This is A
+```
+Theo mặc định, điều này sẽ sử dụng round robin load balancing, nó sẽ chỉ lặp qua danh sách các điểm đến:
+```sh
+[root@server03 ~]# for i in {1..10}; do curl 192.168.1.100; done
+This is A
+This is B
+This is A
+This is B
+This is A
+This is B
+This is A
+This is B
+This is A
+This is B
+```
+Chúng ta có thể thay đổi trọng số của một server
+
+Đầu tiên thay đổi chế độ scheduling thành Weighted Round Robin (wrr)
+```sh
+[root@server03 ~]# ipvsadm -E -t 192.168.1.100:80 -s wrr
+```
+Và sau đó thay đổi trọng số 1 Node: 
+```sh
+[root@server03 ~]# ipvsadm -e -t 192.168.1.100:80 -r 172.17.0.3 -m -w 3
+```
+Bây giờ khi chúng ta thực hiện các requests, hãy xem sự thay đổi
+```sh
+[root@server03 ~]# for i in {1..10}; do curl 192.168.1.100; done
+This is B
+This is A
+This is B
+This is B
+This is B
+This is A
+This is B
+This is B
+This is B
+This is A
+```
+## 7. Check out the stats and rates!
+Số liệu thống kê cho tổng số gói và byte trong lifetime của servers.
+```sh
+[root@server03 ~]# sudo ipvsadm -L -n --stats --rate
+IP Virtual Server version 1.2.1 (size=4096)
+Prot LocalAddress:Port               Conns   InPkts  OutPkts  InBytes OutBytes
+  -> RemoteAddress:Port
+TCP  192.168.1.100:80                   29      203      145    13021    14877
+  -> 172.17.0.2:80                      12       84       60     5388     6156
+  -> 172.17.0.3:80                      17      119       85     7633     8721
+[root@server03 ~]#
+```
+Rate information cho thấy một cái nhìn trực tiếp hơn về các giá trị mỗi giây.
+```sh
+[root@server03 ~]# ipvsadm -L -n --rate
+IP Virtual Server version 1.2.1 (size=4096)
+Prot LocalAddress:Port                 CPS    InPPS   OutPPS    InBPS   OutBPS
+  -> RemoteAddress:Port
+TCP  192.168.1.100:80                    0        1        0       33       38
+  -> 172.17.0.2:80                       0        0        0        6        7
+  -> 172.17.0.3:80                       0        0        0       27       30
+[root@server03 ~]#
+```
+Bạn có thể thấy đây là một cách khá đơn giản để kiểm soát TCP load balancer!
+
+Điều này rất phù hợp để thực hiện L4 load balancing trước Kubernetes cluster’s ingress controllers. Điều này cho phép các ingress controllers tập trung vào per-service routing logic (L7).
+
+## Additional Thoughts
+### Controlling an IPVS host from Kubernetes
+
+K8s sẽ điều khiển và tương tác với IPVS host thông qua cloud controller manager của nó (hoặc tài nguyên tùy chỉnh riêng biệt, nhưng bộ cân bằng tải bên ngoài đã là một khái niệm trong CCM). CCM sẽ đảm bảo rằng bộ cân bằng tải có các K8s node IPs và ports được cấu hình chính xác cho ingress resources/controllers, specific Node ports, hoặc Service IPs (nếu chúng có thể định tuyến được).
+
+### Connection draining between servers
+
+Bạn có thể sử dụng Weighted Round Robin scheduler để đạt được hiệu ứng thoát kết nối giữa hai servers O(old) và N(new) theo cách sau:
+- Set O.weight to 100
+- Add server N with weight 0(0% of requests)
+- Over an period T at interval I, reduce O.weight and increase N.weight
+
+### Using healthchecks to remove dead hosts
+
+Bạn có thể setup IPVS host của mình để kiểm tra sức khỏe đối với các hosts  trong một service cụ thể và nếu phát hiện thấy bất kỳ thiết bị nào bad hoặc not responding như mong đợi, có thể đặt giá trị hosts weight thành 0. Ngăn chặn hiệu quả lưu lượng truy cập được gửi đến host đó. Khi kiểm tra sức khỏe bắt đầu trở lại chính xác, yêu cầu có thể được gửi một lần nữa đến host.
+
+Thiết lập CI/CD của bạn có thể ưu tiên điều này bằng cách thông báo cho IPVS host rằng một host cụ thể sẽ không khả dụng trong khi ứng dụng được triển khai lại.
+
+### Healthchecks for IPVS
+
+It would be a good idea to have a health check or metrics coming out of the IPVS hosts themselves. Since `ipvsadm` can expose `--stats` and `--rates` these could naturally be included as well as the normal Linux indicators for dropped packets, dropped connections, and inflight connections. This is the place we’d want to be aware of DoS patterns, so you’d want to keep an eye on memory usage and that sort of thing.
+Perhaps a little prometheus endpoint could be written help extract these things from `ipvsadm`. Although it looks like the same information is available in raw form from `/proc/net/ip_vs_stats`.
+
 ## Tài liệu tham khảo
 - https://medium.com/@benmeier_/a-quick-minimal-ipvs-load-balancer-demo-d5cc42d0deb4
