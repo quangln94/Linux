@@ -8,7 +8,7 @@ Một orchestrator	là 1 back-end	system	thực hiện việc deploys	và manage
 
 Một cloud-native	application	là 1 business	application	được làm từ  1 set của các services nhỏ độc lập giáo tiếp và hình thành 1 application hữu ích. Như cái tên cho thấy,	design	này chi phép nó đối phó với cloud-like	demands	và run	natively	trên cloud	platforms.	Ví dụ,	cloud-native	applications	được designed	và viết nên nó có thể dễ dàng scaled	up	and	down	khi như cầu tăng hoặc giảm. No cũng đơn giản để update	và perform	rollbacks.	Nó cũng có thể self-heal.
 
-***Mặc dù có tên,	cloud-native	apps	cũng có thể run	on-premises.	Thực tế 1	thuộc tính của 1 cloud-native	app	có thể run	anywhere –	any	cloud,	or	any	on-prem	datacenter.
+***Mặc dù có tên,	cloud-native	apps	cũng có thể run	on-premises.	Thực tế 1	thuộc tính của 1 cloud-native	app	có thể run	anywhere –	any	cloud,	or	any	on-prem	datacenter.***
 
 ### Where	did	Kubernetes	come	from
 Kubernetes	came	out	of	Google.	It	is	the	product	of	Google’s	many	years orchestrating	containers	at	extreme	scale.	It	was	open-sourced	in	the	summer	of  2014	and	handed	over	to	the	Cloud	Native	Computing	Foundation	(CNCF).
