@@ -1,23 +1,48 @@
 #!bin/bash
+## Khai bao function
+# Khai báo mật khẩu SQL và database tạo rao dùng để lưu trữ cho Zabbix 
+function khaibao {
+	echo "Tao user mysql va phan quyen"
+	echo "Nhap MYSQL_PASS cho tai khoan root"
+	read p
+	echo "Nhap ten CSDL muon tao. Mac dinh la zabbix"
+	read u
+	u=${u:-zabbix}
+	echo "Nhap password cho CSDL muon tao. Mac dinh la zabbix" 
+	read m 
+	m=${m:-zabbix}
+}
+
+# Dùng các lệnh SQL để tạo một cơ sở dữ liệu 
+function sql {
+cat << EOF | mysql -uroot -p$p
+create database $u character set utf8 collate utf8_bin;
+grant all privileges on $u.* to zabbix@localhost identified by '$m';
+flush privileges;
+EOF
+}
+
 echo "Install Zabbix-server"
 echo "Step 1: Cai dat cac goi can thiet"
 echo "Check distro"
 if [ -f /etc/redhat-release ]; then
-        cat /etc/redhat-release
         rpm -Uvh https://repo.zabbix.com/zabbix/4.4/rhel/8/x86_64/zabbix-release-4.4-1.el8.noarch.rpm
         dnf clean all
         dnf -y install zabbix-server-mysql zabbix-web-mysql zabbix-apache-conf zabbix-agent
-fi
-
-if [ -f /etc/lsb-release ]; then
-        cat /etc/lsb-release
+        khaibao
+else
         wget https://repo.zabbix.com/zabbix/4.4/ubuntu/pool/main/z/zabbix-release/zabbix-release_4.4-1+bionic_all.deb
         dpkg -i zabbix-release_4.4-1+bionic_all.deb
         apt update
         apt -y install zabbix-server-mysql zabbix-frontend-php zabbix-apache-conf zabbix-agent
 fi
 
-zcat /usr/share/doc/zabbix-server-mysql*/create.sql.gz | mysql -uzabbix -p zabbix
+# Các chèn password Mysql khi tải mới lần đầu mà không cần nhập trên màn hình 
+echo mysql-server mysql-server/root_password password $p | debconf-set-selections
+echo mysql-server mysql-server/root_password_again password $p | debconf-set-selections
+sql
+
+zcat /usr/share/doc/zabbix-server-mysql*/create.sql.gz | mysql -u$u -p$m
 
 systemctl restart zabbix-server zabbix-agent httpd
 systemctl enable zabbix-server zabbix-agent httpd
