@@ -37,13 +37,6 @@ else
         apt -y install zabbix-server-mysql zabbix-frontend-php zabbix-apache-conf zabbix-agent
 fi
 
-# Các chèn password Mysql khi tải mới lần đầu mà không cần nhập trên màn hình 
-echo mysql-server mysql-server/root_password password $p | debconf-set-selections
-echo mysql-server mysql-server/root_password_again password $p | debconf-set-selections
-sql
-
-zcat /usr/share/doc/zabbix-server-mysql*/create.sql.gz | mysql -u$u -p$m
-
 systemctl restart zabbix-server zabbix-agent httpd
 systemctl enable zabbix-server zabbix-agent httpd
 
@@ -58,7 +51,13 @@ yum -y update
 yum install -y mariadb mariadb-server
 systemctl start mariadb
 systemctl enable mariadb
-mysql_secure_installation
+
+# Các chèn password Mysql khi tải mới lần đầu mà không cần nhập trên màn hình 
+echo mysql-server mysql-server/root_password password $p | debconf-set-selections
+echo mysql-server mysql-server/root_password_again password $p | debconf-set-selections
+sql
+
+zcat /usr/share/doc/zabbix-server-mysql*/create.sql.gz | mysql -u$u -p$m
 
 echo "Step 2.2: Install Apache"
 yum install httpd -y
