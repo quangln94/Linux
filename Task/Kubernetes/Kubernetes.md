@@ -17,6 +17,7 @@ Kể từ đó, nó trở thành 1 công nghệ cloud-native	quan trọng trên 
 Giống như nhiểu modern	cloud-native	projects,	nó được viết bằng Go	(Golang),	nó có trên Github	tại `kubernetes/kubernetes`	,	nó được thảo luận tích cực trên IRC channels,	bạn có thể follow	trên Twitter	(@kubernetesio),	và slack.k8s.io	là 1 pretty	good	slack	channel.	Ngoài ra còn có các meetups	và conferences	thường xuyên trên thế giới.
 
 ### Kubernetes	and	Docker
+
 Kubernetes	và Docker	là các công nghệ bổ xung.	Ví dụ, nó có đặc điểm chung là để develop	applications	với Docker	và sử dụng Kubernetes	để orchestrate.
 
 Trong mô hình này, bạn viết code bằng ngôn ngữ yêu thích của mình và sau đó sử dụng Docker để đóng gói, test và ship. Nhưng bước cuối cùng của việc chạy nó để test hoặc trong product được xử lý bởi Kubernetes.
@@ -177,3 +178,27 @@ Kubernetes cung cấp 1 số objects để deploying	và managing	Pods.	Chung nh
 Hình thể hiện các application	code được đóng gói như 1 container,	chạy bên trong 1 Pod, được quản lý bởi 1 Deployment.
 
 <img src=https://i.imgur.com/NkTOamz.png>
+
+Khi mọi thứ được xác định trong Deployment YAML file, chúng ta POST nó vào cluster như trạng thái mong muốn của ứng dụng và để Kubernetes thực hiện nó.
+
+### The declarative model and desired state
+
+Mô hình khai báo và khái niệm trạng thái mong muốn là trung tâm của Kubernetes. Mang chúng đi và Kubernetes vỡ vụn.
+
+Trong Kubernetes, declarative model làm việc như sau:
+- Khai báo trạng thái mong muốn của ứng dụng (microservice) trong manifest file
+- POST nó lên Kubernetes API server
+- Kubernetes lưu trữ chúng trong cluster store dưới dạng trạng thái mong muốn của ứng dụng
+- Kubernetes triển khai trạng thái mong muốn trên cluster
+- Kubernetes thực hiện các vòng lặp đồng hồ để đảm bảo trạng thái hiện tại của ứng dụng không khác trạng thái mong muốn
+
+Manifest files viết trong YAML đơn giản và chúng nói với Kubernetes cách chúng ta muốn 1 application trông như thế nào. Chúng ta gọi nó là desired state. Nó bao gồm những thứ như: image nào được sử dụng, có bao nhiều replicas, network ports nào để nghe và cách perform updates.
+
+Khi tạo ra manifest, ta POST nó lên API server. Cách chung nhất để làm điều này là với tiện ích kubectl command-line. POSTs the manifest này như 1 request tời control plane thường là port 443.
+
+Khi yêu cầu được xác thực và ủy quyền, Kubernetes kiểm tra manifest, xác định controller nào sẽ gửi nó đến (ví dụ: Deployments controller) và ghi lại cấu hình trong cluster store như 1 phần của cluster’s
+overall desired state. Một khi điều này được thực hiện, công việc được lên lịch trên cluster. Điều này bao gồm công việc khó khăn trong việc pull image, starting containers, building networks và starting the application’s processes.
+
+Cuối cùng, Kubernetes sử dụng các background reconciliation loops theo dõi trạng thái của cluster. Nếu trạng thái hiện tại của cluster thay đổi khác trạng thái mong muốn, Kubernetes sẽ thực hiện bất kỳ nhiệm vụ nào là cần thiết để giải quyết vấn đề.
+
+<img src=https://i.imgur.com/kjpM4w1.png>
