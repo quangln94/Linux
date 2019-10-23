@@ -1,6 +1,6 @@
 #!bin/bash
 ## Khai bao function
-# Khai báo mật khẩu SQL và database tạo rao dùng để lưu trữ cho Zabbix 
+# Khai báo mật khẩu SQL và database dùng cho Zabbix 
 function khaibao {
 	echo "Tao user mysql va phan quyen"
 	echo "Nhap MYSQL_PASS cho tai khoan root"
@@ -15,11 +15,11 @@ function khaibao {
 
 # Dùng các lệnh SQL để tạo một cơ sở dữ liệu 
 function sql {
-cat << EOF | mysql -uroot -p$p
-create database $u character set utf8 collate utf8_bin;
-grant all privileges on $u.* to zabbix@localhost identified by '$m';
-flush privileges;
-EOF
+	cat << EOF | mysql -uroot -p$p
+	create database $u character set utf8 collate utf8_bin;
+	grant all privileges on $u.* to zabbix@localhost identified by '$m';
+	flush privileges;
+	EOF
 }
 
 echo "Install Zabbix-server"
