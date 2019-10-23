@@ -160,3 +160,20 @@ Có nhiều container runtimes	có sẵn cho Kubernetes.	Phổ biến nhất là
 #### Kube-proxy
 
 Phần cuối cùng của node là proxy kube. Nó chạy trên mọi node trong cluster và chịu trách nhiệm cho local	networking. Ví dụ, nó đảm bảo mỗi node có địa chỉ IP duy nhất và thực hiện các quy tắc IPTABLES hoặc IPVS cục bộ để xử lý định tuyến và load-balancing trên Pod	network.
+
+### Packaging	apps
+
+Để một ứng dụng chạy trên Kubernetes cluster, nó cần: 
+- Đóng gói như một container
+- Được bọc trong một Pod
+- Được triển khai thông qua manifest file
+
+Chúng ta viết 1 application	service	với ngôn ngữ của mình sau đó build nó thành 1 container	image	và lưu nó trong 1 registry.	Tại đây application	service	được đóng gói.
+
+Tiếp theo là xác định 1 Kubernetes Pod để chạy service được đóng gói. 1 Pod	cho phép containers	chạy trên Kubernetes cluster.	Khi xác định 1 Pod cho container,	chúng ta sẵn sàng cho việc deploy nó trên cluster.
+
+Kubernetes cung cấp 1 số objects để deploying	và managing	Pods.	Chung nhất là Deployment, cung cấp khả năng mở rộng, tự phục hồi,	rolling updates.	Ta xác định chúng trong 1 file YAML chỉ định những thứ như image để sử dụng và có bao nhiểu replicas để deploy.
+
+Hình thể hiện các application	code được đóng gói như 1 container,	chạy bên trong 1 Pod, được quản lý bởi 1 Deployment.
+
+<img src=https://i.imgur.com/NkTOamz.png>
