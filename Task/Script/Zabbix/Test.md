@@ -1,4 +1,5 @@
 #!bin/bash
+## script chỉ cài được cho CentOS 8 và Ubuntu 18.04
 ## Khai bao function
 # Khai báo mật khẩu SQL và database dùng cho Zabbix 
 function khaibao {
