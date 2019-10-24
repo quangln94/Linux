@@ -139,7 +139,7 @@ Có nhiều container runtimes	có sẵn cho Kubernetes.	Phổ biến nhất là
 
 Kube-proxy chạy trên mọi node trong cluster và chịu trách nhiệm cho local	networking. Ví dụ, nó đảm bảo mỗi node có địa chỉ IP duy nhất và thực hiện các quy tắc IPTABLES hoặc IPVS cục bộ để xử lý định tuyến và load-balancing trên Pod	network.
 
-## 4. Packaging	apps
+## 4. Packaging apps
 
 Để một ứng dụng chạy trên Kubernetes cluster, nó cần: 
 - Đóng gói như một container
