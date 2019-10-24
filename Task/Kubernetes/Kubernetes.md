@@ -203,4 +203,5 @@ Cuối cùng, Kubernetes sử dụng các background reconciliation loops theo d
 <img src=https://i.imgur.com/kjpM4w1.png>
 
 ## Tài liệu tham khảo 
-- https://github.com/hocchudong/ghichep-kubernetes/blob/master/docs/kubernetes-5min/04.Cackhainiemtrongkubernets.md
+- The	Kubernetes	Book - The	fastest	way	to	get	your	head	around	Kubernetes! - Nigel	Poulton	@nigelpoulton
+- https://github.com/hocchudong/ghichep-kubernetes/blob/master/docs/kubernetes-5min/03.Kientrucvacacthanhphan.md
