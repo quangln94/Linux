@@ -84,7 +84,7 @@ Với cơ sở dữ liệu phân tán, tính nhất quán của viêc ghi vào d
 
 Controller manager là 1 controller của controllers và được shipped dưới dạng nhị phân đơn nguyên. Mặc dù nó chạy như một tiến trình đơn lẻ, nó thực hiện nhiều vòng điều khiển độc lập theo dõi cluster và phản hồi các events.
 
-Một số vòng điều khiển bao gồm: node	controller,	endpoints	controller và replicaset	controller. Mỗi cái chạy background liên tục theo dõi API server để đảm bảo trạng thái hiện tại của cluster khớp với trạng thái mong muốn.
+Các thành phần bên trong bao gồm: node	controller,	endpoints	controller và replicaset	controller. Mỗi cái chạy background liên tục theo dõi API server để đảm bảo trạng thái hiện tại của cluster khớp với trạng thái mong muốn.
 
 **The scheduler**
 
@@ -107,7 +107,7 @@ Hình ảnh dưới thể hiện 1 Kubernetes	master (control	plane).
 #### 3.1.2 Node
 
 Nodes	là workers của 1 Kubernetes	cluster. Nó có 3 nhiệm vụ chính:
-- Quan sát API	Server để biết taks mới 
+- Quan sát API	Server để biết task mới 
 - Thực hiện task mới 
 - Báo cáo lại cho control plane
 
@@ -129,7 +129,7 @@ Nếu 1 kubelet không thể chạy 1 task cụ thể, nó sẽ báo cáo lại 
 
 Kubelet cần 1 container	runtime	để thực hiện các tác vụ liên quan đến container như pulling	images, starting	và stopping	containers.
 
-Trong những ngày đầu,	Kubernetes có native	support	cho 1 vài container	runtimes như Docker. Gần đây có đã chuyển sang 1 mô hình plugin được gọi là Container	Runtime	Interface	(CRI). Đây là 1 lớp trừu tượng cho external	(3rd-party)	container	runtimes	để plug	in	to.	CRI	không thể hiện bộ phận bên trong của Kubernetes	và exposes	1  clean	documented	interface	cho 3rd-party	container	runtimes	để plug	in to.
+ban đầu,	Kubernetes có native	support	cho 1 vài container	runtimes như Docker. Gần đây có đã chuyển sang 1 mô hình plugin được gọi là Container	Runtime	Interface	(CRI). Đây là 1 lớp trừu tượng cho external	(3rd-party)	container	runtimes	để plug	in	to.	CRI	không thể hiện bộ phận bên trong của Kubernetes	và exposes	1  clean	documented	interface	cho 3rd-party	container	runtimes	để plug	in to.
 
 CRI	hỗ trợ tích hợp runtimes vào Kubernetes.
 
