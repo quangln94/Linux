@@ -46,3 +46,44 @@ Services sử dụng labels và label selector để biết Pods nào có load-b
 Service	được cấu hình để gửi traffic tới tất cả Pods trên cluster. Cả 2 Pods trong hình đều có 3 labels nên Service	sẽ load-balance traffic	tới cả 2.
 
 <img src=https://i.imgur.com/AEIzaml.png>
+
+## 4. Packaging apps
+
+Để một ứng dụng chạy trên Kubernetes cluster, nó cần: 
+- Đóng gói như một container
+- Được bọc trong một Pod
+- Được triển khai thông qua manifest file
+
+Chúng ta viết 1 application	service	với ngôn ngữ của mình sau đó build nó thành 1 container	image	và lưu nó trong 1 registry.	Tại đây application	service	được đóng gói.
+
+Tiếp theo là xác định 1 Kubernetes Pod để chạy service được đóng gói. 1 Pod	cho phép containers	chạy trên Kubernetes cluster.	Khi xác định 1 Pod cho container,	chúng ta sẵn sàng cho việc deploy nó trên cluster.
+
+Kubernetes cung cấp 1 số objects để deploying	và managing	Pods.	Phổ biến nhất là Deployment, cung cấp khả năng mở rộng, tự phục hồi,	rolling updates. Ta xác định chúng trong 1 file YAML chỉ định những thứ như image và số lượng replicas để deploy.
+
+Hình thể hiện các application	code được đóng gói như 1 container,	chạy bên trong 1 Pod, được quản lý bởi 1 Deployment.
+
+<img src=https://i.imgur.com/NkTOamz.png>
+
+Khi mọi thứ được xác định trong Deployment YAML file, chúng ta POST nó vào cluster như trạng thái mong muốn của ứng dụng và để Kubernetes thực hiện nó.
+
+## 5. Declarative model và desired state
+
+Mô hình khai báo và khái niệm trạng thái mong muốn là trung tâm của Kubernetes. Mang chúng đi và Kubernetes vỡ vụn.
+
+Trong Kubernetes, declarative model làm việc như sau:
+- Khai báo trạng thái mong muốn của ứng dụng (microservice) trong manifest file
+- POST nó lên Kubernetes API server
+- Kubernetes lưu trữ chúng trong cluster store dưới dạng trạng thái mong muốn của ứng dụng
+- Kubernetes triển khai trạng thái mong muốn trên cluster
+- Kubernetes thực hiện các vòng lặp đồng hồ để đảm bảo trạng thái hiện tại của ứng dụng không khác trạng thái mong muốn
+
+Manifest files viết trong YAML và chúng nói với Kubernetes cách chúng ta muốn 1 application trông như thế nào. Chúng ta gọi nó là desired state. Nó bao gồm những thứ như: image được sử dụng, có bao nhiều replicas, network ports nào để listen và cách perform updates.
+
+Khi tạo ra manifest, ta POST nó lên API server. Cách phổ biến nhất để làm điều này là với tiện ích kubectl command-line. POSTs manifest này như 1 request tới control plane thường là port 443.
+
+Khi yêu cầu được xác thực và ủy quyền, Kubernetes kiểm tra manifest, xác định controller nào sẽ gửi nó đến (ví dụ: Deployments controller) và ghi lại cấu hình trong cluster store như 1 phần của cluster’s overall desired state. Một khi điều này được thực hiện, công việc được lên lịch trên cluster. Bao gồm việc pull image, starting containers, building networks và starting the application’s processes.
+
+Cuối cùng, Kubernetes sử dụng các background reconciliation loops theo dõi trạng thái của cluster. Nếu trạng thái hiện tại của cluster thay đổi khác với trạng thái mong muốn, Kubernetes sẽ thực hiện bất kỳ nhiệm vụ nào là cần thiết để giải quyết vấn đề.
+
+<img src=https://i.imgur.com/kjpM4w1.png>
+
