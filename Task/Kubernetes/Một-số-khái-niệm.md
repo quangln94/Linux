@@ -47,7 +47,7 @@ Service	được cấu hình để gửi traffic tới tất cả Pods trên clu
 
 <img src=https://i.imgur.com/AEIzaml.png>
 
-## 4. Packaging apps
+## Packaging apps
 
 Để một ứng dụng chạy trên Kubernetes cluster, nó cần: 
 - Đóng gói như một container
@@ -66,7 +66,7 @@ Hình thể hiện các application	code được đóng gói như 1 container,	
 
 Khi mọi thứ được xác định trong Deployment YAML file, chúng ta POST nó vào cluster như trạng thái mong muốn của ứng dụng và để Kubernetes thực hiện nó.
 
-## 5. Declarative model và desired state
+## Declarative model và desired state
 
 Mô hình khai báo và khái niệm trạng thái mong muốn là trung tâm của Kubernetes. Mang chúng đi và Kubernetes vỡ vụn.
 
