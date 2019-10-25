@@ -54,7 +54,7 @@ Service	được cấu hình để gửi traffic tới tất cả Pods trên clu
 - Được bọc trong một Pod
 - Được triển khai thông qua manifest file
 
-Chúng ta viết 1 application	service	với ngôn ngữ của mình sau đó build nó thành 1 container	image	và lưu nó trong 1 registry.	Tại đây application	service	được đóng gói.
+1 application	service	được build thành 1 container	image	và lưu trong 1 registry.	Tại đây application	service	được đóng gói.
 
 Tiếp theo là xác định 1 Kubernetes Pod để chạy service được đóng gói. 1 Pod	cho phép containers	chạy trên Kubernetes cluster.	Khi xác định 1 Pod cho container,	chúng ta sẵn sàng cho việc deploy nó trên cluster.
 
