@@ -62,15 +62,13 @@ Cấu hình chạy 3 hoặc 5 replicated	masters	trong  1 HA	được khuyến c
 
 **API	server**  
 
-API server là Grand Central Station của Kubernetes. Tất cả giao tiếp giữa các thành phần đều đi qua API server
-
-Nó exposes 1 RESTful	API	chúng ta `POST`	YAML	configuration	files	lên HTTPS. File YAML thường được gọi là manifests, chứa trạng thái của application.	Như sử dụng container	image nào, expose port nào và có bao nhiêu Pod replicas	để chạy.
+Tất cả giao tiếp giữa các thành phần đều đi qua API server. Nó exposes 1 RESTful	API	chúng ta `POST`	YAML	configuration	files	lên HTTPS. File YAML thường được gọi là manifests, chứa trạng thái của application.	Như sử dụng container	image nào, expose port nào và có bao nhiêu Pod replicas	để chạy.
 
 Tất cả các requests đến API server đều phải kiểm tra xác thực và ủy quyền, sau khi hoàn thành, cấu hình trong file YAML được xác thực, được lưu vào cluster store và được deployed vào cluster.
 
 **Cluster	store**
 
-Cluster store là phần duy nhất của control plane và nó lưu trữ toàn bộ cấu hình và trạng thái của cluster. Nó là 1 thành phần quan trọng của cluster. No cluster	store, no	cluster.
+Cluster store lưu trữ toàn bộ cấu hình và trạng thái của cluster. Nó là 1 thành phần quan trọng của cluster. No cluster	store, no	cluster.
 
 Cluster	store	dựa trên etcd - cơ sở sữ liệu phân tán (distributed	database). Nên chạy từ 3->5 etcd replicas cho HA và nên cung cấp các cách thích hợp để khôi phục khi gặp lỗi.
 
