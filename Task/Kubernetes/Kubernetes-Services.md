@@ -17,6 +17,7 @@ Service cung cấp stable networking tới 3 Pods, có thể gửi requests tớ
 Để Pod match 1 Service, nó phải có đủ labels mà Service tìm kiếm.
 
 <img src=https://i.imgur.com/Cb4VxFN.png>
+
 ## Services and Endpoint objects
 
 Khi Pods come-and-go (scaling up and down, failures, rolling updates etc.), Service tự động updates danh sachs Pods healthy phù hợp thông qua việc kết hợp label selector và 1 construct được gọi là 1 Endpoint object.
