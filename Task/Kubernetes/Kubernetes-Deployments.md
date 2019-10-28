@@ -37,10 +37,17 @@ Bạn POST file YAML tới API	server và Kubernetes làm phần còn lại. Khi
 
 **Điều gì thực sự xảy ra**
 
-Khi có lỗi sảy ra và cần phải deploy 1 updated để fix. Để làm được việc này, bạn phải update Deployment YAML file với new	image	version, và re-POST	nó tới API	server.	Nó sẽ đăng ký 1 desired	state	mới trên cluster với cùng số Pods nhưng tất cả đều chạy với new	version. Để làm được điều này Kubernetes tạo ra 1 ReplicaSet mới cho Pods với image mới. Giờ ta có 2 ReplicaSets:	–	the	original	one	for	the	Pods	with	the	old	version	of	the	image,	and
-another	for	the	Pods	with	the	new	version.	As	Kubernetes	increases	the	number
-of	Pods	in	the	new	ReplicaSet	(with	the	new	version	of	the	image)	it	decreases
-the	number	of	Pods	in	the	old	ReplicaSet	(with	the	old	version	of	the	image).	Net
-result,	we	get	a	smooth	rolling	update	with	zero	downtime.	And	we	can	rinse	and
-repeat	the	process	for	future	updates	–	just	keep	updating	that	manifest	file
-(which	should	be	stored	in	a	version	control	system)
+Khi có lỗi sảy ra và cần phải deploy 1 bản updated để fix. Bạn phải update Deployment YAML file với image	version mới và re-POST nó tới API	server.	Nó sẽ đăng ký 1 desired	state	mới trên cluster với cùng số Pods nhưng tất cả đều chạy với version mới. Để làm được điều này Kubernetes tạo ra 1 ReplicaSet mới cho Pods với image mới. Giờ ta có 2 ReplicaSets:	original cho Pods với image cũ và Pods khác với image mới. Khi Kubernetes tăng số lượng Pods trong ReplicaSet mới, nó giảm số lượng Pods trong ReplicaSet cũ.	Kết quả chúng ta nhận được 1 smooth	rolling	update với zero downtime. Và ta có thể rinse và repeat quá trình cho future	updates	–	chỉ cẩn tiếp tục updating	file manifest (được lưu trong 1	version	control	system)
+
+<img src=https://i.imgur.com/YFk5h9D.png>
+
+## Rollbacks
+
+Rollbacks là quá trình ngược lại với rolling updates
+
+ReplicaSets cũ không quản lý Pods nào nữa nhưng vẫn tồn tại với cấu hình cũ. Và ta có thể reverting về versions cũx. 
+
+<img src=https://i.imgur.com/WS0cN70.png>
+
+## Cách tạo 1 Deployment
+
