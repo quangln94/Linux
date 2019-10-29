@@ -58,3 +58,12 @@ Có nhiều loại Srvices như LoadBalancer Services.	These
 integrate	with	load-balancers	from	your	cloud	provider	such	as	AWS,	Azure,	and
 
 ## Service discovery
+
+Kubernetes thực hiện Service discovery theo 1 số cách: 
+- DNS	(preferred)
+- Environment variables	(definitely	not	preferred)
+
+DNS	add-on liên tục theo dõi API server cho Services mới và tự động đăng ký chúng trong DNS. Có nghĩa là mỗi Service lấy 1 DNS name	để có thể phân giải trên toàng bộ cluster.
+
+Một hình thức thay khác là thông qua biến môi trường. Mỗi Pod	nhận được 1 tập hợp biến môi trường để phân giải mọi Service hiện có trong cluster.	Tuy nhiên đây chỉ là trường hợp dự phòng cho việc không sử dụng DNS	trong cluster của bạn. Nhược điểm của biến môi trường là chúng chỉ được chèn vào Pod khi Pod được tạo lúc đầu. Pods không có cách nào tìm hiểu về Service mới được thêm vào cluster sau khi Pod được tạo.
+
