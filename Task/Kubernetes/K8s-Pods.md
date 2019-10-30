@@ -1,6 +1,6 @@
-# Một số khái niệm trong k8s
-## Pod
-Trong VMware, atomic unit	máy ảo (VM). Trong Docker là container. Trong Kubernetes là Pod 
+# Pod
+
+Trong VMware, atomic unit là	máy ảo (VM). Trong Docker là container. Trong Kubernetes là Pod 
 
 <img src=https://i.imgur.com/Ws73Ex7.png>
 
@@ -9,7 +9,7 @@ K8s chạy các ứng dụng được đóng gói. Tuy nhiên không thể chạ
 Khi chạy nhiều containers trong 1 Pod, chúng chia sẻ môi trường: IPC namespace, memory, volumes, network stack...Ví dụ tất cả containers
 trong cùng Pod sẽ chia sẻ IP (IP Pod).	
  
- <img src=https://i.imgur.com/s6h8pcA.png>
+<img src=https://i.imgur.com/s6h8pcA.png>
  
 Nếu có 2 containers	trong 1 Pod	muốn giao tiếp với nhau chúng có thể sử dụng Pod’s localhost interface
 
@@ -29,7 +29,7 @@ Pods được tạo ra, sống sau đó chết. Nếu chết đột ngột ta kh
 
 ## Deployments
 
-Deployments tồn tại trọng Kubernetes từ version	1.2	 và được nâng cấp lên GA (stable) trong version 1.9.Nó được thếm các tính năng như scaling,	zero-downtime updates, và versioned	rollbacks.
+Deployments có trong Kubernetes từ version	1.2 và được nâng cấp lên GA (stable) trong version 1.9. Nó được thêm các tính năng như scaling,	zero-downtime updates, và versioned	rollbacks.
 
 ## Service
 
@@ -41,7 +41,7 @@ Uploader microservice	nói chuyện với renderer microservice thông qua 1 Kub
 
 ## Kết nối Pod tới service
 
-Services sử dụng labels và label selector để biết Pods nào có load-balance.	Service	có 1 label selector là 1 list	labels Pod phải cps để nhận traffic	từ Service.
+Services sử dụng labels và label selector để biết Pods nào có load-balance.	Service	có 1 label selector là 1 list	labels Pod phải có để nhận traffic	từ Service.
 
 Service	được cấu hình để gửi traffic tới tất cả Pods trên cluster. Cả 2 Pods trong hình đều có 3 labels nên Service	sẽ load-balance traffic	tới cả 2.
 
@@ -68,22 +68,21 @@ Khi mọi thứ được xác định trong Deployment YAML file, chúng ta POST
 
 ## Declarative model và desired state
 
-Mô hình khai báo và khái niệm trạng thái mong muốn là trung tâm của Kubernetes. Mang chúng đi và Kubernetes vỡ vụn.
+Mô hình khai báo và khái niệm trạng thái mong muốn là trọng tâm của Kubernetes. Mang chúng đi và Kubernetes vỡ vụn.
 
 Trong Kubernetes, declarative model làm việc như sau:
 - Khai báo trạng thái mong muốn của ứng dụng (microservice) trong manifest file
 - POST nó lên Kubernetes API server
 - Kubernetes lưu trữ chúng trong cluster store dưới dạng trạng thái mong muốn của ứng dụng
 - Kubernetes triển khai trạng thái mong muốn trên cluster
-- Kubernetes thực hiện các vòng lặp đồng hồ để đảm bảo trạng thái hiện tại của ứng dụng không khác trạng thái mong muốn
+- Kubernetes thực hiện các vòng lặp đồng hồ để đảm bảo trạng thái hiện tại của ứng dụng giống trạng thái mong muốn
 
-Manifest files viết trong YAML và chúng nói với Kubernetes cách chúng ta muốn 1 application trông như thế nào. Chúng ta gọi nó là desired state. Nó bao gồm những thứ như: image được sử dụng, có bao nhiều replicas, network ports nào để listen và cách perform updates.
+Manifest files viết trong YAML và chúng nói cho Kubernetes cách chúng ta muốn 1 application trông như thế nào. Chúng ta gọi nó là desired state. Nó bao gồm những thứ như: image được sử dụng, có bao nhiêu replicas, network ports nào để listen và cách perform updates.
 
 Khi tạo ra manifest, ta POST nó lên API server. Cách phổ biến nhất để làm điều này là với tiện ích kubectl command-line. POSTs manifest này như 1 request tới control plane thường là port 443.
 
-Khi yêu cầu được xác thực và ủy quyền, Kubernetes kiểm tra manifest, xác định controller nào sẽ gửi nó đến (ví dụ: Deployments controller) và ghi lại cấu hình trong cluster store như 1 phần của cluster’s overall desired state. Một khi điều này được thực hiện, công việc được lên lịch trên cluster. Bao gồm việc pull image, starting containers, building networks và starting the application’s processes.
+Khi yêu cầu được xác thực và ủy quyền, Kubernetes kiểm tra manifest, xác định controller nào sẽ gửi nó đến (ví dụ: Deployments controller) và ghi lại cấu hình trong cluster store như 1 phần của cluster’s overall desired state. Một khi điều này được thực hiện, task được lên lịch trên cluster. Bao gồm việc pull image, starting containers, building networks và starting the application’s processes.
 
 Cuối cùng, Kubernetes sử dụng các background reconciliation loops theo dõi trạng thái của cluster. Nếu trạng thái hiện tại của cluster thay đổi khác với trạng thái mong muốn, Kubernetes sẽ thực hiện bất kỳ nhiệm vụ nào là cần thiết để giải quyết vấn đề.
 
 <img src=https://i.imgur.com/kjpM4w1.png>
-
