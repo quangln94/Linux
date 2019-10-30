@@ -1,7 +1,7 @@
 # Kubernetes Services
 
 Cơ bản về Kubernetes Services.
-- Service REST trong Kubernetes API. Giống như Pod, ReplicaSet, hoặc Deployment, 1 Kubernetes Service là 1 object trong API có thế xác định trong manifest và POST tới API server.
+- Service REST trong Kubernetes API. Giống như Pod, ReplicaSet, hoặc Deployment, Kubernetes Service là 1 object trong API có thế xác định trong manifest và POST tới API server.
 - Mỗi Service đều có IP, DNS name và port của riêng nó.
 - Services sử dụng labels để tự động chọn Pods trong cluster chúng sẽ gửi traffic tới.
 
