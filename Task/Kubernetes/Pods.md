@@ -36,21 +36,22 @@ Cùng xem Pod manifest file. ***It’s	available in the book’s	GitHub repo	und
 ```sh
 apiVersion
 :
-	v1
+ v1
 kind
 :
-	Pod
+ Pod
 metadata
 :
-		name
+  name
 :
-	hello
--pod
-		labels
+ hello
+-
+pod
+  labels
 :
-				zone
+    zone
 :
-	prod
+prod
 				version
 :
 	v1
@@ -71,7 +72,8 @@ k8sbook
 latest
 				ports
 :
-				-	containerPort
+-
+ containerPort
 :
 	8080
 ```
