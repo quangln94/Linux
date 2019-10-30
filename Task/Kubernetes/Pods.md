@@ -16,7 +16,6 @@ Giáo tiếp giữa các Pods
 
 <img src=https://i.imgur.com/kXWJypr.png>
 
-
 Control	Groups (cgroups) ngăn các container tiêu thụ tất cả CPU, RAM và IOPS có sẵn trên 1 node. Chúng tôi có thể nói rằng các nhóm tích cực sử dụng tài nguyên cảnh sát.
 
 Tất cả containers trong 1 Pod	sẽ được lên lịch trên cùng 1 node.
