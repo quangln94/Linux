@@ -81,18 +81,43 @@ Chúng ta có thể thấy 4 top-level resources:
 - metadata
 - spec
 
-Trường `.apiVersion` cho biết: API group và API	version được dùng đề tạo object. Format chung là <api-group>/<version>.	Tuy nhiên	Pods được xác định trong 1 special API	group	được gọi là core group	mà bỏ qua phần `api-group`.	Ví dụ StorageClass objects được xác định trong v1	của storage.k8s.io API group và được mô tả trong YAML	files	`storage.k8s.io/v1`. Tuy nhiên Pods	trong core API group đặc biệt vì nó bỏ qua API group name, vì vậy chúng được mô tả trong YAML files	v1.
+Trường `.apiVersion` cho biết: API group và API	version được dùng đề tạo object. Format chung là <api-group>/<version>.	Tuy nhiên	Pods được xác định trong 1 special API group được gọi là core group mà bỏ qua phần `api-group`. Ví dụ StorageClass objects được xác định trong v1 của storage.k8s.io API group và được mô tả trong YAML files `storage.k8s.io/v1`. Tuy nhiên Pods trong core API group đặc biệt vì nó bỏ qua API group name, vì vậy chúng được mô tả trong YAML files v1.
 
+Một resource có thể được xác định trong nhiều versions của 1 API group. Ví dụ: some-api-group/v1 và some-api-group/v2. Trong trường hợp này, định nghĩa trong group này có thể bao gồm các tính năng bổ xung và and khả năng mở rộng resource. 
 
+Trường `.kind` nói cho Kubernetes loại object được deployed.
 
+Phần `.metadata` là nơi attach name và labels. Giúp xác đinh object trong cluster, và labels tạo kết nối couplings. Cũng có thể xác định namespace mà object deployed. Namespaces cho phép phân chia clusters để quản lý. Nếu không chỉ định namespace nó sẽ dùng mặc định.
 
+Phần `.spec` xác định containers chạy trong Pod. Ví dụ trên deploying 1 Pod với 1 container `nigelpoulton/k8sbook:latest image`. Nó được gọi là container `hello-ctr` và exposing trên port `8080`.
 
+## Deploying Pods từ manifest file
 
-
-
-
-## Deploy	Pods
-
-Để deploy 1 Pod	tới Kubernetes cluster, ta xác định nó trong 1 file manifest và POST tới API server. Control plane kiểm tra nó,	viết nó vào cluster	store và scheduler triển khai nó đến 1 node healthy với đủ resources.	Quá trình này giống nhau với single-container Pods và multi-container	Pods.
+Để deploy 1 Pod	tới Kubernetes cluster, ta xác định nó trong file manifest và POST tới API server. Control plane kiểm tra nó, ghi nó vào cluster store và scheduler triển khai nó đến 1 node healthy với đủ resources. Quá trình này giống nhau với single-container Pods và multi-container Pods.
 
 <img src=https://i.imgur.com/AsddeoF.png>
+
+Dùng lệnh `kubectl` để POST manifest tới API server.
+```sh
+$ kubectl apply	-f pod.yml
+pod/hello-pod created
+```
+Dùng lệnh `kubectl get pods` để check trạng thái.
+```sh
+$ kubectl get pods
+NAME		READY	STATUS			RESTARTS	AGE
+hello-pod	0/1	ContainerCreating	0		9s
+```
+Thêm `--watch` flag vào lệnh `kubectl get pods` để xem khi trạng thái thay đổi.
+
+Được monitored local bằng `kubelet` process. `kubelet` process là Kubernetes agent chạy trên node.
+
+Flag `-o wide`	thêm 1 vài cột nhưng vẫn là 1 dòng 
+
+Flag `-o yaml` trả về manifest từ cluster store. Output được chia thành 2 phần:
+- desired state	(.spec)
+- current observed state (.status)
+
+Lệnh `kubectl describe` cung cấp formatted multi-line overview của 1 object. Nó cũng bao gồm 1 số object quan trọng và lifecycle	events.
+
+Lệnh `kubectl exec` để login và execute	1 Pod.
