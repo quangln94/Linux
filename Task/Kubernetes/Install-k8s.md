@@ -105,6 +105,25 @@ kube-system   kube-proxy-trc7x                   1/1     Running   0          23
 kube-system   kube-scheduler-server01            1/1     Running   0          22m
 ```
 
+## Worker Node
+```sh
+$ kubeadm join 10.10.10.221:6443 --token ya28xk.8uc7mxgxh4xvkqu6     --discovery-token-ca-cert-hash sha256:f06bff4248081281c22fed88452edb2a4dedd16b1155f297fb0d8639d8bab85a
+[preflight] Running pre-flight checks
+[preflight] Reading configuration from the cluster...
+[preflight] FYI: You can look at this config file with 'kubectl -n kube-system get cm kubeadm-config -oyaml'
+[kubelet-start] Downloading configuration for the kubelet from the "kubelet-config-1.16" ConfigMap in the kube-system namespace
+[kubelet-start] Writing kubelet configuration to file "/var/lib/kubelet/config.yaml"
+[kubelet-start] Writing kubelet environment file with flags to file "/var/lib/kubelet/kubeadm-flags.env"
+[kubelet-start] Activating the kubelet service
+[kubelet-start] Waiting for the kubelet to perform the TLS Bootstrap...
+
+This node has joined the cluster:
+* Certificate signing request was sent to apiserver and a response was received.
+* The Kubelet was informed of the new secure connection details.
+
+Run 'kubectl get nodes' on the control-plane to see this node join the cluster.
+```
+
 ## Tài liệu tham khảo
 - https://www.server-world.info/en/note?os=CentOS_7&p=kubernetes&f=3
 - https://blogd.net/kubernetes/cai-dat-kubernetes-cluster/
