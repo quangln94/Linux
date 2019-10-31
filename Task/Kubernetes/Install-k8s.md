@@ -104,7 +104,6 @@ kube-system   kube-flannel-ds-amd64-87mwj        1/1     Running   0          58
 kube-system   kube-proxy-trc7x                   1/1     Running   0          23m
 kube-system   kube-scheduler-server01            1/1     Running   0          22m
 ```
-
 ## Worker Node
 ```sh
 $ kubeadm join 10.10.10.221:6443 --token ya28xk.8uc7mxgxh4xvkqu6     --discovery-token-ca-cert-hash sha256:f06bff4248081281c22fed88452edb2a4dedd16b1155f297fb0d8639d8bab85a
@@ -123,7 +122,97 @@ This node has joined the cluster:
 
 Run 'kubectl get nodes' on the control-plane to see this node join the cluster.
 ```
+## 3. Chạy ứng dụng
+Bước 1: Tạo 02 container với images là nginx, 2 container này chạy dự phòng cho nhau, port của các container là 80
+```sh
+[root@server01 ~]# kubectl run test-nginx --image=nginx --replicas=2 --port=80
+kubectl run --generator=deployment/apps.v1 is DEPRECATED and will be removed in a future version. Use kubectl run --generator=run-pod/v1 or kubectl create instead.
+deployment.apps/test-nginx created
+```
+Tới đây, ta mới tạo ra các container và chỉ có thể truy cập từ các máy trong cụm cluster, bởi vì các container này chưa được mở các port để ánh xạ với các IP của các máy trọng cụm K8S.
+
+Ta có thể kiểm tra lại các container nằm trong các POD:
+```sh
+[root@server01 ~]# kubectl get pods -o wide
+NAME                          READY   STATUS    RESTARTS   AGE     IP           NODE       NOMINATED NODE   READINESS GATES
+test-nginx-78bcf56566-6v8m7   1/1     Running   0          5m38s   10.244.2.2   server03   <none>           <none>
+test-nginx-78bcf56566-h6lzl   1/1     Running   0          5m38s   10.244.1.2   server02   <none>           <none>
+```
+Việc phân phố số lượng container này một phần là do thành phần scheduler trong K8S thực hiện
+
+Sử dụng lệnh để dưới để xem các service nào đã sẵn sàng để deployment.
+```sh
+[root@server01 ~]# kubectl get deployment
+NAME         READY   UP-TO-DATE   AVAILABLE   AGE
+test-nginx   2/2     2            2           7m24s
+```
+Bước 2: Thực hiện deploy ứng dụng trên
+- Chính là bước phơi các port của container ra.
+- Tới bước này, chúng ta chưa thể truy cập vào các container được, cần thực hiện thêm bước deploy các container với các tùy chọn phù hợp, cụ thể như sau
+```sh
+[root@server01 ~]# kubectl expose deploy test-nginx --port 80 --target-port 80 --type NodePort
+service/test-nginx exposed
+```
+Ngoài các tùy chọn `--port 80` và `--target-port 80` thì ta lưu ý tùy chọn `--type NodePort`, đây là tùy chọn để ánh xạ port của máy cài K8S vào container vừa tạo, sử dụng các lệnh dưới để biết được port mà host ánh xạ là bao nhiêu ở bên dưới.
+```sh
+[root@server01 ~]# kubectl describe service test-nginx
+Name:                     test-nginx
+Namespace:                default
+Labels:                   run=test-nginx
+Annotations:              <none>
+Selector:                 run=test-nginx
+Type:                     NodePort
+IP:                       10.110.236.21
+Port:                     <unset>  80/TCP
+TargetPort:               80/TCP
+NodePort:                 <unset>  31566/TCP
+Endpoints:                10.244.1.2:80,10.244.2.2:80
+Session Affinity:         None
+External Traffic Policy:  Cluster
+Events:                   <none>
+```
+Trong đó: 
+- `IP: 10.107.71.150:` là IP được cấp cho ứng dụng `test-nginx` vừa tạo ở trên, địa chỉ này có ý nghĩa local.
+- `Endpoints: 10.244.1.2:80,10.244.2.2:80:` Đây là địa chỉ của dải mạng nội tại và liên kết các container khi chúng thuộc một POD. Có thể đứng trên một trong các node của cụm cluster K8S và thực hiện lệnh curl để truy cập web, ví dụ: `curl 10.244.1.2` hoặc curl `10.244.2.2`. Kết quả trả về html của web server.
+- `Port` và `TargetPort`: là các port nằm trong chỉ định ở lệnh khi ta deploy ứng dụng.
+- `NodePort`: <unset> 31566/TCP: Đây chính là port mà ta dùng để truy cập vào web server được tạo ở trên thông qua một trong các IP của các máy trong cụm cluser. Ta sẽ có các kiểm chứng dưới.
+
+Đứng trên node k8s-master thực hiện `curl 10.244.1.2` hoặc `curl 10.244.2.2` như sau:
+```sh
+[root@server01 ~]# curl 10.244.1.2
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+```
+Đứng trên node k8s-master và thực hiện kiểm tra port được ánh xạ với container (trong kết quả trên là port 31566/TCP)
+```sh
+[root@server01 ~]# ss -lan | grep 31566
+tcp    LISTEN     0      128    [::]:31566              [::]:*
+```
 
 ## Tài liệu tham khảo
 - https://www.server-world.info/en/note?os=CentOS_7&p=kubernetes&f=3
 - https://blogd.net/kubernetes/cai-dat-kubernetes-cluster/
+- https://github.com/hocchudong/ghichep-kubernetes/blob/master/docs/kubernetes-5min/02.Caidat-Kubernetes.md
