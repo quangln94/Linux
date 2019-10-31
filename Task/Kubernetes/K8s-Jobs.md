@@ -1,2 +1,9 @@
 # Jobs - Run to Completion
-A Job creates one or more Pods and ensures that a specified number of them successfully terminate. As pods successfully complete, the Job tracks the successful completions. When a specified number of successful completions is reached, the task (ie, Job) is complete. Deleting a Job will clean up the Pods it created.
+- Job tạo 1 hoặc nhiều Pods và đảm bảo số lượng thành công
+- Xóa Job sẽ xóa Pods được tạo
+- Job sẽ start 1 Pod mới nếu Pod fails hoặc bị xóa
+
+
+
+## Tài liệu tham khảo 
+- https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
