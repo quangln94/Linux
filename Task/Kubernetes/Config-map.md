@@ -1,6 +1,12 @@
 # Config map
 ConfigMaps cho phép tách cấu hình từ nội dung image để giữ các ứng dụng đóng gói có tính di dộng.
 
+**Cách hoạt động**
+
+- Đầu tiên bạn có nhiều ConfigMaps cho môi trường khác nhau
+- ConfigMap được tạo và thêm vào Kubernetes cluster.
+- Containers trong Pod tham khảo ConfigMap và sử dụng values của nó.
+
 <img src=https://i.imgur.com/tOOg8hx.gif>
 
 ## 1. Tạo ConfigMap
