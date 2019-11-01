@@ -34,48 +34,23 @@ Pods được deployed thông qua manifest files, không có replicated và self
 
 Cùng xem Pod manifest file. ***It’s	available in the book’s	GitHub repo	under	the	pods folder	called pod.yml***
 ```sh
-apiVersion
-:
- v1
-kind
-:
- Pod
-metadata
-:
-  name
-:
- hello
--
-pod
-  labels
-:
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello-pod
+  labels:
     zone
 :
-prod
-				version
-:
-	v1
-spec
-:
-		containers
-:
-		-	name
-:
-	hello
+prod	version:v1
+spec:
+containers:
+	-name:	hello
 -ctr
-				image
-:
-	nigelpoulton
-/
-k8sbook
-:
-latest
-				ports
-:
+		image:
+		nigelpoulton/k8sbook:latest
+				ports:
 -
- containerPort
-:
-	8080
+ containerPort:	8080
 ```
 Chúng ta có thể thấy 4 top-level resources:
 - apiVersion
