@@ -29,9 +29,7 @@ Một số API groups hay sử dụng:
 
 ## Enabling API groups
 
-Chắc chắn resources và API groups mặc định enabled. Có thể enabled hoặc disabled bằng setting `--runtime-config` trên apiserver. `--runtime-config`  accepts comma separated values. For ex: to disable batch/v1, set --runtime-config=batch/v1=false, to enable batch/v2alpha1, set --runtime-config=batch/v2alpha1. The flag accepts comma separated set of key=value pairs describing runtime configuration of the apiserver.
-
-IMPORTANT: Enabling or disabling groups or resources requires restarting apiserver and controller-manager to pick up the --runtime-config changes.
+Mặc định resources và API groups được. Có thể enabled hoặc disabled bằng setting `--runtime-config` trên apiserver. 
 
 ## Enabling resources trong groups
 
