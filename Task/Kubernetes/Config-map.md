@@ -1,6 +1,8 @@
 # Config map
 ConfigMaps cho phép tách cấu hình từ nội dung image để giữ các ứng dụng đóng gói có tính di dộng.
 
+<img src=https://matthewpalmer.net/kubernetes-app-developer/articles/configmap-diagram.gif>
+
 ## 1. Tạo ConfigMap
 Có thể sử dụng `kubectl create configmap` hoặc 1 ConfigMap generator trong `kustomization.yaml` để tạo ConfigMap
 ### 1.1 Sử dụng `kubectl create configmap`
