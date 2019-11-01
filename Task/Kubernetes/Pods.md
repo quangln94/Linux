@@ -39,7 +39,8 @@ kind: Pod
 metadata:
   name: hello-pod
   labels:
-  zone:prod version:v1
+   zone:prod 
+   version:v1
 spec:
   containers:
   - name: hello-ctr
