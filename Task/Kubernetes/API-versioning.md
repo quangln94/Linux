@@ -1,7 +1,6 @@
 # API versioning
-Để loại bỏ các trường hoặc cơ cấu lại resource 1 cách dễ dàng, k8s hỗ trợ nhiều API versions
-
-Các API versions khác nhau có độ ổn định và hỗ trợ khác nhau. 
+- K8s hỗ trợ nhiều API versions để loại bỏ các trường hoặc cơ cấu lại resource 1 cách dễ dàng.
+- Các API versions khác nhau có độ ổn định và hỗ trợ khác nhau. 
 
 **Alpha level:**
 - Tên version chứa `alpha` (e.g. v1alpha1).
