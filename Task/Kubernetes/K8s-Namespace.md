@@ -18,12 +18,12 @@ Kubernetes starts với 3 namespaces:
 
 **Setting namespace**
 
-Để set namespace cho 1 request hiện tại sử dụng flag `--namespace`.
+Để chỉ định namespace cho 1 request hiện tại sử dụng flag `--namespace`.
 ```sh
 kubectl run nginx --image=nginx --namespace=<insert-namespace-name-here>
 kubectl get pods --namespace=<insert-namespace-name-here>
 ```
-Có thể thay đổi namespace mặc định cho tất cả  các lệnh `kubectl` tiếp theo:
+Có thể thay đổi namespace mặc định như sau:
 ```sh
 kubectl config set-context --current --namespace=<insert-namespace-name-here>
 # Validate it
