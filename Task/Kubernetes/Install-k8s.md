@@ -172,7 +172,7 @@ External Traffic Policy:  Cluster
 Events:                   <none>
 ```
 Trong đó: 
-- `IP: 10.107.71.150:` là IP được cấp cho ứng dụng `test-nginx` vừa tạo ở trên, địa chỉ này có ý nghĩa local.
+- `IP: 10.110.236.21:` là IP được cấp cho ứng dụng `test-nginx` vừa tạo ở trên, địa chỉ này có ý nghĩa local.
 - `Endpoints: 10.244.1.2:80,10.244.2.2:80:` Đây là địa chỉ của dải mạng nội tại và liên kết các container khi chúng thuộc một POD. Có thể đứng trên một trong các node của cụm cluster K8S và thực hiện lệnh curl để truy cập web, ví dụ: `curl 10.244.1.2` hoặc curl `10.244.2.2`. Kết quả trả về html của web server.
 - `Port` và `TargetPort`: là các port nằm trong chỉ định ở lệnh khi ta deploy ứng dụng.
 - `NodePort`: <unset> 31566/TCP: Đây chính là port mà ta dùng để truy cập vào web server được tạo ở trên thông qua một trong các IP của các máy trong cụm cluser. Ta sẽ có các kiểm chứng dưới.
