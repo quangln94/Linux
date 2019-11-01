@@ -9,11 +9,13 @@ Các API versions khác nhau có độ ổn định và hỗ trợ khác nhau.
 - Support cho tính năng có thể bị loại bỏ mà thông báo.
 - API có thể thay đổi trong bản phát hành phần mềm sau này mà không thông báo.
 - Khuyễn nghị chỉ dùng trong testing clusters ngắn hạn, do tăng nguy cơ lỗi và không hỗ trợ dài hạn.
+
 **Beta level:**
 - Tên version chứa beta (e.g. v2beta3).
 - Code được kiểm tra tốt. Enabling tính năng an toàn. Mặc định.
 - Hỗ trợ tính năng tổng thế không bị bỏ mặc dù chi tiết có thể thay đổi.
 - Khuyễn nghị sử dụng cho non-business-critical vì có khả năng thay đổi trong bản phát hành tiếp theo.
+
 **Stable level:**
 - Tên version là `vX` trong đó `X` là số nguyên
 - Phiên bản ổn định của tính năng sẽ áp dụng trong các bản phát hành phần mềm tiếp theo.
