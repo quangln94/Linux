@@ -1,4 +1,4 @@
-# Config map
+# ConfigMap
 ConfigMaps cho phép tách cấu hình từ nội dung image để giữ các ứng dụng đóng gói có tính di dộng.
 
 **Cách hoạt động**
