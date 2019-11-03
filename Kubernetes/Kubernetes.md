@@ -1,17 +1,17 @@
 # Kubernetes
 
 ## 1. Kubernetes	là gì 
-Kubernetes là 1 orchestrator thực hiện việc deploys và manages	applications. Nó giúp việc deploy	application, scale up	and	down,	perform updates	and	rollbacks
+Kubernetes là 1 orchestrator thực hiện việc deploys, scale up	and	down,	perform updates, rollbacks và manages applications.
 
 Kubernetes	came	out	of	Google.	It	is	the	product	of	Google’s	many	years orchestrating	containers	at	extreme	scale.	It	was	open-sourced	in	the	summer	of  2014	and	handed	over	to	the	Cloud	Native	Computing	Foundation	(CNCF).
 
 Kubernetes là một dự án nguồn mở thuộc CNCF, được cấp phép theo giấy phép Apache 2.0 và phiên bản 1.0 được shipped trở lại vào tháng 7 năm 2015. Kể từ đó, nó trở thành 1 công nghệ cloud-native	quan trọng trên thế giới.
 
-Kubernetes được viết bằng Go (Golang), nó có trên Github	tại `kubernetes/kubernetes`
+Kubernetes được viết bằng Go (Golang), nó có trên Github tại `kubernetes/kubernetes`
 
 ## 2. Kubernetes and Docker
 
-Kubernetes và Docker là các công nghệ bổ xung. Docker dùng để develop	applications và sử dụng Kubernetes	để orchestrate.
+Kubernetes và Docker là các công nghệ bổ xung. Docker dùng để develop	applications và sử dụng Kubernetes để orchestrate.
 
 Bạn có thể code bằng ngôn ngữ yêu thích sau đó sử dụng Docker để đóng gói, test và ship. Nhưng bước cuối cùng là để test hoặc trong product được xử lý bởi Kubernetes.
 
@@ -27,10 +27,6 @@ Kubernetes có 1 vài tính năng trừu tượng:
 - Runtime	Classes	là 1 tính năng mới được giới thiệu trong Kubernetes	1.12. Tính năng này hiện ở dạng alpha	và cho phép các classes	khác nhau của runtimes.	Ví du như gVisor hoặc Kata	Containers	runtimes	có thể cung cấp sự cô lập tốt hơn Docker và containerd.
 
 ## 3. Thành phần của Kubernetes
-K8s gồm 2 thứ: 
-- 1 cluster để running applications
-- 1 orchestrator của cloud-native microservices apps.
-
 K8s gồm các master và node:
 - Master được coi là control plane, nó expose 1 API, có 1 scheduler để gán task, đưa ra các scheduling, perform monitoring, implement changes, respond to events... cho các node và trạng thái được ghi lại trong một persistent store. Nó chịu trách nhiệm về cluster.
 - Node được coi là data plane là nơi các application services chạy. Nó báo cáo cho masters và liên tục cập nhật task mới.
