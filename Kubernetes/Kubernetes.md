@@ -41,13 +41,13 @@ Chúng ta bắt đầu với một ứng dụng, đóng gói và cung cấp cho 
 - Wrap mỗi container trong pod.
 - Deploy Pods vào cluster thông qua higher-level controllers như: Deployments, DaemonSets, StatefulSets, CronJobs...
 
-Kubernetes quản lý các ứng dụng khai báo. Đây là một mẫu mô tả cách ứng dụng của mình trông và cảm nhận trong một tập hợp các file YAML, POST các tệp này cho Kubernetes, sau đó chờ Kubernetes làm tất cả xảy ra.
+Kubernetes quản lý các ứng dụng khai báo. Đây là một mẫu mô tả cách ứng dụng của mình trông và cảm nhận trong một tập hợp các file YAML, POST các tệp này cho Kubernetes, sau đó chờ Kubernetes hoàn thành nó.
 
 Không dừng lại ở đó. Vì mẫu khai báo xác định cách chúng ta muốn một ứng dụng trông như thế nào, Kubernetes có thể xem và đảm bảo mọi thứ sẽ như thế nào. Nếu có thứ gì đó không cần thiết, K8s sẽ cố gắng sửa nó.
 
 ### 3.1 Masters and Nodes
 
-1 Kubernetes cluster gồm masters và nodes. Chúng là Linux hosts có thể là VMs, bare metal servers trong data center, hoặc instances trong 1 private hoặc public cloud.
+1 Kubernetes cluster gồm masters và nodes. Chúng là Linux hosts có thể là VMs, máy vật lý hoặc instances trong 1 private hoặc public cloud.
 
 #### 3.1.1 Masters (control plane)
 1	Kubernetes master	là 1 bộ sưu tập system services tạo nên control plane của cluster.
@@ -58,7 +58,7 @@ Cấu hình chạy 3 hoặc 5 replicated	masters	trong  1 HA	được khuyến c
 
 **API	server**  
 
-Tất cả giao tiếp giữa các thành phần đều đi qua API server. Nó exposes 1 RESTful	API	chúng ta `POST`	YAML	configuration	files	lên HTTPS. File YAML thường được gọi là manifests, chứa trạng thái của application.	Như sử dụng container	image nào, expose port nào và có bao nhiêu Pod replicas	để chạy.
+Tất cả giao tiếp giữa các thành phần đều đi qua API server. Nó exposes 1 RESTful API, chúng ta `POST`	file YAML configuration	lên HTTPS. File YAML thường được gọi là manifests, chứa trạng thái của application như sử dụng container image nào, expose port nào và chạy bao nhiêu Pod replicas.
 
 Tất cả các requests đến API server đều phải kiểm tra xác thực và ủy quyền, sau khi hoàn thành, cấu hình trong file YAML được xác thực, được lưu vào cluster store và được deployed vào cluster.
 
@@ -80,7 +80,7 @@ Các thành phần bên trong bao gồm: node	controller,	endpoints	controller v
 
 **The scheduler**
 
-Scheduler theo dõi các task mới và gán chúng cho các node khỏe mạnh phù hợp. Nó thực hiện logic phức tạp để lọc các node không có khả năng chạy Pod và sau đó xếp hạng các node có khả năng. Bản thân hệ thống xếp hạng rất phức tạp, nhưng node có điểm xếp hạng cao nhất được chọn để chạy Pod
+Scheduler theo dõi các task mới và gán chúng cho các node phù hợp. Nó thực hiện logic phức tạp để lọc các node không có khả năng chạy Pod và sau đó xếp hạng các node có khả năng. Bản thân hệ thống xếp hạng rất phức tạp, nhưng node có điểm xếp hạng cao nhất được chọn để chạy Pod
 
 Khi xác định node có khả năng chạy Pod, scheduler kiểm tra node bị nhiễm độc, có bất kỳ rule affinity hoặc anti-affinity nào không, network port	available	của Pod trên node, node có đủ tài nguyên không... Node không có khả năng chạy Pod đều bị bỏ qua và các Pod còn lại được xếp hạng theo những điều như: node đã có image cần thiết chưa, node có bao nhiêu tài nguyên free, bao nhiêu Pod là node đang chạy. Mỗi tiêu chí đều có điểm và node có nhiều điểm nhất được chọn để chạy Pod.
 
@@ -119,7 +119,7 @@ Nếu 1 kubelet không thể chạy 1 task cụ thể, nó sẽ báo cáo lại 
 
 **Container runtime**
 
-Kubelet cần 1 container	runtime	để thực hiện các tác vụ liên quan đến container như pulling	images, starting	và stopping	containers.
+Kubelet cần 1 container	runtime	để thực hiện các tác vụ liên quan đến container như pulling	images, starting và stopping containers.
 
 Ban đầu, Kubernetes có native	support	cho 1 vài container	runtimes như Docker. Gần đây có đã chuyển sang 1 mô hình plugin được gọi là Container	Runtime	Interface	(CRI). Đây là 1 lớp trừu tượng cho external	(3rd-party)	container	runtimes	để plug	in	to.	CRI	không thể hiện bộ phận bên trong của Kubernetes	và exposes	1  clean	documented	interface	cho 3rd-party	container	runtimes	để plug	in to.
 
