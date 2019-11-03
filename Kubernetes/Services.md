@@ -7,7 +7,7 @@ Cơ bản về Kubernetes Services.
 
 ***Vậy cái gì cho phép Services cung cấp networking tới 1 Pods động.***
 
-Pods và Services được ghép thông qua labels và label selectors. Đây là cùng một công nghệ triển khai vào Pods và là chìa khóa cho tính linh hoạt được cunng cấp bởi Kubernetes. 
+Pods và Services được ghép thông qua labels và label selectors. Đây là cùng một công nghệ triển khai vào Pods và là chìa khóa cho tính linh hoạt được cung cấp bởi Kubernetes. 
 
 Hình dưới có 3 Pods có nhãn `zone=prod` và `version=1` và Service có 1 label selector khớp.
 
