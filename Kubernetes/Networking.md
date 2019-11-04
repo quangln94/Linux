@@ -27,3 +27,5 @@ Mỗi Node có 1 network interface – eth0 in được gắn vào Kubernetes cl
 - https://www.digitalocean.com/community/tutorials/kubernetes-networking-under-the-hood
 - https://www.digitalocean.com/community/tutorials/how-to-inspect-kubernetes-networking
 - https://matthewpalmer.net/kubernetes-app-developer/articles/kubernetes-networking-guide-beginners.html
+- https://sookocheff.com/post/kubernetes/understanding-kubernetes-networking-model/
+- https://cloud.google.com/kubernetes-engine/docs/concepts/network-overview
