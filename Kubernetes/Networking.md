@@ -8,7 +8,7 @@ Mỗi Pod có 1 IP, tất cả containers trong Pod chia sẻ địa chỉ IP n�
 
 <img src=https://i.imgur.com/rNqXQUf.png>
 
-Mỗi Node có 1 network interface – eth0 in được gắn vào Kubernetes cluster network. This interface sits within the node’s root network namespace. This is the default namespace for networking devices on Linux.
+Mỗi Node có 1 network interface – eth0 in được gắn vào Kubernetes cluster network. 
 
 
 
