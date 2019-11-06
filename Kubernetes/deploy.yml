@@ -7,11 +7,11 @@ spec:
   selector:
     matchLabels:
       app: hello-world
-  minReadySeconds: 10  		#Khoảng thời gian giữa mỗi lần update Pod
+  minReadySeconds: 10  			#Khoảng thời gian giữa mỗi lần update Pod
   strategy:
     type: RollingUpdate
     rollingUpdate:			#Thực hiện rollingUpdate nếu
-      maxUnavailable: 1		#Số Pod thấp hơn trạng thái mong muốn
+      maxUnavailable: 1			#Số Pod thấp hơn trạng thái mong muốn
       maxSurge: 1			#Số Pod cao hơn trạng thái mong muốn
   template:
     metadata:
