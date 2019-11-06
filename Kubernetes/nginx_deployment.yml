@@ -53,3 +53,17 @@ spec:
           image: nginx:1.13
           ports:
             - containerPort: 80
+## Tai liệu tham khảo
+- apiVersion: v1
+kind: Service
+metadata:
+  name: mywebservice
+spec:
+  selector:
+    app: nginx-green
+  ports:
+  - port: 80
+    targetPort: 80
+    
+## Tài liệu tham khảo   
+- https://blog.vietnamlab.vn/2019/11/05/kubernetes-best-pratice-zero-downtime-rolling-update/
