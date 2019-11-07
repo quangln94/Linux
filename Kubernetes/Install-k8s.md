@@ -29,7 +29,7 @@ $ sysctl --system
 ```
 systemctl stop firewalld
 systemctl disable firewalld
-sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/sysconfig/selinux
+sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
 ```
 **Cài đặt Kubeadm**
 ```sh
