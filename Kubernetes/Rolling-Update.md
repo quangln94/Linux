@@ -91,6 +91,7 @@ spec:
   type: NodePort
 ```
 **Thực hiện deploy add và kiểm tra như sau:**
+```sh
 [root@server01 ~]# kubectl apply -f sample-fixed-strategy.yml
 [root@server01 ~]# kubectl get pods
 NAME                                     READY   STATUS        RESTARTS   AGE
@@ -116,7 +117,6 @@ sample-fixed-strategy-7468bd7c5f-p85nc   1/1     Running   0          9s
 sample-fixed-strategy-7468bd7c5f-tdsck   1/1     Running   0          8s
 sample-fixed-strategy-7468bd7c5f-tvx4c   1/1     Running   0          9s
 sample-fixed-strategy-7468bd7c5f-w2v7p   1/1     Running   0          8s
-
 ```
 ***Có thể thấy RollingUpdate luôn duy trì đủ số Replica và sẽ lần lượt Update version trong quá trình update.***
 
