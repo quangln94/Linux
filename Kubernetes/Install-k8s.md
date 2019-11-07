@@ -41,7 +41,7 @@ gpgcheck=1
 repo_gpgcheck=1
 gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
 EOF
-$ yum -y install kubeadm kubelet kubectl
+$ yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
 $ systemctl enable kubelet
 ```
 **Cài đặt Docker**
