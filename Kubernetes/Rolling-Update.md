@@ -95,14 +95,15 @@ spec:
 [root@server01 ~]# kubectl apply -f sample-fixed-strategy.yml
 [root@server01 ~]# kubectl get pods
 NAME                                     READY   STATUS        RESTARTS   AGE
-sample-fixed-strategy-7468bd7c5f-p85nc   1/1     Running       0          5s
-sample-fixed-strategy-7468bd7c5f-tdsck   1/1     Running       0          4s
-sample-fixed-strategy-7468bd7c5f-tvx4c   1/1     Running       0          5s
-sample-fixed-strategy-7468bd7c5f-w2v7p   1/1     Running       0          4s
-sample-fixed-strategy-f969b9b5b-62qf9    0/1     Terminating   0          12m
-sample-fixed-strategy-f969b9b5b-9bn5r    0/1     Terminating   0          12m
-sample-fixed-strategy-f969b9b5b-sfwtv    0/1     Terminating   0          12m
-sample-fixed-strategy-f969b9b5b-wm4g2    0/1     Terminating   0          12m
+sample-fixed-strategy-7468bd7c5f-p85nc   1/1     Running             0          6m12s
+sample-fixed-strategy-7468bd7c5f-tdsck   0/1     Terminating         0          6m11s
+sample-fixed-strategy-7468bd7c5f-tvx4c   1/1     Terminating         0          6m12s
+sample-fixed-strategy-7468bd7c5f-w2v7p   1/1     Terminating         0          6m11s
+sample-fixed-strategy-f969b9b5b-55cfz    0/1     ContainerCreating   0          0s
+sample-fixed-strategy-f969b9b5b-5bjsh    1/1     Running             0          2s
+sample-fixed-strategy-f969b9b5b-8qvjc    1/1     Running             0          2s
+sample-fixed-strategy-f969b9b5b-np2lx    0/1     ContainerCreating   0          0s
+
 [root@server01 ~]# kubectl get pods
 NAME                                     READY   STATUS        RESTARTS   AGE
 sample-fixed-strategy-7468bd7c5f-p85nc   1/1     Running       0          8s
