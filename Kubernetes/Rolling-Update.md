@@ -119,7 +119,8 @@ sample-fixed-strategy-7468bd7c5f-tdsck   1/1     Running   0          8s
 sample-fixed-strategy-7468bd7c5f-tvx4c   1/1     Running   0          9s
 sample-fixed-strategy-7468bd7c5f-w2v7p   1/1     Running   0          8s
 ```
-***Có thể thấy RollingUpdate luôn duy trì đủ số Replica và sẽ lần lượt Update version trong quá trình update.***
-
+- Có thể thấy RollingUpdate luôn duy trì đủ số Replica và sẽ lần lượt Update version trong quá trình update. TH này thường được dùng cho việc tung ra các bản update thử nghiệm chạy song song với bản hiện tại để đưa ra 1 bản update chính thức. 
+- Nếu thay `.strategy.type: RollingUpdate` bằng `.strategy.type: Recreate` thì sẽ xóa toàn bộ Replicate cũ và thay bằng Replicate mới. TH này thường được sử dụng cho việc thay đổi ứng dụng do có lỗ hổng.
+ 
 ## Tài liệu tham khảo
 - https://blog.vietnamlab.vn/2019/11/05/kubernetes-best-pratice-zero-downtime-rolling-update/
