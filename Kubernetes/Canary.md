@@ -1,3 +1,5 @@
+#
+## 1 Service và 2 Deployment cùng label
 **Chỉnh sử file `nginx_deployment_stable.yaml` với nội dung sau:**
 ```sh
 apiVersion: apps/v1
