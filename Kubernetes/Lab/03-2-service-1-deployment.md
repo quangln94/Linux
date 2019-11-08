@@ -1,5 +1,4 @@
-#
-## 2 Service + 1 Deployment 
+# Deploy 2 service sử dụng cùng 1 deployment
 **Chỉnh sử file `nginx_deployment_1.yaml` với nội dung sau:**
 ```sh
 apiVersion: apps/v1
