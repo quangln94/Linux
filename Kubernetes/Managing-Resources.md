@@ -11,4 +11,7 @@ Resource ephemeral-storage để quản lý local ephemeral storage. Trong mỗi
 Partition này `ephemeral` và ứng dụng không thể mong đợi bất kì performance SLAs (ví dụ: Disk IOPS) từ partition này. Local ephemeral storage management chỉ áp dụng cho root partition, partition tùy chọn cho image layer và writable layer nằm ngoài phạm vi.
 
 ***Nếu 1 optional runtime partition được sử dụng, root partition sẽ không giữa bất kỳ image layer hoặc writable layers.***
+
+## Tài liệu tham khảo
 - https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/
+- https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/memory-default-namespace/
