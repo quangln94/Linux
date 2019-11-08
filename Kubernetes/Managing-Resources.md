@@ -15,3 +15,4 @@ Partition này `ephemeral` và ứng dụng không thể mong đợi bất kì p
 ## Tài liệu tham khảo
 - https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/
 - https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/memory-default-namespace/
+- https://github.com/kubernetes/community/blob/master/contributors/design-proposals/node/resource-qos.md
