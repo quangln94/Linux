@@ -1,6 +1,7 @@
 ## Daemonset
 
-Daemonset được tạo ra cho 1 mục đích cụ thể: đảm bảo Pods được quản lý và chạy trên mọi Node. Khi Node joins vào cluster, DaemonSet đảm bảo các các Pods cần thiết chạy trên nó.
+- Daemonset được tạo ra cho 1 mục đích cụ thể: đảm bảo Pods được quản lý và chạy trên mọi Node.
+- Khi Node joins vào cluster, DaemonSet đảm bảo các các Pods cần thiết chạy trên nó.
 
 ## DeamonSet Deployment
 Sửa file yaml
@@ -80,6 +81,11 @@ $ kubectl get nodes
 NAME                   	STATUS   ROLES   AGE	VERSION
 aks-agentpool-30423418-0   Ready	agent   7h2m   v1.12.8
 aks-agentpool-30423418-1   Ready	agent   7h2m   v1.12.8
+```
+Chỉ định Pod chạy bằng cách thêm dòng chỉ định sau vào file `daemonset.yaml`
+```sh
+nodeSelector:
+   kubernetes.io/hostname: aks-agentpool-30423418-0
 ```
 ```sh
 apiVersion: apps/v1
