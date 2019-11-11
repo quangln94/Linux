@@ -480,3 +480,4 @@ Key cuối cùng `/registry/pods/default/www` cuung cấp tất cả thông tin 
 
 ## Tài liệu tham khảo
 - https://matthewpalmer.net/kubernetes-app-developer/articles/how-does-kubernetes-use-etcd.html
+- https://medium.com/better-programming/a-closer-look-at-etcd-the-brain-of-a-kubernetes-cluster-788c8ea759a5
