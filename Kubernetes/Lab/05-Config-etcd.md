@@ -71,7 +71,7 @@ systemctl enable $SERVICES
 systemctl status -l $SERVICES
 done
 ```
-**After first start change Cluster State từ new sang existing. Để làm điều này thực hiện command sau:
+**After first start change Cluster State từ new sang existing. Để làm điều này thực hiện command sau:**
 ```sh
 sed -i s’/ETCD_INITIAL_CLUSTER_STATE=”new”/ETCD_INITIAL_CLUSTER_STATE=”existing”/’g /etc/etcd/etcd.conf
 ```
