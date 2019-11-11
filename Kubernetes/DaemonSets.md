@@ -3,7 +3,9 @@
 Daemonset được tạo ra cho 1 mục đích cụ thể: đảm bảo Pods được quản lý và chạy trên mọi Node. Khi Node tham joins vào cluster, DaemonSet đảm bảo các các Pods cần thiết chạy trên nó.
 
 ## DeamonSet Deployment
+Sửa file yaml
 ```sh
+$ vim daemonset.yaml
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
@@ -143,7 +145,7 @@ omsagent-lgqkz                      	1/1 	Running   0      	6h56m
 omsagent-rs-7b459857cd-g9gsx        	1/1 	Running   1      	6h59m
 tunnelfront-5d4d658788-28tdc        	1/1 	Running   0      	6h59m
 ```
-Có 1 Pod chạy vì chỏ có 1 Node khớp.
+Có 1 Pod chạy vì chỉ có 1 Node khớp.
 
 ## Tiếp cận 1 DaemonSet Pod
 Có 1 vài mẫu thiết kế DaemonSet-pods truyền thông trong cluster:
