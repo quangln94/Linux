@@ -1,6 +1,6 @@
 ## Daemonset
 
-Daemonset được tạo ra cho 1 mục đích cụ thể: đảm bảo Pods được quản lý và chạy trên mọi Node. Khi Node tham joins vào cluster, DaemonSet đảm bảo các các Pods cần thiết chạy trên nó.
+Daemonset được tạo ra cho 1 mục đích cụ thể: đảm bảo Pods được quản lý và chạy trên mọi Node. Khi Node joins vào cluster, DaemonSet đảm bảo các các Pods cần thiết chạy trên nó.
 
 ## DeamonSet Deployment
 Sửa file yaml
