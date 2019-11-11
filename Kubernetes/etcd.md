@@ -39,11 +39,11 @@ kube-system   kube-proxy-hqs7j                       1/1     Running   0        
 kube-system   kube-proxy-l788n                       1/1     Running   0          2d22h
 kube-system   kube-scheduler-server01                1/1     Running   0          2d22h
 ```
-Chúng ta quan tâm đến Pods `etcd-server01`. Chạy lệnh `shell` trong Pod `etcd` và kiểm tra cấu hình của container `etcd` đang chạy.
+Ta quan tâm đến Pods `etcd-server01`. Chạy lệnh `shell` trong Pod `etcd` và kiểm tra cấu hình của container `etcd` đang chạy.
 
 <img src=https://i.imgur.com/1f0e8gu.png>
 
-Sử dụng giá trị của flag `--advertise-client-urls`, lấy tất cả các cặp key/value tồn tại sưu dụng `etcdctl` và lưu vào `etcd-kv.json`.
+Sử dụng giá trị của flag `--advertise-client-urls`, lấy tất cả các cặp key/value tồn tại sử dụng `etcdctl` và lưu vào `etcd-kv.json`.
 ```sh
 $ ADVERTISE_URL="https://134.209.178.162:2379"
 $ kubectl exec etcd-node-01 -n kube-system -- sh -c \
