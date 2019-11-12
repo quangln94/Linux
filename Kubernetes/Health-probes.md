@@ -32,16 +32,16 @@ Sử dung command `kubectl describe` để kiểm tra:
 $ kubectl describe pods node500
 
 Events:
-Type 	   Reason             	  Age                	   From                     	  Message
----- 	   ------             	  ----               	   ----                     	  -------
-Normal   Scheduled          	  5m30s              	   default-scheduler        	  Successfully assigned node500 to docker-for-desktop
-Normal   SuccessfulMountVolume  5m29s              	   kubelet, docker-for-desktop  MountVolume.SetUp succeeded for volume "default-token-ddpbc"
-Normal   Created            	  3m35s (x3 over 5m24s)  kubelet, docker-for-desktop  Created container
-Normal   Started            	  3m35s (x3 over 5m24s)  kubelet, docker-for-desktop  Started container
-Warning  Unhealthy          	  3m18s (x7 over 5m18s)  kubelet, docker-for-desktop  Liveness probe failed: HTTP probe failed with statuscode: 500
-Normal   Pulling            	  2m48s (x4 over 5m29s)  kubelet, docker-for-desktop  pulling image "afakharany/node500"
-Normal   Pulled             	  2m46s (x4 over 5m24s)  kubelet, docker-for-desktop  Successfully pulled image "afakharany/node500"
-Normal   Killing            	  18s (x6 over 4m28s)	   kubelet, docker-for-desktop  Killing container with id docker://node500:Container failed liveness probe.. Container will be killed and recreated.
+Type 	   Reason             	Age                    From                         Message
+---- 	   ------             	----                   ----                         -------
+Normal   Scheduled          	5m30s                  default-scheduler            Successfully assigned node500 to docker-for-desktop
+Normal   SuccessfulMountVolume  5m29s                  kubelet, docker-for-desktop  MountVolume.SetUp succeeded for volume "default-token-ddpbc"
+Normal   Created            	3m35s (x3 over 5m24s)  kubelet, docker-for-desktop  Created container
+Normal   Started            	3m35s (x3 over 5m24s)  kubelet, docker-for-desktop  Started container
+Warning  Unhealthy          	3m18s (x7 over 5m18s)  kubelet, docker-for-desktop  Liveness probe failed: HTTP probe failed with statuscode: 500
+Normal   Pulling            	2m48s (x4 over 5m29s)  kubelet, docker-for-desktop  pulling image "afakharany/node500"
+Normal   Pulled             	2m46s (x4 over 5m24s)  kubelet, docker-for-desktop  Successfully pulled image "afakharany/node500"
+Normal   Killing            	18s (x6 over 4m28s)    kubelet, docker-for-desktop  Killing container with id docker://node500:Container failed liveness probe.. Container will be killed and recreated.
 ```
 Nếu quan tâm cách NodeJS application được lập trình, đây là file `app.js` và `Dockerfile` được sử dụng:
 
@@ -94,15 +94,15 @@ spec:
 $ kubectl apply -f pod.yaml
 $ kubectl describe pods nodedelayed
 Events:
-Type 	Reason             	      Age           	  From                     	   Message
----- 	------             	      ----          	  ----                     	   -------
-Normal   Scheduled          	  58s           	  default-scheduler        	   Successfully assigned nodedelayed to docker-for-desktop
+Type 	Reason             	Age           	  From                         Message
+---- 	------             	----          	  ----                         -------
+Normal   Scheduled          	58s           	  default-scheduler            Successfully assigned nodedelayed to docker-for-desktop
 Normal   SuccessfulMountVolume  58s           	  kubelet, docker-for-desktop  MountVolume.SetUp succeeded for volume "default-token-ddpbc"
-Normal   Pulling            	  57s           	  kubelet, docker-for-desktop  pulling image "afakharany/node_delayed"
-Normal   Pulled             	  53s           	  kubelet, docker-for-desktop  Successfully pulled image "afakharany/node_delayed"
-Normal   Created            	  52s           	  kubelet, docker-for-desktop  Created container
-Normal   Started            	  52s           	  kubelet, docker-for-desktop  Started container
-Warning  Unhealthy          	  8s (x5 over 48s)  kubelet, docker-for-desktop  Readiness probe failed: Get http://10.1.0.83:3000/: net/http: request canceled (Client.Timeout exceeded while awaiting headers
+Normal   Pulling            	57s           	  kubelet, docker-for-desktop  pulling image "afakharany/node_delayed"
+Normal   Pulled             	53s           	  kubelet, docker-for-desktop  Successfully pulled image "afakharany/node_delayed"
+Normal   Created            	52s           	  kubelet, docker-for-desktop  Created container
+Normal   Started            	52s           	  kubelet, docker-for-desktop  Started container
+Warning  Unhealthy          	8s (x5 over 48s)  kubelet, docker-for-desktop  Readiness probe failed: Get http://10.1.0.83:3000/: net/http: request canceled (Client.Timeout exceeded while awaiting headers
 ```
 `kubelet` không restarting Pod khi quá 2s mà hủy bỏ request. Các request được chuyển hướng tới healthy pods khác.
 
