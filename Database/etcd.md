@@ -92,6 +92,12 @@ ExecStart=/usr/local/bin/etcd \\
 WantedBy=multi-user.target
 EOF
 ```
+Trong đó: 
+- `--initial-advertise-peer-urls=http://localhost:2380`: Danh sách URLs ngang hàng của member để quảng bá cho phần còn lại của cluster
+- `--initial-cluster="default=http://localhost:2380`: Cấu hình cluster để restore bootstrap
+- `--initial-cluster-token=etcd-cluster-0`: Cluster token cho etcd cluster trong lúc restore bootstrap
+- `--name=default`: Tên member
+
 Nếu không mappings name trong file `/etc/hosts` file thì thay `etcd1`, `etcd2`, `etcd3` bằng IP của Node.
 
 Tắt `SELINUX` và disable `firewalld`
