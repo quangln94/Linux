@@ -246,6 +246,17 @@ You can list all the keys using ranges and prefixes
 ETCDCTL_API=3 etcdctl get name1 name4 # lists range name1 to name 4
 ETCDCTL_API=3 etcdctl get --prefix name # lists all keys with name prefix
 ```
-
+**Sử dụng API version 3**
+```sh
+[root@etcd1 ~]# export ETCDCTL_API=3
+[root@etcd1 ~]# etcdctl --write-out=table --endpoints=localhost:2379 member list
++------------------+---------+-------+-------------------+--------------------------+
+|        ID        | STATUS  | NAME  |    PEER ADDRS     |       CLIENT ADDRS       |
++------------------+---------+-------+-------------------+--------------------------+
+| 152d6f8123c6ac97 | started | etcd3 | http://etcd3:2380 | http://10.10.10.223:2379 |
+| 332a8a315e569778 | started | etcd2 | http://etcd2:2380 | http://10.10.10.222:2379 |
+| aebb404b9385ccd4 | started | etcd1 | http://etcd1:2380 | http://10.10.10.221:2379 |
++------------------+---------+-------+-------------------+--------------------------+
+```
 ## Tài liệu tham khảo
 - https://computingforgeeks.com/setup-etcd-cluster-on-centos-debian-ubuntu/
