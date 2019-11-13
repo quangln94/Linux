@@ -214,5 +214,38 @@ Node 2 có dữ liệu
 [root@etcd3 ~]# etcdctl ls /test
 /test/container2
 ```
+## 3. Một số command hay dùng
+- etcdctl member remove xxx: Remove Node 
+- etcdctl ls
+- etcdctl member list
+- etcdctl get
+- etcdctl set
+- etcdctl cluster-health
+- systemctl status etcd
+- ETCDCTL_API=3 etcdctl put
+- ETCDCTL_API=3 etcdctl get
+- ETCDCTL_API=3 etcdctl get --prefix name
+
+## 4. Thêm
+
+Mặc định, `etcdctl` sử dụng `etcd v2`. Nên cần sử dụng 1 biến rõ ràng `ETCDCTL_API=3` để truy cập chức năng `etcd v3`.
+
+Có thể set như sau: 
+```sh
+ETCDCTL_API=3 etcdctl put name1 batman
+ETCDCTL_API=3 etcdctl put name2 ironman
+ETCDCTL_API=3 etcdctl put name3 superman
+ETCDCTL_API=3 etcdctl put name4 spiderman
+```
+Now you can try getting the value of name3 using the following command.
+```sh
+ETCDCTL_API=3 etcdctl get name3
+```
+You can list all the keys using ranges and prefixes
+```sh
+ETCDCTL_API=3 etcdctl get name1 name4 # lists range name1 to name 4
+ETCDCTL_API=3 etcdctl get --prefix name # lists all keys with name prefix
+```
+
 ## Tài liệu tham khảo
 - https://computingforgeeks.com/setup-etcd-cluster-on-centos-debian-ubuntu/
