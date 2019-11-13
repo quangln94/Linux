@@ -210,6 +210,9 @@ Node 2 có dữ liệu
 
 **Kết nối lại Internet trên Node 3**
 ***Dữ liệu được đồng bộ lại trên 3 Node***
-
+```sh
+[root@etcd3 ~]# etcdctl ls /test
+/test/container2
+```
 ## Tài liệu tham khảo
 - https://computingforgeeks.com/setup-etcd-cluster-on-centos-debian-ubuntu/
