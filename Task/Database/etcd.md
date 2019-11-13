@@ -226,7 +226,7 @@ Node 2 có dữ liệu
 - ETCDCTL_API=3 etcdctl get
 - ETCDCTL_API=3 etcdctl get --prefix name
 
-## 4. Thêm
+## 4. Tham khảo thêm 
 
 Mặc định, `etcdctl` sử dụng `etcd v2`. Nên cần sử dụng 1 biến rõ ràng `ETCDCTL_API=3` để truy cập chức năng `etcd v3`.
 
