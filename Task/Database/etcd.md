@@ -1,6 +1,5 @@
-# Install Etcd
+# Etcd
 ## 1. Giới thiệu
-
 `etcd` là cơ sở sử liệu phân tán. Dùng để lưu trữ các giá trị key-value quan trọng trong hệ thống phân tán. Nó được viết bằng Go và sử dụng thuật toán [Raft](http://thesecretlivesofdata.com/raft/) để quản lý highly-available replicated log.
 
 `etcd` được thiết kế để: 
@@ -11,7 +10,7 @@
 
 ## 2. Setup Etcd Cluster trên CentOS 7/8, Ubuntu 18.04/16.04, Debian 10/9
 
-Mô hình cluster:
+**Mô hình cluster:**
 
 |Server|IP|
 |------|--|
@@ -104,18 +103,17 @@ $ sudo sed -i 's/^SELINUX=.*/SELINUX=permissive/g' /etc/selinux/config
 # RHEL / CentOS / Fedora firewalld
 $ sudo firewall-cmd --add-port={2379,2380}/tcp --permanent
 $ sudo firewall-cmd --reload
-```
+
 # Ubuntu/Debian
 sudo ufw allow proto tcp from any to any port 2379,2380
-
+```
 **Start `etcd` Server**
 ```sh
 sudo systemctl daemon-reload
 sudo systemctl enable etcd
 sudo systemctl start etcd
 ```
-
-Kiểm tra servvice `etcd` đang chạy trên các Node.
+**Kiểm tra servvice `etcd` đang chạy trên các Node.**
 ```sh
 [root@etcd1 ~]# systemctl status etcd -l
 ● etcd.service - etcd service
@@ -149,7 +147,8 @@ member 332a8a315e569778 is healthy: got healthy result from http://10.10.10.222:
 member aebb404b9385ccd4 is healthy: got healthy result from http://10.10.10.221:2379
 cluster is healthy
 ```
-## Writing to `etcd`.
+## 2. Thực hiện test cluster 
+**Writing to `etcd`**.
 ```sh
 [root@etcd1 ~]# etcdctl set /message "Hello World"
 Hello World
@@ -207,6 +206,10 @@ Node 2 có dữ liệu
 [root@etcd2 ~]# etcdctl ls /test
 /test/container2
 ```
-Node 3 không có Leader nến quá trình ghi dữ liệu không thực hiện được
+***Node 3 không có Leader nến quá trình ghi dữ liệu không thực hiện được***
+
+**Kết nối lại Internet trên Node 3**
+***Dữ liệu được đồng bộ lại trên 3 Node***
+
 ## Tài liệu tham khảo
 - https://computingforgeeks.com/setup-etcd-cluster-on-centos-debian-ubuntu/
