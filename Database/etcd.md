@@ -320,3 +320,5 @@ ETCDCTL_API=3 etcdctl snapshot restore snapshot-155.db \
 ```
 ## Tài liệu tham khảo
 - https://computingforgeeks.com/setup-etcd-cluster-on-centos-debian-ubuntu/
+- https://github.com/etcd-io/etcd/blob/master/Documentation/v2/admin_guide.md#disaster-recovery
+- https://github.com/etcd-io/etcd/blob/master/Documentation/op-guide/recovery.md
