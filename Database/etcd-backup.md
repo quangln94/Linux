@@ -43,7 +43,7 @@ Note: If you are trying to restore your cluster using old failed etcd nodes, ple
 ### 2.1 Backup
 Thực hiện `Snapshotting` từ 1 `etcd` member bằng lệnh `etcdctl snapshot save` như sau:
 ```sh
-$ ETCDCTL_API=3 etcdctl --endpoints $ENDPOINT snapshot save snapshot.db
+$ ETCDCTL_API=3 etcdctl --endpoints 10.10.10.221:2379 snapshot save snapshot.db
 ```
 Hoặc copy file `member/snap/db` từ thư mục `etcd data`
 ### 2.2 Restore
