@@ -54,7 +54,7 @@ sudo mkdir /etc/etcd
 sudo chown -R etcd:etcd /var/lib/etcd/
 ```
 
-**Configure `etcd` **
+**Configure `etcd`**
 
 Tạo biến để cấu hình 
 ```sh
@@ -94,8 +94,8 @@ EOF
 ```
 Trong đó: 
 - `--initial-advertise-peer-urls=http://localhost:2380`: Danh sách URLs ngang hàng của member để quảng bá cho phần còn lại của cluster
-- `--initial-cluster="default=http://localhost:2380`: Cấu hình cluster để restore bootstrap
-- `--initial-cluster-token=etcd-cluster-0`: Cluster token cho etcd cluster trong lúc restore bootstrap
+- `--initial-cluster="default=http://localhost:2380`: Cấu hình cluster
+- `--initial-cluster-token=etcd-cluster-0`: Cluster token cho etcd cluster 
 - `--name=default`: Tên member
 
 Nếu không mappings name trong file `/etc/hosts` file thì thay `etcd1`, `etcd2`, `etcd3` bằng IP của Node.
@@ -154,7 +154,7 @@ member aebb404b9385ccd4 is healthy: got healthy result from http://10.10.10.221:
 cluster is healthy
 ```
 ## 2. Thực hiện test cluster 
-**Writing to `etcd`**.
+**Ghi vào `etcd`**.
 ```sh
 [root@etcd1 ~]# etcdctl set /message "Hello World"
 Hello World
@@ -196,9 +196,9 @@ aebb404b9385ccd4: name=etcd1 peerURLs=http://etcd1:2380 clientURLs=http://10.10.
 ```
 ***Node 3 lên làm Leader***
 
-**Stop network kiểm tra hoạt động**
+**Hiện Node 3 đang là Leader, Stop network trên Node 3 và kiểm tra hoạt động**
 
-Node 1 lên lam Leader và thực hiện ghi dữ liệu trên Node 1
+Node 1 lên làm Leader và thực hiện ghi dữ liệu trên Node 1
 ```sh
 [root@etcd1 ~]# etcdctl member list
 152d6f8123c6ac97: name=etcd3 peerURLs=http://etcd3:2380 clientURLs=http://10.10.10.223:2379 isLeader=false
@@ -212,7 +212,7 @@ Node 2 có dữ liệu
 [root@etcd2 ~]# etcdctl ls /test
 /test/container2
 ```
-***Node 3 không có Leader nến quá trình ghi dữ liệu không thực hiện được***
+***Node 3 không còn là Leader nến quá trình ghi dữ liệu không thực hiện được***
 
 **Kết nối lại Internet trên Node 3**
 ***Dữ liệu được đồng bộ lại trên 3 Node***
