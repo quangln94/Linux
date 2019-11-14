@@ -277,9 +277,27 @@ snapshot save /backup/etcd-snapshot-$(date +%Y-%m-%d_%H:%M:%S_%Z).db
 
 ETCDCTL_API=3 etcdctl --endpoints 10.10.10.221:2379 snapshot save snapshot.db
 ```
+----------------------------------------------------------------------------------------------------------
+
+Data được lưu trong thư mục `/var/lib/etcd/`. Backup thư mục này:
+```sh
+cp /var/lib/etcd/member backup
+```
+
 **Restore**
+Copy thư mục `backup` vào `/var/lib/etcd/`
+```sh
+mv backup/member /var/lib/etcd/
+chown -R etcd:etcd /var/lib/etcd/
+systemctl daemon-reload
+systemctl start etcd
+```
+-----------------------------------------------------------------------------------------------------------------
+
 ```sh
 ETCDCTL_API=3 etcdctl snapshot restore snapshot.db
+
+chown -R etcd:etcd /var/lib/etcd/
 
 
 ETCDCTL_API=3 etcdctl snapshot restore snapshot-188.db \
