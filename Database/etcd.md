@@ -265,5 +265,8 @@ ETCDCTL_API=3 etcdctl get --prefix name # lists all keys with name prefix
 | aebb404b9385ccd4 | started | etcd1 | http://etcd1:2380 | http://10.10.10.221:2379 |
 +------------------+---------+-------+-------------------+--------------------------+
 ```
+## 3. Backup and Restore
+
+
 ## Tài liệu tham khảo
 - https://computingforgeeks.com/setup-etcd-cluster-on-centos-debian-ubuntu/
