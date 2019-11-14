@@ -49,9 +49,9 @@ sudo useradd -s /sbin/nologin --system -g etcd etcd
 
 Tạo thư mục data và config cho `etcd`.
 ```sh
-sudo mkdir -p /var/lib/etcd/
-sudo mkdir /etc/etcd
-sudo chown -R etcd:etcd /var/lib/etcd/
+  sudo mkdir -p /var/lib/etcd/
+  sudo mkdir /etc/etcd
+  sudo chown -R etcd:etcd /var/lib/etcd/
 ```
 
 **Configure `etcd`**
@@ -267,6 +267,38 @@ ETCDCTL_API=3 etcdctl get --prefix name # lists all keys with name prefix
 ```
 ## 3. Backup and Restore
 
+**Backup trên 1 Node**
+```sh
+ETCDCTL_API=3 etcdctl --endpoints=https://10.10.10.221:2379 \
+  --cacert=/etc/kubernetes/pki/etcd/ca.crt \
+  --cert=/etc/kubernetes/pki/etcd/healthcheck-client.crt \
+  --key=/etc/kubernetes/pki/etcd/healthcheck-client.key \
+snapshot save /backup/etcd-snapshot-$(date +%Y-%m-%d_%H:%M:%S_%Z).db
 
+ETCDCTL_API=3 etcdctl --endpoints 10.10.10.221:2379 snapshot save snapshot.db
+```
+**Restore**
+```sh
+ETCDCTL_API=3 etcdctl snapshot restore snapshot.db
+
+
+ETCDCTL_API=3 etcdctl snapshot restore snapshot-188.db \
+--name etcd1 \
+--initial-cluster etcd1=http://10.10.10.221:2380,etcd2=http://10.10.10.222:2380,etcd3=http://10.10.10.223:2380 \
+--initial-cluster-token my-etcd-token \
+--initial-advertise-peer-urls http://10.10.10.221:2380
+
+ETCDCTL_API=3 etcdctl snapshot restore snapshot-136.db \
+--name etcd2 \
+--initial-cluster etcd1=http://10.10.10.221:2380,etcd2=http://10.10.10.222:2380,etcd3=http://10.10.10.223:2380 \
+--initial-cluster-token my-etcd-token \
+--initial-advertise-peer-urls http://10.10.10.222:2380
+
+ETCDCTL_API=3 etcdctl snapshot restore snapshot-155.db \
+--name etcd3 \
+--initial-cluster etcd1=http://10.10.10.221:2380,etcd2=http://10.10.10.222:2380,etcd3=http://10.10.10.223:2380 \
+--initial-cluster-token my-etcd-token \
+--initial-advertise-peer-urls http://10.10.10.223:2380
+```
 ## Tài liệu tham khảo
 - https://computingforgeeks.com/setup-etcd-cluster-on-centos-debian-ubuntu/
