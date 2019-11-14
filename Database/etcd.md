@@ -176,7 +176,8 @@ localhost:8080
 [root@etcd3 ~]# etcdctl ls /myservice
 /myservice/container1
 ```
-**Test Leader failure***
+**Test Leader failure**
+
 Khi Leader fails, etcd cluster tự động bầu Leader mới. Cần 1 khoảng thời gian để bầu Leader mới. Trong quá trình bầu chọn không thể thực hiện bất kì process nào cho đến khi có Leader mới.
 ```sh
 [root@etcd1 ~]# etcdctl member list
