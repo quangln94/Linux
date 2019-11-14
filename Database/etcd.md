@@ -27,7 +27,8 @@ $ curl -s https://api.github.com/repos/etcd-io/etcd/releases/latest \
   | cut -d '"' -f 4 \
   | wget -qi -
 ```
-**Giải nén và move sang thư mục `/usr/local/bin directory`
+
+**Giải nén và move sang thư mục `/usr/local/bin`
 ```sh
 tar xvf *.tar.gz
 cd etcd-*/
