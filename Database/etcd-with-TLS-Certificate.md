@@ -153,11 +153,11 @@ Create etcd user trên 3 nodes:
 ```
 Fixing permissions trên tất cả các `etcd` node ở required directory và files:
 ```sh
-[root@etcd-* etcd]# chmod -Rv 550 /etc/ssl/etcd/
-[root@etcd-* etcd]# chmod 440 /etc/ssl/etcd/ssl/*.pem
-[root@etcd-* etcd]# chown -Rv etcd:etcd /etc/ssl/etcd/
-[root@etcd-* etcd]# chown -Rv etcd:etcd /etc/ssl/etcd/*
-[root@etcd-* etcd]# chown etcd:etcd /var/lib/etcd/
+chmod -Rv 550 /etc/ssl/etcd/
+chmod 440 /etc/ssl/etcd/ssl/*.pem
+chown -Rv etcd:etcd /etc/ssl/etcd/
+chown -Rv etcd:etcd /etc/ssl/etcd/*
+chown etcd:etcd /var/lib/etcd/
 ```
 Setting Up etcd service daemon files on all etcd nodes:
 
@@ -187,84 +187,83 @@ File config `etcd` trên mỗi Node.
 Tạo 1 file config `/etc/etcd.env` để gọi từ file etcd service.
 File config `etcd` cho Node 1:
 ```sh
-[root@etcd-1 etcd]# vi /etc/etcd.env
+[root@etcd1 etcd]# vim /etc/etcd.env
 ETCD_DATA_DIR=/var/lib/etcd
-ETCD_ADVERTISE_CLIENT_URLS=https://192.168.43.45:2379
-ETCD_INITIAL_ADVERTISE_PEER_URLS=https://192.168.43.45:2380
+ETCD_ADVERTISE_CLIENT_URLS=https://10.10.10.221:2379
+ETCD_INITIAL_ADVERTISE_PEER_URLS=https://10.10.10.221:2380
 ETCD_INITIAL_CLUSTER_STATE=new
-ETCD_LISTEN_CLIENT_URLS=https://192.168.43.45:2379
+ETCD_LISTEN_CLIENT_URLS=https://10.10.10.221:2379
 ETCD_ELECTION_TIMEOUT=5000
 ETCD_HEARTBEAT_INTERVAL=250
-ETCD_LISTEN_PEER_URLS=https://192.168.43.45:2380
+ETCD_LISTEN_PEER_URLS=https://10.10.10.221:2380
 ETCD_NAME=etcd1
 ETCD_PROXY=off
-ETCD_INITIAL_CLUSTER=etcd1=https://192.168.43.45:2380,etcd2=https://192.168.43.46:2380,etcd3=https://192.168.43.47:2380
-#ETCD_INITIAL_CLUSTER=etcd1=https://192.168.43.45:2380
+ETCD_INITIAL_CLUSTER=etcd1=https://10.10.10.221:2380,etcd2=https://10.10.10.222:2380,etcd3=https://10.10.10.223:2380
+#ETCD_INITIAL_CLUSTER=etcd1=https://10.10.10.221:2380
 # TLS settings
 ETCD_TRUSTED_CA_FILE=/etc/ssl/etcd/ssl/ca.pem
-ETCD_CERT_FILE=/etc/ssl/etcd/ssl/member-etcd-01.pem
-ETCD_KEY_FILE=/etc/ssl/etcd/ssl/member-etcd-01-key.pem
+ETCD_CERT_FILE=/etc/ssl/etcd/ssl/member-etcd1.pem
+ETCD_KEY_FILE=/etc/ssl/etcd/ssl/member-etcd1-key.pem
 ETCD_PEER_TRUSTED_CA_FILE=/etc/ssl/etcd/ssl/ca.pem
-ETCD_PEER_CERT_FILE=/etc/ssl/etcd/ssl/member-etcd-01.pem
-ETCD_PEER_KEY_FILE=/etc/ssl/etcd/ssl/member-etcd-01-key.pem
+ETCD_PEER_CERT_FILE=/etc/ssl/etcd/ssl/member-etcd1.pem
+ETCD_PEER_KEY_FILE=/etc/ssl/etcd/ssl/member-etcd1-key.pem
 ETCD_PEER_CLIENT_CERT_AUTH=true
 ```
 File config `etcd` cho Node 2:
 ```sh
-[root@etcd-2 etcd]# vi /etc/etcd.env
+[root@etcd2 etcd]# vim /etc/etcd.env
 ETCD_DATA_DIR=/var/lib/etcd
-ETCD_ADVERTISE_CLIENT_URLS=https://192.168.43.46:2379
-ETCD_INITIAL_ADVERTISE_PEER_URLS=https://192.168.43.46:2380
+ETCD_ADVERTISE_CLIENT_URLS=https://10.10.10.222:2379
+ETCD_INITIAL_ADVERTISE_PEER_URLS=https://10.10.10.222:2380
 ETCD_INITIAL_CLUSTER_STATE=new
-ETCD_LISTEN_CLIENT_URLS=https://192.168.43.46:2379
+ETCD_LISTEN_CLIENT_URLS=https://10.10.10.222:2379
 ETCD_ELECTION_TIMEOUT=5000
 ETCD_HEARTBEAT_INTERVAL=250
-ETCD_LISTEN_PEER_URLS=https://192.168.43.46:2380
+ETCD_LISTEN_PEER_URLS=https://10.10.10.222:2380
 ETCD_NAME=etcd2
 ETCD_PROXY=off
-ETCD_INITIAL_CLUSTER=etcd1=https://192.168.43.45:2380,etcd2=https://192.168.43.46:2380,etcd3=https://192.168.43.47:2380
-#ETCD_INITIAL_CLUSTER=etcd1=https://192.168.43.46:2380
+ETCD_INITIAL_CLUSTER=etcd1=https://10.10.10.221:2380,etcd2=https://10.10.10.222:2380,etcd3=https://10.10.10.223:2380
+#ETCD_INITIAL_CLUSTER=etcd2=https://10.10.10.222:2380
 # TLS settings
 ETCD_TRUSTED_CA_FILE=/etc/ssl/etcd/ssl/ca.pem
-ETCD_CERT_FILE=/etc/ssl/etcd/ssl/member-etcd-02.pem
-ETCD_KEY_FILE=/etc/ssl/etcd/ssl/member-etcd-02-key.pem
+ETCD_CERT_FILE=/etc/ssl/etcd/ssl/member-etcd2.pem
+ETCD_KEY_FILE=/etc/ssl/etcd/ssl/member-etcd2-key.pem
 ETCD_PEER_TRUSTED_CA_FILE=/etc/ssl/etcd/ssl/ca.pem
-ETCD_PEER_CERT_FILE=/etc/ssl/etcd/ssl/member-etcd-02.pem
-ETCD_PEER_KEY_FILE=/etc/ssl/etcd/ssl/member-etcd-02-key.pem
+ETCD_PEER_CERT_FILE=/etc/ssl/etcd/ssl/member-etcd2.pem
+ETCD_PEER_KEY_FILE=/etc/ssl/etcd/ssl/member-etcd2-key.pem
 ETCD_PEER_CLIENT_CERT_AUTH=true
 ```
 File config `etcd` cho Node 3:
 ```sh
-```sh
-[root@etcd-2 etcd]# vi /etc/etcd.env
+[root@etcd3 etcd]# vim /etc/etcd.env
 ETCD_DATA_DIR=/var/lib/etcd
-ETCD_ADVERTISE_CLIENT_URLS=https://192.168.43.46:2379
-ETCD_INITIAL_ADVERTISE_PEER_URLS=https://192.168.43.46:2380
+ETCD_ADVERTISE_CLIENT_URLS=https://10.10.10.223:2379
+ETCD_INITIAL_ADVERTISE_PEER_URLS=https://10.10.10.223:2380
 ETCD_INITIAL_CLUSTER_STATE=new
-ETCD_LISTEN_CLIENT_URLS=https://192.168.43.46:2379
+ETCD_LISTEN_CLIENT_URLS=https://10.10.10.223:2379
 ETCD_ELECTION_TIMEOUT=5000
 ETCD_HEARTBEAT_INTERVAL=250
-ETCD_LISTEN_PEER_URLS=https://192.168.43.46:2380
-ETCD_NAME=etcd2
+ETCD_LISTEN_PEER_URLS=https://10.10.10.223:2380
+ETCD_NAME=etcd3
 ETCD_PROXY=off
-ETCD_INITIAL_CLUSTER=etcd1=https://192.168.43.45:2380,etcd2=https://192.168.43.46:2380,etcd3=https://192.168.43.47:2380
-#ETCD_INITIAL_CLUSTER=etcd1=https://192.168.43.46:2380
+ETCD_INITIAL_CLUSTER=etcd1=https://10.10.10.221:2380,etcd2=https://10.10.10.222:2380,etcd3=https://10.10.10.223:2380
+#ETCD_INITIAL_CLUSTER=etcd3=https://10.10.10.223:2380
 # TLS settings
 ETCD_TRUSTED_CA_FILE=/etc/ssl/etcd/ssl/ca.pem
-ETCD_CERT_FILE=/etc/ssl/etcd/ssl/member-etcd-02.pem
-ETCD_KEY_FILE=/etc/ssl/etcd/ssl/member-etcd-02-key.pem
+ETCD_CERT_FILE=/etc/ssl/etcd/ssl/member-etcd3.pem
+ETCD_KEY_FILE=/etc/ssl/etcd/ssl/member-etcd3-key.pem
 ETCD_PEER_TRUSTED_CA_FILE=/etc/ssl/etcd/ssl/ca.pem
-ETCD_PEER_CERT_FILE=/etc/ssl/etcd/ssl/member-etcd-02.pem
-ETCD_PEER_KEY_FILE=/etc/ssl/etcd/ssl/member-etcd-02-key.pem
+ETCD_PEER_CERT_FILE=/etc/ssl/etcd/ssl/member-etcd3.pem
+ETCD_PEER_KEY_FILE=/etc/ssl/etcd/ssl/member-etcd3-key.pem
 ETCD_PEER_CLIENT_CERT_AUTH=true
 ```
 Applying ETCD configuration on systemd cho mỗi Node:
 
 In systemd based system it is required to reload daemon on every etcd nodes after service file change.
 ```sh
-[root@etcd-* etcd]# systemctl daemon-reload
-[root@etcd-* etcd]# systemctl start etcd
-[root@etcd-* etcd]# systemctl enable etcd
+systemctl daemon-reload
+systemctl start etcd
+systemctl enable etcd
 ```
 Xác thực trạng thấu cluster `etcd`:
 
