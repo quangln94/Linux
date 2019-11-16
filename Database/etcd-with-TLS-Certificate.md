@@ -2,16 +2,16 @@
 
 
 ## Certificate Generation:
-Sử dụng `openssl` để tạo certificate.
+Sử dụng `openssl` để tạo certificate trên tất cả các Node sử dụng command sau:
 ```sh
-[root@etcd1]# mkdir /root/etcd-certificate
-[root@etcd1]# cd /root/etcd-certificate
-[root@etcd1 etcd-certificate]# openssl genrsa -out ca-key.pem 2048
-[root@etcd1 etcd-certificate]# openssl req -x509 -new -nodes -key ca-key.pem -days 10000 -out ca.pem -subj "/CN=etcd-ca"
+[root@node]# mkdir /root/etcd-certificate
+[root@node]# cd /root/etcd-certificate
+[root@node etcd-certificate]# openssl genrsa -out ca-key.pem 2048
+[root@node etcd-certificate]# openssl req -x509 -new -nodes -key ca-key.pem -days 10000 -out ca.pem -subj "/CN=etcd-ca"
 ```
 **Tạo certificate trên ETCD node-1:**
 ```sh
-[root@etcd1 etcd-certificate]# vi openssl.conf
+[root@etcd1 etcd-certificate]# vim openssl.conf
 
 [req]
 req_extensions = v3_req
@@ -49,13 +49,15 @@ IP.2 = 127.0.0.1
 ```
 **Generate Certificates:**
 ```sh
+[root@etcd1]# mkdir /root/etcd-certificate
+[root@etcd1]# cd /root/etcd-certificate
 [root@etcd1 etcd-certificate]# openssl genrsa -out member-etcd1-key.pem 2048
 [root@etcd1 etcd-certificate]# openssl req -new -key member-etcd1-key.pem -out member-etcd1.csr -subj "/CN=etcd1" -config /root/etcd-certificate/openssl.conf
 [root@etcd1 etcd-certificate]# openssl x509 -req -in member-etcd1.csr -CA ca.pem -CAkey ca-key.pem -CAcreateserial -out member-etcd1.pem -days 3650 -extensions ssl_client -extfile /root/etcd-certificate/openssl.conf
 ```
 ## Tạo certificate trên ETCD node-2:
 ```sh
-[root@etcd2 etcd-certificate]# vi openssl.conf
+[root@etcd2 etcd-certificate]# vim openssl.conf
 
 [req]
 req_extensions = v3_req
@@ -95,7 +97,7 @@ IP.2 = 127.0.0.1
 ```
 ## Tạo certificate trên ETCD node-3:
 ```sh
-[root@etcd3 etcd-certificate]# vi openssl.conf
+[root@etcd3 etcd-certificate]# vim openssl.conf
 
 [req]
 req_extensions = v3_req
