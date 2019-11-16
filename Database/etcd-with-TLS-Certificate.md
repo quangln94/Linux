@@ -11,6 +11,8 @@ Sử dụng `openssl` để tạo certificate trên tất cả các Node sử d�
 ```
 **Tạo certificate trên ETCD node-1:**
 ```sh
+[root@node]# mkdir /root/etcd-certificate
+[root@node]# cd /root/etcd-certificate
 [root@etcd1 etcd-certificate]# vim openssl.conf
 
 [req]
@@ -57,6 +59,8 @@ IP.2 = 127.0.0.1
 ```
 ## Tạo certificate trên ETCD node-2:
 ```sh
+[root@node]# mkdir /root/etcd-certificate
+[root@node]# cd /root/etcd-certificate
 [root@etcd2 etcd-certificate]# vim openssl.conf
 
 [req]
@@ -97,6 +101,8 @@ IP.2 = 127.0.0.1
 ```
 ## Tạo certificate trên ETCD node-3:
 ```sh
+[root@node]# mkdir /root/etcd-certificate
+[root@node]# cd /root/etcd-certificate
 [root@etcd3 etcd-certificate]# vim openssl.conf
 
 [req]
