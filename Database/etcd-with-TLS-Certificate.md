@@ -1,5 +1,13 @@
 # ETCD Data Store Cluster with TLS Certificate
 
+Triển khai cụm cluster gồm 3 Node:
+
+|Server|IP|
+|------|--|
+|etcd1|10.10.10.221|
+|etcd2|10.10.10.222|
+|etcd3|10.10.10.223|
+
 
 ## Certificate Generation:
 Sử dụng `openssl` để tạo certificate trên tất cả các Node sử dụng command sau:
