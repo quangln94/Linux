@@ -1,6 +1,6 @@
-#
+# ETCD using SSL
+**Mô hình Lab**
 
-Mô hình Lab
 |Server|IP|
 |------|--|
 |node1|10.10.10.221|
