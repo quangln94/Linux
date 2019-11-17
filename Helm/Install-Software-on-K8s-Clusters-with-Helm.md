@@ -25,7 +25,7 @@ helm init --service-account tiller
 ```
 Mặc đinh `Tiller` được triển khai với policy không an toàn `allow unauthenticated users`.
 
-Xem thêm tại: https://docs.helm.sh/using_helm/#securing-your-helm-installation
+Xem thêm [tại đây](https://docs.helm.sh/using_helm/#securing-your-helm-installation)
 
 Để xác thức `Tiller` đang chạy, list pods trong namespace `thekube-system`:
 ```sh
@@ -38,6 +38,14 @@ kube-proxy-worker-5885                  1/1       Running   1          21m
 kubernetes-dashboard-7dd4fc69c8-c4gwk   1/1       Running   0          22m
 tiller-deploy-5c688d5f9b-lccsk          1/1       Running   0          40s
 ```
-##  Installing Helm Chart
+## Installing Helm Chart
+Helm software packages được gọi là `charts`. Helm comes preconfigured with a curated chart repository called stable. You can browse the available charts in their GitHub repo. We are going to install the Kubernetes Dashboard as an example.
+
+
+
+
+
+
+
 ## Tài liệu tham khảo
 - https://www.digitalocean.com/community/tutorials/how-to-install-software-on-kubernetes-clusters-with-the-helm-package-manager
