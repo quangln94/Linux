@@ -7,7 +7,7 @@
 |node2|10.10.10.222|
 |node3|10.10.10.223
 
-## Install cfssl (Cloudflare ssl) trên Node 1:
+## 1. Install cfssl (Cloudflare ssl) trên Node 1:
 ```sh
 wget https://pkg.cfssl.org/R1.2/cfssl_linux-amd64
 wget https://pkg.cfssl.org/R1.2/cfssljson_linux-amd64
@@ -22,7 +22,7 @@ Version: 1.2.0
 Revision: dev
 Runtime: go1.6
 ```
-## Tạo TLS certificates:
+## 2. Tạo TLS certificates:
 **Tạo file cấu hình CA (certificate authority):**
 ```sh
 vim ca-config.json
