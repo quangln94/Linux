@@ -100,8 +100,8 @@ cfssljson -bare kubernetes
 scp ca.pem kubernetes.pem kubernetes-key.pem root@10.10.10.222:~
 scp ca.pem kubernetes.pem kubernetes-key.pem root@10.10.10.223:~
 ```
-## 2. Install và config Etcd cluster
-## 2.1 Thực hiện trên tất cả các Node
+## 3. Install và config Etcd cluster
+## 3.1 Thực hiện trên tất cả các Node
 Tạo thư mục configuration cho `etcd`
 ```sh
 mkdir /etc/etcd /var/lib/etcd
@@ -119,7 +119,7 @@ Move etcd binaries tới `/usr/local/bin`
 ```sh
 mv etcd-v3.3.9-linux-amd64/etcd* /usr/local/bin/
 ```
-### 2.2 Thực hiện trên từng Node
+### 3.2 Thực hiện trên từng Node
 **Thực hiện trên Node 1
 ```sh
 [root@node1 ~]# vim /etc/systemd/system/etcd.service
@@ -222,7 +222,7 @@ RestartSec=5
 [Install]
 WantedBy=multi-user.target
 ```
-### 2.3 Thực hiện trên cả 3 Node
+### 3.3 Thực hiện trên cả 3 Node
 ```sh
 systemctl daemon-reload
 systemctl enable etcd
