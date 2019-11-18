@@ -2,11 +2,11 @@
 
 Mô hình LAB
 
-|Server|IP||||
-|------|
-|server01|10.10.10.221|tcd1
-|server02
-|server03||
+|Server|IP|||||
+|--------|------------|-----|-------|-------|--------|
+|server01|10.10.10.221|etcd1|master1|worker1|HAproxy1|
+|server02|10.10.10.222|etcd2|master2|worker2|HAproxy2|
+|server03|10.10.10.223|etcd3|master3|worker3||
 
 
 ## 1. Cài đặt, cấu hình HAproxy+keepalived
