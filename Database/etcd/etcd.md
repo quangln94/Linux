@@ -221,6 +221,57 @@ Node 2 có dữ liệu
 [root@etcd3 ~]# etcdctl ls /test
 /test/container2
 ```
+## 3. Backup and Restore
+Data được lưu trong thư mục `/var/lib/etcd/`. Backup thư mục này:
+```sh
+cp /var/lib/etcd/member backup
+```
+
+**Restore**
+
+Copy thư mục `backup` vào `/var/lib/etcd/`
+```sh
+mv backup/member /var/lib/etcd/
+chown -R etcd:etcd /var/lib/etcd/
+systemctl daemon-reload
+systemctl start etcd
+```
+-----------------------------------------------------------------------------------------------------------------
+
+**Backup trên 1 Node**
+```sh
+ETCDCTL_API=3 etcdctl --endpoints=https://10.10.10.221:2379 \
+  --cacert=/etc/kubernetes/pki/etcd/ca.crt \
+  --cert=/etc/kubernetes/pki/etcd/healthcheck-client.crt \
+  --key=/etc/kubernetes/pki/etcd/healthcheck-client.key \
+snapshot save /backup/etcd-snapshot-$(date +%Y-%m-%d_%H:%M:%S_%Z).db
+
+ETCDCTL_API=3 etcdctl --endpoints 10.10.10.221:2379 snapshot save snapshot.db
+```
+---------------------------------------------------------------------------------------------------------------
+```sh
+ETCDCTL_API=3 etcdctl snapshot restore snapshot.db
+
+
+ETCDCTL_API=3 etcdctl snapshot restore snapshot-188.db \
+--name etcd1 \
+--initial-cluster etcd1=http://10.10.10.221:2380,etcd2=http://10.10.10.222:2380,etcd3=http://10.10.10.223:2380 \
+--initial-cluster-token my-etcd-token \
+--initial-advertise-peer-urls http://10.10.10.221:2380
+
+ETCDCTL_API=3 etcdctl snapshot restore snapshot-136.db \
+--name etcd2 \
+--initial-cluster etcd1=http://10.10.10.221:2380,etcd2=http://10.10.10.222:2380,etcd3=http://10.10.10.223:2380 \
+--initial-cluster-token my-etcd-token \
+--initial-advertise-peer-urls http://10.10.10.222:2380
+
+ETCDCTL_API=3 etcdctl snapshot restore snapshot-155.db \
+--name etcd3 \
+--initial-cluster etcd1=http://10.10.10.221:2380,etcd2=http://10.10.10.222:2380,etcd3=http://10.10.10.223:2380 \
+--initial-cluster-token my-etcd-token \
+--initial-advertise-peer-urls http://10.10.10.223:2380
+```
+
 ## 3. Một số command hay dùng
 - etcdctl member remove xxx: Remove Node 
 - etcdctl ls
@@ -265,59 +316,7 @@ ETCDCTL_API=3 etcdctl get --prefix name # lists all keys with name prefix
 | aebb404b9385ccd4 | started | etcd1 | http://etcd1:2380 | http://10.10.10.221:2379 |
 +------------------+---------+-------+-------------------+--------------------------+
 ```
-## 3. Backup and Restore
 
-**Backup trên 1 Node**
-```sh
-ETCDCTL_API=3 etcdctl --endpoints=https://10.10.10.221:2379 \
-  --cacert=/etc/kubernetes/pki/etcd/ca.crt \
-  --cert=/etc/kubernetes/pki/etcd/healthcheck-client.crt \
-  --key=/etc/kubernetes/pki/etcd/healthcheck-client.key \
-snapshot save /backup/etcd-snapshot-$(date +%Y-%m-%d_%H:%M:%S_%Z).db
-
-ETCDCTL_API=3 etcdctl --endpoints 10.10.10.221:2379 snapshot save snapshot.db
-```
-----------------------------------------------------------------------------------------------------------
-
-Data được lưu trong thư mục `/var/lib/etcd/`. Backup thư mục này:
-```sh
-cp /var/lib/etcd/member backup
-```
-
-**Restore**
-Copy thư mục `backup` vào `/var/lib/etcd/`
-```sh
-mv backup/member /var/lib/etcd/
-chown -R etcd:etcd /var/lib/etcd/
-systemctl daemon-reload
-systemctl start etcd
-```
------------------------------------------------------------------------------------------------------------------
-
-```sh
-ETCDCTL_API=3 etcdctl snapshot restore snapshot.db
-
-chown -R etcd:etcd /var/lib/etcd/
-
-
-ETCDCTL_API=3 etcdctl snapshot restore snapshot-188.db \
---name etcd1 \
---initial-cluster etcd1=http://10.10.10.221:2380,etcd2=http://10.10.10.222:2380,etcd3=http://10.10.10.223:2380 \
---initial-cluster-token my-etcd-token \
---initial-advertise-peer-urls http://10.10.10.221:2380
-
-ETCDCTL_API=3 etcdctl snapshot restore snapshot-136.db \
---name etcd2 \
---initial-cluster etcd1=http://10.10.10.221:2380,etcd2=http://10.10.10.222:2380,etcd3=http://10.10.10.223:2380 \
---initial-cluster-token my-etcd-token \
---initial-advertise-peer-urls http://10.10.10.222:2380
-
-ETCDCTL_API=3 etcdctl snapshot restore snapshot-155.db \
---name etcd3 \
---initial-cluster etcd1=http://10.10.10.221:2380,etcd2=http://10.10.10.222:2380,etcd3=http://10.10.10.223:2380 \
---initial-cluster-token my-etcd-token \
---initial-advertise-peer-urls http://10.10.10.223:2380
-```
 ## Tài liệu tham khảo
 - https://computingforgeeks.com/setup-etcd-cluster-on-centos-debian-ubuntu/
 - https://github.com/etcd-io/etcd/blob/master/Documentation/v2/admin_guide.md#disaster-recovery
