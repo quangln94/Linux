@@ -241,4 +241,5 @@ $ ETCDCTL_API=3 etcdctl --endpoints=https://10.10.10.221:2379,https://10.10.10.2
 
 ## Tài liệu tham khảo
 - https://github.com/thangtq710/Kubernetes/blob/master/docs/2.Etcd.md
+- https://blog.inkubate.io/install-and-configure-a-multi-master-kubernetes-cluster-with-kubeadm/
 
