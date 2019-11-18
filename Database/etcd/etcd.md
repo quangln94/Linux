@@ -235,6 +235,7 @@ cp -r /var/lib/etcd/member backup
 ```
 
 **Restore**
+
 Thực hiện cài đặt lại trên 1 Node khac sau đó copy thư mục backup vào `/var/lib/etcd/`:
 
 Copy thư mục `backup` vào `/var/lib/etcd/`
