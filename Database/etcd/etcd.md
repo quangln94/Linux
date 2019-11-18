@@ -227,8 +227,9 @@ Giả sử Node `etcd2` lỗi. Thực hiện backup data như sau:
 
 Data được lưu trong thư mục `/var/lib/etcd/`. Backup thư mục này:
 
-Tạo thư mục backup và thực hiện backup
+Tạo thư mục backup và stop service etcd sau đó thực hiện backup
 ```sh
+systemctl stop etcd
 mkdir backup
 systemctl stop etcd
 cp -r /var/lib/etcd/member backup
