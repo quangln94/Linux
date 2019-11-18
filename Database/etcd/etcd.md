@@ -223,7 +223,12 @@ Node 2 có dữ liệu
 ```
 ## 3. Backup and Restore
 Data được lưu trong thư mục `/var/lib/etcd/`. Backup thư mục này:
+
+Tạo thư mục backup và thực hiện backup
+
 ```sh
+mkdir backup
+systemctl stop etcd
 cp /var/lib/etcd/member backup
 ```
 
