@@ -237,6 +237,7 @@ systemctl daemon-reload
 systemctl start etcd
 ```
 -----------------------------------------------------------------------------------------------------------------
+## Chưa OK
 
 **Backup trên 1 Node**
 ```sh
@@ -272,7 +273,7 @@ ETCDCTL_API=3 etcdctl snapshot restore snapshot-155.db \
 --initial-advertise-peer-urls http://10.10.10.223:2380
 ```
 
-## 3. Một số command hay dùng
+## 4. Một số command hay dùng
 - etcdctl member remove xxx: Remove Node 
 - etcdctl ls
 - etcdctl member list
@@ -284,7 +285,7 @@ ETCDCTL_API=3 etcdctl snapshot restore snapshot-155.db \
 - ETCDCTL_API=3 etcdctl get
 - ETCDCTL_API=3 etcdctl get --prefix name
 
-## 4. Tham khảo thêm 
+## 5. Tham khảo thêm 
 
 Mặc định, `etcdctl` sử dụng `etcd v2`. Nên cần sử dụng 1 biến rõ ràng `ETCDCTL_API=3` để truy cập chức năng `etcd v3`.
 
