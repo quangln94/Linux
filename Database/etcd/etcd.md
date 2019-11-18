@@ -222,21 +222,25 @@ Node 2 có dữ liệu
 /test/container2
 ```
 ## 3. Backup and Restore
+
+Giả sử Node `etcd2` lỗi. Thực hiện backup data như sau:
+
 Data được lưu trong thư mục `/var/lib/etcd/`. Backup thư mục này:
 
 Tạo thư mục backup và thực hiện backup
-
 ```sh
 mkdir backup
 systemctl stop etcd
-cp /var/lib/etcd/member backup
+cp -r /var/lib/etcd/member backup
 ```
 
 **Restore**
+Thực hiện cài đặt lại trên 1 Node khac sau đó copy thư mục backup vào `/var/lib/etcd/`:
 
 Copy thư mục `backup` vào `/var/lib/etcd/`
 ```sh
-mv backup/member /var/lib/etcd/
+scp -r backup/member root@ip: backup
+cp -r backup/member /var/lib/etcd/
 chown -R etcd:etcd /var/lib/etcd/
 systemctl daemon-reload
 systemctl start etcd
