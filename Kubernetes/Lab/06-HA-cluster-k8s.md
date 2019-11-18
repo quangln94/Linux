@@ -2,7 +2,7 @@
 
 Mô hình LAB
 
-|Server|IP|||||
+|Server|IP|etcd|Master|Worker|HAproxy|
 |--------|------------|-----|-------|-------|--------|
 |server01|10.10.10.221|etcd1|master1|worker1|HAproxy1|
 |server02|10.10.10.222|etcd2|master2|worker2|HAproxy2|
