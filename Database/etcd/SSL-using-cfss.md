@@ -3,9 +3,9 @@
 
 |Server|IP|
 |------|--|
-|node1|10.10.10.221|
-|node2|10.10.10.222|
-|node3|10.10.10.223
+|node1|10.10.10.101|
+|node2|10.10.10.102|
+|node3|10.10.10.103|
 
 ## 1. Install cfssl (Cloudflare ssl) trên Node 1:
 ```sh
@@ -91,14 +91,14 @@ cfssl gencert \
 -ca=ca.pem \
 -ca-key=ca-key.pem \
 -config=ca-config.json \
--hostname=10.10.10.221,10.10.10.222,10.10.10.223 \
+-hostname=10.10.10.101,10.10.10.102,10.10.10.103,10.10.10.110 \
 -profile=kubernetes kubernetes-csr.json | \
 cfssljson -bare kubernetes
 ```
 **Copy certificate tới mỗi Node trong etcd cluster**
 ```sh
-scp ca.pem kubernetes.pem kubernetes-key.pem root@10.10.10.222:~
-scp ca.pem kubernetes.pem kubernetes-key.pem root@10.10.10.223:~
+scp ca.pem kubernetes.pem kubernetes-key.pem root@10.10.10.102:~
+scp ca.pem kubernetes.pem kubernetes-key.pem root@10.10.10.103:~
 ```
 ## 3. Install và config Etcd cluster
 ## 3.1 Thực hiện trên tất cả các Node
@@ -140,12 +140,12 @@ ExecStart=/usr/local/bin/etcd \
   --peer-trusted-ca-file=/etc/etcd/ca.pem \
   --peer-client-cert-auth \
   --client-cert-auth \
-  --initial-advertise-peer-urls https://10.10.10.221:2380 \
-  --listen-peer-urls https://10.10.10.221:2380 \
-  --listen-client-urls https://10.10.10.221:2379 \
-  --advertise-client-urls https://10.10.10.221:2379 \
+  --initial-advertise-peer-urls https://10.10.10.101:2380 \
+  --listen-peer-urls https://10.10.10.101:2380 \
+  --listen-client-urls https://10.10.10.101:2379 \
+  --advertise-client-urls https://10.10.10.101:2379 \
   --initial-cluster-token etcd-cluster-0 \
-  --initial-cluster etcd1=https://10.10.10.221:2380,etcd2=https://10.10.10.222:2380,etcd3=https://10.10.10.223:2380 \
+  --initial-cluster etcd1=https://10.10.10.101:2380,etcd2=https://10.10.10.102:2380,etcd3=https://10.10.10.103:2380 \
   --initial-cluster-state new \
   --data-dir=/var/lib/etcd
 Restart=on-failure
@@ -174,12 +174,12 @@ ExecStart=/usr/local/bin/etcd \
   --peer-trusted-ca-file=/etc/etcd/ca.pem \
   --peer-client-cert-auth \
   --client-cert-auth \
-  --initial-advertise-peer-urls https://10.10.10.222:2380 \
-  --listen-peer-urls https://10.10.10.222:2380 \
-  --listen-client-urls https://10.10.10.222:2379 \
-  --advertise-client-urls https://10.10.10.222:2379 \
+  --initial-advertise-peer-urls https://10.10.10.102:2380 \
+  --listen-peer-urls https://10.10.10.102:2380 \
+  --listen-client-urls https://10.10.10.102:2379 \
+  --advertise-client-urls https://10.10.10.102:2379 \
   --initial-cluster-token etcd-cluster-0 \
-  --initial-cluster etcd1=https://10.10.10.221:2380,etcd2=https://10.10.10.222:2380,etcd3=https://10.10.10.223:2380 \
+  --initial-cluster etcd1=https://10.10.10.101:2380,etcd2=https://10.10.10.102:2380,etcd3=https://10.10.10.103:2380 \
   --initial-cluster-state new \
   --data-dir=/var/lib/etcd
 Restart=on-failure
@@ -208,12 +208,12 @@ ExecStart=/usr/local/bin/etcd \
   --peer-trusted-ca-file=/etc/etcd/ca.pem \
   --peer-client-cert-auth \
   --client-cert-auth \
-  --initial-advertise-peer-urls https://10.10.10.223:2380 \
-  --listen-peer-urls https://10.10.10.223:2380 \
-  --listen-client-urls https://10.10.10.223:2379 \
-  --advertise-client-urls https://10.10.10.223:2379 \
+  --initial-advertise-peer-urls https://10.10.10.103:2380 \
+  --listen-peer-urls https://10.10.10.103:2380 \
+  --listen-client-urls https://10.10.10.103:2379 \
+  --advertise-client-urls https://10.10.10.103:2379 \
   --initial-cluster-token etcd-cluster-0 \
-  --initial-cluster etcd1=https://10.10.10.221:2380,etcd2=https://10.10.10.222:2380,etcd3=https://10.10.10.223:2380 \
+  --initial-cluster etcd1=https://10.10.10.101:2380,etcd2=https://10.10.10.102:2380,etcd3=https://10.10.10.103:2380 \
   --initial-cluster-state new \
   --data-dir=/var/lib/etcd
 Restart=on-failure
@@ -230,16 +230,16 @@ systemctl start etcd
 ```
 **Xác thực cluster**
 ```sh
-$ ETCDCTL_API=3 etcdctl --endpoints=https://10.10.10.221:2379,https://10.10.10.222:2379,https://10.10.10.223:2379 --cacert=/etc/etcd/ca.pem --cert=/etc/etcd/kubernetes.pem --key=/etc/etcd/kubernetes-key.pem --write-out=table endpoint status
+$ ETCDCTL_API=3 etcdctl --endpoints=https://10.10.10.101:2379,https://10.10.10.102:2379,https://10.10.10.103:2379 --cacert=/etc/etcd/ca.pem --cert=/etc/etcd/kubernetes.pem --key=/etc/etcd/kubernetes-key.pem --write-out=table endpoint status
 +---------------------------+------------------+---------+---------+-----------+-----------+------------+
 |         ENDPOINT          |        ID        | VERSION | DB SIZE | IS LEADER | RAFT TERM | RAFT INDEX |
 +---------------------------+------------------+---------+---------+-----------+-----------+------------+
-| https://10.10.10.221:2379 | 3f35e6e9ca1fe058 |   3.3.9 |   20 kB |      true |        11 |         16 |
-| https://10.10.10.222:2379 | 69c45d55b6824d55 |   3.3.9 |   20 kB |     false |        11 |         16 |
-| https://10.10.10.223:2379 | b4baa0d8b7cac7a5 |   3.3.9 |   20 kB |     false |        11 |         16 |
+| https://10.10.10.101:2379 | e62b7898822a43c8 |   3.3.9 |   20 kB |      true |         2 |          8 |
+| https://10.10.10.102:2379 | 21dcbad7aeb6e920 |   3.3.9 |   20 kB |     false |         2 |          8 |
+| https://10.10.10.103:2379 | 77ee7ec8ef5ea698 |   3.3.9 |   20 kB |     false |         2 |          8 |
++---------------------------+------------------+---------+---------+-----------+-----------+------------+
 ```
 
 ## Tài liệu tham khảo
 - https://github.com/thangtq710/Kubernetes/blob/master/docs/2.Etcd.md
 - https://blog.inkubate.io/install-and-configure-a-multi-master-kubernetes-cluster-with-kubeadm/
-
