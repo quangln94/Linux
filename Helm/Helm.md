@@ -22,7 +22,7 @@ Trước hết ta cần phải biết qua 3 concept chính của Helm
 
 Các chứng năng của Helm được thực hiện thông qua thành phần như sau:
 
-**Helm Client**: là một command-line client chịu trách nhiệm cho việc:
+**Helm Client**: cung cấp giao diện command-line để làm việc với Helm Chart:
 
 - Tạo chart ở local.
 - Quản lý các repository.
@@ -31,7 +31,7 @@ Các chứng năng của Helm được thực hiện thông qua thành phần nh
       - Truy vấn thông tin của các release.
       - Gửi yêu cầu upgrade hay uninstall các release đã cài.
 
-**Tilter server**: là một server nằm trong Kubernetes cluster tương tác với Helm Client và là một interface đến các Kubernetes API. Server này chịu trách nhiệm cho việc:
+**Tiller server**: được cài đặt trong cluster k8s, tương tác với Helm Client và Kubernetes API, chịu trách nhiệm cho việc:
 - Lắng nghe các request từ Helm Client.
 - Kết hợp Chart và Config để tạo nên một Release.
 - Cài đặt các Chart vào Kubernetes cluster, và theo dõi các Release tiếp theo.
@@ -39,45 +39,43 @@ Các chứng năng của Helm được thực hiện thông qua thành phần nh
 
 Tóm lại là Helm client chịu trách nhiệm quản lý các Chart, còn Tilter server chịu trách nhiệm quản lý các Release.
 
-**Helm Charts**: chart repository chính thức của Helm chứa hầu hết các chart được tạo sẵn dành cho các project open-source phổ biến.
-https://github.com/helm/charts
+**Helm Charts**: Helm quản lý các resource packags thông qua Chart.
 
 ## 4. Chart
 Chart là một cây thông tin cho các package, nó bao gồm một vài YAML file dành cho việc định nghĩa chart và một số template file dành cho việc tạo các file manifest trong Kubernetes theo một số config riêng biệt. Sau đây là một Chart cơ bản:
 ```sh
-.
-+-- package-name/
-|   +-- charts/
-|   +-- templates/
-|   +-- Chart.yaml
-|   +-- LICENSE
-|   +-- README.md
-|   +-- requirements.yaml
-|   +-- values.yaml
+package-name/
+  charts/
+  templates/
+  Chart.yaml
+  LICENSE
+  README.md
+  requirements.yaml
+  values.yaml
 ```
 Vai trò của các file và thư mục như sau:
-- charts/: những chart phụ thuộc có thể để vào đây tuy nhiên vẫn nên dùng requirements.yaml để link các chart phụ thuộc linh động hơn.
-- templates/: chứa những template file để khi kết hợp với các biến config (từ values.yaml và command-line) tạo thành các manifest file cho Kubernetes. Lưu ý: template file sử dụng format của ngôn ngữ lập trình Go.
-- Chart.yaml/: yaml file chứa các thông tin liên quan đến định nghĩa Chart như tên, version, ...
-- LICENSE/: license cho việc sử dụng Chart.
-- README.md/: miêu tả thông tin và cách sử dụng Chart tương tự README.md trong các project trên Github.
-- requirements.yaml/: yaml file chứa danh sách các link của các chart phụ thuộc.
-- values.yaml/: yaml file chứa các biến config mặc định cho Chart.
+- **charts/:** những chart phụ thuộc có thể để vào đây tuy nhiên vẫn nên dùng requirements.yaml để link các chart phụ thuộc linh động hơn.
+- **templates/:** chứa những template file để khi kết hợp với giá trị config (từ `values.yaml` và command-line) tạo thành các manifest file cho Kubernetes. Lưu ý: template file sử dụng format của ngôn ngữ lập trình Go.
+- **Chart.yaml/:** file yaml với metadata chứa các thông tin như name, version...
+- **LICENSE/:** license cho việc sử dụng Chart.
+- **README.md/:** thông tin cho users của chart.
+- **requirements.yaml/:** file yaml chứa danh sách các chart phụ thuộc.
+- **values.yaml/:** file yaml chứa giá trị config mặc định cho Chart.
 
-Chúng ta có thể tạo và cài đặt Chart ở local, hoặc sử dụng Chart của người khác bằng cách chia sẻ nguyên folder Chart hoặc kéo từ các repository.
+Lệnh `helm` có hể được cài đặt một chart từ một local directory hoặc từ một packaged version `.tar.gz` của kiến trúc thư mục này. Các packaged chart có thể tự động download và cài đặt từ chart repositories hoặc repos.
 
-Việc tìm hiểu cấu trúc của một Chart rất hữu ích cho việc tự tạo Chart và customize Chart từ repository.
+## 5. Chart Configuration
+Các config mặc định của một Chart nằm ở file `values.yaml` và có thể được thay đổi.
 
-## 5. Config
-Các config mặc định của một Chart nằm ở values.yaml. Khi sử dụng Chart chúng ta sẽ có nhu cầu thay đổi và ghi đè các config theo ý muốn của chúng ta.
-
-Các config của một Chart có thể được thay đổi thông qua command-line flag hoặc bằng cách tạo ra file config.yaml nằm ngoài thư mục Chart. Khi đó các biến của config.yaml sẽ ghi đè lên values.yaml.
+Các config của một Chart có thể được thay đổi thông qua command-line flag hoặc bằng cách tạo ra file config.yaml nằm ngoài thư mục Chart. Khi đó các biến của `config.yaml` sẽ ghi đè lên `values.yaml`.
 
 ## 6. Release
-Khi cài đặt Chart, Helm kết hợp các template file của Chart với các config (mặc định hoặc user ghi đè lên) để tạo nên các manifest file được deploy thông qua Kubernetes API. Khi đó một Release sẽ được tạo ra, đây là một "running instance" của Chart trên Kubernetes cluster.
+Khi cài đặt Chart, Helm kết hợp các template của Chart với các config (mặc định hoặc user ghi đè lên) để tạo nên các manifest file được deploy thông qua Kubernetes API. Khi đó một Release sẽ được tạo ra, đây là một "running instance" của Chart trên Kubernetes cluster.
 
-Việc chia ra các Release rất hữu ích khi chúng ta muốn deploy hàng loạt các ứng dụng cùng loại trên cùng một cluster. Ví dụ như chúng ta muốn tạo nên nhiều MySQL servers với các config khác nhau. Khi đó các Release sẽ giúp deploy nhanh chóng và giúp ta tránh việc xung đột các metadata của các resource (điển hình nhất là việc đặt tên). Việc upgrade/rollback hay uninstall từng Release cũng dễ dàng khi thông tin từng Release được lưu cụ thể.
+Việc chia ra các Release rất hữu ích khi chúng ta muốn deploy hàng loạt các ứng dụng cùng loại trên cùng một cluster. Ví dụ như chúng ta muốn nhiều MySQL servers với các config khác nhau. Khi đó các Release sẽ giúp deploy nhanh chóng và giúp tránh việc xung đột các metadata của các resource (điển hình nhất là việc đặt tên). Việc upgrade/rollback hay uninstall từng Release cũng dễ dàng khi thông tin từng Release được lưu cụ thể.
 
+## 7. Creating Charts
+Có thể tự tạo chart. Helm có thể xuất ra output của 1 chart directory với `helm create chart-name`. Nó sẽ tạo ra 1 folder với files và directories.
 
 ## Tài liệu tham khảo
-- https://blog.vietnamlab.vn/2019/01/31/helm-package-manager-cho-kuber/
+- https://www.digitalocean.com/community/tutorials/an-introduction-to-helm-the-package-manager-for-kubernetes
