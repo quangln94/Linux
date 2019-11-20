@@ -44,8 +44,15 @@ Helm software packages được gọi là `charts`. Helm comes preconfigured wit
 
 
 
-
-
+## Một số command hay dùng
+```sh
+helm list
+helm upgrade dashboard-demo stable/kubernetes-dashboard --set fullnameOverride="dashboard"
+helm rollback dashboard-demo 1
+helm delete dashboard-demo
+helm list --deleted
+helm delete dashboard-demo --purge
+```
 
 ## Tài liệu tham khảo
 - https://www.digitalocean.com/community/tutorials/how-to-install-software-on-kubernetes-clusters-with-the-helm-package-manager
