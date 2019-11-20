@@ -66,9 +66,9 @@ kubectl delete deployment tiller-deploy -n kube-system --force=true --timeout=0s
 kubectl -n kube-system delete deploy tiller-deploy
 helm init --service-account tiller
 ```
-
 ## Tài liệu tham khảo
 - https://www.digitalocean.com/community/tutorials/how-to-install-software-on-kubernetes-clusters-with-the-helm-package-manager
+- https://www.baeldung.com/kubernetes-helm
 ## Tài liệu fix lỗi
 - https://github.com/helm/helm/issues/4181
 - https://github.com/helm/helm/issues/3996
