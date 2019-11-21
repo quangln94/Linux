@@ -27,6 +27,66 @@ Trong đó:
 
 Có thể sử dụng `kubectl describe` hoặc `kubectl get`  để lấy thông tin về 1 ConfigMap.
 
+### 1.2 Define ConfigMap trong file YAML.
+Tạo file `config-map.yaml` 
+```sh
+kind: ConfigMap 
+apiVersion: v1 
+metadata:
+  name: example-configmap 
+data:
+  # Configuration values can be set as key-value properties
+  database: mongodb
+  database_uri: mongodb://localhost:27017
+  
+  # Or set as complete file contents (even JSON!)
+  keys: | 
+    image.public.key=771 
+    rsa.public.key=42
+```
+Tạo `ConfigMap` sử dụng lệnh:
+```sh
+kubectl apply -f config-map.yaml
+```
+### 1.3 Mount ConfigMap thông qua Volume
+
+Mỗi trên thuộc tính trong `ConfigMap` sẽ thành 1 file mới trong thư mục được mount`/etc/config`.
+
+Tạo file `pod.yaml` với nội dung sau:
+```sh
+kind: Pod 
+apiVersion: v1 
+metadata:
+  name: pod-using-configmap 
+
+spec:
+  # Add the ConfigMap as a volume to the Pod
+  volumes:
+    # `name` here must match the name specified in the volume mount
+    - name: example-configmap-volume
+      # Populate the volume with config map data
+      configMap:
+        # `name` here must match the name specified in the ConfigMap's YAML 
+        name: example-configmap
+
+  containers:
+    - name: container-configmap
+      image: nginx:1.7.9
+      # Mount the volume that contains the configuration data into your container filesystem
+      volumeMounts:
+        # `name` here must match the name from the volumes section of this pod
+        - name: example-configmap-volume
+            mountPath: /etc/config
+```
+Attach vào Pod được tạo sử dụng
+```sh
+kubectl exec -it pod-using-configmap sh
+```
+Sau đó chạy lệnh:
+```sh
+ls /etc/config
+```
+Có thể thấy mỗi key từ `ConfigMap` được thêm vào như 1 file trong thư mục. Sử dụng `cat` để xem nội dung của mỗi file và sẽ thấy các values từ `ConfigMap`.
 
 ## Tài liệu tham khảo
 - https://matthewpalmer.net/kubernetes-app-developer/articles/ultimate-configmap-guide-kubernetes.html
