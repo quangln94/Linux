@@ -1,0 +1,1 @@
+The WSO2 Dashboard Server was created out of necessity for our products. We no longer believe it is well suited for others to use directly and as such it will no longer be available for download. It remains a key component of our analytics offerings, but only as a component and not a standalone product.
