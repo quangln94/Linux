@@ -60,21 +60,21 @@ metadata:
   name: pod-using-configmap 
 
 spec:
-  # Add the ConfigMap as a volume to the Pod
+  # Thêm ConfigMap như 1 volume đến Pod
   volumes:
-    # `name` here must match the name specified in the volume mount
+    # 'name' phải khớp với 'name' chỉ định trong volume mount
     - name: example-configmap-volume
       # Populate the volume with config map data
       configMap:
-        # `name` here must match the name specified in the ConfigMap's YAML 
+        # 'name' phải khớp với 'name' được chỉ định trong 'ConfigMap' 
         name: example-configmap
 
   containers:
     - name: container-configmap
       image: nginx:1.7.9
-      # Mount the volume that contains the configuration data into your container filesystem
+      # Mount the volume chứa configuration data đến container filesystem của bạn
       volumeMounts:
-        # `name` here must match the name from the volumes section of this pod
+        # 'name' phải khớp với 'name' từ 'volumes' section của pod này
         - name: example-configmap-volume
             mountPath: /etc/config
 ```
