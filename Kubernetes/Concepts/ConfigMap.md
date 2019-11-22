@@ -111,6 +111,17 @@ Attach để tạo Pod sử dụng `kubectl exec -it pod-env-var sh`. Sau đó c
 - Sử dụng nội dung của file chỉ định: `kubectl create configmap my-config --from-file=./my/file.txt`
 - Sử dụng các cặp key-value: `kubectl create configmap my-config --from-literal=key1=value1 --from-literal=key2=value2`
 
+# 2. Một số command hay dùng
+Để export file manifest tương ứng với file ConfigMap sử dụng:
+```sh
+kubectl get configmap/demo-config --namespace=demo --export -o yaml >demo-config.yaml
+```
+
+
+
+
+
+
 
 ## Tài liệu tham khảo
 - https://matthewpalmer.net/kubernetes-app-developer/articles/ultimate-configmap-guide-kubernetes.html
