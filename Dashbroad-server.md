@@ -1,1 +1,3 @@
-The WSO2 Dashboard Server was created out of necessity for our products. We no longer believe it is well suited for others to use directly and as such it will no longer be available for download. It remains a key component of our analytics offerings, but only as a component and not a standalone product.
+The WSO2 Dashboard Server (formerly WSO2 User Engagement Server) helps to rapidly create visually appealing and engaging web components such as dashboards, and gadgets, and unlocking data for business intelligence and monitoring. With the host of capabilities that Dashboard Server provides out-of-the-box, going from data to screen has never been easier.
+
+WSO2 Dashboard Server (DS) works with any WSO2 product as part of our underlying platform. Dashboard requirements for WSO2 products such as Data Analytics Server and Complex Event Processor are handled by Dashboard Server.
