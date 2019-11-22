@@ -88,5 +88,29 @@ ls /etc/config
 ```
 Có thể thấy mỗi key từ `ConfigMap` được thêm vào như 1 file trong thư mục. Sử dụng `cat` để xem nội dung của mỗi file và sẽ thấy các values từ `ConfigMap`.
 
+## 1.4 Sử dụng COnfigMap với biến môi trường và `envFrom`
+
+**Thêm `envFrom` vào Pod**
+```sh
+kind: Pod 
+apiVersion: v1 
+metadata:
+  name: pod-env-var 
+spec:
+  containers:
+    - name: env-var-configmap
+      image: nginx:1.7.9 
+      envFrom:
+        - configMapRef:
+            name: example-configmap
+```
+Attach để tạo Pod sử dụng `kubectl exec -it pod-env-var sh`. Sau đó chạy `env` và thấy rằng mỗi key trong ConfigMap đã available như biến môi trường.
+
+**Có 3 cách tạo ConfigMaps sử dụng `kubectl create configmap`.**
+- Sử dụng toàn bộ nội dung bên trong thư mục: `kubectl create configmap my-config --from-file=./my/dir/path/`
+- Sử dụng nội dung của file chỉ định: `kubectl create configmap my-config --from-file=./my/file.txt`
+- Sử dụng các cặp key-value: `kubectl create configmap my-config --from-literal=key1=value1 --from-literal=key2=value2`
+
+
 ## Tài liệu tham khảo
 - https://matthewpalmer.net/kubernetes-app-developer/articles/ultimate-configmap-guide-kubernetes.html
