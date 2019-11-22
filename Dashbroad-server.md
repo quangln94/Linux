@@ -54,7 +54,7 @@ Jaggery module trong server chứa trình biên dịch Jaggery và tính năng.
 
 Apache Shindig là server mà Dashboard Server sử dụng để kết xuất gadgets dựa trên đặc tả OpenSocial
 
-***Tham khảo các bản Release [tại đây](https://docs.wso2.com/display/DS200/About+This+Release)
+***Tham khảo các bản Release [tại đây](https://docs.wso2.com/display/DS200/About+This+Release)***
 
 ## Tài liệu tham khảo
 - https://docs.wso2.com/display/DS200/Architecture
