@@ -1,5 +1,5 @@
 ## 1. Giới thiệu
-WSO2 Dashboard Server (WSO2 DS), cho phép tạo bất kỳ dashboard tùy chỉnh, với 1 layout đề nghị, quản lý tập trung và trực quan hóa dữ liệu mà bạn quan tâm.
+WSO2 Dashboard Server (WSO2 DS), cho phép tạo bất kỳ dashboard tùy chỉnh với 1 layout đề nghị, quản lý tập trung và trực quan hóa dữ liệu mà bạn quan tâm.
 
 ## 2. Tính năng
 - Create powerful, mobile-ready dashboards
