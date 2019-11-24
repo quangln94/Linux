@@ -19,8 +19,39 @@ API manager đề nghị 3 role distinct community áp dụng cho hầu hết c�
 - **Consumer:** Người dùng sử dụng API Store để khám phá APIs, xem documentation và forums, đánh giá/nhận xét trên APIs. Người dùng đăng ký APIs để lấy API keys.
 
 ## 1.3 API lifecycle
+
+API là interface được published trong khi service đang chạy trong backend. APIs có vòng đời riêng độc lập với backend services mà chúng dựa vào. Vòng đời được exposed trong API Publisher và dược quản lý bởi publisher role.
+
+Vòng đời API mặc định có sẵn các giai đoạn sau:
+ - **CREATED:** API metadata được thêm vào API Store nhưng nó chưa hiển thị để cho người đăng ký cũng như không được deployed cho API Gateway.
+- **PROTOTYPED:** API Được deployed và published trong API Store như 1 nguyen mẫu. API prototyped thường là 1 triển khai giả đươc public để lấy feedback về khả năng sử dụng của nó. Users có thể sử dụng API prototyped mà không cần đăng ký.
+- **PUBLISHED:** API hiển thị trong API Store và có sẵn để đăng ký.
+- **DEPRECATED:** API vẫn được deployed trong API Gateway nhưng không hển thị cho người đăng ký. Bạn có thể tự động loại bỏ API khi verson mới được published.
+- **RETIRED:** API chưa được published từ API Gateway và deleted từ Store.
+- **BLOCKED:** Truy cập API tạm thời bị chặn. Runtime calls bị blocked, và API không hiển thị trong API Store.
+
 ## 1.4 Applications
+
+Mọt application chủ yếu được sử dụng để tách người dùng khỏi APIs. Nó cho phép bạn làm như sau:
+- Generate và sử dụng 1 single key cho nhiều APIs.
+- Đăng ký nhiều lần tới 1 single API với SLA levels khác nhau.
+
+Bạn có thế tạo 1 ứng dụng để đăng ký API. API Manager đi kèm với 1 ứng dụng mặc định, bạn cũng có thể tạo bao nhiêu ứng dụng tùy thích.
+
 ## 1.5 Throttling tiers
+
+Các tầng điều tiết được liên kết với API tại thời điểm đăng ký và có thể được xác định ở 1 API-level, resource-level, subscription-level và application-level (per token). Chúng xác định các giới hạn điều chỉnh được thi hành bởi API Gateway, ví dụ: 10 TPS (transactions per second). Giới hạn điều chỉnh cuối cùng được cấp cho một người dùng nhất định trên một API nhất định cuối cùng được xác định bởi output của tất cả các throttling tiers cùng nhau. API Manager đi kèm với 3 tiers được xác định trước cho mỗi level và 1 tier đặc biệt được gọi là Unlimited có thể disable bằng cách editing `<ThrottlingConfigurations>` của `<API-M_HOME>/repository/conf/api-manager.xml file`. 
+
+
+
+
+
+
+
+
+
+
+
 ## 1.6 API keys
 ## 1.7 API resources
 
