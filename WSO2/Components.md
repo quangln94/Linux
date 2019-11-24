@@ -3,12 +3,13 @@
 ## 1. Thành phần của API Manager
 
 - **API Publisher:** Cho phép API providers để publish APIs, chia sẻ documentation, cung cấp API keys và thu thập feedback trên các tính năng chất lượng và sử dung. Truy cập Web thông qua `https://<Server Host>:9443/publisher`.
-- **API Store (Developer Portal):** Cho phép người dùng API tự đăng ký, khám phá, đánh giá và tương tác với API Publishers. Truy cập Web thông qua `https://<Server Host>:9443/store`.
-- API Gateway: Secures, protects, manages, and scales API calls. It is a simple API proxy that intercepts API requests and applies policies such as throttling and security checks. It is also instrumental in gathering API usage statistics. The Web interface can be accessed via https://<Server Host>:9443/carbon .
-- Key Manager: Handles all security and key-related operations. The API Gateway connects with the Key Manager to check the validity of subscriptions, OAuth tokens, and API invocations. The Key Manager also provides a token API to generate OAuth tokens that can be accessed via the Gateway.
-- Traffic Manager: Helps users to regulate API traffic, make APIs and applications available to consumers at different service levels and secures APIs against security attacks. The Traffic Manager features a dynamic throttling engine to process throttling policies in real-time.
-- WSO2 API Manager Analytics:  Provides a host of statistical graphs and an alerting mechanism on predetermined events.
+- **API Store (Developer Portal):** Cho phép người dùng API đăng ký, khám phá, đánh giá và tương tác với API Publishers. Truy cập Web thông qua `https://<Server Host>:9443/store`.
+- **API Gateway:** Secures, protects, manages, và scales API calls. Nó là 1 simple API proxy chắn các API requests và applies policies Như điều chỉnh và kiểm tra security. Nó cũng là công cụ thu thập số liệu thống kê sử dụng API. Truy cập qua `https://<Server Host>:9443/carbon `.
+- **Key Manager**: Xử lý tất cả các hoạt động liên quan đến security và key. API Gateway kết nối với Key Manager để check tính hợp lệ của subscriptions, OAuth tokens, và API invocations. Key Manager cũng cung cấp 1 token API để generate OAuth tokens có thể được truy cập thông qua Gateway.
+- **Traffic Manager:** Giúp người dùng điều tiết API traffic, cung cấp APIs và applications để người dùng ở các cấp độ dịch vụ khác nhau và bảo vệ APIs chống lại các tấn công bảo mật. Traffic Manager tự động điểu chỉnh để xử lý các chính sách điểu chỉnh trong real-time.
+- **SO2 API Manager Analytics:** Cung cấp các biểu đồ thống kê và cơ chế cảnh báo về các sự kiện được xác định trước.
 
+<img src=https://i.imgur.com/Or4F9cZ.png>
 
 ## Tài liệu tham khảo 
 - https://docs.wso2.com/display/AM260/Quick+Start+Guide#543cb4e4ca8342f391f66652e4a1686c
