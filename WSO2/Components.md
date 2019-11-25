@@ -56,6 +56,7 @@ Nếu muốn disable `Advanced Throttling` bắng cách setting giá trị của
 </TierManagement>
 ```
 Các tầng dăng ký được xác định:
+
 |Throttling Tier|Description|
 |---------------|-----------|
 |Unlimited|Allows unlimited requests|
