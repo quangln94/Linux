@@ -42,28 +42,58 @@ Bạn có thế tạo 1 ứng dụng để đăng ký API. API Manager đi kèm 
 
 Các tầng điều tiết được liên kết với API tại thời điểm đăng ký và có thể được xác định ở 1 API-level, resource-level, subscription-level và application-level (per token). Chúng xác định các giới hạn điều chỉnh được thi hành bởi API Gateway, ví dụ: 10 TPS (transactions per second). Giới hạn điều chỉnh cuối cùng được cấp cho một người dùng nhất định trên một API nhất định cuối cùng được xác định bởi output của tất cả các throttling tiers cùng nhau. API Manager đi kèm với 3 tiers được xác định trước cho mỗi level và 1 tier đặc biệt được gọi là Unlimited có thể disable bằng cách editing `<ThrottlingConfigurations>` của `<API-M_HOME>/repository/conf/api-manager.xml file`. 
 
-
-
-
-
-
-
-
-
-
+Từ API Manager 2.0.0, Advanced Throttling được enabled mặc định với cấu hình trong `<API-M_HOME>/repository/conf/api-manager.xml.```
+```
+<ThrottlingConfigurations>
+        <EnableAdvanceThrottling>true</EnableAdvanceThrottling>
+     ......
+<ThrottlingConfigurations>
+```
+Nếu muốn disable `Advanced Throttling` bắng cách setting giá trị của `<EnableAdvanceThrottling> false`, Advanced Throttling sẽ được disabled và basic Throttling được enabled. Nếu muốn disable Unlimited Throttling tier của cấu hình cơ bản, bạn cần disable nó dưới `<TierManagement>` bằng setting `<EnableUnlimitedTier>` sang `false`.
+```sh
+<TierManagement>       
+        <EnableUnlimitedTier>true</EnableUnlimitedTier>
+</TierManagement>
+```
+Các tầng dăng ký được xác định:
+|Throttling Tier|Description|
+|---------------|-----------|
+|Unlimited|Allows unlimited requests|
+|Gold|Allows 5000 requests per minute|
+|Silver|Allows 2000 requests per minute|
+|Bronze|Allows 1000 requests per minute|
 
 ## 1.6 API keys
+API Manager hỗ trợ 2 kich bản cho việc authentication:
+- Một access token được sử dụng để identify và authenticate toàn bộ ứng dụng
+- Một access token được sử dụng để identify user và ứng dụng (vd: người dùng của 1 ứng dụng mobil được deployed trên nhiều thiết bị.
+
+**Application access token:** Application access tokens được generated bới người dùng API và phải được passed trong các incoming API requests. The API Manager sử dụng chuẩn OAuth2 để cung cấp key management. API key là 1 simple string bạn pass với 1 HTTP header (vd: "Authorization: Bearer NtBQkXoKElu0H1a1fQ0DWfo6IX4a,") và nó làm việc tốt như nhau cho cả SOAP và REST calls.
+
+Application access tokens được generated bởi application level và valid cho tất APIs bạn liên kết với application. Các tokens có 1 fixed expiration time được set mặc định 60m và có thể thay đổi. Người dùng có thể regenerate access token trực tiếp từ API Store. Để thay đổi default expiration time thực hiện mở file `<API-M_HOME>/repository/conf/identity/identity.xml` và thay đổi giá trị của `<AccessTokenDefaultValidityPeriod>`. Nếu set giá trị âm, token sẽ không bao giờ hết hạn. Thay đổi các giá trị này được áp dụng với các ứng dụng mới mà bạn tạo.
+
+**Application user access token:** Bạn generate access tokens trên như cầu sử dụng Token API. Trong trường hợp 1 token hết hạn, bạn sử dụng Token API để làm mới nó.
+
+Token API lấy các parameters sau để tạo access token:
+- Grant Type
+- Username
+- Password
+- Scope
+
+Để generate 1 access token mới, bạn call 1 Token API với các tham số ở trên trong `grant_type=password`. Token API sau đó trả về 2 tokens: 1 là access token và 1 refresh token. Access token được lưu trong phiên ở phía client (bản thân ứng dụng không cần quản lý user vè passwords). Trên phía API Gateway side, access token được xác thực cho mỗi API call. Khi token hết hạn, bạn làm mới token bằng cách call API với tham số ở trên trong `grant_type=refresh_token` và chuyển token mới làm tham số.
+
 ## 1.7 API resources
 
-
-
-
-
-
-
-
-
-
+Một API được tạo thành từ 1 hoặc nhiều resources. Mỗi resource xử lý 1 loại yêu cầu cụ thẻ và tương tự như 1 phương thức (function) trong API lớn hơn. API resources chấp nhân các thuộc tính sau:
+- verbs: Chỉ định HTTP verbs mà 1 resource cụ thể chấp nhận. Các giá trị được phép là GET, POST, PUT, DELETE, PATCH, HEAD, và OPTIONS. Bạn có thể đưa ra nhiều giá trị cùng 1 lúc.  
+- uri-template: Một URI template được định nghĩa trong `http://tools.ietf.org/html/rfc6570`. (vd `/phoneverify/<phoneNumber>`).
+- url-mapping: Ánh xạ URL được xác định theo thông số kỹ thuật của servlet (extension mappings, path mappings, và exact mappings).
+- Throttling tiers: Giới hạn cố lần truy cập vào tài nguyên trong 1 khoảng thời gian nhất định.
+- Auth-Type: Chỉ định xác thực Resource level authentication theo HTTP verbs. Auth-type có thể là None, Application, Application User, hoặc Application & Application User.  
+           - None: Có thể truy cập API resource mà không cần bất kỳ access tokens.
+           - Application: Một application access token yêu cầu truy cập API resource.
+           - Application User: Một user access token được yêu cầu để truy cập API resource.
+           - Application & Application User: Một application access token cùng với một user access token được yêu cầu đẻ truy cập API resource.
 
 ## Tài liệu tham khảo 
 - https://docs.wso2.com/display/AM260/Quick+Start+Guide#543cb4e4ca8342f391f66652e4a1686c
