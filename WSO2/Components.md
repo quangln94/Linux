@@ -20,13 +20,13 @@ API manager đề nghị 3 role distinct community áp dụng cho hầu hết c�
 
 ## 1.3 API lifecycle
 
-API là interface được published trong khi service đang chạy trong backend. APIs có vòng đời riêng độc lập với backend services mà chúng dựa vào. Vòng đời được exposed trong API Publisher và dược quản lý bởi publisher role.
+API là interface được published trong khi service đang chạy trong backend. APIs có vòng đời riêng độc lập với backend services mà chúng dựa vào. Lifecycle được exposed trong API Publisher và dược quản lý bởi publisher role.
 
 Vòng đời API mặc định có sẵn các giai đoạn sau:
  - **CREATED:** API metadata được thêm vào API Store nhưng nó chưa hiển thị để cho người đăng ký cũng như không được deployed cho API Gateway.
-- **PROTOTYPED:** API Được deployed và published trong API Store như 1 nguyen mẫu. API prototyped thường là 1 triển khai giả đươc public để lấy feedback về khả năng sử dụng của nó. Users có thể sử dụng API prototyped mà không cần đăng ký.
+- **PROTOTYPED:** API Được deployed và published trong API Store như 1 nguyên mẫu. API prototyped thường là 1 triển khai giả được public để lấy feedback về khả năng sử dụng của nó. Users có thể sử dụng API prototyped mà không cần đăng ký.
 - **PUBLISHED:** API hiển thị trong API Store và có sẵn để đăng ký.
-- **DEPRECATED:** API vẫn được deployed trong API Gateway nhưng không hển thị cho người đăng ký. Bạn có thể tự động loại bỏ API khi verson mới được published.
+- **DEPRECATED:** API vẫn được deployed trong API Gateway nhưng không hiển thị cho người đăng ký. Bạn có thể tự động loại bỏ API khi verson mới được published.
 - **RETIRED:** API chưa được published từ API Gateway và deleted từ Store.
 - **BLOCKED:** Truy cập API tạm thời bị chặn. Runtime calls bị blocked, và API không hiển thị trong API Store.
 
@@ -67,9 +67,9 @@ Các tầng dăng ký được xác định:
 ## 1.6 API keys
 API Manager hỗ trợ 2 kich bản cho việc authentication:
 - Một access token được sử dụng để identify và authenticate toàn bộ ứng dụng
-- Một access token được sử dụng để identify user và ứng dụng (vd: người dùng của 1 ứng dụng mobil được deployed trên nhiều thiết bị.
+- Một access token được sử dụng để identify user và ứng dụng (vd: người dùng của 1 ứng dụng mobil được deployed trên nhiều thiết bị).
 
-**Application access token:** Application access tokens được generated bới người dùng API và phải được passed trong các incoming API requests. The API Manager sử dụng chuẩn OAuth2 để cung cấp key management. API key là 1 simple string bạn pass với 1 HTTP header (vd: "Authorization: Bearer NtBQkXoKElu0H1a1fQ0DWfo6IX4a,") và nó làm việc tốt như nhau cho cả SOAP và REST calls.
+**Application access token:** Application access tokens được generated bới người dùng API và phải được thông qua trong các incoming API requests. API Manager sử dụng chuẩn OAuth2 để cung cấp key management. API key là 1 simple string bạn pass với 1 HTTP header (vd: "Authorization: Bearer NtBQkXoKElu0H1a1fQ0DWfo6IX4a,") và nó làm việc tốt như nhau cho cả SOAP và REST calls.
 
 Application access tokens được generated bởi application level và valid cho tất APIs bạn liên kết với application. Các tokens có 1 fixed expiration time được set mặc định 60m và có thể thay đổi. Người dùng có thể regenerate access token trực tiếp từ API Store. Để thay đổi default expiration time thực hiện mở file `<API-M_HOME>/repository/conf/identity/identity.xml` và thay đổi giá trị của `<AccessTokenDefaultValidityPeriod>`. Nếu set giá trị âm, token sẽ không bao giờ hết hạn. Thay đổi các giá trị này được áp dụng với các ứng dụng mới mà bạn tạo.
 
