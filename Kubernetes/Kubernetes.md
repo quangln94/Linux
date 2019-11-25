@@ -23,7 +23,7 @@ Hình dưới thể hiện 1 cụm Kubernetes	cluster	đơn giản với 1 vài 
 
 Kubernetes có 1 vài tính năng trừu tượng:
 
-- The	Container	Runtime	Interface	(CRI)	là 1 layer trừu tượng chuẩn hóa 3rd-party	container	runtimes	interface	với Kubernetes.	Nó cho phép container	runtime	code	để tồn tại bên ngoài Kubernetes,	nhưng interface	được hỗ trợ và chuẩn hóa.
+- Container	Runtime	Interface	(CRI)	là 1 layer trừu tượng chuẩn hóa 3rd-party	container	runtimes	interface	với Kubernetes.	Nó cho phép container	runtime	code	để tồn tại bên ngoài Kubernetes,	nhưng interface	được hỗ trợ và chuẩn hóa.
 - Runtime	Classes	là 1 tính năng mới được giới thiệu trong Kubernetes	1.12. Tính năng này hiện ở dạng alpha	và cho phép các classes	khác nhau của runtimes.	Ví du như gVisor hoặc Kata	Containers	runtimes	có thể cung cấp sự cô lập tốt hơn Docker và containerd.
 
 ## 3. Thành phần của Kubernetes
