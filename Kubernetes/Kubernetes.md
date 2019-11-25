@@ -11,11 +11,11 @@ Kubernetes được viết bằng Go (Golang), nó có trên Github tại `kuber
 
 ## 2. Kubernetes and Docker
 
-Kubernetes và Docker là các công nghệ bổ xung. Docker dùng để develop	applications và sử dụng Kubernetes để orchestrate.
+Kubernetes và Docker là các công nghệ bổ xung cho nhau. Docker dùng để develop	applications và sử dụng Kubernetes để orchestrate.
 
 Bạn có thể code bằng ngôn ngữ yêu thích sau đó sử dụng Docker để đóng gói, test và ship. Nhưng bước cuối cùng là để test hoặc trong product được xử lý bởi Kubernetes.
 
-Ở cấp độ cao hơn, bạn	có thể có 1 Kubernetes cluster với 10 nodes	để run production	applications.	Mỗi node	chạy Docker như container	runtime của nó.	Docker có thể start	và stop	containers...và Kubernetes	là higher-level	technology, nó quan tâm đến bức tranh to hơn như quyết định nodes	nào run containers,	khi nào scale	up	or	down,	thực hiện	updates.
+Bạn	có thể có 1 cụm k8s với 10 nodes để chạy ứng dụng, mỗi node	đều chạy Docker. Docker có thể start và stop containers...và Kubernetes	là higher-level	technology, nó quan tâm đến khía cạnh lớn hơn nhie quyết định nodes	nào run containers,	khi nào scale	up/down,	thực hiện	updates.
 
 Hình dưới thể hiện 1 cụm Kubernetes	cluster	đơn giản với 1 vài node	sử dụng	Docker như container	runtime.
 
