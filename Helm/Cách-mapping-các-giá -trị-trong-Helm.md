@@ -16,7 +16,8 @@ replicaCount: 1
 image:
   repository: nginx
   tag: stable
-  pullPolicy: IfNotPresent
+  pullPolicy: IfNotPresentls
+  
 
 imagePullSecrets: []
 nameOverride: ""
@@ -45,7 +46,7 @@ service:
   port: 80
 
 ```
-**Mở file `deployment.yaml`**
+## 2. Mở file `deployment.yaml`
 ```sh
 [root@server01 templates]# vim deployment.yaml
         {{- toYaml . | nindent 8 }}
@@ -86,7 +87,7 @@ service:
         {{- toYaml . | nindent 8 }}
     {{- end }}
 ```
-**Mở file `service.yaml`**
+## 3. Mở file `service.yaml`
 ```sh
 apiVersion: v1
 kind: Service
