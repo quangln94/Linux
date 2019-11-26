@@ -27,9 +27,9 @@ Các chứng năng của Helm được thực hiện thông qua thành phần nh
 - Tạo chart ở local.
 - Quản lý các repository.
 - Tương tác với Tilter server.
-      - Gửi chart để cài đặt
-      - Truy vấn thông tin của các release.
-      - Gửi yêu cầu upgrade hay uninstall các release đã cài.
+      * Gửi chart để cài đặt
+      * Truy vấn thông tin của các release.
+      * Gửi yêu cầu upgrade hay uninstall các release đã cài.
 
 **Tiller server**: được cài đặt trong cluster k8s, tương tác với Helm Client và Kubernetes API, chịu trách nhiệm cho việc:
 - Lắng nghe các request từ Helm Client.
