@@ -93,8 +93,8 @@ https://10.1.38.128:30893/carbon
 https://10.1.38.128:30893/publisher
 https://10.1.38.128:30893/store
 ```
-## Một số lỗi hay gặp
-1. Khi kiểm tra bằng lênh `kubectl get pods -o wide` thấy STATUS là: `Pending` , `ErrImagePull``...
+## 3. Một số lỗi hay gặp
+**1. Khi kiểm tra bằng lênh `kubectl get pods -o wide` thấy STATUS là: `Pending` , `ErrImagePull`...**
 
 Kiểm tra xem Lỗi do thiếu tài nguyên hay không pull được image bằng lệnh `kubectl describe pods namepod`
 - Nếu thiếu tài nguyên thì cấp thêm tài nguyên cho Node
