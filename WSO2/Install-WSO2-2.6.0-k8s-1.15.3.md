@@ -9,7 +9,7 @@ Mô hình LAB
 |worker2|10.1.38.146|
 |NFS|10.1.38.129|
 
-## Thực hiện trên NFS
+## 1. Thực hiện trên NFS
 Tạo system group tên `wso2`với group id 802.
 ```sh
 sudo groupadd --system -g 802 wso2
@@ -30,7 +30,7 @@ sudo chown -R wso2carbon:wso2 /data/database
 sudo chmod -R 757 /data/apim
 sudo chmod -R 757 /data/database
 ```
-## Thực hiện trên k8s Master Node
+## 2. Thực hiện trên k8s Master Node
 Clone thư mục trên git
 ```sh
 git clone https://github.com/wso2/samples-apim.git
