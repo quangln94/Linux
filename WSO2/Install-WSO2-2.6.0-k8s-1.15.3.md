@@ -20,8 +20,17 @@ sudo useradd --system -g 802 -u 802 wso2carbon
 ```
 Tạo thư mục chia sẻ cho mỗi Kubernetes Persistent Volume
 ```sh
-mkdir /data/apim
-mkdir /data/database
+mkdir -p /data/apim
+mkdir -p /data/database
+```
+Cho phép client có thể truy cập thư mục bằng cách thêm các dòng sau:
+```sh
+$ vim /etc/exports
+/data 10.1.38.128(rw,sync,no_subtree_check)
+/data 10.1.38.111(rw,sync,no_subtree_check)
+/data 10.1.38.149(rw,sync,no_subtree_check)
+/data 10.1.38.144(rw,sync,no_subtree_check)
+/data 10.1.38.146(rw,sync,no_subtree_check)
 ```
 Gán quyền sở hữu và phân quyền cho mỗi thư mục vừa tạo ở trên
 ```sh
