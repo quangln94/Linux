@@ -61,5 +61,36 @@ Thực hiện chạy script deploy:
 cd samples-apim/kubernetes-demo/kubernetes-apim-2.6.x/pattern-1/scripts
 ./deploy.sh --wu=$username --wp=$password
 ````
+Chờ 5 đến 10p để quá trinh deploy xong và kiểm tra trang thái như sau:
+```
+$ kubectl get pods -o wide
+
+NAME                                                              READY   STATUS    RESTARTS   AGE
+wso2apim-with-analytics-apim-7947fc4565-849l5                     1/1     Running   1          3h11m
+wso2apim-with-analytics-apim-analytics-deployment-c74464c56ttc5   1/1     Running   1          167m
+wso2apim-with-analytics-mysql-deployment-84bb65bdf-mfqqq          1/1     Running   1          3h12m
+```
+Chạy lệnh sau để Expose Port:
+```sh
+kubectl expose deployment wso2apim-with-analytics-apim -n wso2 --type=NodePort
+kubectl expose deployment wso2apim-with-analytics-apim-analytics-deployment -n wso2 --type=NodePort
+```
+Kiểm tra service được expose:
+```sh
+$ kubectl get svc
+
+NAME                                                TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)                                                                                                                                  AGE
+wso2apim-with-analytics-apim                        NodePort    10.105.107.141   <none>        8280:30356/TCP,8243:30029/TCP,9763:30324/TCP,9443:30893/TCP,5672:31879/TCP,9711:30444/TCP,9611:31929/TCP,7711:32128/TCP,7611:30101/TCP   157m
+wso2apim-with-analytics-apim-analytics-deployment   NodePort    10.110.44.182    <none>        9764:32255/TCP,9444:31322/TCP,7612:30022/TCP,7712:31326/TCP,9091:30293/TCP,7071:30357/TCP,7444:31093/TCP                                 157m
+wso2apim-with-analytics-apim-analytics-service      ClusterIP   10.102.228.226   <none>        7612/TCP,7712/TCP,9444/TCP,9091/TCP,7071/TCP,7444/TCP                                                                                    3h14m
+wso2apim-with-analytics-apim-service                ClusterIP   10.103.65.35     <none>        8280/TCP,8243/TCP,9763/TCP,9443/TCP                                                                                                      3h14m
+wso2apim-with-analytics-rdbms-service               ClusterIP   10.111.95.98     <none>        3306/TCP                                                                                                                                 3h14m
+```
+Mở trình duyệt và kiểm tra:
+```sh
+https://10.1.38.128:30893/carbon
+https://10.1.38.128:30893/publisher
+https://10.1.38.128:30893/store
+```
 ## Tài liệu tham khảo
 - https://medium.com/@andriperera.98/how-to-deploy-wso2-api-manager-in-production-grade-kubernetes-268a65a41fa2
