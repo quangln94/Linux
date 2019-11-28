@@ -65,10 +65,11 @@ Chờ 5 đến 10p để quá trinh deploy xong và kiểm tra trang thái như 
 ```
 $ kubectl get pods -o wide
 
-NAME                                                              READY   STATUS    RESTARTS   AGE
-wso2apim-with-analytics-apim-7947fc4565-849l5                     1/1     Running   1          3h11m
-wso2apim-with-analytics-apim-analytics-deployment-c74464c56ttc5   1/1     Running   1          167m
-wso2apim-with-analytics-mysql-deployment-84bb65bdf-mfqqq          1/1     Running   1          3h12m
+NAME                                                              READY   STATUS    RESTARTS   AGE     IP            NODE      NOMINATED NODE   READINESS GATES
+wso2apim-with-analytics-apim-7947fc4565-849l5                     1/1     Running   1          3h22m   10.244.3.10   worker1   <none>           <none>
+wso2apim-with-analytics-apim-analytics-deployment-c74464c56ttc5   1/1     Running   1          177m    10.244.3.13   worker1   <none>           <none>
+wso2apim-with-analytics-mysql-deployment-84bb65bdf-mfqqq          1/1     Running   1          3h23m   10.244.3.11   worker1   <none>           <none>
+
 ```
 Chạy lệnh sau để Expose Port:
 ```sh
