@@ -93,5 +93,12 @@ https://10.1.38.128:30893/carbon
 https://10.1.38.128:30893/publisher
 https://10.1.38.128:30893/store
 ```
+## Một số lỗi hay gặp
+1. Khi kiểm tra bằng lênh `kubectl get pods -o wide` thấy STATUS là: `Pending` , `ErrImagePull``...
+
+Kiểm tra xem Lỗi do thiếu tài nguyên hay không pull được image bằng lệnh `kubectl describe pods namepod`
+- Nếu thiếu tài nguyên thì cấp thêm tài nguyên cho Node
+- Nếu không pull được image thì kiểm tra lại tài khoản đăng ký có đúng không và có thành công hay không`
+
 ## Tài liệu tham khảo
 - https://medium.com/@andriperera.98/how-to-deploy-wso2-api-manager-in-production-grade-kubernetes-268a65a41fa2
