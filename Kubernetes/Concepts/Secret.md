@@ -1,6 +1,7 @@
 Chạy image `MariaDB` trên k8s. `image` cần 1 biến môi trường để set `MYSQL_ROOT_PASSWORD`, `MYSQL_ALLOW_EMPTY_PASSWORD`, hoặc `MYSQL_RANDOM_ROOT_PASSWORD` để khởi tạo database.
 
-Tạo Secret chứa `MYSQL_ROOT_PASSWORD` đặt password và convert sang `base64`:
+## 1.Tạo Secret 
+Tạo `secret` chứa `MYSQL_ROOT_PASSWORD` đặt password và convert sang `base64`:
 ```sh
 echo -n 'MYSQL_ROOT_PASSWORD' | base64
 S3ViZXJuZXRlc1JvY2tzIQ==
