@@ -20,10 +20,8 @@ mkdir -p /data/wso2/apim
 ## 1. Thực hiện trên Node Master
 **Tạo 3 file cho 3 serice: `am-analytics-worker.yaml`, `api-manager`, `am-analytics-dashboard`.**
 
-**Tạo file `am-analytics-worker.yaml` với nội dung sau:**
-```
-cat << EOF > am-analytics-worker.yaml
-# Tạo PersistentVolume
+**Tạo file `am-analytics-worker.yaml` với nội dung gồm các đoạn sau:**
+```sh
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -38,13 +36,39 @@ spec:
   accessModes:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Recycle
-# IP NFS Server
   nfs:
     server: 10.1.38.129
-# Thư mục chia sẻ trên NFS
     path: "/data/wso2/worker"
----
-# Tạo PersistentVolumeClaim
+```
+Trong đó: 
+- `metadata.name`: Tên của `pv`, ở đây là `am-analytics-worker-nfs-pv-log`
+- `metadata.labels`: Label của `pv`, ở đây là `storage: am-analytics-worker-nfs-pv-log`
+- `spec.nfs.server`: Đia chỉ IP của NFS, ở đây là `10.1.38.129`
+- `spec.nfs.path`: Thư mục chi sẻ trên NFS server, ở đây là `/data/wso2/worker`
+
+**File `PersistentVolumeClaim`**:
+```sh
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: am-analytics-worker-nfs-pvc-log
+  namespace: wso2
+spec:
+  storageClassName: nfs-volume
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 2Gi
+  selector:
+    matchLabels:
+      storage: am-analytics-worker-nfs-pv-log
+```     
+Trong đó:
+- `spec.selector.matchLabels.storage`: Khớp với `metadata.labels` của `pv`, ở dây là `am-analytics-worker-nfs-pv-log`
+
+**Tạo `Deployment` với nội dung sau:**
+```sh
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -61,7 +85,6 @@ spec:
     matchLabels:
       storage: am-analytics-worker-nfs-pv-log
 ---
-## Tạo Deployment
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -94,8 +117,92 @@ spec:
         - containerPort: 9091
           name: port1
         - containerPort: 9444
-          name: port2
-# Resource yêu cầu           
+          name: port2          
+        resources:
+          requests:
+            cpu: "1000m"
+            memory: "4096Mi"
+          limits: 
+            cpu: "1000m"
+            memory: "4096Mi"
+        volumeMounts:
+        - mountPath: /home/wso2carbon/wso2-config-volume
+          name: am-analytics-worker-log
+      volumes:
+      - name: am-analytics-worker-log
+        persistentVolumeClaim:
+          claimName: am-analytics-worker-nfs-pvc-log
+```          
+**Paste tất cả các file trên thành 1 file `am-analytics-worker.yaml` như sau:
+```sh
+cat << EOF > am-analytics-worker.yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: am-analytics-worker-nfs-pv-log
+  namespace: wso2
+  labels:
+    storage: am-analytics-worker-nfs-pv-log
+spec:
+  storageClassName: nfs-volume
+  capacity:
+    storage: 2Gi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Recycle
+  nfs:
+    server: 10.1.38.129
+    path: "/data/wso2/worker"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: am-analytics-worker-nfs-pvc-log
+  namespace: wso2
+spec:
+  storageClassName: nfs-volume
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 2Gi
+  selector:
+    matchLabels:
+      storage: am-analytics-worker-nfs-pv-log
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: am-analytics-worker-deployment
+  namespace: wso2
+  labels:
+    app: am-analytics-worker
+    role: am-analytics-worker
+spec:
+  selector:
+    matchLabels:
+      app: am-analytics-worker
+      role: am-analytics-worker
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 0
+  minReadySeconds: 120
+  template:
+    metadata:
+      labels:
+        app: am-analytics-worker
+        role: am-analytics-worker
+    spec:
+      containers:
+      - name: am-analytics-worker
+        image: wso2/wso2am-analytics-worker:3.0.0
+        ports:
+        - containerPort: 9091
+          name: port1
+        - containerPort: 9444
+          name: port2          
         resources:
           requests:
             cpu: "1000m"
