@@ -10,6 +10,13 @@
 |mysql|10.1.38.147|
 |NFS|10.1.38.129|
 
+## 1. Thực hiện trên NFS
+**Tạo thư mục chia sẻ trên NFS**
+```sh
+mkdir -p /data/wso2/worker
+mkdir -p /data/wso2/dashboard
+mkdir -p /data/wso2/apim
+```
 ## 1. Thực hiện trên Node Master
 **Tạo 3 file cho 3 serice: `am-analytics-worker.yaml`, `api-manager`, `am-analytics-dashboard`.**
 
@@ -114,6 +121,7 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: am-analytics-worker-deployment
+# Số lượng Replicas tăng/giảm    
   minReplicas: 1
   maxReplicas: 1
   metrics:
@@ -422,4 +430,3 @@ kubectl apply -f am-analytics-dashboard.yaml
 kubectl apply -f api-manager.yaml
 kubectl apply -f am-analytics-worker.yaml
 ```
-
