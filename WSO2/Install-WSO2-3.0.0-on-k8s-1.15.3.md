@@ -34,6 +34,7 @@ spec:
 # IP NFS Server
   nfs:
     server: 10.1.38.129
+# Thư mục chia sẻ trên NFS
     path: "/data/wso2/worker"
 ---
 # Tạo PersistentVolumeClaim
