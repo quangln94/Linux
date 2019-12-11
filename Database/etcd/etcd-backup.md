@@ -104,6 +104,10 @@ Trong đó:
 $ kubectl get pod -n kube-system
 $ kubectl describe pod etcd-master -n kube-system
 ```
+Command tương tự như sau:
+```sh
+ETCDCTL_API=3 etcdctl --endpoints=172.16.68.91:2379 --cacert=/etc/etcd/ca.pem --cert=/etc/etcd/kubernetes.pem --key=/etc/etcd/kubernetes-key.pem snapshot save snapshot-172.16.68.91.db
+```
 ## Tài liệu tham khảo
 - https://github.com/etcd-io/etcd/blob/master/Documentation/v2/admin_guide.md#disaster-recovery
 - https://github.com/etcd-io/etcd/blob/master/Documentation/op-guide/recovery.md
