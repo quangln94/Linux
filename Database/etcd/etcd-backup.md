@@ -91,3 +91,4 @@ $ etcd \
 ## Tài liệu tham khảo
 - https://github.com/etcd-io/etcd/blob/master/Documentation/v2/admin_guide.md#disaster-recovery
 - https://github.com/etcd-io/etcd/blob/master/Documentation/op-guide/recovery.md
+- https://medium.com/@imarunrk/certified-kubernetes-administrator-cka-tips-and-tricks-part-3-2e7b44e89a3b
