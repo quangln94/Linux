@@ -93,7 +93,7 @@ $ etcd \
 Thực hiện `Snapshotting` từ 1 `etcd` member bằng lệnh `etcdctl snapshot save` như sau:
 ```sh
 $ ETCDCTL_API=3 etcdctl --endpoints 10.10.10.221:2379 snapshot save snapshot.db
-$ ETCDCTL_API=3 etcdctl --endpoints=[ENDPOINT] — cacert=[CA CERT] — cert=[ETCD SERVER CERT] — key=[ETCD SERVER KEY] snapshot save [BACKUP FILE NAME]
+$ ETCDCTL_API=3 etcdctl --endpoints=[ENDPOINT] --cacert=[CA CERT] --cert=[ETCD SERVER CERT] --key=[ETCD SERVER KEY] snapshot save [BACKUP FILE NAME]
 ```
 Trong đó: 
 - `endpoint`: --advertise-client-urls=https://172.17.0.15:2379
@@ -103,7 +103,7 @@ Trong đó:
 ```sh
 $ kubectl get pod -n kube-system
 $ kubectl describe pod etcd-master -n kube-system
-
+```
 ## Tài liệu tham khảo
 - https://github.com/etcd-io/etcd/blob/master/Documentation/v2/admin_guide.md#disaster-recovery
 - https://github.com/etcd-io/etcd/blob/master/Documentation/op-guide/recovery.md
