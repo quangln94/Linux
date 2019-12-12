@@ -61,11 +61,11 @@ $ mysqldump --default-character-set=utf8 --opt --databases itlabvn --user=root -
 ```sh
 mysql> unlock tables;
 ```
-**Copy file itlabvn.sql từ Node 1 sang Node 2
+**Copy file itlabvn.sql từ Node 1 sang Node 2**
 ```sh
 scp itlabvn.sql root@172.16.68.102:~
 ```
-**Tạo database `itlabvn` trên Node 2 sau đó import dữ liệu từ file `.sql` đã export trên Node 1
+**Tạo database `itlabvn` trên Node 2 sau đó import dữ liệu từ file `.sql` đã export trên Node 1**
 ```sh
 mysql> create database itlabvn character set utf8 collate utf8_general_ci;
 $ mysql -u root -p itlabvn < /root/itlabvn.sql
@@ -167,15 +167,17 @@ Sau khi thực hiện xong, reboot lại Node 2
 ```sh
 systemctl reboot
 ```
-
-
-
-
-
-
-
-
-
+## 3. Kiểm tra
+**Thực hiện trên Node 1:**
+```sh
+mysql> use itlabvn;
+mysql> insert into users values (1002,'Nam Nguyen','password2');
+```
+**Kiểm tra trên Node2:**
+```sh
+mysql> use itlabvn;
+mysql> select * from users;
+```
 ## Tài liệu tham khảo
 - https://itfromzero.com/database/mysql/cai-dat-mysql-5-7-tren-rhelcentos-765-va-fedora-232221.html
 - http://chichio.com/vi/thanks/c%E1%BA%A5u-h%C3%ACnh-mysql-master-master-replication
