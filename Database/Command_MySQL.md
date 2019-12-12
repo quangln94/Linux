@@ -139,6 +139,7 @@ mysql -u username -pmypass < alldatabases.sql (no space in between -p and mypass
 Khôi phục một database bất kỳ:
 ```sh
 mysql -u username -pmypass databasename < database.sql
+mysql --one-database database_name < all_databases.sql
 ```
 Chỉ sao lưu cấu trúc database:
 ```sh
@@ -152,3 +153,10 @@ Sao lưu một số table nhất định:
 ```sh
 mysqldump --add-drop-table -u username -pmypass databasename table_1 table_2 > databasebackup.sql
 ```
+1 Command để Export và Import
+```sh
+mysqldump -u root -p database_name | mysql -h remote_host -u root -p remote_database_name
+```
+
+## Tài liệu tham khảo
+- https://linuxize.com/post/how-to-back-up-and-restore-mysql-databases-with-mysqldump/
