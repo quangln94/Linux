@@ -160,3 +160,4 @@ mysqldump -u root -p database_name | mysql -h remote_host -u root -p remote_data
 
 ## Tài liệu tham khảo
 - https://linuxize.com/post/how-to-back-up-and-restore-mysql-databases-with-mysqldump/
+- https://www.percona.com/blog/2016/09/27/using-the-super_read_only-system-variable/
