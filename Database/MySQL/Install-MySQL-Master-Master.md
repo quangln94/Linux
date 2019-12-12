@@ -138,3 +138,4 @@ systemctl reboot
 ## Tài liệu tham khảo
 - https://itfromzero.com/database/mysql/cai-dat-mysql-5-7-tren-rhelcentos-765-va-fedora-232221.html
 - http://chichio.com/vi/thanks/c%E1%BA%A5u-h%C3%ACnh-mysql-master-master-replication
+- https://www.howtoforge.com/tutorial/how-to-setup-mysql-master-master-replication/
