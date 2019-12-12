@@ -1,4 +1,7 @@
 # Install MySQL Master-Master 
+## 1. Cài đặt MySQL
+**Cài đặt trên cả 2 Node**
+
 **Thêm MySQL Yum repository vào hệ thống để cài đặt MySQL**
 ```sh
 wget http://dev.mysql.com/get/mysql57-community-release-el7-7.noarch.rpm
@@ -28,6 +31,44 @@ grep 'temporary password' /var/log/mysqld.log
 **Sau khi biết mật khẩu ngẫu nhiên thì sử dụng lệnh sau để cài đặt bảo mật cho MySQL:**
 ```sh
 mysql_secure_installation
+```
+### 1.2 Tạo databases và dump databases
+
+#### 1.2.1 Thực hiện trên Node 1
+
+**Tạo databases**
+```
+mysql -uroot -p ( nhập password root của MySQL )
+mysql>create database itlabvn character set utf8 collate utf8_general_ci;
+mysql>use itlabvn;
+mysql>create table users(id int, username varchar(20),password varchar(20));
+mysql>insert into users values(1001,'admin','password');
+```
+**dump databases**
+
+Lock database để ngăn người dùng thay đổi dữ liệu mới trong quá trình chúng ta replication MySQL
+```sh
+mysql> use itlabvn;
+mysql> flush tables with read lock;
+```
+#### 1.2.2 Thực hiện trên Node 2
+
+**Export dữ liệu MySQL database sử dụng câu lệnh mysqldump**
+```sh
+$ mysqldump --default-character-set=utf8 --opt --databases itlabvn --user=root --password > itlabvn.sql
+```
+**Unlock database để có thể đọc và ghi vào database bằng câu lệnh sau**
+```sh
+mysql> unlock tables;
+```
+**Copy file itlabvn.sql từ Node 1 sang Node 2
+```sh
+scp itlabvn.sql root@172.16.68.102:~
+```
+**Tạo database `itlabvn` trên Node 2 sau đó import dữ liệu từ file `.sql` đã export trên Node 1
+```sh
+mysql> create database itlabvn character set utf8 collate utf8_general_ci;
+$ mysql -u root -p itlabvn < /root/itlabvn.sql
 ```
 ## 2. Cấu hình MySQL Master-Master
 
