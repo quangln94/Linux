@@ -179,6 +179,7 @@ mysql> use itlabvn;
 mysql> select * from users;
 ```
 ## Tài liệu tham khảo
+- https://hostpresto.com/community/tutorials/how-to-setup-mysql-master-master-replication-on-ubuntu-16-04/
 - https://itfromzero.com/database/mysql/cai-dat-mysql-5-7-tren-rhelcentos-765-va-fedora-232221.html
 - http://chichio.com/vi/thanks/c%E1%BA%A5u-h%C3%ACnh-mysql-master-master-replication
 - https://www.howtoforge.com/tutorial/how-to-setup-mysql-master-master-replication/
