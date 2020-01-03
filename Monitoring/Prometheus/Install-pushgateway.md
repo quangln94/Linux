@@ -47,7 +47,7 @@ systemctl status pushgateway
   - job_name: 'pushgateway'
     honor_labels: true
     static_configs:
-      - targets: ['localhost:9091']
+      - targets: ['ip_pushgateway:9091']
 ```
 ## Tài liệu tham khảo
 - https://blog.ruanbekker.com/blog/2019/05/17/install-pushgateway-to-expose-metrics-to-prometheus/
