@@ -98,4 +98,4 @@ kubectl create -f yaml/
 ```
 ## Tài liệu tham khảo
 - https://medium.com/@ikod/custom-exporter-with-prometheus-b1c23cb24e7a
-
+- http://michaeljones.tech/writing-exporters-for-prometheus/
