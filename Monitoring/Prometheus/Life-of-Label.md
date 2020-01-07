@@ -2,3 +2,4 @@ Nguyên tắc cơ bản của service discovery cung cấp metadata như machine
 
 ## Tài liệu tham khảo
 - https://www.robustperception.io/life-of-a-label
+- https://www.robustperception.io/target-labels-are-for-life-not-just-for-christmas
