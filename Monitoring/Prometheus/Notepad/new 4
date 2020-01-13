@@ -1,0 +1,29 @@
+echo "second_metric 99" | curl --data-binary @- http://172.16.68.102:9091/metrics/job/some_job
+
+cat <<EOF | curl --data-binary @- http://172.16.68.102:9091/metrics/job/some_job/instance/some_instance
+# TYPE some_metric counter
+some_metric{label="val1"} 42
+# TYPE another_metric gauge
+# HELP another_metric Just an example.
+another_metric 2398.283
+EOF
+
+
+{{ define "slack.my.title" -}}
+    {{- if .CommonAnnotations.summary -}}
+        {{- .CommonAnnotations.summary -}}
+    {{- else -}}
+        {{- with index .Alerts 0 -}}
+            {{- .Annotations.summary -}}
+        {{- end -}}
+    {{- end -}}
+{{- end }}
+{{ define "slack.my.text" -}}
+    {{- if .CommonAnnotations.description -}}
+        {{- .CommonAnnotations.description -}}
+    {{- else -}}
+        {{- range $i, $alert := .Alerts }}
+            {{- "\n" -}} {{- .Annotations.description -}}
+        {{- end -}}
+    {{- end -}}
+{{- end }}

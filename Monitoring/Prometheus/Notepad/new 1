@@ -1,0 +1,31 @@
+mysql_seconds_behind_master = Gauge("mysql_slave_seconds_behind_master", "MySQL slave secons behind master",{})
+registry.register(mysql_seconds_behind_master)
+mysql_seconds_behind_master.set({},slave_file)
+
+
+
+from http.server import HTTPServer
+from prometheus.exporter import PrometheusMetricHandler
+from prometheus.registry import Registry
+
+
+# Create the registry
+registry = Registry()
+
+# Create the thread that gathers the data while we serve it
+thread = threading.Thread(target=gather_data, args=(registry, ))
+thread.start()
+
+# We make this to set the registry in the handler
+def handler(*args, **kwargs):
+    PrometheusMetricHandler(registry, *args, **kwargs)
+
+# Set a server to export (expose to prometheus) the data (in a thread)
+server = HTTPServer(('', 8888), handler)
+server.serve_forever()
+
+
+echo "cpu_utilization 20.25" | curl --data-binary @- http://172.16.68.91:31469/metrics/job/my_custom_metrics/instance/10.20.0.1:9000/provider/hetzner
+
+
+

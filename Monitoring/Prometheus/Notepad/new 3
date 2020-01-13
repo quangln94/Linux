@@ -1,0 +1,40 @@
+helm fetch stable/prometheus-operator
+tar -zxvf prometheus-operator-8.2.4.tgz
+
+helm del --purge prometheus-operator
+helm install --name prometheus-operator --namespace monitoring .
+
+    global:
+      resolve_timeout: 5m
+      smtp_smarthost: 'smtp.gmail.com:587'
+      smtp_from: 'lng.quang.13@gmail.com'
+      smtp_auth_username: 'lng.quang.13@gmail.com'
+      smtp_auth_password: 'b12dcvt275'
+
+    route:
+      receiver: alert-emailer
+      group_by: ['alertname', 'priority']
+      group_wait: 10s
+      repeat_interval: 5m
+
+    receivers:
+    - name: alert-emailer
+      email_configs:
+      - to: lng.quang.13@gmail.com
+        text: "<!channel> \nsummary: {{ .CommonAnnotations.summary }}\ndescription: {{ .CommonAnnotations.description }}"
+
+    scrape_configs:
+    - job_name: 'pushgateway'
+      scrape_interval: 5s
+      static_configs:
+        - targets: ['172.16.68.91:31469']
+
+
+
+https://www.weave.works/technologies/monitoring-kubernetes-with-prometheus/
+
+
+
+
+
+

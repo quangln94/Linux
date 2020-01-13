@@ -1,0 +1,94 @@
+mkdir -p /code
+cat << EOF > /code/collector.py
+import time
+from prometheus_client.core import GaugeMetricFamily, REGISTRY, CounterMetricFamily
+from prometheus_client import start_http_server
+
+
+class CustomCollector(object):
+    def __init__(self):
+        pass
+
+    def collect(self):
+        g = GaugeMetricFamily("MemoryUsage", 'Help text', labels=['instance'])
+        g.add_metric(["instance01.us.west.local"], 20)
+        yield g
+
+        c = CounterMetricFamily("HttpRequests", 'Help text', labels=['app'])
+        c.add_metric(["example"], 2000)
+        yield c
+
+
+if __name__ == '__main__':
+    start_http_server(8000)
+    REGISTRY.register(CustomCollector())
+    while True:
+        time.sleep(1)
+EOF
+---------------------------------------------------------------------------------
+cat << EOF > /code/pip-requirements.txt
+prometheus_client
+EOF
+---------------------------------------------------------------------------------
+cat << EOF > Dockerfile
+FROM python:3.6
+
+ADD code /code
+RUN pip install -r /code/pip-requirements.txt
+
+WORKDIR /code
+ENV PYTHONPATH '/code/'
+
+CMD ["python" , "/code/collector.py"]
+EOF
+---------------------------------------------------------------------------------
+mkdir -p /yaml
+cat << EOF > /yaml/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prometheus-custom-collector-deployment
+  namespace: monitoring
+  labels:
+    app: prometheus-custom-collector
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prometheus-custom-collector
+  template:
+    metadata:
+      labels:
+        app: prometheus-custom-collector
+    spec:
+      containers:
+      - name: prometheus-custom-collector
+        image: kubejack/prometheus-custom-collector:0.2
+        ports:
+        - containerPort: 80
+EOF
+---------------------------------------------------------------------------------
+cat << EOF > /yaml/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: prometheus-custom-collector-service
+  namespace: monitoring
+spec:
+  selector:
+    app: prometheus-custom-collector
+  type: NodePort
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8000
+EOF
+---------------------------------------------------------------------------------
+kubectl create -f yaml/
+---------------------------------------------------------------------------------
+
+
+
+
+https://medium.com/@ikod/custom-exporter-with-prometheus-b1c23cb24e7a
+https://github.com/jakirpatel/prometheus-custom-collector/tree/master/yaml

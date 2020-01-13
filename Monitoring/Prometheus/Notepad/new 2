@@ -1,0 +1,23 @@
+alertmanagerFiles:
+  alertmanager.yml:
+
+    global:
+      resolve_timeout: 5m
+      smtp_smarthost: 'smtp.gmail.com:587'
+      smtp_from: 'lng.quang.13@gmail.com'
+      smtp_auth_username: 'lng.quang.13@gmail.com'
+      smtp_auth_password: 'b12dcvt275'
+
+    route:
+      receiver: alert-emailer
+      group_by: ['alertname', 'priority']
+      group_wait: 10s
+      repeat_interval: 5m
+
+    receivers:
+    - name: alert-emailer
+      email_configs:
+      - to: lng.quang.13@gmail.com
+        text: "<!channel> \nsummary: {{ .CommonAnnotations.summary }}\ndescription: {{ .CommonAnnotations.description }}"
+
+

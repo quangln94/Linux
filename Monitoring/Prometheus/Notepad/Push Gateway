@@ -1,0 +1,11 @@
+helm fetch stable/prometheus-pushgateway
+tar -zxvf 
+helm install --name prometheus-pushgateway . --namespace monitoring
+
+
+
+
+https://github.com/helm/charts/tree/master/stable/prometheus-pushgateway
+https://github.com/coreos/prometheus-operator/issues/1573
+https://github.com/prometheus/client_python#exporting-to-a-pushgateway
+https://www.replex.io/blog/kubernetes-in-production-the-ultimate-guide-to-monitoring-resource-metrics
