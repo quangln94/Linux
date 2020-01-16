@@ -1,4 +1,4 @@
-# Cài đặt zabbix server trên centOS 7
+# Cài đặt zabbix server 4.4 trên centOS 7
 ## Mô hình 
 Một mô hình giám sát zabbix sẽ bao gồm đầy đủ các thành phần như sau:
 
@@ -18,19 +18,41 @@ Mô hình đơn giản của tôi như sau
 
 ## Setup
 
-Cài đặt LAMP tham khảo [tại đây](https://github.com/quangln94/Linux/blob/master/Task/Web%20Server/Lab_Web_Server.md)
-
+**Cài đặt MariaDB 10.4**
+```sh
+cat << EOF > /etc/yum.repos.d/MariaDB.repo
+[mariadb]
+name = MariaDB
+baseurl = http://yum.mariadb.org/10.4/centos7-amd64
+gpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
+gpgcheck=1 
+EOF
+```
+```sh
+yum -y install MariaDB-server MariaDB-client
+systemctl start mariadb
+systemctl enable mariadb
+systemctl status mariadb
+```
+**Cấu hình MariaDB**
+```sh
+mysql_secure_installation
+```
+Tạo Database cho Zabbix
+```sh
+create database zabbix;
+grant all privileges on zabbix.* to 'zabbix'@'%' identified by 'zabbix';
+exit;
+```
 **Cài đặt zabbix server**
 
 - Cài đặt bằng package. Cài đặt gói cấu hình
-
 ```sh
-rpm -Uvh https://repo.zabbix.com/zabbix/4.0/rhel/7/x86_64/zabbix-release-4.0-2.el7.noarch.rpm
-
+rpm -Uvh https://repo.zabbix.com/zabbix/4.4/rhel/7/x86_64/zabbix-release-4.4-1.el7.noarch.rpm
 ```
 - Cài đặt Zabbix Server
 ```sh
-yum install zabbix-server-mysql
+yum -y install zabbix-server-mysql zabbix-agent
 ```
 - Cài đặt Zabbix Frontend
 ```sh
@@ -39,16 +61,6 @@ yum install zabbix-web-mysql
 Nếu mô hình có Zabbix Proxy thì dùng lênh sau để cài đặt trên máy Zabbix Proxy
 ```sh
 yum install zabbix-proxy-mysql
-```
-**Tạo database cho zabbix**
-```sh
-mysql -u root -p
-
-create database zabbix;
-
-grant all privileges on zabbix.* to 'zabbix'@'localhost' identified by 'zabbix';
-
-exit
 ```
 **Import database**
 ```
@@ -100,7 +112,7 @@ Mở trình duyệt web và truy cập `http://IP-server/zabbix` bạn sẽ th�
 Cài đặt zabbix agent trên các host muốn monitor
 - Cài đặt gói cấu hình
 ```sh
-rpm -ivh https://repo.zabbix.com/zabbix/4.0/rhel/7/x86_64/zabbix-release-4.0-1.el7.noarch.rpm
+rpm -Uvh https://repo.zabbix.com/zabbix/4.4/rhel/7/x86_64/zabbix-release-4.4-1.el7.noarch.rpm
 ```
 - Cài đặt agent
 ```sh
@@ -148,3 +160,4 @@ Nếu gặp lỗi này`Directory "/usr/share/zabbix/assets" must be writable.` t
 `chown -R apache:apache /usr/share/zabbix/assets/`
 ## Tài liệu tham khảo
 https://computingforgeeks.com/how-to-install-zabbix-server-4-0-on-centos-7/
+https://www.zabbix.com/download?zabbix=4.4&os_distribution=centos&os_version=7&db=mysql&ws=apache
