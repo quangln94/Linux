@@ -1,87 +1,82 @@
 # Set up RabbitMQ Cluster trên CentOS 7
 ## Step 1: Sửa Setup file /etc/hosts
-
+```sh
 cat << EOF >> /etc/hosts
 
 192.168.10.11 controller1
 192.168.10.12 controller2
 192.168.10.13 controller3
 EOF
-
+```
 ## Step 2: Cài đặt RabbitMQ Server
 
 Cài đặt RabbitMQ Server packages from the EPEL (Extra Packages for Enterprise Linux) repository.
 
 Add the EPEL repository to the CentOS 7 system.
-
-sudo yum -y install epel-release
-
+```sh
+yum -y install epel-release
+```
 Install RabbitMQ Server trên tất cả các Node: controller1, controller2, controller3.
-
+```sh
 sudo yum -y install rabbitmq-server
-
+```
 Start và enable RabbitMQ service.
-
+```sh
 sudo systemctl start rabbitmq-server
 sudo systemctl enable rabbitmq-server
-
+```
 ## Step 3: Enable RabbitMQ Management Plugins
 
-In this step, we will enable RabbitMQ management plugins. It's an interface that allows you to monitor and handle RabbitMQ server from the web browser, running on the default TCP port '15672'.
-
-Enable the RabbitMQ management plugins by running the command below.
-
+Enable RabbitMQ management plugins. Nó là 1 interface cho phép monitor và handle RabbitMQ server từ web browser, chạy mặc định trên TCP port 15672.
+```sh
 sudo rabbitmq-plugins enable rabbitmq_management
-Make sure there is no error, then restart the RabbitMQ service.
-
+```
+Restart và enabled RabbitMQ service.
+```sh
 sudo systemctl restart rabbitmq-server
+```
 And the RabbitMQ Management has been enabled.
 
-Enable RabbitMQ Management Plugins
+## Step 4 - Configure CentOS Firewalld
 
-Step 4 - Configure CentOS Firewalld
-In this tutorial, we will enable the CentOS firewalld service, so we need to open the port that's used by the RabbitMQ server.
+Enable firewalld service cho RabbitMQ server. 
 
-We will open the port that uses the RabbitMQ server '5672', the port for RabbitMQ management '15672', and ports for the RabbitMQ cluster '4369, 25672'.
-
-Run the following firewalld commands.
-
+Port 5672 cho RabbitMQ
+Port 15672 cho RabbitMQ management
+Port 4369, 25672 cho RabbitMQ
+```sh
 sudo firewall-cmd --add-port=15672/tcp --permanent
 sudo firewall-cmd --add-port=5672/tcp --permanent
 sudo firewall-cmd --add-port={4369/tcp,25672/tcp} --permanent
-Now reload firewalld and check all opened ports on the list.
-
+```
+Reload firewalld và check
+```sh
 sudo firewall-cmd --reload
 sudo firewall-cmd --list-all
-Configure CentOS Firewalld
+```
+## Step 5: Set up RabbitMQ Cluster
 
-The CentOS firewalld configuration has been completed, and we're ready to set up the RabbitMQ Cluster.
+Để setup RabbitMQ cluster, cần chắc chắn fil `.erlang.cookie` giống nhau trên tất cả các Node. Chúng ta sẽ copy file `.erlang.cookie` trong thư mục `/var/lib/rabbitmq` từ `controller1` đến `controller2` và `controller3`.
+```sh
+scp /var/lib/rabbitmq/.erlang.cookie root@controller2:/var/lib/rabbitmq/
+scp /var/lib/rabbitmq/.erlang.cookie root@controller3:/var/lib/rabbitmq/
+```
+Setup `controller2` và `controller3` join cluster 'controller1'.
 
-Step 5 - Set up RabbitMQ Cluster
-In order to setup the RabbitMQ cluster, we need to make sure the '.erlang.cookie' file is same on all nodes. We will copy the '.erlang.cookie' file in the '/var/lib/rabbitmq' directory from 'node01' to other node 'node02' and 'node03'.
-
-Copy the '.erlang.cookie' file using scp commands from the 'node01'.
-
-scp /var/lib/rabbitmq/.erlang.cookie root@node02:/var/lib/rabbitmq/
-scp /var/lib/rabbitmq/.erlang.cookie root@node03:/var/lib/rabbitmq/
-Make sure there is no error on both servers.
-
-Set up RabbitMQ Cluster
-
-Next, we need to setup 'node02' and 'node03' to join the cluster 'node01'.
-
-Run all commands below on the 'node02' and 'node03' servers.
-Restart the RabbitMQ service and stop the app.
-
-sudo systemctl restart rabbitmq-server
-sudo rabbitmqctl stop_app
-Now let RabbitMQ server on both nodes join the cluster on 'node01', then start the app.
-
-sudo rabbitmqctl join_cluster rabbit@node01
+Chạy lệnh sau trên `controller2` và `controller3`
+```sh
+systemctl restart rabbitmq-server
+rabbitmqctl stop_app
+```
+Join RabbitMQ server vào cluster trên `controller` và start.
+```sh
+sudo rabbitmqctl join_cluster rabbit@controller1
 sudo rabbitmqctl start_app
-After it's complete, check the RabbitMQ cluster status.
-
+```
+Kiểm tra trạng thái cluster
+```sh
 sudo rabbitmqctl cluster_status
+```
 And you will get the results as shown below.
 
 On the 'node02'.
