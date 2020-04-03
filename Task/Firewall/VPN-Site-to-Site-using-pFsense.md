@@ -63,7 +63,7 @@ Chú ý: Các thông số này phải giống nhau trên cả 2 Site
  
 Lưu ý: Trường Pre-Shared Key: Sử dụng Pre-Shared Key có sẵn hoặc tự tạo bằng cách Generate new Pre-Shared Key sẽ tạo ra chuỗi Pre-Shared Key. Chuỗi Pre-Shared Key này giống nhau trên Pfsense và thiết bị vFirewall của Người dùng
 •	Sau khi cấu hình xong chọn Save ở dưới cùng của Page
-3.2.2.	Thực hiện Add Phase 2
+### 3.2.2.	Thực hiện Add Phase 2
 •	Chon Show Phase 2 Entries -> Add P2. 
 <img src=https://i.imgur.com/U3H32Ul.png>
 •	Điền thông tin như sau:
