@@ -116,48 +116,69 @@ Kết quả tương tư như sau:
 ### 3.3.2.	Cấu hình Rule cho LAN Interface
 Setup LAN Firewall Rule: Mở all cho LAN
 •	Chọn sang tab LAN -> Add
- 
+<img src=https://i.imgur.com/ljGucRS.png>
+
 Kết quả như sau:
- 
-### 3.3.3.	Cấu hình Rule cho IPsec
-•	Chọn sang tab IPsec -> Add
- 
-•	Thực hiện Edit Rules để NAT giữa dải LAN của 2 Pfsense
- 
+<img src=https://i.imgur.com/CDsRFjL.png>
+
+#### 3.3.3.	Cấu hình Rule cho IPsec
+**Chọn sang tab IPsec -> Add**
+<img src=https://i.imgur.com/iHvp2tM.png>
+
+**Thực hiện Edit Rules để NAT giữa dải LAN của 2 Pfsense**
+<img src=https://i.imgur.com/ku7RMEs.png>
+
 Trong đó:
-•	Protocol: Any – Cho phép toàn bộ giao thức
-•	Source: 172.16.0.0/24 – Dải LAN phía Người dùng
-•	Destination: LAN net – Dải LAN của VM trên SmartCloud
-Sau đó chọn Save -> Apply Changes
-## 3.4.	Kết nối IPsec VPN giữa 2 Site
-•	Vào Status -> IPsec -> Connect
+- Protocol: Any – Cho phép toàn bộ giao thức
+- Source: 172.16.0.0/24 – Dải LAN phía Người dùng
+- Destination: LAN net – Dải LAN của VM trên SmartCloud
+
+**Sau đó chọn Save -> Apply Changes**
+### 3.4.	Kết nối IPsec VPN giữa 2 Site
+**Vào Status -> IPsec -> Connect**
+
 ## 4.	Cấu hình trên OpenStack 
 ### 4.1.	Thực hiện trên Node Controller
-	Lấy thông tin id-port của Pfsense thuộc LAN Private (IP: 192.168.1.2)
+**Lấy thông tin id-port của Pfsense thuộc LAN Private (IP: 192.168.1.2)**
+```sh
 neutron port-list --insecure| grep 192.168.1.2
+```
 Kết quả tương tự như sau
-| 97282f6a-17ff-4e4b-b53f-27756efda9f7 |      | fa:16:3e:fe:09:26 | {"subnet_id": "08cf18ff-66c4-489a-b857-1f2d01fbb043", "ip_address": "192.168.1.2"}    |
-ID Port là: 97282f6a-17ff-4e4b-b53f-27756efda9f
-	Cho phép nhiều VLAN được đi qua port này
+```sh| 97282f6a-17ff-4e4b-b53f-27756efda9f7 |      | fa:16:3e:fe:09:26 | {"subnet_id": "08cf18ff-66c4-489a-b857-1f2d01fbb043", "ip_address": "192.168.1.2"}    |
+```
+=> ID Port là: 97282f6a-17ff-4e4b-b53f-27756efda9f
+
+**Cho phép nhiều VLAN được đi qua port này**
+```sh
 neutron port-update 97282f6a-17ff-4e4b-b53f-27756efda9f7 --allowed-address-pairs list=true type=dict ip_address=0.0.0.0/0 --insecure
-Kết quả
+```
+Kết quả:
+```sh
 Updated port: 97282f6a-17ff-4e4b-b53f-27756efda9f
-	Kiểm tra thông tin port
+```
+**Kiểm tra thông tin port**
+```sh
 neutron port-show 97282f6a-17ff-4e4b-b53f-27756efda9f7 --insecure
+```
 ## 5.	Thực hiện định tuyến phía SmartCloud đến phía Người dùng và ngược lại
 ### 5.1.	Phía SmartCloud đến phía Người dùng
-	Ví dụ với VM CentOS 7 trên Smart Cloud
+**Ví dụ với VM CentOS 7 trên Smart Cloud**
+
 Sử dụng lệnh sau với quyền root
+```sh
 ip route add 172.16.0.0/24 via 192.168.1.2 dev eth1
+```
 Trong đó:
-•	172.16.0.0/24: Dải Private LAN phía người dùng
-•	192.168.1.2: IP LAN của Pfsense
-•	eth1: Interface của IP LAN trên VM
+-	172.16.0.0/24: Dải Private LAN phía người dùng
+-	192.168.1.2: IP LAN của Pfsense
+-	eth1: Interface của IP LAN trên VM
+
 Thực hiện Ping từ VM1 trên SmartCloud để kiểm tra
+```sh
 ping 172.16.0.3
+```
 ### 5.2.	Phía Người dùng đến phía SmartCloud
 Phía Người dùng thực hiện
-
 
 ## Tài liệu tham khao
 - https://www.google.com/search?q=vpn+site+to+site+pfsense&rlz=1C1CHBD_enVN874VN874&oq=vpn+&aqs=chrome.1.69i57j35i39j0l3j69i60l3.4486j0j7&sourceid=chrome&ie=UTF-8
