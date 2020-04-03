@@ -49,8 +49,10 @@ https://192.168.1.2 hoặc https://123.4.5.1
 ### 3.2.1.	Thực hiện Add Phase 1
 •	Tại Web quản trị, chọn VPN -> IPsec
 <img src=https://i.imgur.com/U3H32Ul.png>
+
 •	Chọn Add P1
- 
+<img src=https://i.imgur.com/fTfTlsA.png>
+
 Nhập vào các thông tin như sau:
 Chú ý: Các thông số này phải giống nhau trên cả 2 Site
 •	Key Exchange version: IKEv1
@@ -59,15 +61,16 @@ Chú ý: Các thông số này phải giống nhau trên cả 2 Site
 •	Encryption Algorithm: 3DES
 •	Hash: MD5
 •	DH Group: 2
- 
+
+<img src=https://i.imgur.com/42mDnB1.png>
  
 Lưu ý: Trường Pre-Shared Key: Sử dụng Pre-Shared Key có sẵn hoặc tự tạo bằng cách Generate new Pre-Shared Key sẽ tạo ra chuỗi Pre-Shared Key. Chuỗi Pre-Shared Key này giống nhau trên Pfsense và thiết bị vFirewall của Người dùng
 •	Sau khi cấu hình xong chọn Save ở dưới cùng của Page
 ### 3.2.2.	Thực hiện Add Phase 2
 •	Chon Show Phase 2 Entries -> Add P2. 
-<img src=https://i.imgur.com/U3H32Ul.png>
+<img src=g>
 •	Điền thông tin như sau:
-<img src=https://i.imgur.com/fTfTlsA.png>
+<img src=>
 Trong đó:
 •	Local Network: Chọn Private Lan. Nếu hệ thống có nhiều dải Private Lan thì chú ý chọn đúng dải. Private Lan ở dây là Lan subnet
 •	Remote Network: Chọn dải Private Lan cần Remote đến. Ở đây là 172.16.0.0/24
@@ -77,7 +80,7 @@ o	Encrytion Algorithms: 3DES
 o	Hash algorithms: MD5
 o	PFS key group: 2 (1024 bit)
 o	Lifetime: 3600
-<img src=https://i.imgur.com/42mDnB1.png>
+<img src=>
 
 <img src=https://i.imgur.com/tRIFD76.png>
  
