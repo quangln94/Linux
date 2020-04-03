@@ -77,9 +77,12 @@ Lưu ý: Trường Pre-Shared Key: Sử dụng Pre-Shared Key có sẵn hoặc t
 ### 3.2.2.	Thực hiện Add Phase 2
 
 •	Chon Show Phase 2 Entries -> Add P2. 
-<img src=g>
+<img src=https://i.imgur.com/Hp1Jy3D.png>
+
+<img src=https://i.imgur.com/v4m9LHd.png>
+
 •	Điền thông tin như sau:
-<img src=>
+<img src=https://i.imgur.com/Sv8QCwF.png>
 Trong đó:
 -	Local Network: Chọn Private Lan. Nếu hệ thống có nhiều dải Private Lan thì chú ý chọn đúng dải. Private Lan ở dây là Lan subnet
 -	Remote Network: Chọn dải Private Lan cần Remote đến. Ở đây là 172.16.0.0/24
@@ -90,29 +93,33 @@ Trong đó:
 -	PFS key group: 2 (1024 bit)
 -	Lifetime: 3600
 
-<img src=https://i.imgur.com/tRIFD76.png>
+<img src=https://i.imgur.com/HSkErX6.png>
 
-<img src=https://i.imgur.com/DgjKZlp.png>
- 
-•	Sau đó chọn Save -> Apply Changes
+=>	Sau đó chọn Save -> Apply Changes
+
 ## 3.3.	Cấu hình Firewall trên Pfsense
-###3 .3.1.	Cấu hình Rule cho WAN Interface
-•	Chọn Firewall -> Rules 
- <img src=https://i.imgur.com/Hp1Jy3D.png>
-Setup WAN Firewall Rule: Mở port 4500 và 500 (TCP/UDP)
-•	Chọn sang tab WAN -> Add
- 
-•	Chọn Save dưới cùng của Page. Tiếp tục mở Port 500 -> chọn Add
- 
+### 3.3.1.	Cấu hình Rule cho WAN Interface
+-	Chọn Firewall -> Rules 
+<img src=https://i.imgur.com/Bh8w04U.png>
+
+**Setup WAN Firewall Rule: Mở port 4500 và 500 (TCP/UDP)**
+
+-	Chọn sang tab WAN -> Add
+<img src=https://i.imgur.com/TCBXUdS.png>
+
+**Chọn Save dưới cùng của Page. Tiếp tục mở Port 500 -> chọn Add**
+<img src=https://i.imgur.com/IAqJt5W.png>
+
 Kết quả tương tư như sau: 
- 
-3.3.2.	Cấu hình Rule cho LAN Interface
+<img src=https://i.imgur.com/5tlEKmB.png>
+
+### 3.3.2.	Cấu hình Rule cho LAN Interface
 Setup LAN Firewall Rule: Mở all cho LAN
 •	Chọn sang tab LAN -> Add
  
 Kết quả như sau:
  
-3.3.3.	Cấu hình Rule cho IPsec
+### 3.3.3.	Cấu hình Rule cho IPsec
 •	Chọn sang tab IPsec -> Add
  
 •	Thực hiện Edit Rules để NAT giữa dải LAN của 2 Pfsense
@@ -122,10 +129,10 @@ Trong đó:
 •	Source: 172.16.0.0/24 – Dải LAN phía Người dùng
 •	Destination: LAN net – Dải LAN của VM trên SmartCloud
 Sau đó chọn Save -> Apply Changes
-3.4.	Kết nối IPsec VPN giữa 2 Site
+## 3.4.	Kết nối IPsec VPN giữa 2 Site
 •	Vào Status -> IPsec -> Connect
-4.	Cấu hình trên OpenStack 
-4.1.	Thực hiện trên Node Controller
+## 4.	Cấu hình trên OpenStack 
+### 4.1.	Thực hiện trên Node Controller
 	Lấy thông tin id-port của Pfsense thuộc LAN Private (IP: 192.168.1.2)
 neutron port-list --insecure| grep 192.168.1.2
 Kết quả tương tự như sau
@@ -137,8 +144,8 @@ Kết quả
 Updated port: 97282f6a-17ff-4e4b-b53f-27756efda9f
 	Kiểm tra thông tin port
 neutron port-show 97282f6a-17ff-4e4b-b53f-27756efda9f7 --insecure
-5.	Thực hiện định tuyến phía SmartCloud đến phía Người dùng và ngược lại
-5.1.	Phía SmartCloud đến phía Người dùng
+## 5.	Thực hiện định tuyến phía SmartCloud đến phía Người dùng và ngược lại
+### 5.1.	Phía SmartCloud đến phía Người dùng
 	Ví dụ với VM CentOS 7 trên Smart Cloud
 Sử dụng lệnh sau với quyền root
 ip route add 172.16.0.0/24 via 192.168.1.2 dev eth1
@@ -148,7 +155,7 @@ Trong đó:
 •	eth1: Interface của IP LAN trên VM
 Thực hiện Ping từ VM1 trên SmartCloud để kiểm tra
 ping 172.16.0.3
-5.2.	Phía Người dùng đến phía SmartCloud
+### 5.2.	Phía Người dùng đến phía SmartCloud
 Phía Người dùng thực hiện
 
 
