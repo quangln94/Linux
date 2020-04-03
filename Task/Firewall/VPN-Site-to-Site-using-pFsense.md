@@ -4,15 +4,23 @@ Hệ thống VPN Site to Site sẽ được cài đặt theo mô hình sau:
 <img src=https://i.imgur.com/ZISYC9k.png>
 
 ## Hệ thống sẽ bao gồm:
-|Site SmartCloud|Site người dùng|
-|---------------|---------------|
-|Pfsense|IP Public|123.4.5.1	vFirewall	IP Public	123.4.5.2
-|IP Private|	192.168.1.2/24		IP Private	172.16.0.2/24
-|VM1|	IP Private	192.168.1.3/24	SRV1	IP Private	172.16.0.3/24
+- Site SmartCloud
+
+||Pfsense|VM1|
+|---|----|---|
+|IP Public|123.4.5.1||
+|IP Private|192.168.1.2/24|192.168.1.3/24|
+
+- Site người dùng
+||vFirewall|SRV1|
+|---|------|----|
+|IP Public|123.4.5.2||
+|IP Private|172.16.0.2/24|172.16.0.3/24|
+
 ## 2.	Cài đặt Pfsense trên SmartCloud
 ### 2.1. Khởi tạo VM pfsense với image pfsense trên SmartCloud
-•	Khởi tạo VM pfsense
-•	Mở Port HTTPS trên SmartCloud
+-	Khởi tạo VM pfsense
+-	Mở Port HTTPS trên SmartCloud
 ### 2.2.	Kiểm tra Pfsense đã nhận đúng IP hay chưa
 
 Kiểm tra IP WAN và IP LAN tương ứng
@@ -51,20 +59,21 @@ https://192.168.1.2 hoặc https://123.4.5.1
 
 ## 3.2.	Cấu hình IPsec VPN
 ### 3.2.1.	Thực hiện Add Phase 1
-•	Tại Web quản trị, chọn VPN -> IPsec
+**Tại Web quản trị, chọn VPN -> IPsec**
 <img src=https://i.imgur.com/U3H32Ul.png>
 
-•	Chọn Add P1
+**Chọn Add P1**
 <img src=https://i.imgur.com/fTfTlsA.png>
 
 Nhập vào các thông tin như sau:
+
 Chú ý: Các thông số này phải giống nhau trên cả 2 Site
-•	Key Exchange version: IKEv1
-•	Remote Gateway: IP WAN của Site 2
-•	Pre-Shared Key: key VPN, chú ý copy để điền tại Site người dùng
-•	Encryption Algorithm: 3DES
-•	Hash: MD5
-•	DH Group: 2
+-	Key Exchange version: IKEv1
+-	Remote Gateway: IP WAN của Site 2
+-	Pre-Shared Key: key VPN, chú ý copy để điền tại Site người dùng
+-	Encryption Algorithm: 3DES
+-	Hash: MD5
+-	DH Group: 2
 
 <img src=https://i.imgur.com/42mDnB1.png>
 
