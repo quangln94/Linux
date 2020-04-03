@@ -96,7 +96,8 @@ Lưu ý: Trường Pre-Shared Key: Sử dụng Pre-Shared Key có sẵn hoặc t
 Trong đó:
 -	Local Network: Chọn Private Lan. Nếu hệ thống có nhiều dải Private Lan thì chú ý chọn đúng dải. Private Lan ở dây là Lan subnet
 -	Remote Network: Chọn dải Private Lan cần Remote đến. Ở đây là 172.16.0.0/24
--	Tiếp tục nhập vào các thông số sau:
+
+**Tiếp tục nhập vào các thông số sau**
 -	Protocol: ESP
 -	Encrytion Algorithms: 3DES
 -	Hash algorithms: MD5
