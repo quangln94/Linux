@@ -145,11 +145,11 @@ Trong đó:
 - Destination: LAN net – Dải LAN của VM trên SmartCloud
 
 **Sau đó chọn Save -> Apply Changes**
-### 3.4.	Kết nối IPsec VPN giữa 2 Site
+### 3.4. Kết nối IPsec VPN giữa 2 Site
 **Vào Status -> IPsec -> Connect**
 
-## 4.	Cấu hình trên OpenStack 
-### 4.1.	Thực hiện trên Node Controller
+## 4. Cấu hình trên OpenStack 
+### 4.1. Thực hiện trên Node Controller
 **Lấy thông tin id-port của Pfsense thuộc LAN Private (IP: 192.168.1.2)**
 ```sh
 neutron port-list --insecure| grep 192.168.1.2
@@ -171,8 +171,8 @@ Updated port: 97282f6a-17ff-4e4b-b53f-27756efda9f
 ```sh
 neutron port-show 97282f6a-17ff-4e4b-b53f-27756efda9f7 --insecure
 ```
-## 5.	Thực hiện định tuyến phía SmartCloud đến phía Người dùng và ngược lại
-### 5.1.	Phía SmartCloud đến phía Người dùng
+## 5. Thực hiện định tuyến phía SmartCloud đến phía Người dùng và ngược lại
+### 5.1. Phía SmartCloud đến phía Người dùng
 **Ví dụ với VM CentOS 7 trên Smart Cloud**
 
 Sử dụng lệnh sau với quyền root
@@ -180,15 +180,15 @@ Sử dụng lệnh sau với quyền root
 ip route add 172.16.0.0/24 via 192.168.1.2 dev eth1
 ```
 Trong đó:
--	172.16.0.0/24: Dải Private LAN phía người dùng
--	192.168.1.2: IP LAN của Pfsense
--	eth1: Interface của IP LAN trên VM
+- 172.16.0.0/24: Dải Private LAN phía người dùng
+- 192.168.1.2: IP LAN của Pfsense
+- eth1: Interface của IP LAN trên VM
 
 Thực hiện Ping từ VM1 trên SmartCloud để kiểm tra
 ```sh
 ping 172.16.0.3
 ```
-### 5.2.	Phía Người dùng đến phía SmartCloud
+### 5.2. Phía Người dùng đến phía SmartCloud
 Phía Người dùng thực hiện
 
 ## Tài liệu tham khao
