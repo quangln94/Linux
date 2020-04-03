@@ -28,17 +28,21 @@ Nếu sai thực hiện như sau:
 -	Lựa chọn card mạng cho WAN và LAN (mặc định Pfsense shell chỉ cho phép khai báo 1 card LAN, các card LAN khác sẽ khai báo trên Pfsense web)
 
 Chọn card mạng gắn với card WAN: ở đây chọn là card vtnet0
+
 <img src=https://i.imgur.com/N6kfBXf.png> 
 
 Chọn card mạng gắn với card LAN: ở đây chọn là card vtnet1
+
 <img src=https://i.imgur.com/sXiQP7T.png>
 
 Xác nhận việc thực hiện
+
 <img src=https://i.imgur.com/vrshevI.png>
 
 Sau khi tạo xong, thông tin truy cấp Web qua IP LAN và IP WAN tương tự như sau:
 - IP WAN: 123.4.5.1
 - IP LAN: 192.168.1.2
+
 ## 3.	Cấu hình Pfsense trên SmartCloud
 ### 3.1.	Đăng nhập vào giao diện Web của Pfsense
 Đăng nhập vào Web quản trị theo IP WAN hoặc IP LAN
@@ -63,10 +67,15 @@ Chú ý: Các thông số này phải giống nhau trên cả 2 Site
 •	DH Group: 2
 
 <img src=https://i.imgur.com/42mDnB1.png>
+
+<img src=https://i.imgur.com/oFdmHDL.png>
  
 Lưu ý: Trường Pre-Shared Key: Sử dụng Pre-Shared Key có sẵn hoặc tự tạo bằng cách Generate new Pre-Shared Key sẽ tạo ra chuỗi Pre-Shared Key. Chuỗi Pre-Shared Key này giống nhau trên Pfsense và thiết bị vFirewall của Người dùng
+
 •	Sau khi cấu hình xong chọn Save ở dưới cùng của Page
+
 ### 3.2.2.	Thực hiện Add Phase 2
+
 •	Chon Show Phase 2 Entries -> Add P2. 
 <img src=g>
 •	Điền thông tin như sau:
