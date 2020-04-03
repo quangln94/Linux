@@ -12,6 +12,7 @@ Hệ thống VPN Site to Site sẽ được cài đặt theo mô hình sau:
 |IP Private|192.168.1.2/24|192.168.1.3/24|
 
 - Site người dùng
+
 ||vFirewall|SRV1|
 |---|------|----|
 |IP Public|123.4.5.2||
