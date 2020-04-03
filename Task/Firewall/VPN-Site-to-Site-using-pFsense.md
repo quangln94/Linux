@@ -72,7 +72,7 @@ Chú ý: Các thông số này phải giống nhau trên cả 2 Site
  
 Lưu ý: Trường Pre-Shared Key: Sử dụng Pre-Shared Key có sẵn hoặc tự tạo bằng cách Generate new Pre-Shared Key sẽ tạo ra chuỗi Pre-Shared Key. Chuỗi Pre-Shared Key này giống nhau trên Pfsense và thiết bị vFirewall của Người dùng
 
-•	Sau khi cấu hình xong chọn Save ở dưới cùng của Page
+**Sau khi cấu hình xong chọn Save ở dưới cùng của Page**
 
 ### 3.2.2.	Thực hiện Add Phase 2
 
@@ -81,17 +81,18 @@ Lưu ý: Trường Pre-Shared Key: Sử dụng Pre-Shared Key có sẵn hoặc t
 •	Điền thông tin như sau:
 <img src=>
 Trong đó:
-•	Local Network: Chọn Private Lan. Nếu hệ thống có nhiều dải Private Lan thì chú ý chọn đúng dải. Private Lan ở dây là Lan subnet
-•	Remote Network: Chọn dải Private Lan cần Remote đến. Ở đây là 172.16.0.0/24
-•	Tiếp tục nhập vào các thông số sau:
-o	Protocol: ESP
-o	Encrytion Algorithms: 3DES
-o	Hash algorithms: MD5
-o	PFS key group: 2 (1024 bit)
-o	Lifetime: 3600
-<img src=>
+-	Local Network: Chọn Private Lan. Nếu hệ thống có nhiều dải Private Lan thì chú ý chọn đúng dải. Private Lan ở dây là Lan subnet
+-	Remote Network: Chọn dải Private Lan cần Remote đến. Ở đây là 172.16.0.0/24
+-	Tiếp tục nhập vào các thông số sau:
+-	Protocol: ESP
+-	Encrytion Algorithms: 3DES
+-	Hash algorithms: MD5
+-	PFS key group: 2 (1024 bit)
+-	Lifetime: 3600
 
 <img src=https://i.imgur.com/tRIFD76.png>
+
+<img src=https://i.imgur.com/DgjKZlp.png>
  
 •	Sau đó chọn Save -> Apply Changes
 ## 3.3.	Cấu hình Firewall trên Pfsense
@@ -154,4 +155,3 @@ Phía Người dùng thực hiện
 ## Tài liệu tham khao
 - https://www.google.com/search?q=vpn+site+to+site+pfsense&rlz=1C1CHBD_enVN874VN874&oq=vpn+&aqs=chrome.1.69i57j35i39j0l3j69i60l3.4486j0j7&sourceid=chrome&ie=UTF-8
 - http://svuit.vn/threads/site-to-site-vpn-pfsense-va-draytek-878/
--
