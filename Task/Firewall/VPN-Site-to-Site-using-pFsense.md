@@ -48,7 +48,7 @@ https://192.168.1.2 hoặc https://123.4.5.1
 ## 3.2.	Cấu hình IPsec VPN
 ### 3.2.1.	Thực hiện Add Phase 1
 •	Tại Web quản trị, chọn VPN -> IPsec
- 
+<img src=https://i.imgur.com/U3H32Ul.png>
 •	Chọn Add P1
  
 Nhập vào các thông tin như sau:
