@@ -1,10 +1,12 @@
 # Cài đặt Proxy cho Docker sử dụng OpenVPN client container trên Ubuntu 14.04
 ## Mô hình hệ thống
-|Server|IP Public|IP VPN
-|------|--|
+
+|Server|IP Public|IP VPN|
+|------|---------|------|
 |pfSense|123.4.5.6|192.168.1.1|
-|Proxy||
-|Client|192.168.1.3|
+|Proxy|||
+|Client|192.168.1.3||
+
 ## 1. Thực hiện trên pfSense
 - Cài đặt, start và enable docker
 ```
