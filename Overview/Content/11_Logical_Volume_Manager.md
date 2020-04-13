@@ -38,12 +38,13 @@ LVM có thể gom nhiều ổ đĩa cứng thành một ổ ảo, giúp tăng k�
 
 <a name="comp"></a>
 ### 2.1 Các thành phần</br>
-Bố cục cơ bản Logical Volume Manager layout (LVM) trông giống như sau:
+Bố cục cơ bản Logical Volume Manager layout (LVM) như sau:
 
-* Physical Volume(s): Là những ổ cứng vật lý hoặc các partition trên nó như: /dev/sdb1, /dev/sdc1, /dev/sdd1, /dev/sdc1
+* Physical Volume(s): Là những ổ cứng vật lý hoặc các partition trên nó như: /dev/sda1, /dev/sdb1, /dev/sdc1, /dev/sdd1
 * Volume Group(s): Có thể coi đây là ổ đĩa ảo, bao gồm nhiều các Physical Volume: fileserver
 * Logical Volume(s): Có thể coi đây là các phân vùng ảo trên ổ đĩa ảo, có thể thay đổi kích thước tùy ý: /dev/fileserver/share, /dev/fileserver/backup, /dev/fileserver/media
 
+<img src=https://i.imgur.com/x4my5jh.png>
 
 <a name="arch"></a>
 ### 2.2 Kiến trúc
