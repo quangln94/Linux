@@ -5,7 +5,7 @@
 |------|---------|------|
 |pfSense|123.4.5.6|192.168.1.1|
 |Proxy|||
-|Client|192.168.1.3||
+|Client||192.168.1.3|
 
 ## 1. Thực hiện trên pfSense
 - Cài đặt, start và enable docker
