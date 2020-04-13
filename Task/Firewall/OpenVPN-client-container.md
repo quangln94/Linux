@@ -1,4 +1,4 @@
-# Cài đặt OpenVPN client sử dụng Docker container
+# Cài đặt OpenVPN client sử dụng Docker container trên Ubuntu 14.04
 ## Mô hình hệ thống
 |Server|IP|
 |------|--|
@@ -6,7 +6,12 @@
 |Client|192.168.1.2|
 
 ## 1. Thực hiện trên pfSense
-- Cài đặt docker 
+- Cài đặt, start và enable docker
+```
+apt-get install docker
+/etc/init.d/docker start
+update-rc.d docker defaults
+```
 - Export file cấu hình của 1 user sử dụng để kết nối VPN
 
 Thực hiện như sau:
