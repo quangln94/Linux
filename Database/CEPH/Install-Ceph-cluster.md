@@ -23,6 +23,20 @@ firewall-cmd --add-service=ssh --permanent
 firewall-cmd --reload
 ```
 - Install and Configure NTP
+```sh
+yum install chrony -y
+timedatectl set-timezone Asia/Ho_Chi_Minh
+
+sed -i 's/server 0.centos.pool.ntp.org iburst/ \
+server 0.asia.pool.ntp.org iburst \
+server 1.asia.pool.ntp.org iburst/g' /etc/chrony.conf
+
+sed -i 's/server 1.centos.pool.ntp.org iburst/#server 1.centos.pool.ntp.org iburst/g' /etc/chrony.conf
+sed -i 's/server 2.centos.pool.ntp.org iburst/#server 2.centos.pool.ntp.org iburst/g' /etc/chrony.conf
+sed -i 's/server 3.centos.pool.ntp.org iburst/#server 3.centos.pool.ntp.org iburst/g' /etc/chrony.conf
+```
+systemctl enable chronyd.service
+systemctl start chronyd.service
 - Disable SELinux
 ```sh
 sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
@@ -75,7 +89,10 @@ yum install -y epel-release
 yum install -y ceph-deploy
 ```
 Tạo `ssh-key`, sau đó copy sang các Node còn lại. Lưu ý không dùng sudo với lệnh `ssh-keygen` với user khác `root`.
+
 ```sh
+su cephuser
+cd
 ssh-keygen
 ```
 Copy public key sang các Node còn lại.
