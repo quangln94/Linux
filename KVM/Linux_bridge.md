@@ -35,7 +35,7 @@ brctl addbr br0 # tạo mới
 brctl addif br0 eno1 
 brctl stp br0 on # enable tính năng STP nếu cần
 ```
-- Bước 3: Khi tạo một switch mới <b>br1</b>, trên máy host sẽ xuất hiện thêm 1 NIC ảo trùng tên switch đó (br1). Ta có thể cấu hình xin cấp phát IP cho NIC này sử dụng command hoặc cấu hình trong file <b>/etc/network/interfaces</b> để giữ cấu hình cho switch ảo sau khi khởi động lại:
+- Bước 3: Khi tạo một switch mới <b>br0</b>, trên máy host sẽ xuất hiện thêm 1 NIC ảo trùng tên switch đó (br0). Ta có thể cấu hình xin cấp phát IP cho NIC này sử dụng command hoặc cấu hình trong file <b>/etc/network/interfaces</b> để giữ cấu hình cho switch ảo sau khi khởi động lại:
 ```sh
 dhclient br0
 ```
