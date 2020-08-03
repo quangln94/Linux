@@ -1,18 +1,27 @@
-
-## 1. Install
+# Install KVM
+## 1. Cài đặt KVM trên CentOS7
+## 1.1 Cài đặt KVM trên CentOS7
+- Cài đặt KVM
 ```sh
 yum -y install qemu-kvm libvirt virt-install bridge-utils
-# make sure modules are loaded
+```
+- Kiểm tra
+```sh
 [root@server1 ~]# lsmod | grep kvm 
 kvm_intel       138567  0
 kvm             441119  1 kvm_intel
-
-[root@server1 ~]# systemctl start libvirtd 
-[root@server1 ~]# systemctl enable libvirtd 
+```
+- Start và Enable KVM
+```sh
+systemctl start libvirtd 
+systemctl enable libvirtd 
+```
+- Cài gói cho phép hiển thị
+```sh
 yum install "@X Window System" xorg-x11-xauth xorg-x11-fonts-* xorg-x11-utils -y
 yum install virt-manager -y
 ```
-## 2. Configure Bridge networking for KVM virtual machine.Replace the interface name "eth0" for your own environment's one.
+### 1.2 Cấu hình Bridge cho CentOS7
 ```sh
 # add bridge "br0"
 [root@dlp ~]# nmcli connection add type bridge autoconnect yes con-name br0 ifname br0 
@@ -50,3 +59,49 @@ Connection 'br0' (0f4b7bc8-8c7a-461a-bff1-d516b941a6ec) successfully added.
     inet6 fe80::20c:29ff:fe9f:9bd3/64 scope link
        valid_lft forever preferred_lft forever
 ```
+## 2. Cài đặt KVM trên Ubuntu 16.04
+## 2.1 Cài đặt KVM trên Ubuntu 16.04
+- Cài đặt KVM
+```sh
+apt-get install qemu-kvm libvirt-bin virtinst bridge-utils cpu-checker
+```
+### 2.2 Cấu hình Bridge cho Ubuntu 16.04
+- Backup file cấu hình
+```sh
+sudo cp /etc/network/interfaces /etc/network/interfaces.orig
+```
+- Sửa file cấu hình
+```sh
+ auto br0
+ iface br0 inet static
+         address 10.18.44.26
+         netmask 255.255.255.192
+         broadcast 10.18.44.63
+         dns-nameservers 10.0.80.11 10.0.80.12
+         # set static route for LAN
+ 	     post-up route add -net 10.0.0.0 netmask 255.0.0.0 gw 10.18.44.1
+ 	     post-up route add -net 161.26.0.0 netmask 255.255.0.0 gw 10.18.44.1
+         bridge_ports eth0
+         bridge_stp off
+         bridge_fd 0
+         bridge_maxwait 0
+ 
+ # br1 setup with static wan IPv4 with ISP router as a default gateway
+ auto br1
+ iface br1 inet static
+         address 208.43.222.51
+         netmask 255.255.255.248
+         broadcast 208.43.222.55
+         gateway 208.43.222.49
+         bridge_ports eth1
+         bridge_stp off
+         bridge_fd 0
+         bridge_maxwait 0
+```
+- Restart Network
+```sh
+systemctl restart networking
+```
+
+## Tài liệu tham khảo
+- https://www.cyberciti.biz/faq/installing-kvm-on-ubuntu-16-04-lts-server/
