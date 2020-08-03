@@ -27,23 +27,23 @@ Kiến trúc linux bridge minh họa như hình vẽ trên. Một số khái ni�
 **Trường hợp 1**</br>
 - Bước 1: Tạo switch ảo br1. Nếu đã tồn tại có thể xóa switch này đi và tạo lại:
 ```sh
-brctl delbr br0 # xóa đi nếu đã tồn tại
-brctl addbr br0 # tạo mới
+brctl delbr br1 # xóa đi nếu đã tồn tại
+brctl addbr br1 # tạo mới
 ```
 - Bước 2: Gán port eth1 vào swith br1
 ```sh
-brctl addif br0 eno1 
-brctl stp br0 on # enable tính năng STP nếu cần
+brctl addif br1 eno1 
+brctl stp br1 on # enable tính năng STP nếu cần
 ```
 - Bước 3: Khi tạo một switch mới <b>br0</b>, trên máy host sẽ xuất hiện thêm 1 NIC ảo trùng tên switch đó (br0). Ta có thể cấu hình xin cấp phát IP cho NIC này sử dụng command hoặc cấu hình trong file <b>/etc/network/interfaces</b> để giữ cấu hình cho switch ảo sau khi khởi động lại:
 ```sh
-dhclient br0
+dhclient br1
 ```
 Nếu trước đó trong file `/etc/network/interfaces` đã cấu hình cho NIC eth1, ta phải comment lại cấu hình đó hoặc xóa cấu hình đó đi và thay bằng các dòng cấu hình sau:
 ```sh
 /etc/network/interfaces
-auto br0
-iface br0 inet dhcp
+auto br1
+iface br1 inet dhcp
 bridge_ports eno1
 bridge_stp on
 bridge_fd 0
@@ -57,7 +57,7 @@ brctl show # kiểm tra cấu hình switch ảo
 Kết quả kiểm tra cấu hình sẽ tương tự như sau:
 ```sh
 bridge name	bridge id		STP enabled	interfaces
-br0		8000.000c29586f24	yes		eno1
+br1		8000.000c29586f24	yes		eno1
 ```
 Kết quả cấu hình thành công gắn NIC eth1 vào switch ảo br1 sẽ hiển thị như đoạn mã trên
 
